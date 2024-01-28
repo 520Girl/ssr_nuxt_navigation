@@ -1,0 +1,42 @@
+$themes:(
+    light:(
+        headerbackground: $headerBackground-light,
+        applyBackground:$applyBck-light,
+        contentsBackground:$background-light,
+        contentsMenuBck:$backgroundMenu-light,
+        headerFontColor:$fontColor-light,
+        footerIconBk:$iconfont-light,
+        hover:$hover-light,
+        imgInIcon:$fontColor-light,
+        mainline:$main-line-light,
+        fontSizeColor:$fontSizeColor-light,
+        deepApplyBackground:$background-apply-deep-light,
+        //image
+        i-f-a:$i-f-a-light,
+        i-f-b:$i-f-b-light,
+        i-f-c:$i-f-c-light,
+        i-b-a:$i-b-a-light,
+        i-b-b:$i-b-b-light,
+        i-b-c:$i-b-c-light,
+    ),
+    dark:(
+        headerbackground:$headerBackground-dark,
+        applyBackground:$applyBck-dark,
+        contentsBackground:$background-dark,
+        contentsMenuBck:$backgroundMenu-dark,
+        headerFontColor:$fontColor-dark,
+        footerIconBk:$iconfont-dark,
+        hover:$hover-dark,
+        imgInIcon:$fontColor-dark,
+        mainline:$main-line-drak,
+        fontSizeColor:$fontSizeColor-dark,
+        deepApplyBackground:$background-apply-deep-dark,
+        //image
+        i-f-a:$i-f-a-dark,
+        i-f-b:$i-f-b-dark,
+        i-f-c:$i-f-c-dark,
+        i-b-a:$i-b-a-dark,
+        i-b-b:$i-b-b-dark,
+        i-b-c:$i-b-c-dark,
+    )
+)

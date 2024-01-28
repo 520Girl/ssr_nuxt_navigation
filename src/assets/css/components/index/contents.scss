@@ -1,0 +1,197 @@
+.content-container{
+
+  .content-customize-menu{
+    display: inline-block;
+    width: 100%;
+    .no-margin{
+      padding: $padding05;
+      margin-bottom: $marginRt20;
+    }
+    .menu-button{
+      margin:0px 2%;
+      >>>.ivu-btn{
+        //transition:0.25s
+      }
+      button{
+        &:hover{
+          background: red;
+          color: #ffffff;
+          font-weight: bold;
+          transition: all 0.25s;
+        }
+      }
+      .newly-item{
+        overflow: hidden;
+        border-radius: 32px;
+        padding: 2px;
+        box-sizing: border-box;
+        button{
+          >>>i{
+            font-size: 14px;
+          }
+        }
+      }
+      .newly-edit{
+        text-align: right;
+        button{
+          >>>i{
+            font-size: 14px;
+          }
+        }
+      }
+      .button-select{
+        background: red;
+        color: #ffffff;
+        font-weight: bold;
+        transition: all 0.25s;
+      }
+    }
+    .menu-text{
+      // margin:0.15rem 2%;
+      .menu-item{
+        border: 2px dashed rgba(136, 136, 136, 0.5);
+        text-align:center;
+        line-height: 50px;
+        height: 100%;
+        .menu-item-layout{
+          margin-right: 5px;
+          border-radius: 10px;
+          position: relative;
+        }
+        // 处理space-between
+        >>>.ivu-list-item-meta{
+          align-content: center;
+          align-items: center;
+          justify-content: space-around;
+        }
+        >>>.ivu-list-item-meta-description{
+          -webkit-line-clamp: 2;
+          line-clamp: 2;
+          -webkit-box-orient: vertical;
+          display: -webkit-box;
+          white-space: pre-wrap;
+          font-size: 12px;
+        }
+        >>>.ivu-avatar{
+          line-height: 29px;
+          img{
+            position: relative;
+            z-index: 5;
+          }
+        }
+
+      }
+      .my-item{
+        max-height: 97px;
+        min-height: 70px;
+        height: 100%;
+        overflow: hidden;
+        border: none;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        box-sizing: border-box;
+        padding-right: 2px;
+        margin-bottom: 5px;
+        &:hover{
+          .close{
+            opacity: 1;
+          }
+        }
+        >>>.ivu-list-item-meta-avatar{
+          margin: auto 5px auto 0px;
+        }
+        .close{
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          margin: auto;
+          background: #00000047;
+          z-index: 2;
+          opacity: 0;
+          margin: auto;
+          margin-right: 5px;
+          border-radius: 10px;
+          transition: all .5s ease-out;
+          display: flex;
+          flex-direction: column;
+          .close-top{
+            position: relative;
+            height: 50%;
+            line-height: 50%;
+            i{
+              font-size: 20px;
+              cursor: pointer;
+            }
+          }
+          .close-bottom{
+            position: relative;
+            height: 50%;
+            cursor: pointer;
+
+
+          }
+        }
+      }
+      .newly-item{
+        width: 100%;
+        border: none;
+        text-align: center;
+        color: #888;
+        background: rgba(136,136,136,.2);
+        border-radius: 5px;
+      }
+      .clickData-item{
+        height: 70px;
+        overflow: hidden;
+        border: none;
+        display: -webkit-box;
+        box-sizing: border-box;
+        padding-right: 2px;
+        margin-bottom: 5px;
+        .item-content{
+          margin-right: 5px;
+          border-radius: 10px;
+          justify-content: space-around;
+          align-items:center;
+          width: 100%;
+          .text{
+            display: flex;
+            height: 100%;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            justify-content: center;
+            flex-direction: column;
+            small{
+              margin-top: 5px;
+            }
+          }
+        }
+      }
+    }
+    .add-layout{
+      //position: relative;
+      //top: 50%;
+      //transform: translateY(50%);
+      >>>.ivu-date-picker{
+        width: 100%;
+      }
+      >>>.ivu-form-item-label{
+        color:#ffffff;
+      }
+      color: #ffffff;
+    }
+
+  }
+  .menuText-enter-active {
+    transition: all .5s cubic-bezier(.645,.045,.355,1),stroke .2s ease;
+  }
+  .menuText-leave-active {
+    transition: all .5s cubic-bezier(.645,.045,.355,1),stroke .2s ease;
+  }
+  .menuText-enter, .menuApp-leave-to
+    /* .slide-fade-leave-active for below version 2.1.8 */ {
+    opacity: 0;
+
+  }
+}

@@ -1,4 +1,4 @@
-// export { default as bulletin } from '@/components/common/bulletin'
+export { default as bulletin } from '@/components/common/bulletin'
 // export { default as countToNumber } from './countToNumber'
 // export { default as footers } from './footer'
 // export { default as gradeBackground } from './gradeBackground'

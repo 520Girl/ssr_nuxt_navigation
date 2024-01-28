@@ -1,0 +1,79 @@
+// animation
+//动画旋转
+@keyframes headerTagI {
+  0%{
+    transform: scaleX(0);
+  }
+  50%{
+    transform: scaleX(-1);;
+  }
+  100%{
+    transform: scaleX(0);
+  }
+}
+
+//旋转 刷新
+@keyframes quan{
+  0%{-webkit-transform:rotate(1turn);}
+  25%{-webkit-transform:rotate(270deg);}
+  50%{-webkit-transform:rotate(180deg);}
+  75%{-webkit-transform:rotate(90deg);}
+  100%{-webkit-transform:rotate(0deg);}
+}
+
+// app 个人中心点出前后滚动动画
+@keyframes leftIconRo {
+  0%{
+    transform:translateX(0px)  rotate(180deg);
+  }
+  50%{
+    transform:translateX(-15px)  rotate(180deg);
+  }
+  100%{
+    transform:translateX(0px)  rotate(180deg);
+  }
+}
+
+// 图片动画 image
+@keyframes sidebarFadeIn {
+  0%{
+    opacity: 0;
+    margin-top: 40px;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+// 上下跳动
+@keyframes rock {
+  0% {
+    transform: rotate(-30deg)
+  }
+  10% {
+    transform: rotate(-15deg)
+  }
+  20% {
+    transform: rotate(-30deg)
+  }
+  30% {
+    transform: rotate(-45deg)
+  }
+  35% {
+    transform: rotate(-15deg)
+  }
+  40% {
+    transform: rotate(-45deg)
+  }
+  45% {
+    transform: rotate(-15deg)
+  }
+  50% {
+    transform: rotate(-30deg)
+  }
+  100% {
+    transform: rotate(-30deg)
+  }
+}
+
+

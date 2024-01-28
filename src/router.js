@@ -38,9 +38,9 @@ router.beforeEach((to, from, next) => {
     // store.commit('getLoadingHome', true)
     // console.log(to)
     let aT = 'title' in to.query ? to.query.title + ',' : ''
-    if(process.client){
-        document.title = setting.title + ',' + aT + to.meta.title
-    }
+    // if(process.client){
+    //     document.title = setting.title + ',' + aT + to.meta.title
+    // }
     //# 将侧边栏导出来
     if (from.name == 'CartoonDetailed') {
         store.commit('setHeadeSidebar', [true, true])

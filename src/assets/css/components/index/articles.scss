@@ -1,0 +1,245 @@
+.articless-container{
+  display: inline-block!important;
+  width: 100%;
+  .articles-content{
+    .articles-carousel{
+      margin: auto;
+      .carousel-content{
+        height: 100%;
+        height:3rem ;
+        overflow: hidden;
+        .ivu-carousel{
+          height: 100%;
+          >>>.ivu-carousel-list{height: 100%;    border-radius: 10px;
+            .ivu-carousel-track{width:100%;height: 100%;
+              .ivu-carousel-item{
+                width:100%;
+              }
+            }
+          }
+          >>>.ivu-carousel-track{}
+          >>>button.radius{
+            width: 15px;
+            border-radius: 5px;
+            background: red;
+          }
+        }
+        .carousel{
+          height: 100%;
+          position: relative;
+          border-radius: 10px;
+          &:hover{
+            box-shadow: 0 1px 6px rgba(0,0,0,0.2);
+          }
+          img{
+            height: 100%;
+            width: 100%;
+            object-fit:cover;
+          }
+          .text{
+            padding: 0.05rem;
+            background: rgba(0,0,0,.6);
+            border-radius: 5px;
+            position: absolute;
+            text-align: right;
+            top: 5px;
+            right: 5px;
+            h5{
+              font-size:14px;
+              color:#000000;
+            }
+          }
+
+        }
+      }
+      .sliders{
+        overflow:hidden;
+        height:3rem;
+        .sliders-layout{
+          display:flex;
+          flex-direction: column;
+          height:100%;
+          transition: all .3s;
+          &:hover{
+            img{
+              box-shadow: 0 1px 6px rgba(0,0,0,0.2);
+            }
+          }
+          a{
+            height:33.3%;
+            display:inline-block;
+            padding:$padding05;
+            position:relative;
+            img{
+              width:100%;
+              height:100%;
+              object-fit: cover;
+              border-radius:15px;
+            }
+            h5{
+              position:absolute;
+              bottom:$padding10;
+              font-size:12px;
+              border-radius: 5px;
+              color:#ffffff;
+              background: rgba(0,0,0,.6);
+              padding: 0.05rem;
+            }
+          }
+        }
+      }
+      .card{
+        height: 100%;
+        height:3rem ;
+        overflow: auto;
+        >>>.ivu-card-head{
+          padding:5px 10px;
+          p{
+            height:28px;
+          }
+        }
+        .card-title{
+          i{
+            animation: rock 2.5s infinite ;
+          }
+        }
+        .card-change{}
+        .card-main{
+          overflow:hidden;
+          padding-left:15px;
+          .main-item{
+            min-height:25px;
+            line-height:25px;
+            position:relative;
+            .main-circle{
+              position:absolute;
+              left:-16px;
+              top:5px;
+              z-index:2;
+            }
+            .main-line{
+              position: absolute;
+              left: -9px;
+              top: 17px;
+              content: "";
+              width: 1px;
+              height: 100%;
+              background: #eee;
+              z-index: 1;
+            }
+            .item-text{
+              display:flex;justify-content:space-between;
+              >>>.ivu-rate-text{
+                width:30px;
+              }
+              a{
+                font-size:13px;
+                &:hover{
+                  img{
+                    transform: rotate(180deg);
+                  }
+                }
+                i{
+                  padding-left:5px;
+                }
+                img{
+                  width: 12px;
+                  margin-left: 5px;
+                  transition: all 1s;
+                }
+              }
+            }
+            .item-img{
+              height:78px;
+              width:100%;
+              overflow:hidden;
+              display:flex;
+              justify-content:space-between;
+              border-radius:5px;
+              a:first-child{
+                width:80%;
+                display:inline-block;
+                img{
+                  height:100%;
+                  width:100%;
+                }
+              }
+              a:last-child{
+                width:20%;
+                display:inline-block;
+                height:100%;
+                //  background-color:#58b7f9;
+                margin:auto;
+                text-align:center;
+
+                span:first-child {
+                  background-image:url('~@/assets/images/index/time.png');
+                  background-repeat:no-repeat;
+                  margin:auto;
+                  text-align:center;
+                  display:block;
+                  height:25px;
+                  width:25px;
+                  margin-top:15px;
+                }
+                span:last-child {
+                  font-size:18px;
+                  margin:auto;
+                  text-align:center;
+                  color:#ffffff;
+                  display:inline-block;
+                }
+              }
+            }
+          }
+
+        }
+      }
+      .collapse {
+        height: 100%;
+        height:3rem ;
+        overflow: auto;
+        .ivu-collapse{
+          &:hover{
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+          }
+          .ivu-collapse-item{
+            .ivu-collapse-content{
+              .ivu-collapse-content-box{
+                p{
+                  line-height: 16px;
+                  text-indent:0.1rem;
+                }
+              }
+            }
+            .ivu-collapse-header{
+              position: relative;
+              .sign{
+                .top{
+                  position: absolute;
+                  right: 5px;
+                  top-sign{}
+
+                }
+                .bottom{
+                  position: absolute;
+                  right: 5px;
+                  .left-sign{
+                    .ivu-time{font-size: 0.12rem;}
+                    vertical-align: text-bottom;
+
+                  }
+                  .right-sign{
+                    vertical-align: text-bottom;
+                    font-size: 0.12rem;
+                  }
+                }
+              }
+
+            }
+          }
+        }
+      }
+    }
+  }
+}

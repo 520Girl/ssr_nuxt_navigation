@@ -1,0 +1,303 @@
+//天气
+
+> > > #he-plugin-simple {
+  #weather-view-he {
+    height: 309px !important;
+  }
+}
+> > > .s-sticker-tmp.module {
+  position: absolute !important;
+  font-size: 12px !important;
+  top: -6px;
+  left: 24px;
+  transform: scale(.82);
+  padding: 1px 5px;
+  background: #f1404b;
+  color: #ffffff !important;
+  border-radius: 50px;
+  padding: 1px 5px !important;
+}
+
+.page-container {
+  .page-sidebar {
+    transition: all .5s cubic-bezier(.645, .045, .355, 1), stroke .2s ease;
+    display: flex;
+    flex-direction: column;
+    width: 220px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    z-index: 500;
+    .sidebar-logo {
+      width: 100%;
+      height: 74px;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(129, 129, 129, 0.15);
+
+      .logo-expanded {
+        img {
+          width: 40px;
+          margin: 0 auto;
+        }
+      }
+
+      .logo-collapsed {
+        img {
+          max-height: 40px;
+        }
+      }
+    }
+
+    .menu-top {
+      flex: 1 1 auto;
+      overflow-y: auto;
+      overflow-x: hidden;
+
+      .menu-app {
+        .app-icon-left {
+          height: 50px;
+          align-items: center;
+
+          .icon-yingyong, .icon-category {
+            padding-left: 14px;
+            font-size: 28px;
+          }
+
+          .app {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            justify-content: space-between;
+            align-items: center;
+            // opacity: 0;
+            transition: all .5s cubic-bezier(.645, .045, .355, 1), stroke .2s ease;
+
+            span {
+              vertical-align: middle;
+              display: inline-block;
+              white-space: nowrap;
+              font-size: 14px;
+            }
+
+            i {
+              vertical-align: middle;
+              font-size: 12px;
+              transform: rotate(0deg);
+              transition: transform 0.5s cubic-bezier(.645, .045, .355, 1), stroke .2s ease;
+            }
+          }
+
+          .applyStoreIcon {
+            transform: rotate(90deg) !important;
+            transition: transform 0.5s cubic-bezier(.645, .045, .355, 1), stroke .2s ease;
+          }
+        }
+
+        .app-sidebar {
+          width: 100%;
+
+          .app-sidebar-item {
+            height: 40px;
+            line-height: 40px;
+            width: 100%;
+
+            a {
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+
+    .menu-bottom {
+      overflow: hidden;
+
+      .menu-app {
+        margin: 5px 0px;
+
+        .app-icon-left {
+          height: 40px;
+          align-items: center;
+
+          .app {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            justify-content: space-between;
+            align-items: center;
+            // opacity: 0;
+            transition: all .5s cubic-bezier(.645, .045, .355, 1), stroke .2s ease;
+
+            span {
+              vertical-align: middle;
+              display: inline-block;
+              white-space: nowrap;
+              font-size: 14px;
+            }
+
+            i {
+              vertical-align: middle;
+              font-size: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .widthOnOff {
+    width: 60px;
+  }
+
+  .widthOnOffcon {
+    //width: calc(100% - 220px) !important;
+    //transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1), stroke 0.2s ease;
+  }
+
+  .page-content {
+    width: calc(100% - 60px);
+    box-sizing: border-box;
+    transition: width 0.5s cubic-bezier(0.645, 0.045, 0.355, 1), stroke 0.2s ease;
+    header {
+      position: sticky;
+      top: 0;
+      height: $headerHeight;
+      z-index: 500;
+      transition: height 0.5s ease-in-out,transform 0.5s ease-in-out;
+
+    }
+    .left-nav {
+      box-sizing: border-box;
+      transition: all 0.5s;
+      a {
+        display: inline-block;
+        padding: 10px 15px;
+      }
+
+      img {
+        vertical-align: middle;
+        width: 30px;
+        height: 30px;
+      }
+
+      .cloud {
+        padding: 0;
+      }
+    }
+    .is-scroll{
+      //height: 0px;
+      transform: translateY(-76px);
+    }
+    .header-left {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      transition: height 0.5s ease-in-out;
+      .left-nav-icon {
+        width: $headerHeight;
+        height: 76px;
+        margin: auto;
+        display: flex;
+
+        path {
+          fill: none;
+          stroke: #888;
+          stroke-width: 4;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+          --length: 33;
+          --offset: -30;
+          stroke-dasharray: var(--length) var(--total-length);
+          stroke-dashoffset: var(--offset);
+          transition: all .8s cubic-bezier(.645, .045, .355, 1);
+          transition: all .5s cubic-bezier(.645, .045, .355, 1), stroke .2s ease;
+        }
+
+        .line--1, .line--3, .line--2 {
+          --total-length: 100;
+        }
+
+        .modileSVG {
+          display: block;
+          height: 100%;
+          width: 100%;
+        }
+
+        .modileIMG {
+          display: none;
+          margin: auto;
+        }
+      }
+
+      .sidebarOn {
+        .line--1, .line--3, .line--2 {
+          --total-length: 85;
+        }
+
+        .line--1, .line--3 {
+          --length: 24;
+        }
+      }
+
+    }
+
+    .header-right {
+      // height: $headerHeight;
+      // width: 50px;
+      margin-right: 0.2rem;
+
+      a {
+        height: 100%;
+        width: 100%;
+        margin-right: 10px;
+
+      }
+
+      .mobileSidebar {
+        display: none;
+      }
+    }
+  }
+
+  //.iconDown-enter-active {
+  //  transition: all .2s ease;
+  //}
+
+  .iconDown-leave-active {
+    transition: transform .2s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+
+  .iconDown-enter, .iconDown-leave-to {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  .menuText-enter-active {
+    transition: all .5s cubic-bezier(.645, .045, .355, 1), stroke .2s ease;
+  }
+
+  .menuText-leave-active {
+    transition: all .5s cubic-bezier(.645, .045, .355, 1), stroke .2s ease;
+  }
+
+  .menuText-enter, .menuApp-leave-to
+    /* .slide-fade-leave-active for below version 2.1.8 */
+  {
+    opacity: 0;
+
+  }
+
+}
+.hideSidebar{
+  .page-sidebar{
+    width: 0px;
+  }
+  .page-content{
+    width: 100%;
+  }
+}
+.hideHeader{
+  $hedaer:-$headerHeight;
+  transform: translateY($hedaer);
+  height: 0px!important;
+  transition: height 0.5s;
+}
