@@ -1,8 +1,12 @@
 @import "./_themes.scss";
+$E: null;
+$B: null;
+$theme-map: null;
 
 @mixin themeify {
   @each $theme-name, $theme-map in $themes {
     $theme-map: $theme-map !global;
+
     [data-theme="#{$theme-name}"] & {
       @content;
     }
@@ -85,12 +89,12 @@
 
 @mixin border-color($color) {
   @include themeify {
-    border-color: themed($color)!important;
+    border-color: themed($color) !important;
   }
 }
 
 
-//响应式布局
+/*响应式布局*/
 @media screen and (max-width: 750px) {
   .page-sidebar {
     position: fixed;
@@ -99,14 +103,17 @@
     left: 0px;
     z-index: 5;
   }
+
   .page-content {
     width: 100% !important;
   }
+
   .widthOnOff {
     width: 0px !important;
     height: 0px;
 
   }
+
   .left-nav {
     position: fixed;
     display: flex;
@@ -123,35 +130,44 @@
       line-height: .86rem - .5rem;
     }
   }
+
   .footer-tools {
     bottom: 15px !important;
     right: 10px !important;
   }
+
   .mobileSidebar {
     display: block !important;
   }
+
   .modileSVG {
     display: none !important;
   }
+
   .modileIMG {
     display: block !important;
   }
+
   .menu-item {
     &:nth-child(2n) {
       margin-right: 0 !important;
     }
   }
+
   .gradeCoin-container .gradeCoin-content .gradeCoin-menu .gradeCoin-item {
     margin: 0 !important;
   }
+
   .comments-record .comments-childer {
     padding: .2rem 0 .2rem 0 !important;
   }
+
   .guestbook-main-left {
     .guestbook-left-wraper {
       margin: 0 0.5rem 0.2rem 0.5rem !important;
     }
   }
+
   .article-header-centre {
     .site-wraper {
       margin-left: 0.5rem !important;
@@ -159,6 +175,7 @@
 
     }
   }
+
   .article-header-right {
     .grade-wraper {
       margin-left: 0.5rem !important;
@@ -171,6 +188,7 @@
   .article {
     margin: 0.2rem 0;
   }
+
   .guestbook {
     padding-left: 0.1rem;
     padding-right: 0.1rem;
@@ -181,9 +199,11 @@
       //top: $headerHeight;
     }
   }
+
   .text-option .option .email {
     width: 80%;
   }
+
   .content-customize-menu {
     .menu-button {
       .newly-item {
@@ -195,6 +215,7 @@
       }
     }
   }
+
   .hotslider-content {
     .menu-button {
       .newly-item {
@@ -202,11 +223,11 @@
       }
     }
   }
+
   .guestbook-layout {
     .mains-menu {
       .guestbook-respond {
-        .option {
-        }
+        .option {}
       }
     }
   }
@@ -216,6 +237,7 @@
   .articless-container .articles-content .articles-carousel .collapse {
     margin-top: 15px;
   }
+
   .gradeCoin-menu {
     //max-height: 300px;
     //overflow-y: scroll;
@@ -223,13 +245,15 @@
 
 }
 
-//iview
+/*iview*/
 @media screen and(max-width: 576px) {
+
   //xs
   .logo-wraper {
     text-align: center;
     margin: auto;
   }
+
   .hotComic .hotComic-item {
     .infoBlock-name {
       opacity: 0;
@@ -240,25 +264,30 @@
         left: 0px !important;
       }
 
-      .bg, .infoWrap {
+      .bg,
+      .infoWrap {
         left: 50% !important;
         transform: translateX(-50%);
         width: 3.3rem !important;
       }
     }
   }
-  //图片详情页面
-  .one-right, .two-left {
+
+ /*图片详情页面*/
+  .one-right,
+  .two-left {
     .image-wrap-hover {
       padding-top: 2.23rem !important;
     }
   }
-  //漫画
-  .cartoon-container{
-    .comic-intro{
-      .intro-header{
+
+  /*漫画*/
+  .cartoon-container {
+    .comic-intro {
+      .intro-header {
         flex-wrap: wrap;
-        .graded{
+
+        .graded {
           width: 100%;
           justify-content: flex-end;
         }
@@ -269,10 +298,12 @@
 }
 
 @media screen and(min-width: 576px) {
+
   //sm
   .guestbook-left-item {
     width: 50%;
   }
+
   .hotComic .hotComic-item .infoBlock-name {
     opacity: 0 !important;
   }
@@ -281,13 +312,14 @@
 }
 
 @media screen and(min-width: 768px) {
+
   //md
-  .article {
-    
-  }
+  .article {}
+
   .text-option .option {
     //margin-top: 0.05rem;
     padding: 0.05rem 0.05rem 0.05rem 0;
+
     .email {
       width: 100%;
     }
@@ -299,18 +331,21 @@
   .text-option .option {
     margin-top: 5px;
   }
-  .cartoon-container{
-    .comic-intro{
-      .intro-header{
+
+  .cartoon-container {
+    .comic-intro {
+      .intro-header {
         flex-wrap: wrap;
-        .graded{
+
+        .graded {
           width: 100%;
           justify-content: flex-end;
         }
       }
     }
-    .acgn-row{
-      .header-right{
+
+    .acgn-row {
+      .header-right {
         width: 100%;
         display: flex;
         justify-content: flex-end;
@@ -320,34 +355,42 @@
 }
 
 @media screen and(min-width: 1200px) {
+
   //sl
   .article {
     max-width: 1000px;
     margin: auto;
   }
+
   .guestbook {
     padding-left: 0.2rem;
     padding-right: 0.2rem;
   }
+
   .articless-container {
-    .ivu-rate-star-full, .ivu-rate-star-zero {
+
+    .ivu-rate-star-full,
+    .ivu-rate-star-zero {
       margin-right: 0 !important;
     }
 
-    .ivu-rate-star, .ivu-rate-star-full {
+    .ivu-rate-star,
+    .ivu-rate-star-full {
       margin-right: 0 !important;
     }
   }
 }
 
 @media screen and(min-width: 1600px) {
+
   //xxl
   .article {
     max-width: 1200px;
     margin: auto;
   }
-  .carousel-article{
-    .comic-intro{
+
+  .carousel-article {
+    .comic-intro {
       max-width: unset;
     }
   }
@@ -358,14 +401,17 @@
     display: none;
     transition: all 0.5s;
   }
+
   .station-master-left {
     width: 100%;
   }
-  .carousel-article{
-    .comic-aside{
+
+  .carousel-article {
+    .comic-aside {
       display: none;
     }
-    .comic-intro{
+
+    .comic-intro {
       max-width: 800px;
     }
   }
@@ -375,6 +421,7 @@
   .images-main-oneself {
     display: none;
   }
+
   .app-container .app-layout .app-oneself {
     transform: translateX(500px) !important;
   }
@@ -403,8 +450,3 @@
     min-width: 258px;
   }
 }
-
-
-
-
-

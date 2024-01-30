@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import VuexPersistence from 'vuex-persist'
+
 import tagsView from "./modules/tagsView";
 import clickLike from "./modules/clickLike";
 
@@ -9,22 +9,7 @@ Vue.use(Vuex)
 //配置数据持久化
 //不能使用clickLike 中的map map因为 需要使用到数据持久化，json.stringify 无法格式化map数据
 
-const vuexLocal = new VuexPersistence({
-  // storage: window.localStorage,
-  reducer: state => {
-    return {
-      clickLike: state.clickLike,
-      themes: state.themes,
-      locale: state.locale,
-      loadingHome: state.loadingHome,
-      isMobile: state.isMobile,
-      hideSidebar: state.hideSidebar,
-      hideHeader: state.hideHeader,
-      clickData: state.clickData,
-      backdrop: state.backdrop
-    }
-  }
-})
+
 
 
 //https://segmentfault.com/a/1190000015782272
@@ -92,6 +77,7 @@ const store = () => new Vuex.Store({
       state.locale = data
     },
     getIsMobile: function (state, data) { //获取平台类型
+      console.log('getIsMobile' + data)
       state.isMobile = data
     },
     getThemes: function (state, data) {
@@ -136,7 +122,7 @@ const store = () => new Vuex.Store({
     clickLike
   },
   // 传入配置后的插件实例
-  plugins: [vuexLocal.plugin]
+
 })
 
 export default store;

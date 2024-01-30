@@ -1,0 +1,32 @@
+.footer-tools{
+  position: fixed;
+  bottom: 110px;
+  right: 20px;
+  z-index: 498;
+  a{
+    border-radius: 50%;
+    margin: 0px 5px 5px 5px;
+    position: relative;
+    transition: all .5s;
+    &:nth-child(1){
+      margin-top: 5px;
+    }
+    #cavs,#cavs2{
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translate(-50%);
+      transition: all 0.5s;
+    }
+    i {
+      font-size: 20px;
+    }
+  }
+  .headerTagI{
+    animation: headerTagI 3s infinite;
+    color: red!important;
+  }
+  .eyeTagI{
+    color:#ffd600!important
+  }
+}

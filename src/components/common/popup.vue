@@ -50,11 +50,13 @@ export default {
     popupWatch(newVal){
       console.log(newVal)
       this.popups = newVal
-      if (newVal) {
+      if (process.client && newVal){
         document.getElementsByTagName("html")[0].style.overflowY = 'hidden'
         return
       }
-      document.getElementsByTagName("html")[0].style.overflowY= 'auto'
+      if(process.client){
+        document.getElementsByTagName("html")[0].style.overflowY= 'auto'
+      }
     }
   }
 }

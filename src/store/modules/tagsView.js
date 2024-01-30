@@ -18,6 +18,7 @@ const mutations = {
     if (state.visitedViews.some(v => v.fullPath === view.fullPath)) return
     state.visitedViews.push(
       Object.assign({}, view,{
+        matched:'',
         title: view.meta.title || 'no-name'
       })
     )
@@ -25,6 +26,7 @@ const mutations = {
   ADD_CACHED_VIEW:(state, view)=>{
     if(state.cachedViews.includes(view.name)) return
     if (!view.meta.noCache){
+      matched:'',
       state.cachedViews.push(view.name)
     }
   },

@@ -1,4 +1,5 @@
 import { resolve } from 'path'
+import i18n from "./src/assets/js/i18n/config"
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -28,7 +29,10 @@ export default {
   // },
   css: [
     // 'iview/dist/styles/iview.css'
-    '@/assets/css/main.scss',
+    {src:'@/assets/css/_bianlian.scss',lang:'scss'},
+    {src:'@/assets/css/main.scss',lang:'scss'},
+    {src:'@/assets/css/_orderthemes.less',lang:'less'},
+    
     // {
     //   loaderOptions: {
     //     sass: {
@@ -38,7 +42,7 @@ export default {
     // }
     // '@/assets/css/love.scss'
   ],
-  styleResources: { //配置变量全局使用
+  styleResources: { //配置变量全局使用 styleResources 配置的资源路径不能使用 ~ 和 @,要使用绝对或者相对路径
     scss: ['./assets/css/_bianlian.scss','./assets/css/_handle.scss'],
   },
 
@@ -46,7 +50,8 @@ export default {
   plugins: [
     '~/assets/js/api/axiosPackaging',
     { src: '~/assets/js/plugins', ssr: true },
-    { src: '~/assets/js/client', ssr: false }
+    { src: '~/assets/js/client', ssr: false },
+    { src: '~/store/persistedState.client', ssr: false }
     // 'iview/dist/iview.js'
   ],
 
@@ -65,8 +70,8 @@ export default {
     "@nuxtjs/axios",
     "@nuxtjs/proxy",
     "@nuxtjs/router",
-    '@nuxtjs/style-resources'
-
+    '@nuxtjs/style-resources',
+    ['@nuxtjs/i18n',i18n]
   ],
   axios: {
     proxy: true

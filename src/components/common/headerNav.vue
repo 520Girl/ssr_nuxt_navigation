@@ -1,165 +1,128 @@
 <template>
-    <div :class="{'page-container auto-line-start':true,'hideSidebar':!hideSidebar}" @touchmove.prevent>
-      <div :class="sidebarOnOff ? 'page-sidebar width-six sidebar-bck widthOnOff' : 'page-sidebar width-six sidebar-bck '">
-        <div class="sidebar-logo">
-          <a href="" class="logo-expanded auto-line-center boxSizing"
-             :style="sidebarOnOff ? 'display:block;' : 'display:none;'">
-            <img src="https://s1.xmcdn.com/yx/ximalaya-web-static/last/dist/images/default-ad_a4a9be6.jpg" alt="logo">
-          </a>
-          <a href="" class="logo-collapsed auto-line-center boxSizing"
-             :style="sidebarOnOff ? 'display:none;' : 'display:block;'">
-            <img src="https://s1.xmcdn.com/yx/ximalaya-web-static/last/dist/images/default-ad_a4a9be6.jpg" alt="">
-          </a>
-        </div>
-  
-        <div class="menu-top">
-          <div class="menu-app">
-            <Tooltip placement="right" :disabled="!sidebarOnOff" >
-              <a href="javascript:void(0)" class="app-icon-left auto-line-start"
-                 @click="sidebarOnOff ? appSidebarOnoff = false : appSidebarOnoff = !appSidebarOnoff">
-                <i class="iconfont icon-yingyong footSize-icon-slidebar mx-1"></i>
-                <div class="app" :style="sidebarOnOff ? 'opacity: 0;' : 'opacity: 1;'">
-                  <transition name="menuText" mode="in-out">
-                    <span class="footSize-text-slidebar" v-show="!sidebarOnOff">{{$t('applyStore')}}</span>
-                  </transition>
-                  <i :class="appSidebarOnoff ? 'iconfont icon-arrow-right footSize-icon-slidebar mx-20 applyStoreIcon' : 'iconfont icon-arrow-right footSize-icon-slidebar mx-20 '"></i>
-                </div>
-              </a>
-  <!--          当是左导航是关闭的时候  start-->
-              <ul class="app-sidebar"slot="content" >
-                <li style="white-space: nowrap;" v-for="(item,index) in appSidebarItem" :key="index">
-                  <a :href="item.url" class="footSize-text-slidebar">{{item.name}}</a>
-                </li>
-              </ul>
-  <!--          当是左导航是关闭的时候  end-->
-  <!--          当是左导航是开启的时候   start-->
-              <transition name="iconDown" mode="in-out">
-                <ul class="app-sidebar" v-show="appSidebarOnoff">
-                  <li class="app-sidebar-item  pdl-52" v-for="(item,index) in appSidebarItem" :key="index">
-                    <a :href="item.url" class="footSize-text-slidebar">{{item.name}}</a>
-                  </li>
-                </ul>
-              </transition>
-  <!--          当是左导航是开启的时候  end-->
-            </Tooltip>
-          </div>
-          <div class="menu-app">
-            <!-- :style="boonSidebarOnoff ? 'height:500px;opacity:1;' : 'height:0;opacity:0;'" -->
-            <Tooltip placement="right"  :disabled="!sidebarOnOff">
-              <a href="javascript:void(0)" class="app-icon-left auto-line-start"
-                 @click=" sidebarOnOff ? boonSidebarOnoff = false : boonSidebarOnoff = !boonSidebarOnoff ">
-                <i class="iconfont icon-category footSize-icon-slidebar mx-1"></i>
-                <div class="app" :style="sidebarOnOff ? 'opacity: 0;' : 'opacity: 1;'">
-                  <transition name="menuText" mode="in-out">
-                    <span class="footSize-text-slidebar" v-show="!sidebarOnOff">{{$t('welfareNav')}}</span>
-                  </transition>
-                  <i :class="boonSidebarOnoff ? 'iconfont icon-arrow-right footSize-icon-slidebar mx-20 applyStoreIcon' : 'iconfont icon-arrow-right footSize-icon-slidebar mx-20 '"></i>
-                </div>
-              </a>
-              <ul class="app-sidebar overflow-scorll" slot="content">
-                <li style="white-space: nowrap;" v-for="(item,index) in boonSidebarItem" :key="index">
-                  <a :href="item.url" class="footSize-text-slidebar">{{item.name}}</a>
-                </li>
-              </ul>
-              <transition name="iconDown" mode="in-out">
-                <ul class="app-sidebar" v-show="boonSidebarOnoff">
-                  <li class="app-sidebar-item  pdl-52" v-for="(item,index) in boonSidebarItem" :key="index">
-                    <a :href="item.url" class="footSize-text-slidebar">{{item.name}}</a>
-                  </li>
-                </ul>
-              </transition>
-            </Tooltip>
-          </div>
-        </div>
-  
-        <div class="menu-bottom">
-          <div class="menu-app">
-            <Tooltip placement="right" :disabled="!sidebarOnOff">
-              <a href="javascript:void(0)" class="app-icon-left auto-line-start">
-                <i class="iconfont icon-link footSize-icon-slidebar mx-1 pdt-1-4"></i>
-                <div class="app" :style="sidebarOnOff ? 'opacity: 0;' : 'opacity: 1;'">
-                  <transition name="menuText" mode="in-out">
-                    <span class="footSize-text-slidebar" v-show="!sidebarOnOff">{{$t('SubmitUrl')}}</span>
-                  </transition>
-                </div>
-              </a>
-              <span class="footSize-text-slidebar" style="white-space: nowrap;" slot="content">{{$t('SubmitUrl')}}</span>
-            </Tooltip>
-          </div>
-          <div class="menu-app">
-  
-            <Tooltip placement="right" :disabled="!sidebarOnOff">
-              <a href="javascript:void(0)" class="app-icon-left auto-line-start">
-                <i class="iconfont icon-lishiyouxi footSize-icon-slidebar mx-1 pdt-1-4"></i>
-                <div class="app" :style="sidebarOnOff ? 'opacity: 0;' : 'opacity: 1;'">
-                  <transition name="menuText" mode="in-out">
-                    <span class="footSize-text-slidebar" v-show="!sidebarOnOff">{{$t('advert')}}</span>
-                  </transition>
-                </div>
-              </a>
-              <span class="footSize-text-slidebar" style="white-space: nowrap;" slot="content">{{$t('advert')}}</span>
-            </Tooltip>
-          </div>
-        </div>
-  
+  <div :class="{'page-container auto-line-start':true,'hideSidebar':!hideSidebar}" @touchmove.prevent>
+    <div
+      :class="sidebarOnOff ? 'page-sidebar width-six sidebar-bck widthOnOff' : 'page-sidebar width-six sidebar-bck '">
+      <div class="sidebar-logo">
+        <a href="" class="logo-expanded auto-line-center boxSizing"
+          :style="sidebarOnOff ? 'display:block;' : 'display:none;'">
+          <img src="https://s1.xmcdn.com/yx/ximalaya-web-static/last/dist/images/default-ad_a4a9be6.jpg" alt="logo">
+        </a>
+        <a href="" class="logo-collapsed auto-line-center boxSizing"
+          :style="sidebarOnOff ? 'display:none;' : 'display:block;'">
+          <img src="https://s1.xmcdn.com/yx/ximalaya-web-static/last/dist/images/default-ad_a4a9be6.jpg" alt="">
+        </a>
       </div>
-      <div :class="sidebarOnOff ? 'page-content contents-bck' : 'page-content contents-bck widthOnOffcon' " >
-        <header :class="{'auto-line-between headersScroll boxSizing header-bck':true,'is-scroll':isscroll,'hideHeader': !hideHeader }"  ref="header" >
-          <div class="header-left">
-            <a href="javascript:void(0)" :class=" sidebarOnOff ? 'sidebarOn left-nav-icon':'left-nav-icon' ">
-              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
-                   @click="handleHideSidebar([sidebarOnOff,sidebarOnOff,'header'])"
-                   class="modileSVG">
-                <path class="line--1" d="M0 40h62c18 0 18-20-17 5L31 55"></path>
-                <path class="line--2" d="M0 50h80"></path>
-                <path class="line--3" d="M0 60h62c18 0 18 20-17-5L31 45"></path>
-              </svg>
-              <img src="https://sta-op.douyucdn.cn/dycatr/2032866a1ea599a9677df7e129d57293.png?x-oss-process=image/format,webp/quality,q_75"
-                   alt="" width="40" height="40" class="modileIMG" @click="handleHideSidebar([sidebarOnOff,sidebarOnOff])">
+
+      <div class="menu-top">
+        <div class="menu-app">
+          <Tooltip placement="right" :disabled="!sidebarOnOff">
+            <a href="javascript:void(0)" class="app-icon-left auto-line-start"
+              @click="sidebarOnOff ? appSidebarOnoff = false : appSidebarOnoff = !appSidebarOnoff">
+              <i class="iconfont icon-yingyong footSize-icon-slidebar mx-1"></i>
+              <div class="app" :style="sidebarOnOff ? 'opacity: 0;' : 'opacity: 1;'">
+                <transition name="menuText" mode="in-out">
+                  <span class="footSize-text-slidebar" v-show="!sidebarOnOff">{{$t('applyStore')}}</span>
+                </transition>
+                <i
+                  :class="appSidebarOnoff ? 'iconfont icon-arrow-right footSize-icon-slidebar mx-20 applyStoreIcon' : 'iconfont icon-arrow-right footSize-icon-slidebar mx-20 '"></i>
+              </div>
             </a>
-            <div v-if="!$store.state.isMobile" class="left-nav auto-line-center" >
-              <a href="">
-                <i class=" iconfont icon-link fontSize-icon"></i>
-                <span class="fontSize-text">{{$t('SubmitUrl')}}</span>
-              </a>
-              <a href="">
-                <i class=" iconfont icon-lishiyouxi fontSize-icon"></i>
-                <span class="fontSize-text">{{$t('advert')}}</span>
-              </a>
-              <a href="javascript:void(0)" @click="changeLcale('zh-CN')" v-if="this.$store.state.locale == 'zh-CN'">
-                <img :src="require('~/assets/images/svg/china.svg')" alt="china">
-                <span class="fontSize-text">{{$t('china')}}</span>
-              </a>
-              <a href="javascript:void(0)" @click="changeLcale('en')" v-if="this.$store.state.locale == 'zh-CN'">
-                <img :src="require('~/assets/images/svg/usa.svg')" alt="china">
-                <span class="fontSize-text">{{$t('english')}}</span>
-              </a>
-              <a href="javascript:void(0)" @click="changeLcale('en')" v-if="this.$store.state.locale == 'en'">
-                <img :src="require('~/assets/images/svg/usa.svg')" alt="china">
-                <span class="fontSize-text">{{$t('english')}}</span>
-              </a>
-              <a href="javascript:void(0)" @click="changeLcale('zh-CN')" v-if="this.$store.state.locale == 'en'">
-                <img :src="require('~/assets/images/svg/china.svg')" alt="china">
-                <span class="fontSize-text">{{$t('china')}}</span>
-              </a>
-              <!--                        <a href="javascript:void(0)" class="cloud">-->
-              <!--                            <div id="he-plugin-simple"></div>-->
-              <!--                        </a>-->
-            </div>
-          </div>
-  
-          <div class="header-right auto-line-center">
-            <a href="" class="auto-line-center">
-              <i class=" iconfont icon-sousuo fontSize-icon"></i>
+            <!--          当是左导航是关闭的时候  start-->
+            <ul class="app-sidebar" slot="content">
+              <li style="white-space: nowrap;" v-for="(item,index) in appSidebarItem" :key="index">
+                <a :href="item.url" class="footSize-text-slidebar">{{item.name}}</a>
+              </li>
+            </ul>
+            <!--          当是左导航是关闭的时候  end-->
+            <!--          当是左导航是开启的时候   start-->
+            <transition name="iconDown" mode="in-out">
+              <ul class="app-sidebar" v-show="appSidebarOnoff">
+                <li class="app-sidebar-item  pdl-52" v-for="(item,index) in appSidebarItem" :key="index">
+                  <a :href="item.url" class="footSize-text-slidebar">{{item.name}}</a>
+                </li>
+              </ul>
+            </transition>
+            <!--          当是左导航是开启的时候  end-->
+          </Tooltip>
+        </div>
+        <div class="menu-app">
+          <!-- :style="boonSidebarOnoff ? 'height:500px;opacity:1;' : 'height:0;opacity:0;'" -->
+          <Tooltip placement="right" :disabled="!sidebarOnOff">
+            <a href="javascript:void(0)" class="app-icon-left auto-line-start"
+              @click=" sidebarOnOff ? boonSidebarOnoff = false : boonSidebarOnoff = !boonSidebarOnoff ">
+              <i class="iconfont icon-category footSize-icon-slidebar mx-1"></i>
+              <div class="app" :style="sidebarOnOff ? 'opacity: 0;' : 'opacity: 1;'">
+                <transition name="menuText" mode="in-out">
+                  <span class="footSize-text-slidebar" v-show="!sidebarOnOff">{{$t('welfareNav')}}</span>
+                </transition>
+                <i
+                  :class="boonSidebarOnoff ? 'iconfont icon-arrow-right footSize-icon-slidebar mx-20 applyStoreIcon' : 'iconfont icon-arrow-right footSize-icon-slidebar mx-20 '"></i>
+              </div>
             </a>
-            <a href="javascript:void(0)" class="auto-line-center mobileSidebar" @click="handleSidebar">
-              <i class=" iconfont icon-category fontSize-icon"></i>
+            <ul class="app-sidebar overflow-scorll" slot="content">
+              <li style="white-space: nowrap;" v-for="(item,index) in boonSidebarItem" :key="index">
+                <a :href="item.url" class="footSize-text-slidebar">{{item.name}}</a>
+              </li>
+            </ul>
+            <transition name="iconDown" mode="in-out">
+              <ul class="app-sidebar" v-show="boonSidebarOnoff">
+                <li class="app-sidebar-item  pdl-52" v-for="(item,index) in boonSidebarItem" :key="index">
+                  <a :href="item.url" class="footSize-text-slidebar">{{item.name}}</a>
+                </li>
+              </ul>
+            </transition>
+          </Tooltip>
+        </div>
+      </div>
+
+      <div class="menu-bottom">
+        <div class="menu-app">
+          <Tooltip placement="right" :disabled="!sidebarOnOff">
+            <a href="javascript:void(0)" class="app-icon-left auto-line-start">
+              <i class="iconfont icon-link footSize-icon-slidebar mx-1 pdt-1-4"></i>
+              <div class="app" :style="sidebarOnOff ? 'opacity: 0;' : 'opacity: 1;'">
+                <transition name="menuText" mode="in-out">
+                  <span class="footSize-text-slidebar" v-show="!sidebarOnOff">{{$t('SubmitUrl')}}</span>
+                </transition>
+              </div>
             </a>
-          </div>
-        </header>
-        <!--          语言导航栏-->
-        <popup :popup="languageSideOnOff" :type="'slider'" @close="handleSidebar">
-          <div class="left-nav auto-line-center" slot="popupMain" >
+            <span class="footSize-text-slidebar" style="white-space: nowrap;" slot="content">{{$t('SubmitUrl')}}</span>
+          </Tooltip>
+        </div>
+        <div class="menu-app">
+
+          <Tooltip placement="right" :disabled="!sidebarOnOff">
+            <a href="javascript:void(0)" class="app-icon-left auto-line-start">
+              <i class="iconfont icon-lishiyouxi footSize-icon-slidebar mx-1 pdt-1-4"></i>
+              <div class="app" :style="sidebarOnOff ? 'opacity: 0;' : 'opacity: 1;'">
+                <transition name="menuText" mode="in-out">
+                  <span class="footSize-text-slidebar" v-show="!sidebarOnOff">{{$t('advert')}}</span>
+                </transition>
+              </div>
+            </a>
+            <span class="footSize-text-slidebar" style="white-space: nowrap;" slot="content">{{$t('advert')}}</span>
+          </Tooltip>
+        </div>
+      </div>
+
+    </div>
+    <div :class="sidebarOnOff ? 'page-content contents-bck' : 'page-content contents-bck widthOnOffcon' ">
+      <header
+        :class="{'auto-line-between headersScroll boxSizing header-bck':true,'is-scroll':isscroll,'hideHeader': !hideHeader }"
+        ref="header">
+        <div class="header-left">
+          <a href="javascript:void(0)" :class=" sidebarOnOff ? 'sidebarOn left-nav-icon':'left-nav-icon' ">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
+              @click="handleHideSidebar([sidebarOnOff,sidebarOnOff,'header'])" class="modileSVG">
+              <path class="line--1" d="M0 40h62c18 0 18-20-17 5L31 55"></path>
+              <path class="line--2" d="M0 50h80"></path>
+              <path class="line--3" d="M0 60h62c18 0 18 20-17-5L31 45"></path>
+            </svg>
+            <img
+              src="https://sta-op.douyucdn.cn/dycatr/2032866a1ea599a9677df7e129d57293.png?x-oss-process=image/format,webp/quality,q_75"
+              alt="" width="40" height="40" class="modileIMG" @click="handleHideSidebar([sidebarOnOff,sidebarOnOff])">
+          </a>
+          <div v-if="!$store.state.isMobile" class="left-nav auto-line-center">
             <a href="">
               <i class=" iconfont icon-link fontSize-icon"></i>
               <span class="fontSize-text">{{$t('SubmitUrl')}}</span>
@@ -188,31 +151,74 @@
             <!--                            <div id="he-plugin-simple"></div>-->
             <!--                        </a>-->
           </div>
-        </popup>
-        <!--          语言导航栏-->
-        <main>
-          <!-- 内容区域 -->
-  <!--        <slot name="main"></slot>-->
-          <appMain />
-  
-        </main>
-  
-        <slot name="footer"></slot>
-  
-        <footers :hotAppData="hotAppData" @handleHideSidebar="handleHideSidebar($event)" @cartoonChapter="cartoonChapter($event)"></footers>
-      </div>
+        </div>
+
+        <div class="header-right auto-line-center">
+          <a href="" class="auto-line-center">
+            <i class=" iconfont icon-sousuo fontSize-icon"></i>
+          </a>
+          <a href="javascript:void(0)" class="auto-line-center mobileSidebar" @click="handleSidebar">
+            <i class=" iconfont icon-category fontSize-icon"></i>
+          </a>
+        </div>
+      </header>
+      <!--          语言导航栏-->
+      <popup :popup="languageSideOnOff" :type="'slider'" @close="handleSidebar">
+        <div class="left-nav auto-line-center" slot="popupMain">
+          <a href="">
+            <i class=" iconfont icon-link fontSize-icon"></i>
+            <span class="fontSize-text">{{$t('SubmitUrl')}}</span>
+          </a>
+          <a href="">
+            <i class=" iconfont icon-lishiyouxi fontSize-icon"></i>
+            <span class="fontSize-text">{{$t('advert')}}</span>
+          </a>
+          <a href="javascript:void(0)" @click="changeLcale('zh-CN')" v-if="this.$store.state.locale == 'zh-CN'">
+            <img :src="require('~/assets/images/svg/china.svg')" alt="china">
+            <span class="fontSize-text">{{$t('china')}}</span>
+          </a>
+          <a href="javascript:void(0)" @click="changeLcale('en')" v-if="this.$store.state.locale == 'zh-CN'">
+            <img :src="require('~/assets/images/svg/usa.svg')" alt="china">
+            <span class="fontSize-text">{{$t('english')}}</span>
+          </a>
+          <a href="javascript:void(0)" @click="changeLcale('en')" v-if="this.$store.state.locale == 'en'">
+            <img :src="require('~/assets/images/svg/usa.svg')" alt="china">
+            <span class="fontSize-text">{{$t('english')}}</span>
+          </a>
+          <a href="javascript:void(0)" @click="changeLcale('zh-CN')" v-if="this.$store.state.locale == 'en'">
+            <img :src="require('~/assets/images/svg/china.svg')" alt="china">
+            <span class="fontSize-text">{{$t('china')}}</span>
+          </a>
+          <!--                        <a href="javascript:void(0)" class="cloud">-->
+          <!--                            <div id="he-plugin-simple"></div>-->
+          <!--                        </a>-->
+        </div>
+      </popup>
+      <!--          语言导航栏-->
+      <main>
+        <!-- 内容区域 -->
+        <!--        <slot name="main"></slot>-->
+        <appMain />
+
+      </main>
+
+      <slot name="footer"></slot>
+
+      <footers :hotAppData="hotAppData" @handleHideSidebar="handleHideSidebar($event)"
+        @cartoonChapter="cartoonChapter($event)"></footers>
     </div>
-  </template>
-  <script>
+  </div>
+</template>
+<script>
   import common from '@/assets/js/common' //getCookie方法
-  import {footers,popup} from '@/components/common'; //底部，以及主题控制
+  import { footers, popup } from '@/components/common'; //底部，以及主题控制
   import appMain from "@/components/pages/mains/appMain";
   export default {
     name: "headerNav",
-    components: {footers,popup,appMain},
-    props:{
+    components: { footers, popup, appMain },
+    props: {
       // hotAppData:{type:Array,required:false,default:()=>[]}
-      hotAppData:{type:[Object,Array],required:false,default:()=>[]}
+      hotAppData: { type: [Object, Array], required: false, default: () => [] }
     },
     data() {
       return {
@@ -223,24 +229,25 @@
         navItemOnoff: false,
         navItemIconOnoff: false,
         boonSidebarItem: [
-          {url: '', name: '站长推荐'},
-          {url: '', name: '站长推荐'},
-          {url: '', name: '站长推荐'}
+          { url: '', name: '站长推荐' },
+          { url: '', name: '站长推荐' },
+          { url: '', name: '站长推荐' }
         ],
         appSidebarItem: [
-          {url: '', name: '站长推荐'},
-          {url: '', name: '站长推荐'}
+          { url: '', name: '站长推荐' },
+          { url: '', name: '站长推荐' }
         ],
-        isscroll:false, //是否滚动超过了header高度
-        hideSidebar:this.$store.state.hideSidebar,//当图片详情页面调用 v-viewer组件时隐藏侧导航
-        hideHeader:this.$store.state.hideHeader,// header 显示与隐藏
-        eleHeightData:{},//所有元素的高度
+        isscroll: false, //是否滚动超过了header高度
+        hideSidebar: this.$store.state.hideSidebar,//当图片详情页面调用 v-viewer组件时隐藏侧导航
+        hideHeader: this.$store.state.hideHeader,// header 显示与隐藏
+        eleHeightData: {},//所有元素的高度
         // eleHeightDataArr:[],
-        windowScrollTop:{isScrollTB:true,minSpace:'',distance:0},//isScrollTB确认true向下，false向上,minSpace最小间距元素,distance y轴上滚动的距离
-  
+        windowScrollTop: { isScrollTB: true, minSpace: '', distance: 0 },//isScrollTB确认true向下，false向上,minSpace最小间距元素,distance y轴上滚动的距离
+
       }
     },
     created() {
+
       // window.WIDGET = {
       //   CONFIG: {
       //     "modules": "02", //设置显示那些信息 城市， 温度
@@ -266,10 +273,14 @@
       // }
     },
     mounted() {
-  
+      //是否是mobile
+      let flag = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
+      console.log('flag' + flag, flag ? 'true' : 'false')
+      flag ? this.$store.commit("getIsMobile", true) : this.$store.commit("getIsMobile", false)
+
       //只有首页才加载
-      if (this.$route.name == 'index'){
-        document.addEventListener('scroll',this.handleScroll(this.handleScrollHeader,60,false),true)
+      if (this.$route.name == 'index') {
+        document.addEventListener('scroll', this.handleScroll(this.handleScrollHeader, 60, false), true)
         // setTimeout(()=>{
         //   this.eleHeight()
         //   this.setAsyncData()
@@ -278,7 +289,7 @@
       this.addTags()
     },
     deactivated() {
-      document.removeEventListener("scroll",this.handleScroll(this.handleScrollHeader,60,false))
+      document.removeEventListener("scroll", this.handleScroll(this.handleScrollHeader, 60, false))
     },
     methods: {
       //改变语言
@@ -294,52 +305,52 @@
         this.appSidebarOnoff = false;
       },
       //导航栏隐藏显示时 节流加载
-      handleScroll(func,delay,immediate){
+      handleScroll(func, delay, immediate) {
         let timer = null;
-        return ()=>{
+        return () => {
           //清除的是cartoonDetailed的鼠标移动事件
           document.onmousemove = null
           let content = this;
           let args = arguments;
           if (timer) clearTimeout(timer)
-          if (immediate){
+          if (immediate) {
             let doNow = !timer;
-            timer = setTimeout(function(){
+            timer = setTimeout(function () {
               timer = null;
-            },delay);
-            if(doNow){
-              func.apply(context,args);
+            }, delay);
+            if (doNow) {
+              func.apply(context, args);
             }
-          }else {
-            timer = setTimeout(()=>{
-              func.apply(content,args)
+          } else {
+            timer = setTimeout(() => {
+              func.apply(content, args)
               // content.setAsyncData(this.getScrollTop())
               //获取一下最新距离
               this.windowScrollTop.distance = this.getScrollTop()
-              this.$emit('cartoonDetailed',this.windowScrollTop.distance)
-            },delay)
+              this.$emit('cartoonDetailed', this.windowScrollTop.distance)
+            }, delay)
           }
-  
+
         }
       },
       //导航栏隐藏显示
-      handleScrollHeader(){
+      handleScrollHeader() {
         //元素高度 距离屏幕最上面  使用offsetTop
         //屏幕可视高度 window.innerHeight
         //元素高度使用 offsetHeight
         let windowScrollTop = this.getScrollTop()
         console.log(windowScrollTop)
-        if (windowScrollTop > 100){
+        if (windowScrollTop > 100) {
           this.isscroll = true
-        }else {
+        } else {
           this.isscroll = false
         }
       },
       //隐藏侧边栏是为了，点开图片查看器时出现留白
-      handleHideSidebar(arg=[this.hideSidebar,this.hideHeader]){
+      handleHideSidebar(arg = [this.hideSidebar, this.hideHeader]) {
         console.log(arg)
-        if (this.$route.name == 'ImageDetailed' || this.$route.name == 'CartoonDetailed'){
-          if (arg[2]){
+        if (this.$route.name == 'ImageDetailed' || this.$route.name == 'CartoonDetailed') {
+          if (arg[2]) {
             this.hideSidebar = true
             this.sidebarOnOff = !this.sidebarOnOff
             this.appSidebarOnoff = false;
@@ -348,13 +359,19 @@
           }
           this.hideSidebar = arg[0]
           this.hideHeader = arg[1]
-          this.$store.commit('setHeadeSidebar',arg)
+
+
+
+
+
+
+          this.$store.commit('setHeadeSidebar', arg)
         }
         this.sidebarOnOff = !this.sidebarOnOff;
-  
-  
+
+
       },
-  
+
       //确定 所有元素高度
       // eleHeight(){
       //   let eleHeight = {
@@ -378,7 +395,7 @@
       //   // this.eleHeightDataArr = eleHeightArr
       //   // console.log(this.eleHeightDataArr)
       // },
-  
+
       // handleEleTopHeight(methods,ele){
       //   let height = 0
       //   switch (methods){
@@ -398,12 +415,12 @@
       //   return height
       // },
       //滚动条在Y轴上滚动的距离
-      getScrollTop(){
+      getScrollTop() {
         let scrollTop = 0, bodyScrollTop = 0, documentScrollTop = 0;
-        if(document.body){
+        if (document.body) {
           bodyScrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
         }
-        if(document.documentElement){
+        if (document.documentElement) {
           documentScrollTop = document.documentElement.scrollTop;
         }
         scrollTop = (bodyScrollTop - documentScrollTop > 0) ? bodyScrollTop : documentScrollTop;
@@ -488,7 +505,7 @@
       //   // }
       //
       // },
-  
+
       // getLastNext(newObj,lookEleArr,state){
       //   delete newObj.innerHeight;
       //   delete newObj.scrollHeight;
@@ -519,8 +536,8 @@
       //   lookEleArr.indexOf(d) > -1 ? '' : lookEleArr.push(d)
       //   return lookEleArr
       // },
-      cartoonChapter(state){
-        this.$emit('cartoonChapter',state)
+      cartoonChapter(state) {
+        this.$emit('cartoonChapter', state)
       },
       addTags() {
         console.log(this.$store.state.tagsView.visitedViews)
@@ -531,20 +548,20 @@
         return false
       },
     },
-    computed:{
-      handleHeaderSider(){
+    computed: {
+      handleHeaderSider() {
         return this.$store.state.hideHeader
       }
       // asyncLoadingData(){
       //   return this.windowScrollTop.distance
       // }
     },
-    watch:{
+    watch: {
       $route() {
         this.addTags()
       },
-      handleHeaderSider:function (newv,oldv){
-        this.handleHideSidebar([newv,newv])
+      handleHeaderSider: function (newv, oldv) {
+        this.handleHideSidebar([newv, newv])
       }
       // '$store.state.backdrop':function (newVal,oloVal){
       //   if (!newVal){
@@ -562,8 +579,16 @@
       // }
     }
   }
-  </script>
-  <style scoped lang='scss'>
+</script>
+<style scoped lang='scss'>
   @import "~/assets/css/components/headerNav.scss";
-  </style>
-  
+  .sidebarOn {
+        .line--1, .line--3, .line--2 {
+          --total-length: 85;
+        }
+
+        .line--1, .line--3 {
+          --length: 24;
+        }
+      }
+</style>

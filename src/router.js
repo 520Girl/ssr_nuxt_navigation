@@ -20,6 +20,22 @@ const router = new Router({
 
             }]
         },
+        { //博客
+            path: '/blog',
+            component: layout,
+            children: [{
+              path: "/",
+              name: 'Blog',
+              component: () => import('@/components/blog').then(m => m.default || m ),
+              meta: {title: '博客,新闻,导航'},
+            }, {
+              path: "detailed",
+              name: 'BlogDetailed',
+              component: () => import('@/components/pages/blog/blogDetailed').then(m => m.default || m ),
+              meta: {title: '博客详情,新闻详情,导航'},
+            }
+            ]
+          },
     ],
     // https://router.vuejs.org/zh/guide/advanced/scroll-behavior.html#%E6%BB%9A%E5%8A%A8%E8%A1%8C%E4%B8%BA
     scrollBehavior(to, from, savedPosition) { // 解决了动画切换延迟.5s切换，当前页面会先滚动到顶部再切换的问题

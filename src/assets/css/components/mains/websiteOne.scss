@@ -1,0 +1,274 @@
+  /* //公共样式分享 相关内容栏 tool-header */
+  .website-one {
+      min-height: 648px;
+      position: relative;
+      overflow: hidden;
+
+      .website-one-list {
+          margin-top: 0.2rem;
+          min-height: 142px;
+          @include tool-header;
+
+          .mains-menu {
+              .one-item {
+                  min-width: 300px;
+                  height: 100%;
+                  margin-bottom: 0.2rem;
+
+                  .ivu-tooltip {
+                      height: 100%;
+                      margin: auto;
+                      width: 100%;
+
+                      >>>.ivu-tooltip-rel {
+                          height: 100%;
+                          margin: auto;
+                          width: 100%;
+                      }
+                  }
+
+                  .item-content {
+                      padding: $padding15 $padding20;
+                      position: relative;
+                      align-items: flex-start !important;
+                      margin: 0 .1rem;
+                      justify-content: flex-start;
+                      padding-left: .05rem;
+                      border-radius: 5px;
+
+                      &:hover {
+                          .item-characteristic {
+                              i {
+                                  &:first-child {
+                                      color: #ff5b56;
+                                  }
+
+                                  &:nth-child(2) {
+                                      color: #52ff24;
+                                  }
+
+                                  &:nth-child(3) {
+                                      color: #27fffc;
+                                  }
+
+                                  &:last-child {
+                                      color: #363cff;
+                                  }
+                              }
+
+                          }
+
+                          .cloud-download {
+                              i {
+                                  color: #c000ff;
+                              }
+                          }
+
+                      }
+
+                      .item-left {
+                          max-height: 70px;
+                          width: 70px;
+                          max-width: 30%;
+                          border-radius: 15%;
+                          display: inline-block;
+                          background: red;
+
+                          img {
+                              width: 100% !important;
+                              height: 100% !important;
+                          }
+                      }
+
+                      .item-right {
+                          max-width: 70%;
+                          height: 100%;
+                          display: flex;
+                          flex-direction: column;
+                          flex: 0 0 auto;
+                          padding-left: $padding15;
+
+                          .title {
+                              margin-bottom: 8px;
+
+                              .new {
+                                  background-color: red;
+                                  padding: 3px;
+                                  color: #ffffff;
+                                  border-radius: 5px;
+                                  font-size: 12px;
+                                  margin-right: 4px;
+                              }
+                          }
+
+                          .info {
+                              font-size: 0.12rem;
+                              color: #6c757d;
+                          }
+
+                          .app-like {
+                              margin-top: 5px;
+                              display: flex;
+                              justify-content: flex-start;
+                              position: relative;
+
+                              a {
+                                  font-size: 0.12rem;
+                                  color: #6c757d;
+                                  padding: 2px;
+                                  background: rgba(134, 134, 134, 0.1);
+                                  color: #888;
+                                  border-radius: 15px;
+                                  text-align: center;
+                                  overflow: hidden;
+                                  text-overflow: ellipsis;
+                                  white-space: normal;
+                              }
+
+                          }
+                      }
+
+                      .item-characteristic {
+                          position: absolute;
+                          top: 2px;
+                          right: 2px;
+
+                          i {
+                              &:first-child {
+                                  transition: color 0.5s;
+                              }
+
+                              &:nth-child(2) {
+                                  transition: color 1s;
+                              }
+
+                              &:nth-child(3) {
+                                  transition: color 1.5s;
+                              }
+
+                              &:last-child {
+                                  transition: color 2s;
+                              }
+                          }
+
+                      }
+
+                      .cloud-download {
+                          position: absolute;
+                          bottom: 23px;
+                          font-size: 39px;
+                          right: 3px;
+                          color: #000000;
+
+                          i {
+                              transition: color 3s;
+                          }
+                      }
+
+                      .like {
+                          position: absolute;
+                          right: 5px;
+                          bottom: 5px;
+                          // background: white;
+                          overflow: hidden;
+                          text-align: right;
+                          width: 70%;
+                          white-space: nowrap;
+
+                          span {
+                              display: inline-block;
+                              font-size: 0.12rem;
+                              color: #6c757d;
+                          }
+                      }
+                  }
+              }
+          }
+
+          .hotWeb {
+
+              .hotWeb-item {
+                  box-sizing: border-box;
+                  height: 70px;
+                  margin-bottom: $margin10;
+                  vertical-align: middle;
+
+                  //min-width:294px;
+                  .ivu-tooltip {
+                      height: 100%;
+                      margin: auto;
+                      width: 100%;
+
+                      .ivu-tooltip-rel {
+                          height: 100%;
+                          margin: auto;
+                          width: 100%;
+
+                          .item-content {
+                              align-items: center;
+                              height: 70px;
+                              margin: 0 $margin10 ;
+                              background: #ffffff;
+                              border-radius: 5px;
+                              padding-left: $padding15;
+                              box-sizing: content-box;
+
+                              &:hover {
+                                  .item-characteristic {
+                                      i {
+                                          &:first-child {
+                                              color: #ff5b56;
+                                          }
+
+                                          &:nth-child(2) {
+                                              color: #52ff24;
+                                          }
+
+                                          &:nth-child(3) {
+                                              color: #27fffc;
+                                          }
+
+                                          &:last-child {
+                                              color: #363cff;
+                                          }
+                                      }
+                                  }
+
+                                  .cloud-download {
+                                      i {
+                                          color: #c000ff;
+                                      }
+                                  }
+
+                              }
+
+                              img {
+                                  height: 40px;
+                                  width: 40px;
+                              }
+
+                              .text {
+                                  padding-left: $padding10;
+                                  overflow: hidden;
+
+                                  h5 {
+                                      font-weight: bolder;
+                                      font-size: 14px;
+                                  }
+
+                                  small {
+                                      font-size: 12px;
+                                      margin-top: 0.05rem;
+                                      margin-left: 0.05rem;
+                                      display: block;
+                                  }
+                              }
+
+                          }
+                      }
+                  }
+
+              }
+          }
+      }
+  }
