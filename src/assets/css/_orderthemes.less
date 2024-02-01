@@ -86,6 +86,11 @@
 			}
 		}
 	}
+  .ivu-card{
+    &:hover{
+      border-color:@ivuCardBordered;
+    }
+  }
 	//折叠面板
 	.ivu-collapse{
 		background-color: @IvuCardHead;
@@ -96,7 +101,7 @@
 				border-top: unset;
 			}
 			.ivu-collapse-header{
-				border-bottom: unset;
+				border-bottom: unset!important;
 				color:@fontColor;
 			}
 			.ivu-collapse-content{

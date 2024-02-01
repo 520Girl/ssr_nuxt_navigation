@@ -1,0 +1,128 @@
+.right-oneself{
+  padding: 0.2rem;
+  .oneself-header{
+    height: 100%;
+    position: relative;
+    border-radius: 5px;
+    margin-bottom: 0.15rem;
+    .oneselfImg{
+      position: relative;
+      .header-background{
+        border-radius: inherit;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-color: rgba(120,120,120,.1);
+        height: 1.7rem;
+        max-height: 170px;
+      }
+      .header-title{
+        position: absolute;
+        left: 50%;
+        bottom: 0%;
+        transform: translate(-0.5rem ,0.5rem);
+        margin: 0 0 0  0 ;
+        height: 1rem;
+        width: 1rem;
+        max-height: 100px;
+        max-width: 100px;
+        border-radius: 50%;
+        box-shadow: none;
+        img{
+          width: 100%;
+          height: 100%;
+          box-sizing: border-box;
+          padding: 0.1rem;
+          border-radius: 50%;
+
+        }
+      }
+    }
+    .header-author{
+      margin-top: 0.32rem;
+      padding: 0.24rem;
+      display: flex;
+      flex-direction: column;
+      .name{
+        flex: 1 1 auto;
+        text-align: center;
+        .name-summary{
+          display: block;
+          margin-top: 0.1rem;
+        }
+      }
+      .details{
+        margin: 0.15rem;
+      }
+      .gutter{
+        .gutter-item{
+          flex:0 0 25%;
+          text-align: center;
+          .gutter-item-number{display: block;}
+          .gutter-item-news{display: block;margin-top: 0.05rem}
+        }
+      }
+    }
+
+  }
+  .oneself-main{
+    @include guestbook-left-wraper;
+    .oneself-main-hot{
+      margin-right: 0;
+      margin-left:0;
+    }
+    .guestbook-left-content{
+      padding: 0.1rem 0!important;
+      .oneself-main-item{
+        margin-bottom: 0.1rem;
+        .main-item-img{
+          min-height: 0.66rem;
+          border-radius: 0.05rem;
+          position: relative;
+          flex: 0 0 33.3%;
+        }
+        .main-item-content{
+          flex: 1 1 auto;
+          display: flex;
+          flex-direction: column;
+          min-height: 0.66rem;
+          -webkit-line-clamp: 2;
+          line-clamp: 2;
+          -webkit-box-orient: vertical;
+  
+          white-space: pre-wrap;
+          margin-left: 0.1rem;
+          h5{
+            flex: 1 1 auto;
+          }
+          .main-item-footer{
+            margin-top: 0.15rem;
+            a{
+              i{
+                margin-right: 0.02rem;
+                vertical-align: top;
+              }
+            }
+          }
+        }
+      }
+
+    }
+  }
+  .oneself-footer{
+    @include guestbook-left-wraper;
+    .oneself-main-hot{
+      margin-right: 0;
+      margin-left:0;
+    }
+    .oneself-footer-content{
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      align-items: center;
+      .tag{
+        margin: 0.05rem 0.01rem;
+      }
+    }
+  }
+}

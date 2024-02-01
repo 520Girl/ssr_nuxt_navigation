@@ -9,13 +9,12 @@
 <script>
 export default {
   name: 'appMain',
-  computed: {
+  computed: {   
     key() {
-      return '/'
+      return this.$route.path
     },
     cachedViews() {
-      return []
-      // return this.$store.state.tagsView.cachedViews
+      return this.$store.state.tagsView.cachedViews
     }
   }
 }

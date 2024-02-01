@@ -2,7 +2,7 @@
   <div class="mains-container contents-bck">
     <section class="mains-content  mx-15-2">
       <!--广告培训 start-->
-      <div class="tool" style="height: 500px;" id="advert_groom">
+      <!-- <div class="tool" style="height: 500px;" id="advert_groom">
         <div class="tool-header auto-line-between ">
           <div class="left">
             <div class="heade-icon">
@@ -54,11 +54,11 @@
           <div class="menu-diamond">
           </div>
         </Row>
-      </div>
+      </div> -->
       <!--广告培训 end-->
 
       <!--站长推荐 start-->
-      <div class="tool" style="height: 500px;" id="station_master">
+      <!-- <div class="tool" style="height: 500px;" id="station_master">
         <div class="station-master-left">
           <div class="tool-header auto-line-between ">
             <div class="left">
@@ -185,10 +185,10 @@
             </ul>
           </div>
         </div>
-      </div>
+      </div> -->
       <!--站长推荐 end-->
       <!--颜色游戏 start-->
-      <div class="tool" style="height: 500px;" id="yellow_game">
+      <!-- <div class="tool" style="height: 500px;" id="yellow_game">
         <div class="tool-header auto-line-between ">
           <div class="left">
             <div class="heade-icon">
@@ -211,11 +211,11 @@
 
           </div>
         </Row>
-      </div>
+      </div> -->
       <!--颜色游戏  end-->
 
       <!--youtube视频 start-->
-      <div class="tool" style="height: 500px;" id="youth_Tv">
+      <!-- <div class="tool" style="height: 500px;" id="youth_Tv">
         <div class="tool-header auto-line-between ">
           <div class="left">
             <div class="heade-icon">
@@ -238,11 +238,11 @@
 
           </div>
         </Row>
-      </div>
+      </div> -->
       <!--youtube视频 end-->
 
       <!--相关工具 start-->
-      <div class="tool" style="height: 500px;" id="tool_resource">
+      <!-- <div class="tool" style="height: 500px;" id="tool_resource">
         <div class="tool-header auto-line-between ">
           <div class="left">
             <div class="heade-icon">
@@ -265,7 +265,7 @@
 
           </div>
         </Row>
-      </div>
+      </div> -->
       <!--相关工具 end-->
 
       <!--          <website-one :id="key" :websiteData="websiteData[key]" v-for="(val,key,index ) in websiteId" :key="index"></website-one>-->
@@ -360,8 +360,8 @@
           var windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
           //变量scrollHeight是滚动条的总高度
           var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
-          //滚动条到底部的条件
-          if (scrollTop + windowHeight == scrollHeight) {
+          //滚动条到底部的条件 648 为website-one 的高度必须减去
+          if (scrollTop + windowHeight >= (scrollHeight - 648)) {
             //写后台加载数据的函数,开启动画，滚动出现，请求后台
             this.spinShow = true
             let timer = setInterval(() => {

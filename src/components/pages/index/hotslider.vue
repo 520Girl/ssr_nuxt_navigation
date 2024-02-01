@@ -224,6 +224,7 @@
           if(type == item.value){
             this.titleButton[type] = true;
             this.buttonSelect = index
+
           }else{
             this.titleButton[item.value] = false;
           }

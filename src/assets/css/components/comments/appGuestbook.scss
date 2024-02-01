@@ -1,0 +1,104 @@
+.guestbook-container{
+  .guestbook-layout{
+    .tool{
+      @include tool-header;
+      .mains-menu{
+        padding: 0.2rem;
+        border-radius: 5px;
+        .guestbook-body{
+          width: 100%;
+          margin-bottom: 0.2rem;
+          @include guestbook-respond;
+          .guestbook-comments{
+            .comments-list{
+              .comments-record{
+                //padding-bottom: 0.2rem;
+                .comments-childer .comments-childer-item,.profile{
+                  width: 48px;
+                  height: 100%;
+                  margin-right: 5px;
+                  img{
+                    width: 40px;
+                    height:40px;
+                    border-radius: 50%;
+                  }
+                }
+                .comments-childer .comments-childer-item,.record{
+                  width: 100%;
+                  height: 100%;
+                  display: block;
+                  h5{}
+                  @include grade-width;
+                  .chatContent{
+                    margin-top:$margin15;
+                    clear: both;
+                    border-radius: 5px;
+
+                    padding: 0.05rem;
+                    box-sizing: border-box;
+                    line-height: 1.3;
+                  }
+                  .chatfooter{
+                    margin-top:$margin15;
+                    span{
+                      cursor:pointer;
+                    }
+                  }
+                }
+                .comments-childer{
+                  margin-left: 45px;
+                  //margin-top: 0.2rem;
+                  padding: .2rem 0 .2rem 0;
+                  box-sizing: border-box;
+                  border-bottom: 1px solid #585555;
+                  .comments-childer-item{
+                    margin-bottom: 0.15rem;
+                    h5,em,.chatContent{
+                      font-size: 13px;
+                      color: #a6a6ab;
+                      span{
+                        font-size: 12px;
+                      }
+                    }
+                    .profile img{
+                      width: 36px;
+                      height: 36px;
+                    }
+                    .progress-item{
+                      margin-top: 0.05rem!important;
+                      .item-tip{
+                        height: 12px!important;
+                        line-height: 12px;
+                        box-shadow: 0 1px 6px rgba(0, 0 ,0,.14);
+                        .tip{
+                          background-color: #966b15!important;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              .comments-list-page{
+                margin: 0.2rem;
+                ::v-deep .ivu-page-prev, ::v-deep .ivu-page-next,::v-deep .ivu-page-item-active,::v-deep .ivu-page-item{
+                  background-color: red;
+                  //border: 1px solid #808082;
+                  color: #ffffff;
+                  a{
+                    color: #ffffff;
+                  }
+                }
+                ::v-deep .ivu-page-item-active{
+                  box-shadow: 3px 1px 9px 3px rgba(251,117,108,.2);
+                  a{
+                    color:#000000;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,121 @@
+@import "~/assets/css/commonmMixin.scss"; //公共样式tool-header
+.blog-container{
+  .blog-layout{
+    display: inline-block;
+    width: 100%;
+    .blog{
+      //margin: 0.48rem auto;
+      .ivu-scroll-wrapper{
+        margin: unset;
+        padding: 0.1rem;
+        & ::-webkit-scrollbar{
+          display: none;
+        }
+      }
+      .blog-content-left{
+        .blogOneselfLeft1-container{
+          .tool{
+            @include tool-header;
+            .tool-header{margin-bottom: 0.05rem;margin-left: 0px;margin-right: 0px;}
+            .tool-info{margin-bottom: 0.15rem;}
+          }
+          .left-item{
+            width: 100%;
+            min-height: 775px;
+            .item-layout{
+              padding: 0.2rem  0.2rem 0.2rem 0.2rem;
+              margin-bottom: 0.2rem;
+              position: relative;
+              border-radius: 0.05rem;
+              .order{
+                width: 0.2rem;
+                height: 0.2rem;
+                min-width: 15px;
+                min-height: 15px;
+                background-color: rgba(124, 124, 124, 0.3);
+                color: #ffffff;
+                border-radius: 50%;
+                box-shadow: 1px 1px 1px #58b7f9;
+                text-align: center;
+                position: absolute;
+                top: 0.1rem;
+                left: 0.1rem;
+                z-index: 1;
+                display: flex;
+
+                span{
+                  display: block;
+                  margin: auto;
+                }
+              }
+              @include order-sequence;
+              .blog-item-img{
+                flex: 0 0 33.3%;
+                max-width: 33.3%;
+                flex-shrink:0;
+                min-height: 1.45rem;
+                overflow: hidden;
+                &:hover{
+                  a{
+                    transform: scale(1.1);
+                  }
+                }
+                a{
+                  transition: transform 0.5s;
+                }
+              }
+              .blog-item-info{
+                flex: 1 1 auto;
+                display: flex;
+                flex-direction: column;
+                min-height: 1.45rem;
+                padding: 0 0 0 0.2rem;
+                .info-body{
+                  flex: 1 1 auto;
+                  display: flex;
+                  flex-direction: column;
+                  a{
+                    &:nth-child(1){
+                      font-size: 0.18rem;
+                      -webkit-line-clamp: 2;
+                      line-clamp: 2;
+                      -webkit-box-orient: vertical;
+                      display: -webkit-box;
+                      white-space: pre-wrap;
+                    }
+                    &:nth-child(2){
+                      margin-top: 0.16rem;
+                      margin-bottom: 0.16rem;
+                      -webkit-line-clamp: 2;
+                      line-clamp: 2;
+                      -webkit-box-orient: vertical;
+                      display: -webkit-box;
+                      white-space: pre-wrap;
+                    }
+                  }
+                }
+                .info-footer{
+                  margin-top: 0.15rem;
+                  align-content: center;
+                  align-items: center;
+                  a{
+                    vertical-align: text-top;
+                    margin-left: 4px;
+                    i{
+                      font-size: 15px;
+                      vertical-align: inherit;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .blog-content-right{
+
+      }
+    }
+
+  }
+}

@@ -128,7 +128,7 @@
       .gradeCoin-item{
         padding:  0 0.1rem 0 0;
         .progress-item{
-          >>>.ivu-tooltip-content .ivu-tooltip-inner{
+          ::v-deep .ivu-tooltip-content .ivu-tooltip-inner{
             white-space: inherit;
           }
           em{
@@ -141,33 +141,33 @@
       }
       .ivu-slider{
         width: 100%;
-        >>>.ivu-slider-wrap{
+        ::v-deep .ivu-slider-wrap{
           height: 16px;
           width: 100%;
           border-radius: 8px;
           background-color: rgba(134,134,134,0.2);
         }
-        >>>.ivu-slider-bar{
+        ::v-deep .ivu-slider-bar{
           height: 100%;
           border-radius: 8px;
           background-color: #ffc107;
         }
-        >>>.ivu-slider-button-wrap{
+        ::v-deep .ivu-slider-button-wrap{
           height: 20px;
           width: 20px;
           top: -1px;
         }
-        >>>.ivu-slider-button{
+        ::v-deep .ivu-slider-button{
           background-color: red;
           height: 18px;
           width: 18px;
         }
 
       }
-      >>>.score{
+      ::v-deep .score{
         margin-left: 0.1rem!important;
       }
-      >>>.progress-item{
+      ::v-deep .progress-item{
         height: 26px;
       }
     }

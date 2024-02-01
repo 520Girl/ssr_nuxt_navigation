@@ -1,0 +1,315 @@
+@import "@/assets/css/commonmMixin.scss"; //公共样式grade-width
+.gradeCoins-container {
+  .gradeCoins-layout {
+    display: inline-block;
+    width: 100%;
+    .article {
+      margin: 0.48rem auto;
+      box-sizing: border-box;
+      padding-top: $paddingLt48;
+      .article-header-left {
+        // flex: 0 0 25%;
+        // max-width: 25%;
+        .logo-wraper {
+          width: 80%;
+          height: 100%;
+          background-color: #311b1b;
+          border-radius: 15px;
+          transition: background-color 0.3s;
+          &:hover{
+            box-shadow: 3px 2px 20px #93050533;
+            .vip{
+              transform: rotate(360deg);
+              box-shadow: 0 0 0 0 blueviolet;
+              transition: box-shadow .4s ease-in-out;
+              border-radius: 15px;
+            }
+          }
+
+          .logo {
+            position: relative;
+            max-width: 90%;
+            min-width: 72px;
+            max-height: 90%;
+            margin: 0.15rem;
+            border-radius: 15px;
+
+            .vip {
+              position: absolute;
+              top: 0;
+              right: 0;
+              font-size: 28px;
+              //font-weight: bold;
+              vertical-align: middle;
+              transition: transform 1s ,box-shadow .6s ease-in-out;
+              box-shadow: 0 0 0 30px transparent;
+              border-radius: 15px;
+              color: red;
+            }
+            .imgBackground{
+              animation: rotate 30s linear infinite;
+              background-size: cover;
+              background-repeat: no-repeat;
+              background-position: center center;
+              position: absolute;
+              top: 0;
+              left: 0;
+              bottom: 0;
+              right: 0;
+              opacity:0.2;
+              filter: blur(5px);
+              border-radius: 50%;
+            }
+            img {
+              width: 100%;
+              border-radius: 5px;
+            }
+            .tool-actions {
+              position: absolute;
+              bottom: 0;
+              width: 100%;
+
+              a {
+                color: #b2b8be !important;
+                background-color: rgba(24, 25, 26, .5);
+                border-color: transparent;
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                align-content: center;
+                justify-content: center;
+
+                i {
+                  font-size: 20px;
+                }
+
+                span {
+                  font-size: 12px;
+                }
+              }
+            }
+          }
+        }
+      }
+      .article-header-centre {
+        // flex-grow: 1;
+        height: 100%;
+        box-sizing: border-box;
+        .site-wraper{
+          margin: 0.15rem;
+          .site-tag{
+            .site-tag-layout{
+              .tag-layout-item{
+                height: 20px;
+                width: 45px;
+                padding: 0.02rem;
+                text-align: center;
+                background-color: #f1404b;
+                border-radius: 5px;
+                margin-left: 5px;
+                &:nth-child(3){
+                  background-color: red;
+                  color: #ffffff;
+                }
+                &:last-child{
+                  background-color: #005aff;
+                  color: #ffffff;
+                }
+                span{
+                  display: inline-block;
+                  font-weight: bold;
+                  color: #ffffff;
+                  font-size: 12px;
+                }
+              }
+            }
+          }
+          .site-number{
+            align-items: center;
+            .defend{
+              margin-right: 8px;
+              position: relative;
+              span {
+                position: absolute;
+                left: 50px;
+                font-size: 20px;
+                color: #ffffff;
+                top: 11px;
+              }
+              img {
+                width: 135px;
+                height: 40px;
+              }
+            }
+            h1{}
+          }
+          .site-info{
+            line-height: 2;
+            margin-bottom: 8px;
+            font-size: 16px;
+          }
+          .site-cue{
+            margin-bottom: 15px;
+            display: inline-block;
+            a{}
+          }
+          .site-button{
+            .ivu-tooltip{
+              height: unset;
+              margin: unset;
+              width: unset;
+            }
+          }
+        }
+      }
+      .article-header-right {
+        // flex:0 0 33.3%;
+        // max-width: 33.3%;
+        .grade-wraper{
+          margin: $margin15;
+          .grade{
+            .grade-number{
+              align-items: center;
+              .text{
+                margin-right: $margin10;
+                cite{font-size: 16px;}
+                p{
+                  font-size: 14px;
+                  margin-top: $margin10;
+                }
+              }
+              .number{
+                cursor:pointer;
+                background-image:-webkit-linear-gradient(bottom,red,#ff5f60,#f0c41b);
+                -webkit-background-clip:text;
+                -webkit-text-fill-color:transparent;
+                font-size: 48px;
+                font-style:italic
+              }
+            }
+            @include grade-width;
+            .progress-itemLeft{
+              font-size: 16px;
+              color: #ffd505;
+              font-weight: bold;
+              display: inline-block;
+              background: linear-gradient(to right top, #f71605, #e0f513);
+              background: -webkit-linear-gradient(to right top, #f71605, #e0f513);
+              background: -o-linear-gradient(to right top, #f71605, #e0f513);
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              animation:scratchy .4s linear forwards infinite;
+              /* 其它浏览器兼容性前缀 */
+              -webkit-animation:scratchy .4s linear forwards infinite;
+              -moz-animation: scratchy .4s linear forwards infinite;
+              -ms-animation: scratchy .4s linear forwards infinite;
+              -o-animation: scratchy .4s linear forwards infinite;
+              @keyframes  scratchy {
+                0% {
+                  background-position: 0 0;
+                }
+                25% {
+                  background-position: 0 0;
+                }
+                26% {
+                  background-position: 20px -20px;
+                }
+                50% {
+                  background-position: 20px -20px;
+                }
+                51% {
+                  background-position: 40px -40px;
+                }
+                75% {
+                  background-position: 40px -40px;
+                }
+                76% {
+                  background-position: 60px -60px;
+                }
+                99% {
+                  background-position: 60px -60px;
+                }
+                100% {
+                  background-position: 0 0;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .guestbook{
+      //width: 80%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin: auto;
+      box-sizing: border-box;
+      overflow: visible;
+      //height: 100%;
+        .guestbook-main-left{
+          //position: sticky;
+          //top: $headerHeight;
+          @include guestbook-left-wraper;
+        }
+        .guestbook-main-right{
+           .guestbook-right-wraper{
+             margin: 0 0.1rem 0.2rem 0.1rem;
+             .guestbook-right-webInfo{
+               min-height: 3rem;
+               h1{
+                 text-align: center;
+               }
+               .webInfo{
+                 text-indent: 31px;
+                 line-height: 1.5;
+                 letter-spacing: 1px;
+               }
+             }
+             .guestbook-right-appGroom{
+               .tool{
+                 .tool-header{
+                   .left{
+                     .heade-icon{display:inline-block;padding-right:5px;}
+                     h5{display:inline-block;font-size: 18px;}
+                   }
+                   .right{
+                     margin:  0px 10px;
+                     box-sizing:border-box;
+                     .number{
+                       .nums{padding:0px 5px;color:red;}
+                     }
+                     .line{
+                       display: inline-block;
+                       line-height: 24px;
+                       vertical-align: bottom;
+                       margin: 0 14px;
+                       width: 1px;
+                       height: 10px;
+                       background-color: #9e9fa0;
+                     }
+                     .more{
+                       i{    vertical-align: text-top;}
+                     }
+                   }
+                 }
+               }
+             }
+             .guestbook-main{
+           }
+          }
+        }
+    }
+  }
+}
+@keyframes rotate {
+  0%{
+    transform:rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,131 @@
+@import "@/assets/css/commonmMixin.scss"; //公共样式grade-width
+.blogOneselfLeft2{
+  padding: 0.2rem;
+  box-sizing: border-box;
+  .blogOneselfLeft2-layout{
+    .left2-layout-header{
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      margin-bottom: 0.2rem;
+      padding: 0.1rem 0.05rem 0rem 0.05rem;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      .left2-header-title{}
+      .left2-header-main{
+        padding-bottom: 0.25rem;
+        //border-bottom: 1px solid rgb(56, 58, 59);
+        .headerLeft{
+          margin-left: 0.05rem;
+          a{
+            display: inline-block;
+            i{
+              font-size: 17px;
+              vertical-align: text-top;
+            }
+            span{
+              font-size: 12px;
+            }
+          }
+        }
+        .headerRight{
+          margin-right: 0.05rem;
+          a{
+            display: inline-block;
+            min-width: 35px;
+            i{
+              vertical-align: bottom;
+            }
+            span{}
+          }
+        }
+      }
+    }
+    .left2-layout-main{
+      padding: 0.15rem;
+      box-sizing: border-box;
+      margin-bottom: 0.2rem;
+      .mainContents{
+        //line-height: 18px;
+        text-indent: 0.15rem;
+      }
+      .mainUnit{
+        margin: 0.15rem ;
+        .mainUnit-tag{
+          margin-bottom: 0.15rem;
+          i{margin-right: 0.1rem;color: red}
+          .ivu-tag-border{
+            border-radius: 25px;
+          }
+        }
+        @include mainUnit-share
+      }
+    }
+    .left2-layout-footer{
+
+      .footer-address{
+        margin-bottom: 0.15rem;
+        padding: 0.15rem;
+        address{
+          margin: 0.05rem 0;
+          span{
+            font-weight: bold;
+            padding-right: 0.05rem;
+          }
+        }
+      }
+      .footer-nextLast{
+        margin-bottom: 0.15rem;
+        padding: 0.15rem;
+        align-items: center;
+        .lastNextId{
+          width: 50%;
+          min-height: 80px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          cursor: pointer ;
+          h5{}
+          p{
+            margin-top: 0.1rem;
+          }
+          &:first-child{
+            border-right: 1px solid rgba(129, 129, 129, 0.15);
+          }
+          &:last-child{
+            text-align: right;
+          }
+        }
+        .disabled{
+          cursor: not-allowed;
+        }
+      }
+      .footer-words{
+
+        @include tool-header;
+        @include guestbook-respond;
+        ::v-deep .guestbook-layout,.mx-15-2{
+          margin:0;
+        }
+        .fonter-words-respond{
+          padding: 0.1rem;
+          .option{
+            &:nth-child(2){
+              padding: 0.1rem;
+            }
+          }
+          .footer-words-judge{
+            margin-top: 0.08rem;
+            .judgeNo{
+              padding: 20px 0;
+              text-align: center;
+              color: #888;
+              background: rgba(136,136,136,.2);
+              border-radius: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

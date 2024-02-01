@@ -1,4 +1,4 @@
-import { resolve } from 'path'
+import path from 'path'
 import i18n from "./src/assets/js/i18n/config"
 
 export default {
@@ -16,6 +16,7 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      // { rel: 'stylesheet', href: 'https://cdn.bootcss.com/social-share.js/1.0.16/css/share.min.css' }
     ]
   },
   srcDir: 'src/',
@@ -29,10 +30,10 @@ export default {
   // },
   css: [
     // 'iview/dist/styles/iview.css'
-    {src:'@/assets/css/_bianlian.scss',lang:'scss'},
-    {src:'@/assets/css/main.scss',lang:'scss'},
-    {src:'@/assets/css/_orderthemes.less',lang:'less'},
-    
+    { src: '@/assets/css/_bianlian.scss', lang: 'scss' },
+    { src: '@/assets/css/main.scss', lang: 'scss' },
+    { src: '@/assets/css/_orderthemes.less', lang: 'less' },
+
     // {
     //   loaderOptions: {
     //     sass: {
@@ -43,14 +44,15 @@ export default {
     // '@/assets/css/love.scss'
   ],
   styleResources: { //配置变量全局使用 styleResources 配置的资源路径不能使用 ~ 和 @,要使用绝对或者相对路径
-    scss: ['./assets/css/_bianlian.scss','./assets/css/_handle.scss'],
+    scss: ['./assets/css/_bianlian.scss', './assets/css/_handle.scss'],
   },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/assets/js/api/axiosPackaging',
-    { src: '~/assets/js/plugins', ssr: true },
+    { src: '~/assets/js/server', ssr: true },
     { src: '~/assets/js/client', ssr: false },
+    { src: '~/assets/js/share', ssr: false },
     { src: '~/store/persistedState.client', ssr: false }
     // 'iview/dist/iview.js'
   ],
@@ -62,8 +64,8 @@ export default {
   buildModules: [
   ],
   //https://v2.nuxt.com/docs/configuration-glossary/configuration-alias/
-  alias:{
-    // 'images':resolve(__dirname, '/assets/css'),
+  alias: {
+    '@images': path.resolve(__dirname, 'static/'),
   },
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -71,7 +73,7 @@ export default {
     "@nuxtjs/proxy",
     "@nuxtjs/router",
     '@nuxtjs/style-resources',
-    ['@nuxtjs/i18n',i18n]
+    ['@nuxtjs/i18n', i18n]
   ],
   axios: {
     proxy: true
@@ -85,18 +87,18 @@ export default {
     },
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-    // extend(config, ctx) {
-    //   if (ctx.isDev) {
-    //     // 查看别名配置信息
-    //     console.log(config.resolve.alias);
-    //     // 添加 alias 配置
-    //     // !这儿添加的别名不能在nuxt.config.js文件中使用
-    //     Object.assign(config.resolve.alias, {
-    //       'sass': path.resolve(__dirname, 'assets/sass'),
-    //     });
-    //   }
-    // },
+  // build: {
+  //   extend(config, ctx) {
+  //     if (ctx.isDev) {
+  //       // 查看别名配置信息
+  //       console.log(config.resolve.alias);
+  //       // 添加 alias 配置
+  //       // !这儿添加的别名不能在nuxt.config.js文件中使用
+  //       Object.assign(config.resolve.alias, {
+  //         'sass': path.resolve(__dirname, 'assets/sass'),
+  //       });
+  //     }
+  //   },
     // loaders: {
     //   sass: {
     //     prependData: `@import "@/assets/css/_handle.scss";`

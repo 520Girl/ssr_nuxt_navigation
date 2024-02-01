@@ -3,7 +3,6 @@ import Vuex from 'vuex'
 
 import tagsView from "./modules/tagsView";
 import clickLike from "./modules/clickLike";
-
 Vue.use(Vuex)
 
 //配置数据持久化

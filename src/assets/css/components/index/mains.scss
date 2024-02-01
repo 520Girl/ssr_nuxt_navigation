@@ -10,7 +10,7 @@
             margin: auto;
             text-align:center;
             width: 100%;
-            >>>.ivu-tooltip-rel{
+            ::v-deep .ivu-tooltip-rel{
               height: 100%;
               margin: auto;
               width: 100%;
@@ -173,7 +173,7 @@
               height: 100%;
               margin: auto;
               width: 100%;
-              >>>.ivu-tooltip-rel{
+              ::v-deep .ivu-tooltip-rel{
                 height: 100%;
                 margin: auto;
                 width: 100%;
