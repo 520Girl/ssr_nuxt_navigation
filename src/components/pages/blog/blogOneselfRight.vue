@@ -3,9 +3,9 @@
     <div class="right-oneself ">
         <header class="oneself-header applyBck" v-if="oneselfDate">
             <div class="oneselfImg">
-                <div class="header-background" :style="'background-image: url('+ require('~/assets/images/blog/wHoOcfQGhqvlUkd.jpg')+');'"></div>
+                <div class="header-background" :style="'background-image: url('+ require('../../../assets/images/blog/wHoOcfQGhqvlUkd.jpg')+');'"></div>
                 <div class="header-title applyBck">
-                  <img src="~/assets/images/blog/avatar.png" alt="">
+                  <img :src="`./static/images/user/${oneselfDate.content.imgUrl}`" alt="">
                 </div>
             </div>
             <div class="header-author ">
@@ -35,69 +35,19 @@
             </div>
         </header>
         <main class="oneself-main">
-          <div class="guestbook-left-wraper oneself-main-hot" v-if="eyeHotDate">
-                <div  class="guestbook-left-item applyBck">
-                    <div class="guestbook-left-header fontSize-icon auto-line-start">
-                      <Icon type="md-flame fontSize-icon" color="red!important"/>热门文章
-                    </div>
-                    <div class="guestbook-left-content ">
-                        <article  @click="allStart(1,item)"  class="oneself-main-item  auto-line-start" v-for="(item,index) in eyeHotDate.content " :key="index">
-                            <div class="main-item-img">
-<!--                                <a class="background-cover" :style="'background-image: url('+require('../../../assets/images/blog/'+item.imgUrl+'') +');'" :alt="item.title"></a>-->
-                                <a class="background-cover" :style="'background-image: url(/static/images/blog/test3.jpg);'" :alt="item.title"></a>
-                            </div>
-                            <div class="main-item-content ">
-                                <h5 class="overflow-eclipse-2 fontSize-text-color">{{item.title}}</h5>
-                                <div class="main-item-footer auto-line-between">
-                                    <Time :time="item.onlineTime" class="shallowColor"  />
-                                    <a class="fontSize-text-colornoH" :href="item.mainUrl" ><Icon type="ios-clock" />{{item.eyeNum}}</a>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </div>
-          <div class="guestbook-left-wraper oneself-main-hot" v-if="commentsHotDate">
-            <div  class="guestbook-left-item applyBck">
-              <div class="guestbook-left-header fontSize-icon auto-line-start">
-                <Icon type="ios-create fontSize-icon" color="#ff6f00!important"/>热评文章
-              </div>
-              <div class="guestbook-left-content">
-                <article @click="allStart(1,item)" class="oneself-main-item  auto-line-start" v-for="(item,index) in commentsHotDate.content " :key="index">
-                  <div class="main-item-img">
-                    <!--                    <a class="background-cover" :style="'background-image:url('+require('../../../assets/images/blog/'+item.imgUrl+'') +');'" :alt="item.title"></a>-->
-                    <a class="background-cover" :style="'background-image:url(/static/images/blog/test2.jpg)'" :alt="item.title"></a>
-                  </div>
-                  <div class="main-item-content ">
-                    <h5 class="overflow-eclipse-2">{{item.title}}</h5>
-                    <div class="main-item-footer auto-line-between">
-                      <Time :time="item.onlineTime" class="shallowColor"  />
-                      <a class="" href="javascript:void(0)" ><Icon type="ios-clock" />{{item.commentsLen}}</a>
-                    </div>
-                  </div>
-                </article>
-              </div>
-            </div>
-          </div>
+
+          <blogOneselfHotcomment :blogOC="eyeHotDate" ></blogOneselfHotcomment>
+
+          <blogOneselfHotcomment :blogOC="commentsHotDate" ></blogOneselfHotcomment>
         </main>
         <footer class="oneself-footer">
             <div class="guestbook-left-wraper oneself-main-hot">
                 <a href="" class="guestbook-left-item applyBck">
                     <div class="guestbook-left-header fontSize-icon auto-line-start">
-                      <Icon type="md-list-box fontSize-icon" />热门标签
+                      <Icon type="md-list-box fontSize-icon" color="#00dcff!important"/>热门标签
                     </div>
                     <div class="guestbook-left-content oneself-footer-content">
-                        <Tag color="default" class="tag" type="border">default</Tag>
-                        <Tag color="primary" type="border">primary</Tag>
-                        <Tag color="success" type="border">success</Tag>
-                        <Tag color="error" type="border">1</Tag>
-                        <Tag color="warning" type="border">warning</Tag>
-                        <Tag color="magenta" type="border">magenta</Tag>
-                        <Tag color="red" type="border">red</Tag>
-                        <Tag color="volcano" type="border">volcano</Tag>
-                        <Tag color="orange" type="border">orange</Tag>
-                        <Tag color="gold" type="border">gold</Tag>
-                        <Tag color="yellow" type="border">yellow</Tag>
+                      <random-tag :tagValue="item.title" :pathName="'/favorites/'+item.belong" v-for="item in hotTag" :key="item.belong"></random-tag>
                     </div>
                 </a>
             </div>
@@ -106,13 +56,19 @@
 </template>
 <script>
   // import {Icon,Tag,Time} from 'iview'; //iview
-  import  blogOneselfHotcomment from '@/components/pages/blog/blogOneselfHotcomment' //热门评论
+  import  blogOneselfHotcomment from '@/components/pages/blog/blogHotcomment' //热门评论
   import countToNumber from "@/components/common/countToNumber";//数字组件
+  import randomTag from "@/components/common/randomTag";//数字组件
   export default {
       name:"blogOneselfRight",
       // components:{Icon,Tag,Time,blogOneselfHotcomment},
-      components:{countToNumber, blogOneselfHotcomment},
-      props:['values'],
+      components:{countToNumber,randomTag, blogOneselfHotcomment},
+      props:{
+        blogHotComment:{type:Object,default:()=>{}},
+        blogHotEye:{type:Object,default:()=>{}},
+        userInfoB:{type:Object,default:()=>{}},
+        hotTags:{type:Array,default:()=>[]},
+      },
       data(){
         return{
           blogOC:{
@@ -122,18 +78,33 @@
               {mainImg:"https://i1.wp.com/www.ymrkou.com/wp-content/uploads/2020/08/d3f513902a5b1471d55d3c7d9d2b508d.gif?fit=960%2C540&ssl=1",mainContent:'这是一个标题',mainTime:259200000,mainIcon:"logo-octocat",mainUrl:'www.baidu.com',mainNumber:"5"}
             ]
           },
-          oneselfDate:{},//个人信息数据
-          eyeHotDate:{}, //热门文章
-          commentsHotDate:{}, //热评文章
+          oneselfDate:{content:{imgUrl:''}},//个人信息数据
+          eyeHotDate:{title:'热门文章',icon:'md-flame',color:'red!important',type:'eye'}, //热门文章
+          commentsHotDate:{title:'热评文章',icon:'ios-create',color:"#ff6f00!important",type:'comment'}, //热评文章
+          hotTag:[]
         }
       },
+      created(){
+        //!nuxt 数据的处理
+        //? 1.获取个人信息数据
+        this.oneselfDate = this.userInfoB
+        //虚假数据
+        if (this.oneselfDate.web <= 156) this.oneselfDate.web = 156
+        if (this.oneselfDate.blog <= 28) this.oneselfDate.blog = 28
+        if (this.oneselfDate.comments  <= 75  ) this.oneselfDate.comments = 75
+        //? 2.获取热门文章数据
+          this.commentsHotDate = {...this.commentsHotDate,...this.blogHotComment.blog}
+          this.eyeHotDate = {...this.eyeHotDate,...this.blogHotEye.blog}
+        //? 3.获取热门标签数据
+          this.hotTag = this.hotTags
+      },
       mounted(){
-        this.allStart()
+        // this.allStart()
       },
       methods:{
         allStart(start=0,item){
           if (start === 0){ // 进入首页显示
-            Promise.all([this.getUserInfoB(),this.getBlogHot(),this.getBlogHot({per_page:4,belong:'eye',order:-1})])
+            Promise.all([this.getUserInfoB(),this.getBlogHot(),this.getBlogHot({per_page:4,belong:'eye',order:-1}),this.getHotTag()])
           }else { // 点击跳转显示的内容
             if (this.$route.query.id === item._id){
               this.$Notice.warning({
@@ -155,7 +126,7 @@
               })
             }else {
               this.$router.replace({
-                params:{
+                query:{
                   id:item._id,
                   title:item.title
                 }
@@ -187,11 +158,19 @@
           this.$api.blog.getBlogHot(params).then(res=>{
             if (res.status == 1){
               if (params.belong == 'comment'){
-                this.commentsHotDate = res.blog
+                this.commentsHotDate = {...this.commentsHotDate,...res.blog}
               }else {
-                this.eyeHotDate = res.blog
+                this.eyeHotDate = {...this.eyeHotDate,...res.blog}
               }
-              console.log(this.eyeHotDate)
+            }
+          })
+        },
+        //获取热门标签
+        getHotTag(){
+          this.$api.mutulal.getHotTag({belong:'eye',order:-1,per_page:15}).then(res=>{
+            if (res.status === 1){
+              console.log('res',res)
+              this.hotTag = res.common.content
             }
           })
         }
@@ -199,7 +178,6 @@
     }
 </script>
 <style lang="scss" scoped>
-  /* //公共样式grade-width */
-    @import "~/assets/css/commonmMixin.scss"; 
-    @import "~/assets/css/components/blog/blogOneselfRight.scss";
+    @import "~@/assets/css/commonmMixin.scss"; //公共样式grade-width
+    @import "~@/assets/css/components/blog/blogOneselfRight.scss";
 </style>

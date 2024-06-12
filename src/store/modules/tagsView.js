@@ -8,10 +8,10 @@ const getDefaultState = () =>{
   }
 }
 
-const state = {
+const state = ()=>({
   visitedViews: [], // 用户访问的页面
   cachedViews: [] // 用户需要缓存的页面
-}
+})
 
 const mutations = {
   ADD_VISITED_VIEW:(state, view)=>{

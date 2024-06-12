@@ -163,7 +163,7 @@ export default {
   },
   data(){
     return{
-      divDescribe:[{title:'提款速度',scoreNum:7},{title:'品牌荣誉',scoreNum:8},{title:'响应速度',scoreNum:9},{title:'服务质量',scoreNum:10}], //评分title 文字
+      divDescribe:[{title:'用户体验',scoreNum:7},{title:'品牌荣誉',scoreNum:8},{title:'响应速度',scoreNum:9},{title:'服务质量',scoreNum:10}], //评分title 文字
       reply:{replyEle:true,replyIndex:-1}, //处理留言框
       agentWant:false, //处理再想一想button
       params:{id:'',textarea:'',email:{input:'',lastTailing:''},addressUrl:{input:'',firstTailing:''},name:''}, //留言板数据
@@ -229,7 +229,7 @@ export default {
       addressUrl = this.params.addressUrl.firstTailing+this.params.addressUrl.input
 
       if (big){
-        params ={id:this.$route.query.id,reply:big,params:{name:name,chatContent:this.deleteTag(this.params.textarea),title:'title.png',email:email,addressUrl:addressUrl},version:this.commentsList.version}
+        params ={id:this.$route.params.id,reply:big,params:{name:name,chatContent:this.deleteTag(this.params.textarea),title:'title.png',email:email,addressUrl:addressUrl},version:this.commentsList.version}
       }else{
         if (chat_id){
           params ={id:chat_id,reply:big,params:{name:name,chatContent:this.deleteTag(this.params.textarea),email:email,addressUrl:addressUrl},version:this.commentsList.version}
@@ -316,7 +316,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  /* //公共样式grade-width */
-@import'~/assets/css/commonmMixin.scss'; 
-@import "~/assets/css/components/comments/appGuestbook.scss";
+@import'~@/assets/css/commonmMixin.scss'; //公共样式grade-width
+@import "~@/assets/css/components/comments/appGuestbook.scss";
 </style>

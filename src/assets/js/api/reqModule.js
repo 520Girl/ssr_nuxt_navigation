@@ -1,7 +1,7 @@
 import base from "./baseUrl"
 import Qs from 'qs'
 import common from "../common";
-
+import fetchJsonp from 'fetch-jsonp';
 export default (($axios) => {
   const appList = {
     getAppLists(params) {
@@ -49,17 +49,23 @@ export default (($axios) => {
   }
 
   const gradeCoin = {
-    getGradeCoin(params) {
-      return $axios.get(`${base.getGradeCoin}`, { params: params })
+    getGradeCoin(params,ssr) {
+        return $axios.get(`${base.getGradeCoin}`, { params: params })
     },
     getGradeCoinDetail(params) {
       return $axios.get(`${base.getGradeCoinDetail}/${params}`)
     }
   }
 
-  const webSite = {
-    getWebsite(params) {
-      return $axios.get(`${base.getWebsite}`, { params: params })
+  const webSite={
+    getWebsite(params){
+      return $axios.get(`${base.getWebsite}`,{params:params})
+    },
+    getWebsiteHNItem(params){
+      return $axios.get(`${base.getWebsiteHNItem}`,{params:params})
+    },
+    getWebsiteOne(){
+      return $axios.get(`${base.getWebsiteOne}`)
     }
   }
 
@@ -101,7 +107,55 @@ export default (($axios) => {
       return $axios.get(`${base.getBulletin}`, { params: params })
     }
   }
-  return { appList, user, blog, gradeCoin, webSite, cartoon, image, bulletin, slide }
+
+  const news = {
+    getNews(){
+      return $axios.get(`${base.getNews}`)
+    },
+    getNewsRefresh(params){
+      return $axios.get(`${base.getNewsRefresh}/${params}`)
+    },
+    getCountUpDate(){
+      return $axios.get(`${base.getCountUpDate}`)
+    },
+  }
+
+  const mutulal = {
+    getCUpvote(params){
+      return $axios.patch(`${base.getCUpvote}`,params)
+    },
+    getCSearch(params){
+      return $axios.get(`${base.getCSearch}`,{params:params})
+    },
+    getSearch(url,params,type){
+      return new Promise((resolve, reject) => {
+        fetchJsonp(`${url}${params}`).then(res => {
+          switch(type){
+            case 'baidu':
+            case '360':
+            case 'taobao':
+            case 'yitao':
+            case 'jingdong':
+            case 'shenma':
+            case 'google':
+            case 'world':
+              return res.json();
+          }
+        }).then(data => {
+          resolve(data);
+        }).catch(err => {
+          reject(err);
+        });
+      });
+    },
+    getBaseList(){
+      return $axios.get(`${base.getBaseList}`)
+    },
+    getHotTag(params){
+      return $axios.get(`${base.getHotTag}`,{params:params})
+    }
+  }
+  return { appList, user, blog, gradeCoin, webSite, cartoon, image, bulletin, slide ,news, mutulal }
 })
 
 

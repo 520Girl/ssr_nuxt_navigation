@@ -11,7 +11,7 @@
     export default {
       name:'urlVelocity',
       props:{
-        imgUrl:{type:String,default:''}
+        url:{type:String,default:process.browser ? window.location.href : ''}
       },
       data(){
         return{
@@ -21,7 +21,7 @@
         }
       },
       mounted() {
-        this.getSpeedWithImg(this.imgUrl).then((resolve)=>{
+        this.getSpeedWithImg(this.url).then((resolve)=>{
           this.urlItems = resolve
           this.loading = false
           if (resolve <= 500){

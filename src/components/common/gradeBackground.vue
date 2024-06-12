@@ -1,5 +1,5 @@
 <template>
-    <div class="gradeBackground contents-bck">
+    <div class="gradeBackground">
 <!--        <img src="https://www.ymrkou.com/wp-content/themes/webstackpro/images/fx/shape-11.svg" alt="" class="img trianle-01">-->
 <!--        <img src="https://www.ymrkou.com/wp-content/themes/webstackpro/images/fx/shape-02.svg" alt="" class="img trianle-02">-->
 <!--        <img src="https://www.ymrkou.com/wp-content/themes/webstackpro/images/fx/shape-03.svg" class="img trianle-03 " >-->

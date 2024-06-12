@@ -4,7 +4,7 @@
       <div class="gradeCoin-header  mx-2 auto-line-start applyBck">
         <div class="header-tag ">
           <Icon type="md-planet "/>
-          评分宝 
+          评分宝
         </div>
         <div class="header-text fontSize-text ">
           <p class="overflow-eclipse">截止有<strong>{{ gradeCoinLists.allCount}}</strong>家公司加入,<strong>{{gradeCoinLists.commentAll}}</strong>名用户评价</p>
@@ -51,9 +51,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  /* //引入gradeCoin-menu; */
-@import '~/assets/css/commonmMixin.scss'; 
-@import "~/assets/css/animation.scss";
+@import '~@/assets/css/commonmMixin.scss'; //引入gradeCoin-menu;
+@import "~@/assets/css/animation.scss";
 .gradeCoin-container {
   display: inline-block;
   width: 100%;

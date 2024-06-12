@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="tool-info">
-                描述只会在一部分主题中显示
+              博客就像是一本魔法书，每篇文章都是一道道魔法咒语，让读者穿越时空，探索知识的宝藏。在这个充满奇幻色彩的世界里，文字是魔杖，想象是翅膀，每一个博客都是一次奇妙的冒险
             </div>
         </header>
         <Scroll :on-reach-bottom="getBlogLists" :distance-to-edge="-24" :loading-text="loadingText" color="yellow" class="left-item" height="740" v-if="blogLists.content.length >0">
@@ -29,11 +29,11 @@
                 </div>
                 <Col :xl="{ span: 8 }" :lg="{span:6}" :sm="{ span: 12 }" :xs="{span:24}" class-name="blog-item-img">
 <!--                    <router-link :to="{path:'/blog/detailed',query:{id:item._id}}" class="background-cover" :style="'background-image: url('+require('../../../assets/images/blog/'+item.imgUrl+'') +');'" alt=""></router-link>-->
-                  <router-link :to="{path:`/blog/detailed/${item._id}/${item.title}`}" class="background-cover" style="background-image: url('/static/images/blog/test1.jpg');" ></router-link>
+                  <router-link :to="{path:`/blog/${item._id}`,query:{title:item.title}}" class="background-cover" v-lazy:background-image="`./static/images/blog/${item.imgUrl}`" data-blog="blog1" ></router-link>
                 </Col>
                 <Col :xl="{ span: 16 }" :lg="{span:16}" :sm="{ span: 12 }" :xs="{span:24}" class-name="blog-item-info">
                     <div class="info-body">
-                        <router-link :to="{path:`/blog/detailed/${item._id}/${item.title}`}"  class="fontSize-text-color overflow-eclipse">{{item.title}}</router-link>
+                        <router-link :to="{path:`/blog/${item._id}`,query:{title:item.title}}"  class="fontSize-text-color overflow-eclipse">{{item.title}}</router-link>
                         <a href="javascript:void (0)" class="overflow-eclipse fontColor-t-d">{{item.explain}}</a>
                     </div>
                     <div class="info-footer auto-line-between">
@@ -59,12 +59,23 @@
   export default{
     name:"blogOneselfLeft1",
     // components:{Row, Col, Icon, Button, Tooltip,Tag,Scroll,Time,},
+    props:['blogOneself'],
     data(){
       return{
         time2:(new Date()).getTime() - 86400 * 3 * 1000,
-        params:{page:0,per_page:5,tag:'',order:-1},
+        params:{page:1,per_page:5,tag:'',order:-1},
         blogLists:{allCount:6,content:[]},
         loadingText:'加载中',
+      }
+    },
+    created() {
+      this.params.tag = this.$route.query.tag
+      //! nuxt数据
+      if ('content' in this.blogOneself){
+        let blogsContent = this.blogLists.content
+        this.blogLists = this.blogOneself
+        blogsContent = blogsContent.concat(this.blogOneself.content)
+        this.blogLists.content = blogsContent
       }
     },
     mounted() {
@@ -92,6 +103,5 @@
   }
 </script>
 <style lang="scss" scoped>
-  /* //公共样式grade-width */
-    @import '~/assets/css/components/blog.scss';
+    @import '~@/assets/css/components/blog.scss';
 </style>

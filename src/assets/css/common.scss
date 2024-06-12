@@ -1,6 +1,7 @@
 
 @import url('./_handle.scss');
 @import url('//at.alicdn.com/t/font_2039941_lrrqf795ok.css');
+
 // 自动换行
 .auto-line-center{
         display: flex;
@@ -44,7 +45,8 @@
   display: -webkit-box;
   white-space: pre-wrap;
 }
-\\导航宽度
+
+//导航宽度
 .width-six{
         width: 60px;
         height: 100%;
@@ -73,6 +75,9 @@
 .applyBckDeep{
   @include applyBck('deepApplyBackground');
   box-shadow: 0 1px 6px rgba(0,0,0,0.2);
+}
+.adverseBac{
+  @include applyBck('backgroundLightDark');
 }
 .imgInIcon{
         @include imgInIcon('imgInIcon');
@@ -117,6 +122,9 @@
         font-size: $fontSize14;
         color: $fontColor-dark;
         vertical-align: middle;
+  &:hover{
+    @include hover('hover');
+  }
 
 }
 .fontSize-text-app{
@@ -388,4 +396,55 @@
   //cursor:no-drop!important;
   cursor:not-allowed!important;
   color: #666;
+}
+
+// 轮播图样式进行修改
+.sliders-layout .ivu-carousel-list{
+  height: 100%;
+  .ivu-carousel-track{
+    height: 100%;
+    .carousel{
+      height: 100%;
+    }
+  }
+}
+
+// 博客内容 图片大小固定
+.mainContents {
+  img{
+    max-height: 100%;
+    max-width: 100%;
+  }
+  *{
+    line-height: 20px;
+  }
+}
+
+//
+.ivu-card-head{
+  padding: 12px 16px;
+}
+//点赞
+.headerTagI{
+  color: red!important;
+}
+.eyeTagI{
+  animation: headerTagI 3s infinite;
+  color:#ffd600!important
+}
+.scoreTagI{
+  color: red;
+  .ivu-rate-star-chart.ivu-rate-star-full,.ivu-rate-star-chart.ivu-rate-star-half.ivu-rate-star-zero .ivu-rate-star-first{
+    i{
+      color: red!important;
+    }
+  }
+}
+// 漫画的slider 修改
+.ivu-slider-wrap{
+  margin: auto;
+}
+// 漫画详情页面的 徽标
+.demo-badge-alone{
+  background: #ba48ff !important;
 }

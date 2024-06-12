@@ -1,10 +1,11 @@
-// const CryptoJS = require('crypto-js'); //数据加密
-// const analyze = require('rgbaster');//获取主题
-// import store from '@/store/index'
+const CryptoJS = require('crypto-js'); //数据加密
+const analyze = require('rgbaster');//获取主题
+import store from '@/store'
+import setting from '@/setting'
 
 //检测cookie
 function getCookieValue(name) {
-    let cookies = document.cookie;
+        let cookies = document.cookie;
 		let list = cookies.split(";");          // 解析出名/值对列表
         for(let i in list) {
           let arr = list[i].replace(' ','').split("=");          // 解析出名和值
@@ -262,7 +263,8 @@ function cruxText(text="美女",arr=["美女","美臀","走光","色情","视频
 }
 
 //获取屏幕的宽度高度
-function getWindowHeightWidht(){
+function
+getWindowHeightWidht(){
   if (window.innerWidth){
     return{
       width:window.innerWidth,
@@ -309,28 +311,51 @@ const debounce = (fn,interval = 300)=>{
 }
 
 // 跳转到新页面
-const goto = (url)=>{
+const goto = (url,title=setting.website)=>{
   if (!/(http|https|ftp)/.test(url)){
-    url = `http://${url}`
+    window.location.href = `${window.location.href.slice(0,-1)}${url}?t=${title}`
+  }else {
+    window.open(url, '_blank');
   }
-  window.open(url, '_blank');
+
   // window.location.href =
 }
 
-export default {
-  getCookieValue,
-  setUseCookies,
-  Decrypt,
-  Encrypt,
-  rgbaster,
-  judegeScroll,
-  i18nLanguage,
-  Format,
-  handleDecryptDate,
-  cruxText,
-  getWindowHeightWidht,
-  scrollClickTop,
-  throttle,
-  debounce,
-  goto
+//处理访问的连接 如果是slide 就直接使用hrefUrl，如果不是使用this.$router.push({path:`${item.belong}/${item.belongId}`,query:{title:item.title}})
+const handleHrefUrl = (item)=>{
+  switch (item.belong) {
+    case 'slide':
+      return item.hrefUrl
+      break;
+    case 'news':
+      return `${item.belongId}?title=${item.title}`
+      break;
+    case 'website':
+      return `${item.belongId}?title=${item.title}`
+      break;
+  }
+  return `/${item.belong}/${item.belongId}?title=${item.title}`
+}
+
+
+export default ({app},inject)=>{
+  const common = ()=>({
+    getCookieValue,
+    setUseCookies,
+    Decrypt,
+    Encrypt,
+    rgbaster,
+    judegeScroll,
+    i18nLanguage,
+    Format,
+    handleDecryptDate,
+    cruxText,
+    getWindowHeightWidht,
+    scrollClickTop,
+    throttle,
+    debounce,
+    goto,
+    handleHrefUrl
+  })
+   inject('common',common)
 }

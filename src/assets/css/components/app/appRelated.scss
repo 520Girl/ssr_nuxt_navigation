@@ -1,0 +1,68 @@
+.guestbook-right-appGroom{
+  .tool{
+    @include tool-header;
+    .gradeCoin-menu {
+      max-height: unset;
+      //overflow: unset;
+      //flex-wrap: nowrap;
+      //overflow-x: auto;
+      .gradeCoin-item {
+        height: 100%;
+        border-radius: 15px;
+        // margin: 0 0.1rem 0.1rem 0.1rem;
+        // min-width:306px;
+        &:hover{
+          .top-img {
+            img {
+              transform: scale(1.2);
+            }
+          }
+        }
+        .item-content {
+          .content-top {
+            margin: 5px 5px 5px 5px;
+            text-align: center;
+            .top-img {
+              img {
+                border-radius: 15px;
+                transition: transform .5s;
+              }
+            }
+            .top-content {
+              padding: 5px 0 5px 0;
+              .new{
+                background-color: red;
+                padding: 3px;
+                color: #ffffff;
+                border-radius: 5px;
+                font-size: 12px;
+                margin-right: 4px;
+              }
+              .hot{
+                background-color: #005aff;
+                padding: 3px;
+                color: #ffffff;
+                border-radius: 5px;
+                font-size: 12px;
+                margin-right: 4px;
+              }
+              h5 {
+                font-size: 0.16rem;
+                color: #ffffff;
+                font-weight: bold;
+                margin-bottom: 2px;
+                margin-top: 5px;
+                display: inline-block;
+              }
+              p{
+                white-space:normal;
+                line-height: 1.2;
+                height: 32px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

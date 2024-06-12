@@ -1,11 +1,10 @@
 //天气
-
-> > > #he-plugin-simple {
+::v-deep #he-plugin-simple {
   #weather-view-he {
     height: 309px !important;
   }
 }
-> > > .s-sticker-tmp.module {
+::v-deep .s-sticker-tmp.module {
   position: absolute !important;
   font-size: 12px !important;
   top: -6px;
@@ -36,54 +35,81 @@
 
       .logo-expanded {
         img {
-          width: 40px;
+          width: 50px;
           margin: 0 auto;
         }
       }
 
       .logo-collapsed {
         img {
-          max-height: 40px;
+          //max-height: 40px;
         }
       }
     }
-
+    *::-webkit-scrollbar{
+      background: none!important;
+      width: 0;
+    }
     .menu-top {
-      flex: 1 1 auto;
+      flex: 1 26 auto;
       overflow-y: auto;
       overflow-x: hidden;
 
       .menu-app {
+        &:hover {
+          background: rgba(136, 136, 136, .1);
+          opacity: 1;
+          transition: .3s;
+        }
         .app-icon-left {
+          text-align: left;
           height: 50px;
-          align-items: center;
-
-          .icon-yingyong, .icon-category {
-            padding-left: 14px;
+          display: flex;
+          flex: 1 1 auto;
+          svg,.icon-yingyong, .icon-category {
+            margin-left: 14px;
             font-size: 28px;
+            width: 28px;
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
           }
 
           .app {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            justify-content: space-between;
-            align-items: center;
             // opacity: 0;
+            display: flex;
             transition: all .5s cubic-bezier(.645, .045, .355, 1), stroke .2s ease;
-
             span {
               vertical-align: middle;
-              display: inline-block;
               white-space: nowrap;
               font-size: 14px;
+              margin-left: 5px;
             }
 
             i {
               vertical-align: middle;
+              position: relative;
+              display: inline-flex;
               font-size: 12px;
-              transform: rotate(0deg);
+              margin-left: 15px;
+              transform:rotate(0deg);
               transition: transform 0.5s cubic-bezier(.645, .045, .355, 1), stroke .2s ease;
+              height: 100%;
+              align-items: center;
+              &:hover{
+                sub {
+                  position: absolute;
+                  background: rgba(136, 136, 136, .1);
+                  width: 35px;
+                  height: 35px;
+                  border-radius: 40px;
+                  opacity: 1;
+                  transition: .3s;
+                  left: -11px;
+                  top: 7px;
+                }
+                transform:rotate(90deg);
+              }
             }
           }
 
@@ -97,8 +123,8 @@
           width: 100%;
 
           .app-sidebar-item {
-            height: 40px;
-            line-height: 40px;
+            height: 30px;
+            line-height: 30px;
             width: 100%;
 
             a {
@@ -150,7 +176,7 @@
   }
 
   .widthOnOffcon {
-    //width: calc(100% - 220px) !important;
+    width: calc(100% - 220px) !important;
     //transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1), stroke 0.2s ease;
   }
 
@@ -174,7 +200,7 @@
         padding: 10px 15px;
       }
 
-      img {
+      svg {
         vertical-align: middle;
         width: 30px;
         height: 30px;
@@ -240,7 +266,6 @@
       }
 
     }
-
     .header-right {
       // height: $headerHeight;
       // width: 50px;
@@ -256,6 +281,119 @@
       .mobileSidebar {
         display: none;
       }
+    }
+    //搜索框
+    .search{
+      position: relative;
+      flex: 1 1 auto;
+      padding: 0.2rem;
+      margin: auto;
+      border-radius: 5px;
+      width: 800px;
+      .search-continer{
+        width: auto;
+        margin: auto 0.1rem;
+        .search-input{
+          font-size: 24px;
+          margin: 0.2rem 0px;
+          text-align: left;
+          position: relative;
+          .search-input-select{
+            display: flex;
+            position: relative;
+            text-align: left;
+
+            ul{
+              padding-left: 5px;
+              display: initial;
+              li{
+                list-style: none;
+                display: inline-block;
+                padding: 0 11px;
+                font-size: 14px;
+                line-height: 31px;
+                border-radius: 3px 3px 0 0;
+                cursor: pointer;
+                font-weight: 400;
+              }
+            }
+            .ivu-tooltip{
+              width: unset;
+              margin: unset;
+              p{
+                display: flex;
+                align-items: center;
+                word-break: keep-all;
+                padding-left: 0.1rem;
+                line-height: 31px;
+                cursor: pointer;
+                i{
+                  font-size: 12px;
+                  margin: 0 0 0 10px;
+                }
+              }
+              .ivu-tooltip-inner{
+                padding: 0.02rem;
+                .tooltip-content{
+                  width: 100%;
+                  margin: auto;
+                  text-align: center;
+                  span{
+                    display: inline-flex;
+                    margin: 0.05rem 0.05rem 0 0.05rem ;
+                    cursor: pointer;
+                  }
+
+                }
+              }
+            }
+          }
+          .search-components{
+            margin-top: 0;
+          }
+        }
+        .search-hot{
+          padding-left: 0.01rem;
+          margin-bottom: 0.1rem;
+          text-align: left;
+          font-weight: 500;
+          line-height: 1.2;
+          i{
+            color:#f1404b;
+            font-size: 22px;
+            margin-right: 0.01rem;
+            vertical-align: bottom;
+          }
+          span{
+            font-size: 16px;
+            line-height: 1.2;
+          }
+          .hot{
+
+          }
+        }
+        .search-menu{
+          margin-bottom: 0.2rem;
+          width: 100%;
+          display: flex;
+          flex-wrap: wrap; // 强制换行
+          justify-content: flex-start; //所有元素右对齐
+          p{
+            display: inline-block;
+            margin: 4px;
+            padding: 0.08rem;
+            border-radius: 50px;
+          }
+        }
+        .search-icon{
+          position:absolute;
+          bottom: -40px;
+          width: 100%;
+          text-align: center;
+          left: -14px;
+        }
+      }
+
     }
   }
 

@@ -18,31 +18,34 @@
             <div class="headerRight">
               <a href="javascript:void (0)">
                 <Icon type="md-eye"/>
-                <span>{{ detailedList.eyeNum }}</span>
+                <count-to-number :value="detailedList.eyeNum" :time="2" ></count-to-number>
               </a>
               <a href="javascript:void (0)">
                 <Icon type="md-text"/>
-                <span>{{ detailedList.commentsLength }}</span>
+                <count-to-number :value="detailedList.commentsLength" :time="2" ></count-to-number>
               </a>
-              <a href="javascript:void (0)">
-                <Icon type="ios-flame"/>
-                <span>{{ detailedList.heartNum }}</span>
+              <a
+                href="javascript:void (0)"
+                v-if="detailedList.title"
+                v-like="{url:`/blog/${detailedList._id}?title=${detailedList.title}`,belong:'blog',title:detailedList.title,type:'HN',id:detailedList._id}">
+                <Icon type="ios-thumbs-up " class="fontSize-like" />
+                <count-to-number :value="detailedList.heartNum" :time="2" ></count-to-number>
               </a>
             </div>
           </div>
         </header>
         <main class="left2-layout-main applyBck">
-          <section class="mainContents" v-html="detailedList.content">
-<!--            {{ detailedList.content }}-->
+          <section class="mainContents" v-html="detailedList.content" >
+            <!--            {{ detailedList.content }}-->
           </section>
           <section class="mainUnit">
-            <div class="mainUnit-tag fontSize-icon">
+            <div class="mainUnit-tag fontSize-icon" >
               <Icon type="md-pricetags"/>
               <random-tag :tagValue="item" :pathName="'/blog'" v-for="(item,index) in detailedList.blogTag"
                           :key="index"></random-tag>
               <!--                            <Tag color="default" type="border" v-for="(item,index) in detailedList.blogTag" :key="index" >{{item}}</Tag>-->
             </div>
-            <share></share>
+            <share ></share>
           </section>
         </main>
         <footer class="left2-layout-footer ">
@@ -59,18 +62,20 @@
             </address>
           </div>
           <div class="footer-nextLast auto-line-between applyBck" >
-            <div class="lastNextId" @click="allStart(1,detailedList.lastId)" v-if="detailedList.lastId && detailedList.lastId.title != ''">
+            <!--            <div class="lastNextId" @click="allStart(1,detailedList.lastId)" v-if="detailedList.lastId && detailedList.lastId.title !== ''">-->
+            <router-link tag="div" class="lastNextId" :to="{path:`/blog/${detailedList.lastId.id}`,query:{title:detailedList.lastId.title}}" v-if="detailedList.lastId && detailedList.lastId.title !== ''">
               <h5>上一篇</h5>
               <p>{{ detailedList.lastId.title }}</p>
-            </div>
+            </router-link>
             <div class="lastNextId disabled" @click="noArticle" v-else>
               <h5>上一篇</h5>
               <p>没有文章了</p>
             </div>
-            <div class="lastNextId" @click="allStart(1,detailedList.nextId)" v-if="detailedList.nextId && detailedList.nextId.title != ''">
+            <!--            <div class="lastNextId" @click="allStart(1,detailedList.nextId)" v-if="detailedList.nextId && detailedList.nextId.title !== ''">-->
+            <router-link tag="div" class="lastNextId" :to="{path:`/blog/${detailedList.nextId.id}`,query:{title:detailedList.nextId.title}}" v-if="detailedList.nextId && detailedList.nextId.title !== ''">
               <h5>下一篇</h5>
               <p>{{ detailedList.nextId.title }}</p>
-            </div>
+            </router-link>
             <div class="lastNextId disabled" @click="noArticle" v-else>
               <h5>下一篇</h5>
               <p>没有文章了</p>
@@ -82,20 +87,35 @@
         </footer>
       </div>
     </div>
-    <blog-oneself-right slot="blogOneselfRight" :value="value" @allStart="allStart" ></blog-oneself-right>
+<!--    <blog-oneself-right slot="blogOneselfRight" :value="value" @allStart="allStart" ></blog-oneself-right>-->
   </blog-oneself>
 </template>
 <script>
 // import {Row,Col,Time,Icon,Tag,ButtonGroup,Button,Slider,Input,} from 'iview'; //iview
 import blogOneself from '@/components/pages/blog/blogOneself'//blo
 import blogOneselfRight from "@/components/pages/blog/blogOneselfRight"; //blog右侧
-import {randomTag} from "@/components/common"//分享
+// import share from "@/components/common/share"//分享
+import randomTag from "@/components/common/randomTag"//分享
+import countToNumber from "@/components/common/countToNumber"//分享
 import appGuestbook from "@/components/pages/comments/appGuestbook";
 // import {Notice} from "iview";
 export default {
   name: 'BlogDetailed',
-  components: {blogOneself, blogOneselfRight, randomTag, appGuestbook},
+  components: {blogOneself, blogOneselfRight, randomTag, appGuestbook,countToNumber},
   // components:{Row,Col,blogOneself,blogOneselfRight,Time,Icon,Tag,ButtonGroup,Button,Slider,Input,share,randomTag,appGuestbook},
+  async asyncData({ $api, route }) {
+    let {blog} = await $api.blog.getBlogDetailedInfo(route.params.id)
+    const {comment} = await $api.user.getCommentsLists({per_page:5,order:-1,page:1,version:'B',order_type:1,id:route.params.id})
+    let detailedList = blog.content[0]
+    detailedList.commentsLength = blog.commentsLength
+    detailedList.lastId = blog.lastId
+    detailedList.nextId = blog.nextId
+    comment.version = 'B'
+        return {
+          detailedList,
+          commentsList:comment
+        }
+  },
   data() {
     return {
       text: '',
@@ -106,10 +126,10 @@ export default {
     }
   },
   created() {
-
+    // this.allStart()
   },
   mounted() {
-    this.allStart()
+
   },
   methods: {
     allStart(state = 0, item) {
@@ -122,17 +142,21 @@ export default {
       } else {
         //跳转页面，
         if (this.$route.params.id == item.id) {
+          this.$Notice.close('weiyi')
           this.$Notice.warning({
             title: '提示',
             desc: '您点击的是当前博客',
-            // duration:0
+            duration:1,
+            name:'weiyi'
           })
           return false
         }
         this.$store.commit('getLoadingHome', true)
-        this.$router.push({
-          params: {
-            id: item.id,
+        this.$router.replace({
+          params:{
+            id:item.id,
+          },
+          query:{
             title:item.title
           }
         })
@@ -153,7 +177,6 @@ export default {
           this.detailedList.commentsLength = DeResult.commentsLength
           this.detailedList.lastId = DeResult.lastId
           this.detailedList.nextId = DeResult.nextId
-          console.log(this.detailedList)
         }
       })
     },
@@ -161,7 +184,7 @@ export default {
       this.$Notice.warning({
         title: '文章',
         desc: '没有文章了！ 别点我了',
-        duration: 1
+        duration: 0.5
       })
     },
     //请求聊天记录
@@ -184,7 +207,7 @@ export default {
     },
     //添加用户输入的数据
     addCommentsData(data){
-      console.log(data)
+      console.log(5555,data)
       data[0].params.onlineTime = new Date()
       if (data[0].reply){
         data[0].params._id = data[2]
@@ -202,11 +225,25 @@ export default {
           }
         }
       }
-      console.log(this.commentsList)
     },
+  },
+  computed:{
+    routerQuery(){
+      console.log(33,this.$route.params)
+      return this.$route
+    }
+  },
+  watch:{
+    routerQuery(newValue,oldVal){
+      if (Object.keys(newValue).length === 0) return;
+      if (newValue.id == oldVal.id) return;
+      console.log(889,newValue.params.id,oldVal.params.id)
+      this.allStart(1,{id:newValue.params.id,title:''})
+    }
   }
 }
 </script>
 <style lang="scss" scoped>
-@import "~/assets/css/components/blogDetailed.scss";
+@import "~@/assets/css/components/blogDetailed.scss";
 </style>
+

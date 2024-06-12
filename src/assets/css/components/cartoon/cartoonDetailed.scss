@@ -1,0 +1,346 @@
+.cartoon-detailed-container{
+  .cartoon-detailed-layout{
+    .carousel-article{
+      position: relative;
+      min-height: 100vh;
+      //max-width: 1680px;
+      margin: auto;
+      //padding-top:$marginRt20;
+      overflow: hidden;
+      .cartoon-detailed{
+        .cartoon-detailed-header-wrap {
+          background-color: rgba(0,0,0,.8);
+          width: 100%;
+          height: 64px;
+          position: fixed;
+          z-index: 4;
+          top: 0;
+          overflow: hidden;
+          transition: height .5s;
+          .cartoon-detailed-header{
+            width: 100%;
+            height: 100%;
+            line-height: 64px;
+            margin: auto;
+            font-size: 14px;
+            //color: #ffffff;
+            .header-nav{
+              font-size: inherit;
+              padding-left: 0.2rem;
+              position: absolute;
+              left: 0;
+              height: 100%;
+              .home,.next,.nextIcon{
+                padding-right: 0.03rem;
+              }
+            }
+            .header-title{
+              font-size: inherit;
+              width: 100%;
+              text-align: center;
+            }
+            .header-help{
+              font-size: inherit;
+              padding-right: 0.2rem;
+              position: absolute;
+              right: 0;
+            }
+          }
+        }
+        .cartoon-detailed-main{
+          //padding-top: 64px;
+          padding-bottom: 64px;
+          .comic-contain{
+            overflow: auto;
+            li{
+              margin: 10px auto 40px;
+              background: #3c3c3c;
+              max-width: 800px;
+              .reader{
+                text-align: center;
+                img{
+                  width: 100%;
+                  //max-width: 800px;
+                }
+              }
+              span{
+                display: inline-block;
+                width: 100%;
+                text-align: right;
+                padding-top: 10px;
+                font-family: "宋体", "Microsoft Yahei", "Tahoma", "SimSun";
+              }
+            }
+          }
+
+        }
+        .cartoon-onData{
+          text-align: center;
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          margin-left: -90px;
+        }
+        .cartoon-detailed-footer{
+          height: 64px;
+          background-color: rgba(0,0,0,.8);
+          width: 100% ;
+          position: fixed;
+          bottom: 0;
+          z-index:4;
+          transition: height .5s;
+          margin-right: 5px;
+          .inner{
+            position: relative;
+            width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 100%;
+            .left{
+              display: block;
+              float: right;
+              width: 25%;
+              margin-top: 18px;
+              text-align: right;
+              .left-btn-all{
+                position: relative;
+                display: inline-block;
+                height: 26px;
+                width: auto;
+                padding: 0 6px;
+                margin-right: 14px;
+                line-height: 26px;
+                text-align: center;
+                vertical-align: middle;
+                cursor: pointer;
+                b{
+                  position: absolute;
+                  display: block;
+                  height: 8px;
+                  width: 24%;
+                  border-style: solid;
+                  border-color: #ffffff;
+                  &:first-child{left: 0;top: 0;border-width: 1px 0 0 1px;}
+                  &:nth-child(2){right: 0;top: 0;border-width: 1px 1px 0 0;}
+                  &:nth-child(3){left: 0;bottom: 0;border-width: 0 0 1px 1px;}
+                  &:last-child{right: 0;bottom: 0;border-width: 0 1px 1px 0;}
+                }
+              }
+              .left-btn-scale{
+                display: inline-block;
+                position: relative;
+                width: 136px;
+                height: 28px;
+                line-height: 26px;
+                border: 1px solid #ffffff;
+                border-radius: 14px;
+                vertical-align: middle;
+                .cut{
+                  position: absolute;
+                  left: -1px;
+                  top: -1px;
+                  display: inline-block;
+                  border-radius: 12px 0 0 12px;
+                  border: 1px solid #ffffff;
+                  font-size: 18px;
+                  width: 36px;
+                  line-height: 26px;
+                  text-align: center;
+                  cursor: pointer;
+                }
+                .percent{
+                  position: absolute;
+                  left: 36px;
+                  right: 36px;
+                  line-height: 26px;
+                  text-align: center;
+                }
+                .add{
+                  position: absolute;
+                  right: 0;
+                  top: -1px;
+                  width: 36px;
+                  line-height: 26px;
+                  font-size: 18px;
+                  text-align: center;
+                  border-radius: 0 12px  12px 0;
+                  border: 1px solid #ffffff;
+                  cursor: pointer;
+                }
+              }
+            }
+            .middle{
+              display: block;
+              width: 45%;
+              float: left;
+              text-align: center;
+              vertical-align: top;
+              .middle-chapters-num{
+                display: inline-block;
+                //color: #fff;
+                font-size: 14px;
+                font-weight: bold;
+                line-height: 64px;
+                width: 6%;
+              }
+              .middle-scale{
+                display: inline-block;
+                width: 50%;
+                //height: 14px;
+                //line-height: 14px;
+                margin: 0 10px 0 10px;
+                position: relative;
+                height: 6px;
+                ::v-deep .ivu-slider-wrap{
+                  top: -9px;
+                }
+                //&:before{
+                //  content: "";
+                //  height: 4px;
+                //  width: 100%;
+                //  background: #333333;
+                //  border-radius: 5px;
+                //  position: absolute;
+                //  left: 0;
+                //  top: 7px;
+                //}
+                //&:after{
+                //  content: "";
+                //  height: 4px;
+                //  width: 100%;
+                //  background: #999999;
+                //  border-radius: 5px;
+                //  position: absolute;
+                //  left: 0;
+                //  top: 7px;
+                //}
+                i{
+                  display: inline-block;
+                  height: 14px;
+                  width: 14px;
+                  background: #ffffff;
+                  border-radius: 50%;
+                  //margin-left: 5px;
+                  position: absolute;
+                  left: 0;
+                  top: 2px;
+                  z-index: 2;
+                }
+              }
+              .middle-tb-chapters{
+                display: inline-block;
+                height: 100%;
+                font-size: 18px;
+                vertical-align: sub;
+                position: absolute;
+
+              }
+            }
+            .chapters-btn{
+              display: inline-block;
+              margin-left: 18px;
+              font-size: 14px;
+              padding-top: 16px;
+              line-height: 2;
+              cursor: pointer;
+              i{
+                display: block;
+                font-size: 16px;
+                font-weight: bold;
+              }
+            }
+            //.forbidden{
+            //  cursor: no-drop!important;
+            //  color: #666;
+            //}
+            .active{
+              color: #57a3f3;
+              b{
+                border-color: #57a3f3!important;
+              }
+            }
+            .right{
+              display: block;
+              float: left;
+              width: 22%;
+              text-align: left;
+              p{
+                text-align: center;
+              }
+            }
+            .chapters-content{
+              position: fixed;
+              left: -250px;
+              bottom: 75px;
+              width: 230px;
+              margin-left: 20px;
+              border: 1px solid #26262a;
+              border-radius: 5px;
+              box-shadow: 0 0 2px 0 black;
+              transition: all 0.5s;
+              h1{
+                text-align: left;
+                font-size: 12px;
+                background: #363636;
+                margin: 0;
+                padding:  10px 0 10px 10px;
+                &:last-child{
+                  text-align: right;
+                  padding:  10px 10px 10px 0;
+                }
+              }
+              .chapters-content-main{
+                height: 500px;
+                background: #3c3c3c;
+                padding-left: 10px;
+                padding-right: 8px;
+                overflow-y: auto;
+                .main-wrap{
+                  a{
+                    display: block;
+                  }
+                  .item{
+                    height: 35px;
+                    line-height: 35px;
+
+                    &:nth-child(n-1){
+                      border-bottom: 1px solid #363636;
+                    }
+                    span{
+                      display: inline-block;
+                      font-family: "宋体", "Microsoft Yahei", "Tahoma", "SimSun";
+                      font-size: 12px;
+                      &:nth-child(1){
+                        width: 40px;
+                      }
+                      &:nth-child(2){
+
+                      }
+                      &:nth-child(3),&:nth-child(4){
+                        float: right;
+                        font-size: 14px;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        .chapters-index-footer{
+          position: fixed;
+          bottom: 0;
+          left: 50%;
+          margin-left: -100px;
+          //color: #fff;
+          background: rgba(0,0,0,.3);
+          font-size: 12px;
+          border-radius: 0 5px 0 0;
+          padding: 6px 12px;
+          z-index: 3;
+        }
+      }
+    }
+  }
+
+}

@@ -80,7 +80,7 @@
               }
               .comments-list-page{
                 margin: 0.2rem;
-                ::v-deep .ivu-page-prev, ::v-deep .ivu-page-next,::v-deep .ivu-page-item-active,::v-deep .ivu-page-item{
+                ::v-deep .ivu-page-prev, ::v-deep .ivu-page-next, ::v-deep .ivu-page-item-active, ::v-deep .ivu-page-item{
                   background-color: red;
                   //border: 1px solid #808082;
                   color: #ffffff;

@@ -6,28 +6,28 @@
 
     <!--    评分宝 start-->
     <grade-coin :gradeCoinLists="gradeCoinLists" :gradeCoinSpin="gradeCoinSpin"></grade-coin>
-    <!--    评分宝 end-->
+<!--    &lt;!&ndash;    评分宝 end&ndash;&gt;-->
 
-    <!--    轮播-新闻-赛事 start-->
-    <articles></articles>
-    <!--    轮播-新闻-赛事 end-->
+<!--    &lt;!&ndash;    轮播-新闻-赛事 start&ndash;&gt;-->
+    <articles :slideList="slideList" :blogList="blogList" :ranking="rankingList"></articles>
+<!--    &lt;!&ndash;    轮播-新闻-赛事 end&ndash;&gt;-->
 
-    <!--    自定义导航 start-->
+<!--    &lt;!&ndash;    自定义导航 start&ndash;&gt;-->
     <contents></contents>
-    <!--    自定义导航 end-->
+<!--    &lt;!&ndash;    自定义导航 end&ndash;&gt;-->
 
-    <!--    热门系列 start-->
+<!--    &lt;!&ndash;    热门系列 start&ndash;&gt;-->
     <hotslider ></hotslider>
-    <!--    热门锡系列 end-->
+<!--    &lt;!&ndash;    热门锡系列 end&ndash;&gt;-->
 
-    <!--    展示 工具，站长start-->
+<!--    &lt;!&ndash;    展示 工具，站长start&ndash;&gt;-->
     <mains ></mains>
     <!-- // <footers slot="footer"></footers> -->
   </div>
 </template>
 
 <script>
-  import { bulletin } from '@/components/common'; //头部和左边导航
+  import bulletin from '@/components/common/bulletin'; //头部和左边导航
   import gradeCoin from '@/components/pages/index/gradeCoin'; //评分
   import articles from '@/components/pages/index/articles'; //轮播，展示
   import contents from '@/components/pages/index/contents'; //导航编辑
@@ -37,14 +37,35 @@
   // import footers from '@/components/common/footer'; //底部，以及主题控制
   export default {
     name: 'Index',
-    // components:{contents,hotslider,articles,bulletin,gradeCoin,mains},
     components: { bulletin, gradeCoin,articles,contents,hotslider,mains },
+     async asyncData({$api, $axios,store}) {
+       const {gradeCoins} = await $api.gradeCoin.getGradeCoin({ per_page: 6, page: 1, order: -1 },true)
+       const {blog} = await $api.blog.getBolgLists( {page:1,per_page:5,tag:'',order:-1})
+       const {slide} = await $api.slide.getSlide({pre_page:5})
+       const {news}= await $api.news.getCountUpDate()
+       await store.dispatch('async_data/actions_bulletinData')
+       await store.dispatch('async_data/actions_hotAppData')
+       await store.dispatch('async_data/actions_hotComicData')
+       await store.dispatch('async_data/actions_allLike')
+       await store.dispatch('async_data/actions_hotWebData','h')
+       await store.dispatch('async_data/actions_hotWebData','n')
+       await store.dispatch('async_data/actions_website')
+        return {
+          gradeCoinLists: gradeCoins,
+          gradeCoinSpin: false,
+          slideList: slide.content,
+          blogList: blog.content,
+          rankingList:news.content,
+        }
+    },
     data() {
       return {
         msg: 'Welcome to Your Vue.js App',
         gradeCoinLists: {}, //评分宝数据
         gradeCoinSpin: true,
-
+        slideList: [], //轮播图数据
+        blogList: [], //新闻数据
+        rankingList:[], //赛事数据
       }
     },
     mounted() {
@@ -53,16 +74,6 @@
       //   console.log(this.$common.Decrypt(this.$common.Encrypt('888888888888888888888888888888888888888')))
       // console.log("%c%c楠格%chttps://www.nange.cn", "line-height:28px;", "line-height:28px;padding:4px;background:#2ccbe6;color:#FADFA3;font-size:14px;", "padding:4px 4px 4px 2px;background:#ff146d;color:green;line-height:28px;font-size:12px;");
       // console.log("%c%c每天都是最好的自己。", "line-height:28px;", "line-height:28px;padding:4px;background:#2ccbe6;color:#FADFA3;font-size:14px;");
-    },
-     asyncData({ $api }) {
-      return $api.gradeCoin.getGradeCoin({ per_page: 4, page: 1, order: -1 }).then(res => {
-        if (res.status == 1) {
-          return {
-            gradeCoinLists: res.gradeCoin,
-            gradeCoinSpin: false
-          }
-        }
-      })
     },
     methods: {
       getGradeCoin(pageSize = 4, page = 1) {

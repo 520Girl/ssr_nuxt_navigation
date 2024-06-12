@@ -1,5 +1,5 @@
 <template>
-    <div class="guestbook-container">
+    <div class="guestbook-container" id="gradecoin" ref="gradecoin">
         <section class="guestbook-layout  mx-15-2">
             <div class="yellow-game tool">
                 <div class="tool-header auto-line-between " style="margin-bottom: .2rem">
@@ -31,7 +31,7 @@
                             </div>
 <!--                          滑轮-->
                             <div class="respond-grade grade-width" :data="divDescribe = $t('app.comments.divDescribe')" :current_quantity="current_quantity =  $t('app.comments.current_score')">
-                              <Col :xl="{ span: 12 }" :lg="{span:12}" :md="{span:12}" :xs="{ span: 24 }" class-name="gradeCoin-item " v-for="(item,index) in $t('app.comments.divDescribe')" :key="index" >
+                              <Col :xl="{ span: 12 }" :lg="{span:12}" :md="{span:12}" :xs="{ span: 24 }" class-name="gradeCoin-item" v-for="(item,index) in $t('app.comments.divDescribe')" :key="index" >
                                     <div class="progress-item auto-line-start" >
                                         <em @click.sync="textareaUpage(divDescribeTitle(index))" class="fontSize-text-color">{{divDescribeTitle(index)}}</em>
                                         <Slider v-model="item.scoreNum" :max="10"  :step="0.1" :tip-format="grade"></Slider>
@@ -46,7 +46,15 @@
                                 </div>
                                 <div class="text-button">
                                   <Button type="warning" style="background-color: red;" class="fontColor"  v-show="agentWant" @click="agentWantHandle()">{{$t('app.comments.Think_again')}}</Button>
-                                  <Button type="primary" @click="setCommentsLists()">{{$t('app.comments.post_a_comment')}}</Button>
+                                  <Button
+                                    type="primary"
+                                    @click="setCommentsLists()"
+                                    v-like="{url:$route.fullPath,belong:'gradeCoin',title:$route.query.title,type:'LL',id:$route.params.id}"
+                                  >
+                                    <span class="fontSize-like">
+                                          {{$t('app.comments.post_a_comment')}}
+                                    </span>
+                                  </Button>
                                 </div>
                                 <div class="text-nothing backgroundNoThing" v-if="commentsList.content && commentsList.content.length == 0">
                                   <span>{{$t('app.comments.no_score_yet')}}</span>
@@ -152,7 +160,7 @@ import {Slider, Row, Col, Icon, Input, Button, Time, Page, Select, Option, Notic
       },
       data(){
         return{
-          divDescribe:[{title:'提款速度',scoreNum:7},{title:'品牌荣誉',scoreNum:8},{title:'响应速度',scoreNum:9},{title:'服务质量',scoreNum:10}], //评分title 文字, //评分title 文字
+          divDescribe:[{title:'用户体验',scoreNum:7},{title:'品牌荣誉',scoreNum:8},{title:'响应速度',scoreNum:9},{title:'服务质量',scoreNum:10}], //评分title 文字, //评分title 文字
           reply:{replyEle:true,replyIndex:-1}, //处理留言框
           agentWant:false, //处理再想一想button
           params:{id:'',textarea:''}, //留言板数据
@@ -245,7 +253,7 @@ import {Slider, Row, Col, Icon, Input, Button, Time, Page, Select, Option, Notic
           //名称，big=true表示不是回复别人的评价,自己评价
           name = big ? '将' : '卒'
           if (big){
-            params ={id:this.$route.query.id,reply:big,params:{name:name,chatContent:this.deleteTag(this.params.textarea),scoreNum:scoreNum,title:'title.png'},version:this.commentsList.version}
+            params ={id:this.$route.params.id,reply:big,params:{name:name,chatContent:this.deleteTag(this.params.textarea),scoreNum:scoreNum,title:'title.png'},version:this.commentsList.version}
           }else{
             if (chat_id){
               params ={id:chat_id,reply:big,params:{name:name,chatContent:this.deleteTag(this.params.textarea),scoreNum:scoreNum},version:this.commentsList.version}
@@ -253,6 +261,8 @@ import {Slider, Row, Col, Icon, Input, Button, Time, Page, Select, Option, Notic
               params ={id:this.addComments_id,reply:big,params:{name:name,chatContent:this.deleteTag(this.params.textarea),scoreNum:scoreNum},version:this.commentsList.version}
             }
           }
+          // 需要将评分数据传出去
+          this.datasChange({t:{"s":scoreNum},b:'gr',i:this.$route.params.id,u:`/gradeCoin/${this.$route.params.id}?title=${this.$route.query.title}`,tt:this.$route.query.title})
 
           this.$api.user.setCommentsLists(params).then((res)=>{
             if (res.status === 1){
@@ -264,7 +274,7 @@ import {Slider, Row, Col, Icon, Input, Button, Time, Page, Select, Option, Notic
 
                 this.params.textarea = ''
                 this.reply.replyEle = true
-                this.addComments_id = res.comment.content[0]._id
+                this.addComments_id = res.comment.content._id
                 this.$emit('addCommentsData',params,index,this.addComments_id);
             }
           }).catch(error => {
@@ -339,6 +349,10 @@ import {Slider, Row, Col, Icon, Input, Button, Time, Page, Select, Option, Notic
         //去掉 标签符号
         deleteTag(data){
           return data.replace(/<\/?.+?>/g," ")
+        },
+        //提交用户访问数据给服务器
+        datasChange(item){
+          this.$api.mutulal.getCUpvote(item)
         }
       },
       watch:{
@@ -349,7 +363,6 @@ import {Slider, Row, Col, Icon, Input, Button, Time, Page, Select, Option, Notic
     }
 </script>
 <style lang="scss" scoped>
-  /* //公共样式grade-width */
-    @import "~/assets/css/commonmMixin.scss"; 
-    @import "~/assets/css/components/comments/appGuestbook.scss";
+    @import "~@/assets/css/commonmMixin.scss"; //公共样式grade-width
+    @import "~@/assets/css/components/comments/appGuestbook.scss";
 </style>

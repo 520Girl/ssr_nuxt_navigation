@@ -40,7 +40,7 @@
              <div class="close-top">
                <Icon type="md-close-circle" @click="closeforData(item,index)" />
              </div>
-             <div @click="$common.goto(item.url)"  class="close-bottom">
+             <div @click="$common().goto(item.url)"  class="close-bottom">
                <Tag  :color="index1 == 0 ? 'magenta' : index1 == 1 ? 'volcano': index1 == 2 ? 'orange' : 'green'" :class="'tag'+(index1+1)" v-for="(item1,index1) in item.state" :key="index1">{{item1}}</Tag>
              </div>
            </div>
@@ -54,35 +54,29 @@
       <!--          访问数据展示-->
       <Row v-show="customizeMenu.newClick" type='flex' justify="start" align="middle" class-name="menu-text my-layout mx-15-2">
         <Col :xxl="{span:3}" :xl="{ span:4 }" :md="{span:6}"  :sm="{ span:8}" :xs="{ span: 12 }" class-name="clickData-item" v-for="(item,index) in $store.state.clickData" :key="index" >
-          <router-link :to="{path:item.hrefUrl,query:{title:item.name}}" class="item-content auto-line-start applyBck" >
+          <a href="javascript:void(0)" @click="$common().goto(item.hrefUrl,item.name)" class="item-content auto-line-start applyBck" >
             <img v-lazy="item.imgUrl" data-hotWeb ="hotWeb1" :alt="item.name" class="ivu-avatar">
             <div class="text">
               <h5 class="fontSize-text overflow-eclipse">{{item.name}}</h5>
               <small class="fontColor-t-d overflow-eclipse"><Time :time="item.onlineTime" /></small>
             </div>
-          </router-link>
+          </a>
         </Col>
       </Row>
       <!--            添加网站数据 one-->
-      <popup :popup="customizeMenu.editNav" @close="editWebWay">
-        <Row type='flex' justify="center" align="middle" class-name="menu-text add-layout" slot="popupMain">
-          <Form :label-width="80" v-model="formData"  >
-            <FormItem label="名称" prop="name">
-              <Input placeholder="网站名称"  v-model="formData.name" :autofocus="true" >
-                <Icon type="logo-reddit" slot="prepend" ></Icon>
-              </Input>
+      <popup :popup="customizeMenu.editNav" @close="editWebWay" :z_index="501">
+        <Row  class-name="menu-text add-layout" slot="popupMain" style="width: 359px;">
+            <Form  v-model="formData" class="fontSize-text-colornoH" :label-width="0">
+            <FormItem  prop="name" >
+              <input v-focus placeholder="网站名称" v-model="formData.name" class="search-b fontSize-text-color"/>
             </FormItem>
-            <FormItem label="地址" prop="url">
-              <Input text="url" placeholder="网站地址" required="required" value="http://"  v-model="formData.url">
-                <Icon type="md-at" slot="prepend"></Icon>
-              </Input>
+            <FormItem  prop="url">
+              <input placeholder="网站地址" v-model="formData.url" class="search-b fontSize-text-color"/>
             </FormItem>
-            <FormItem label="简介" prop="explain">
-              <Input text="url" placeholder="简介内容" required="required" value=""  v-model="formData.explain">
-                <Icon type="md-paper" slot="prepend"></Icon>
-              </Input>
+            <FormItem  prop="explain">
+              <input placeholder="简介内容" v-model="formData.explain" class="search-b fontSize-text-color"/>
             </FormItem>
-            <FormItem label="状态" prop="state">
+            <FormItem  prop="state">
               <CheckboxGroup  v-model="formData.state" style="width:100%;">
                 <Checkbox label="工具"></Checkbox>
                 <Checkbox label="新闻"></Checkbox>
@@ -144,7 +138,7 @@ export default {
       try {
         //this.$common.Decrypt(localStorage.getItem('formData'))
         let formData = decodeURI(localStorage.getItem('formData'))
-        if (formData != 'null'){
+        if (formData !== 'null'){
           this.menuData.myNavigation = JSON.parse(decodeURI(localStorage.getItem('formData')))
         }
       }catch (e) {
@@ -268,5 +262,13 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-  @import "~/assets/css/components/index/contents.scss";
+  @import "~@/assets/css/components/index/contents.scss";
+  .search-b{
+      padding: 9pt;
+      height: 45px;
+      line-height: 45px;
+      font-size: 14px;
+      border-radius: 5px;
+      width: 100%;
+    }
 </style>

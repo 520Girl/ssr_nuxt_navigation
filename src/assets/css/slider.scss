@@ -1,0 +1,63 @@
+// slider 换轮的样式
+.guestbook-layout{
+  .ivu-slider{
+    width: 100%;
+    .ivu-slider-wrap{
+      height: 16px;
+      width: 100%;
+      margin:4px 0;
+      border-radius: 8px;
+      background-color: rgba(134,134,134,0.2);
+    }
+    .ivu-slider-bar{
+      height: 100%;
+      border-radius: 8px;
+      background-color: #ffc107;
+    }
+    .ivu-slider-button-wrap{
+      height: 20px;
+      width: 20px;
+      top: -1px;
+    }
+    .ivu-slider-button{
+      background-color: red;
+      height: 18px;
+      width: 18px;
+    }
+
+  }
+}
+
+.score{
+  margin-left: 0.1rem!important;
+}
+.progress-item{
+  height: 26px;
+}
+// 滑轮的原形按钮
+.ivu-tooltip-inner {
+  white-space: inherit!important;
+}
+.ivu-slider-button:focus, .ivu-slider-button:hover, .ivu-slider-button-draggin{
+  transform: scale(1.1)!important;
+}
+
+
+// 分页按钮
+.comments-list-page{
+  margin: 0.2rem;
+  .ivu-page-prev, .ivu-page-next, .ivu-page-item-active, .ivu-page-item{
+    background-color: red;
+    //border: 1px solid #808082;
+    color: #ffffff;
+    a{
+      color: #ffffff;
+    }
+  }
+  .ivu-page-item-active{
+    box-shadow: 3px 1px 9px 3px rgba(251,117,108,.2);
+    a{
+      color:#000000;
+    }
+  }
+}

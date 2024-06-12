@@ -1,5 +1,5 @@
-import common from '~/assets/js/common';
-let {Decrypt,Format} = common
+import commonMethod from '@/assets/js/common';
+let {Decrypt,Format } = commonMethod
 //处理后端 传过来的加密数据
 export default (res)=>{
   //将后端返回的结果进行处理
@@ -13,7 +13,7 @@ export default (res)=>{
   // return JSON.parse(Decrypt(word,key))
 
   //1.判断是请求的是什么方法，从而的到响应头{'user':{content:....},msg:'',status:1}
- let resData = ["gradeCoin","user","comment","cartoon","blog","app","image","website","userInfo",'slide','bulletin']
+ let resData = ["gradeCoins","user","comment","cartoon","blog","app","image","website","userInfo",'slide','bulletin','news','common']
  let headerValue = 'user'
 
   for (let item of resData){
@@ -30,7 +30,7 @@ export default (res)=>{
     res.data[headerValue].content.substring(2).replace(/[\n]/g, '')
   ]
   //3.
-
+  console.log()
   res.data[headerValue].content = JSON.parse(Decrypt(word,key))
   return res
 }

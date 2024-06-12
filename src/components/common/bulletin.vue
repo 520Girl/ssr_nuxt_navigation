@@ -60,22 +60,15 @@
     created() {
       // this.setUserInfo()
       // this.getBulletin()
-
+      //! 服务端获取的数据
+      const state = this.$store.state.async_data
+      if (state.bulletinData.length > 0){
+        this.bulletinData = state.bulletinData
+      }
     },
     mounted() {
       this.trundleToBottomBulletin()
       // this.trundleLeftRightBulletin()
-    },
-    async fetch() {
-      let params = {
-        pre_page: 4,
-      }
-      await this.$api.bulletin.getBulletin(params).then(res => {
-        if (res.code === 200) {
-          this.bulletinData = res.bulletin.content
-          return true
-        }
-      })
     },
     methods: {
       change(status) {

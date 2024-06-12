@@ -6,9 +6,9 @@
 //DN 下载次数 ， LL 评星级 ， HN 点赞人数 ， EN 观看人数
 //    [ ] downloadNum  下载次数//[ ]  likeLevel 评星级 取平均数//[ ]  heartNum 点赞人数//[ ] eyeNum 观看人数 可点击
 
-const state = {
+const state = ()=>({
   app:[]
-}
+})
 // arr1.map(i => {
 //    	obj[arr1[i]] = arr2[i]
 //   }) 作者：柚子讴歌 https://www.bilibili.com/read/cv10854829/ 出处：bilibili

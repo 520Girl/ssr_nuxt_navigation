@@ -2,7 +2,7 @@
   <div class="footer-container">
     <div class="footer-tools">
 <!--      到顶部-->
-      <a href="javascript:void(0)" class="btn auto-line-center" @click="$common.scrollClickTop()">
+      <a href="javascript:void(0)" class="btn auto-line-center" @click="$common().scrollClickTop()">
         <Tooltip content="回到顶部" placement="left">
           <i class="iconfont icon-daohang fontSize-icon"></i>
         </Tooltip>

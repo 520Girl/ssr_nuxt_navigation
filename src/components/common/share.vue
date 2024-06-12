@@ -21,20 +21,27 @@
 <script>
 // import Sharethis from 'vue-sharethis' //社区分享
 // import share from 'vue-social-share' //更好为新的分享组件
+// import 'vue-social-share/dist/client.css';
 import loadingBlock from "@/components/common/loadingBlock"; //loading
 export default {
   name: "Share",
   components:{loadingBlock},
+  props:{
+    url:{
+      type:String,
+      default:process.browser? window.location.href : ""
+    }
+  },
   data(){
     return{
       spinShow:true,
-      title:document.title,
+      title:process.browser ?document.title : '',
       config: {
-        // url: "", // 网址，默认使用 window.location.href
-        source: "", // 来源（QQ空间会用到）, 默认读取head标签：<meta name="site" content="http://overtrue" />
-        title: "", // 标题，默认读取 document.title 或者 <meta name="title" content="share.js" />
-        description: "", // 描述, 默认读取head标签：<meta name="description" content="PHP弱类型的实现原理分析" />
-        image: "", // 图片, 默认取网页中第一个img标签
+        url: "https://navai.vip", // 网址，默认使用 window.location.href
+        // source: "", // 来源（QQ空间会用到）, 默认读取head标签：<meta name="site" content="http://overtrue" />
+        // title: "", // 标题，默认读取 document.title 或者 <meta name="title" content="share.js" />
+        // description: "", // 描述, 默认读取head标签：<meta name="description" content="PHP弱类型的实现原理分析" />
+        // image: "", // 图片, 默认取网页中第一个img标签
         sites: [
           "qzone",
           "qq",
@@ -57,10 +64,6 @@ export default {
   mounted() {
     //分享栏加载
     this.spinShow = false
-    // if(process.client){
-    //   const share = require('vue-social-share')
-    //   require('vue-social-share/dist/client.css')
-    // }
   }
 }
 </script>

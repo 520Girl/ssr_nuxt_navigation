@@ -23,16 +23,17 @@
           <div class="guestbook-body">
             <div class="guestbook-respond" v-if="reply.replyEle">
               <div class="respond-logo">
-                <img :src="'/static/cartoon/'+belong+'/'+titleImg" alt="">
+                <img v-lazy="'/static/images/cartoon/'+belong+'/'+titleImg" alt="" data-cartoon="cartoon6">
               </div>
               <!--                          @click="respondText()"-->
               <div class="respond-text"  >
                 <div class="text-textarea">
                   <Input v-model="params.textarea"  type="textarea" :autosize="{minRows: 3,maxRows: 24}" placeholder="Enter something..." :maxlength="100" show-word-limit  ></Input>
                 </div>
-                <div class="text-button" v-if="commentsList.allCount">
-                  <div class="icon-wrap">
-                    <Icon type="md-happy" class="icon-img" @click="iconImgState =! iconImgState" @mouseover.native="iconImgState=true"/>
+                <div class="text-button" >
+                  <div class="icon-wrap" style="vertical-align: top;">
+<!--                    <Icon type="md-happy" class="icon-img" @click="iconImgState =! iconImgState" @mouseover.native="iconImgState=true"/>-->
+                    <svg-icon name="expression" class="icon-img" @click.native="iconImgState = !iconImgState" @mouseover.native="iconImgState=true"></svg-icon>
                     <div class="icon-more-img" v-show="iconImgState" >
                       <ol class="auto-line-start wrapper">
                         <li v-for="(item,index)  in iconImgArr" :key="index" @click="params.textarea += item.name">
@@ -41,9 +42,9 @@
                       </ol>
                     </div>
                   </div>
-                  <div  class="fontSize-text-color debunk" @click="setCommentsLists()">吐槽一下</div>
+                  <div  class="fontSize-text-color debunk" @click="setCommentsLists('6206551a5f110000ae007926')">吐槽一下</div>
                 </div>
-                <div class="text-nothing backgroundNoThing"  v-else>
+                <div class="text-nothing backgroundNoThing"  v-if="!commentsList.allCount">
                   <span>暂无评论</span>
                 </div>
                 <div class="text-button-tabtitle" v-if="commentsList.allCount">
@@ -57,7 +58,8 @@
                 <li class="comments-record mx-15-2" v-for="(item,index) in commentsList.content" :key="index">
                   <div class="auto-line-start">
                     <div class="profile">
-                      <img :src="'/static/cartoon/'+belong+'/chatImg/'+item.title" alt="">
+<!--                      <img :src="'/static/images/cartoon/'+belong+'/chatImg/'+item.title" alt="">-->
+                      <img src="@/assets/images/cartoon/title.png" :alt="$route.query.title">
                     </div>
                     <section class="record" >
                       <h5>{{item.name}}</h5>
@@ -79,15 +81,16 @@
                   <!--                                  回复-->
                   <div class="guestbook-respond" v-if="reply.replyEle == false && reply.replyIndex == index">
                     <div class="respond-logo">
-                      <img :src="'/static/cartoon/'+belong+'/'+titleImg" alt="">
+                      <img :src="'/static/images/cartoon/'+belong+'/'+titleImg" alt="">
                     </div>
                     <div class="respond-text">
                       <div class="text-textarea">
                         <Input v-model="params.textarea" show-word-limit type="textarea" autofocus="autofocus" :autosize="{minRows: 3,maxRows: 24}" placeholder="有事没事说两句..." :maxlength="10000" ref="commentsTextarea"></Input>
                       </div>
                       <div class="text-button">
-                        <div class="icon-wrap">
-                          <Icon type="md-happy" class="icon-img" @click="iconImgState =! iconImgState" @mouseover.native="iconImgState=true"/>
+                        <div class="icon-wrap" style="vertical-align: top;">
+                          <svg-icon name="expression" class="icon-img" @click.native="iconImgState = !iconImgState" @mouseover.native="iconImgState=true"></svg-icon>
+<!--                          <Icon type="md-happy" class="icon-img" @click="iconImgState =! iconImgState" @mouseover.native="iconImgState=true"/>-->
                           <div class="icon-more-img" v-show="iconImgState" >
                             <ol class="auto-line-start wrapper">
                               <li v-for="(item,index)  in iconImgArr" :key="index" @click="params.textarea += item.name">
@@ -115,7 +118,7 @@
                     </li>
                   </ul>
                 </li>
-                <div class="comments-list-page auto-line-center">
+                <div class="comments-list-page auto-line-center" v-if="commentsList.allCount">
                   <Page :total="commentsList.allCount" show-total :current.sync="nowPage"  :page-size="commentsList.pageSize" @on-change="changePage"	 />
                 </div>
               </ul>
@@ -141,7 +144,7 @@ export default {
   },
   data(){
     return{
-      divDescribe:[{title:'提款速度',scoreNum:7},{title:'品牌荣誉',scoreNum:8},{title:'响应速度',scoreNum:9},{title:'服务质量',scoreNum:10}], //评分title 文字
+      divDescribe:[{title:'用户体验',scoreNum:7},{title:'品牌荣誉',scoreNum:8},{title:'响应速度',scoreNum:9},{title:'服务质量',scoreNum:10}], //评分title 文字
       reply:{replyEle:true,replyIndex:-1}, //处理留言框
       params:{id:'',textarea:'',name:''}, //留言板数据
       titleColor:[ //随机颜色
@@ -155,34 +158,20 @@ export default {
       flag:[],//防止输入刷新canvas，输入canvas 改变是因为vue 数据变化页面重新渲染
       big:true,//commentsTextarea这个选择器的是数组还是一个对象，当在循环中是数组，当在头部是对象
       iconImgArr:[
-        // {name:'[666]',imgUrl:require('../../../assets/images/guestbook/666_img.png')},
-        // {name:'[奥利给]',imgUrl:require('../../../assets/images/guestbook/alg_img.png')},
-        // {name:'[大哭]',imgUrl:require('../../../assets/images/guestbook/dk_img.png')},
-        // {name:'[毒奶]',imgUrl:require('../../../assets/images/guestbook/dn_img.png')},
-        // {name:'[黑靓仔]',imgUrl:require('../../../assets/images/guestbook/heiyt_img.png')},
-        // {name:'[红靓仔]',imgUrl:require('../../../assets/images/guestbook/hyt_img.png')},
-        // {name:'[屎]',imgUrl:require('../../../assets/images/guestbook/s_img.png')},
-        // {name:'[黄靓仔]',imgUrl:require('../../../assets/images/guestbook/yht_img.png')},
-        // {name:'[炸弹]',imgUrl:require('../../../assets/images/guestbook/zd_img.png')},
-        // {name:'[真香]',imgUrl:require('../../../assets/images/guestbook/zx_img.png')},
-        // {name:'[鲁班开车]',imgUrl:require('../../../assets/images/guestbook/lub_img.png')},
-        // {name:'[刷机]',imgUrl:require('../../../assets/images/guestbook/phone_img.png')},
-        // {name:'[芜湖]',imgUrl:require('../../../assets/images/guestbook/wh_img.png')},
-        // {name:'[嘻嘻]',imgUrl:require('../../../assets/images/guestbook/xi_img.png')},
-        {name:'[666]',imgUrl:require('../../../assets/images/guestbook/666_img.png')},
-        {name:'[奥利给]',imgUrl:require('../../../assets/images/guestbook/666_img.png')},
-        {name:'[大哭]',imgUrl:require('../../../assets/images/guestbook/666_img.png')},
-        {name:'[毒奶]',imgUrl:require('../../../assets/images/guestbook/666_img.png')},
-        {name:'[黑靓仔]',imgUrl:require('../../../assets/images/guestbook/666_img.png')},
-        {name:'[红靓仔]',imgUrl:require('../../../assets/images/guestbook/666_img.png')},
-        {name:'[屎]',imgUrl:require('../../../assets/images/guestbook/666_img.png')},
-        {name:'[黄靓仔]',imgUrl:require('../../../assets/images/guestbook/666_img.png')},
-        {name:'[炸弹]',imgUrl:require('../../../assets/images/guestbook/666_img.png')},
-        {name:'[真香]',imgUrl:require('../../../assets/images/guestbook/666_img.png')},
-        {name:'[鲁班开车]',imgUrl:require('../../../assets/images/guestbook/666_img.png')},
-        {name:'[刷机]',imgUrl:require('../../../assets/images/guestbook/666_img.png')},
-        {name:'[芜湖]',imgUrl:require('../../../assets/images/guestbook/666_img.png')},
-        {name:'[嘻嘻]',imgUrl:require('../../../assets/images/guestbook/666_img.png')},
+        {name:'[666]',imgUrl:require('@/assets/images/guestbook/666.png')},
+        {name:'[奥利给]',imgUrl:require('@/assets/images/guestbook/aoligei.png')},
+        {name:'[大哭]',imgUrl:require('@/assets/images/guestbook/ku.png')},
+        {name:'[毒奶]',imgUrl:require('@/assets/images/guestbook/dunai.png')},
+        {name:'[绿头盔]',imgUrl:require('@/assets/images/guestbook/lvtoukui.png')},
+        {name:'[吐彩虹]',imgUrl:require('@/assets/images/guestbook/tucaihong.png')},
+        {name:'[屎]',imgUrl:require('@/assets/images/guestbook/cc.png')},
+        {name:'[绿靓仔]',imgUrl:require('@/assets/images/guestbook/lv.png')},
+        {name:'[炸弹]',imgUrl:require('@/assets/images/guestbook/zhadan.png')},
+        {name:'[真香]',imgUrl:require('@/assets/images/guestbook/zhenxiang.png')},
+        {name:'[狗蛋]',imgUrl:require('@/assets/images/guestbook/goudan.png')},
+        // {name:'[刷机]',imgUrl:require('@/assets/images/guestbook/666_img.png')},
+        {name:'[就这]',imgUrl:require('@/assets/images/guestbook/jiuzhe.png')},
+        // {name:'[嘻嘻]',imgUrl:require('@/assets/images/guestbook/666_img.png')},
       ], //聊天图片
       iconImgState:false, //聊天图片显示关闭
       commentState:{heart:true,new:false},//显示聊天记录状态
@@ -193,7 +182,7 @@ export default {
 
   },
   mounted() {
-    console.log(this.commentsList)
+    // this.loadingStatus = false
   },
   computed:{
       time(time){
@@ -268,6 +257,8 @@ export default {
       if (!big){
         params.reply =false
       }
+      console.log(params)
+      // return
       this.$api.user.setCommentsLists(params).then((res)=>{
         if (res.status === 1){
           this.$Notice.success({
@@ -389,9 +380,8 @@ export default {
 }
 </style>
 <style lang="scss" scoped>
-  /*  //公共样式grade-width */
-@import "~/assets/css/commonmMixin.scss";
-@import "~/assets/css/components/comments/appGuestbook.scss";
+@import "~@/assets/css/commonmMixin.scss"; //公共样式grade-width
+@import "~@/assets/css/components/comments/appGuestbook.scss";
 // 和appGuestbook不同的地方
 .debunk{
   position: relative;
