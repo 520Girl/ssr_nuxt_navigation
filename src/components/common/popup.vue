@@ -1,6 +1,6 @@
 <template>
   <transition name="topUp" mode="out-in" >
-    <div class="modal-backdrop" v-show="popups" @click="close">
+    <div class="modal-backdrop" v-show="popups" @click="close" :style="{zIndex:z_index}"  >
       <div ref="popupMain" :class="popupMain" >
         <slot name="popupMain" ></slot>
       </div>
@@ -19,15 +19,24 @@ export default {
     type:{
       type:String,
       default:'header'
+    },
+    z_index:{
+      type:Number,
+      default:499
+    },
+    width:{
+      type:Number,
+      default:340
     }
   },
   data(){
     return{
       popups:false,
-      popupMain: 'popupMain '
+      popupMain: 'popupMain'
     }
   },
   created(){
+    console.log(this.popup)
     if (this.type === 'slider'){
       this.popupMain += 'slider '
     }
@@ -50,19 +59,35 @@ export default {
     popupWatch(newVal){
       console.log(newVal)
       this.popups = newVal
-      if (process.client && newVal){
+      if (newVal) {
         document.getElementsByTagName("html")[0].style.overflowY = 'hidden'
         return
       }
-      if(process.client){
-        document.getElementsByTagName("html")[0].style.overflowY= 'auto'
-      }
+      document.getElementsByTagName("html")[0].style.overflowY= 'auto'
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.search-input{
+  font-size: 24px;
+  margin: 0.2rem 0px;
+  text-align: left;
+  .search-input-select{
+    background: red;
+    .ivu-select-single{
+      background: yellow;
+      .ivu-select-selection{
+        border: none!important;
+        background: #0e0f0f;
+        display: flex;
+      }
+    }
+
+  }
+  .search-input-text{}
+}
 .topUp-leave-active {
   transition: transform .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
@@ -74,10 +99,15 @@ export default {
 .popupMain{
   position: relative;
   top: 50%;
-  transform: translateY(-50%);
-  width: 340px;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  //width: 340px;
   margin: auto;
+  padding: 0px 10px;
+  display:inline-block;
+  text-align: center;
 }
+
 .slider{
   width:auto;
   top:unset;

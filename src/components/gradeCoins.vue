@@ -63,7 +63,7 @@
                       </span>
             <div class="site-button ">
               <Tooltip>
-                <Button @click="$common.goto(gradeCoinContent.content.registerUrl)" target="_blank" size="large" type="primary" class="fontColor" style="background: linear-gradient(45deg,yellow , blue)">
+                <Button @click="$common().goto(gradeCoinContent.content.registerUrl)" target="_blank" size="large" type="primary" class="fontColor" style="background: linear-gradient(45deg,yellow , blue)">
                   立即注册
                   <Icon type="ios-arrow-forward"/>
                 </Button>

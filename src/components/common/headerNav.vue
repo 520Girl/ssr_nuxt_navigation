@@ -241,6 +241,7 @@ export default {
   },
   //!1. 基础数据获取
   async fetch ({$api,store,app,route}){
+    // if (!process.server) return
     await store.dispatch('addBaseConfig')
     await store.dispatch('async_data/actions_oneLevelWebsite')
   },
@@ -359,7 +360,7 @@ export default {
     },
     //处理弹窗,mobile下的 黑色遮蔽罩
     handleSidebar(event,state = 1) {
-      if (state == 1){
+      if (state === 1){
         this.languageSideOnOff = !this.languageSideOnOff;
         this.appSidebarOnoff = false;
         this.searchOnOff = false
@@ -653,7 +654,7 @@ export default {
       console.log(this.searchSle)
     },
     search(){
-      this.$common.goto(this.searchSle.select.value + this.searchSle.select.inputValue)
+      this.$common().goto(this.searchSle.select.value + this.searchSle.select.inputValue)
     },
     // 定义事件处理程序
   preventTouchmove(e) {

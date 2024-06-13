@@ -81,61 +81,75 @@ const router = new Router({
         }
       ]
     },
-    //提交submit收录
-    // {
-    //   path: '/embody',
-    //   component: layout,
-    //   children: [{
-    //     path: "/",
-    //     name: 'embody',
-    //     component: () => import('@/components/embody'),
-    //     meta: {
-    //       title: '收录',
-    //     },
-    //   }],
-    //
-    // },
-    // // 排行榜 rank
-    // {
-    //   path: '/rank',
-    //   component: layout,
-    //   children: [{
-    //     path: "/",
-    //     name: 'rank',
-    //     component: () => import('@/components/rank'),
-    //     meta: {
-    //       title: '排行榜',
-    //     },
-    //   }],
-    //
-    // },
-    // //更多分类内容favorites
-    // {
-    //   path: '/favorites/:belong',
-    //   component: layout,
-    //   children: [{
-    //     path: "/",
-    //     name: 'favorites',
-    //     component: () => import('@/components/favorites'),
-    //     meta: {
-    //       title: '工具',
-    //     },
-    //   }],
-    //
-    // },
-    // { //评分宝
-    //     path: '/gradeCoin',
-    //     component: layout,
-    //     children: [{
-    //       path: ":id/:title",
-    //       name: 'GradeCoinDetailed',
-    //       component: () => import('@/components/gradeCoins').then(m => m.default || m),
-    //       meta: {
-    //         title: '评分宝,导航',
-    //       },
-    //     }],
-    //
-    //   },
+    {//提交submit收录
+      path: '/embody',
+      component: layout,
+      children: [{
+        path: "/",
+        name: 'embody',
+        component: () => import('@/components/embody').then(m => m.default || m),
+        meta: {
+          title: '收录',
+        },
+      }],
+
+    },
+    // 排行榜 rank
+    {
+      path: '/rank',
+      component: layout,
+      children: [{
+        path: "/",
+        name: 'rank',
+        component: () => import('@/components/rank').then(m => m.default || m),
+        meta: {
+          title: '排行榜',
+        },
+      }],
+
+    },
+    {//更多分类内容favorites
+      path: '/favorites/:belong',
+      component: layout,
+      children: [{
+        path: "/",
+        name: 'favorites',
+        component: () => import('@/components/favorites').then(m => m.default || m),
+        meta: {
+          title: '工具',
+        },
+      }],
+
+    },
+    {// 广告 advertising
+      path: '/advertising',
+      component: layout,
+      children: [{
+        path: "/",
+        name: 'advertising',
+        component: () => import('@/components/advertising').then(m => m.default || m),
+        meta: {
+          title: '广告联系',
+        },
+      }],
+
+    },
+    { //404
+      path: '*',
+      name: 'lose',
+      component: layout,
+      children: [{
+        path: "/",
+        name: 'advertising',
+        component: () => import('@/404/404').then(m => m.default || m),
+        meta: {
+          title: '广告联系',
+        },
+      }],
+      meta: {
+        title: 'belongs 404'
+      }
+    },
   ],
   // https://router.vuejs.org/zh/guide/advanced/scroll-behavior.html#%E6%BB%9A%E5%8A%A8%E8%A1%8C%E4%B8%BA
   scrollBehavior(to, from, savedPosition) { // 解决了动画切换延迟.5s切换，当前页面会先滚动到顶部再切换的问题

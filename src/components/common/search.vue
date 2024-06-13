@@ -210,11 +210,11 @@ export default {
       }
     },
     changeSearch(){
-      this.$common.debounce(this.search,500)
+      this.$common().debounce(this.search,500)
       this.searchStatus = true
     },
     searchBlur(){
-      this.$common.debounce(()=>{
+      this.$common().debounce(()=>{
         this.searchStatus = false
       },500)
 
@@ -238,68 +238,68 @@ export default {
 
 <style scoped lang="scss">
 @import "~@/assets/css/_themes.scss";
-    .search-contiainer{
-      font-size: 24px;
-      margin: 0.2rem 0px;
-      text-align: left;
-      position: relative;
-      //&:hover .search-substance{
-      //  display: block;
-      //}
-      .search-input-text{
+.search-contiainer{
+  font-size: 24px;
+  margin: 0.2rem 0px;
+  text-align: left;
+  position: relative;
+  //&:hover .search-substance{
+  //  display: block;
+  //}
+  .search-input-text{
+    width: 100%;
+    position: relative;
+    input{
+      padding: 9pt;
+      height: 45px;
+      line-height: 45px;
+      font-size: 14px;
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px;
+      width: 100%;
+    }
+    button{
+      position: absolute;
+      right: 0.1rem;
+      margin-top: 6px;
+    }
+  }
+  .search-substance{
+    display: block;
+    position: absolute;
+    width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    min-height: 114px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    ul{
+      width: 100%;
+      li{
         width: 100%;
-        position: relative;
-        input{
-          padding: 9pt;
-          height: 45px;
-          line-height: 45px;
-          font-size: 14px;
-          border-top-right-radius: 5px;
-          border-top-left-radius: 5px;
-          width: 100%;
+        display: flex;
+        align-items: baseline;
+        &:hover{
+          background: #7756561a;
         }
-        button{
-          position: absolute;
-          right: 0.1rem;
-          margin-top: 6px;
+        a{
+          color: black;
+          padding: 6px 5px 12px 16px;
+          text-decoration: none;
+          display: block;
         }
-      }
-      .search-substance{
-        display: block;
-        position: absolute;
-        width: 100%;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
-        min-height: 114px;
-        border-bottom-right-radius: 10px;
-        border-bottom-left-radius: 10px;
-        ul{
-          width: 100%;
-          li{
-            width: 100%;
-            display: flex;
-            align-items: baseline;
-            &:hover{
-              background: #7756561a;
-            }
-            a{
-              color: black;
-              padding: 6px 5px 12px 16px;
-              text-decoration: none;
-              display: block;
-            }
-            i{
-              color:#f1404b;
-              font-size: 15px;
-              margin-right: 0.01rem;
-              vertical-align: bottom;
-              padding-right: 16px;
-            }
-            img{
+        i{
+          color:#f1404b;
+          font-size: 15px;
+          margin-right: 0.01rem;
+          vertical-align: bottom;
+          padding-right: 16px;
+        }
+        img{
 
-            }
-          }
         }
       }
     }
+  }
+}
 </style>

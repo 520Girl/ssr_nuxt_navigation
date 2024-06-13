@@ -116,6 +116,7 @@ export default {
       this.params.type =  type
       this.quan = true
       this.Page.belong = belong
+      this.Page.page = this.params.page
       this.Page.type = type
       if (type === 3){
         this.Page.per_page = 8
@@ -123,9 +124,11 @@ export default {
       console.log(belong,address,type,state)
       this.$api.webSite.getWebsite(this.Page).then(res=>{
         if (res.status === 1){
-          if (type === 3 && state != 2){
-            this.websiteData[address].content=[...this.websiteData[address].content,...res.website.content]
-            this.$forceUpdate()
+          if (type === 3 && state !== 2){
+            if (res.website.content[0].belong === belong){
+              this.websiteData[address].content=[...this.websiteData[address].content,...res.website.content[0].content]
+              this.$forceUpdate()
+            }
             this.quan = false
           }else{
             this.websiteData[0].content = res.website.content

@@ -6,7 +6,7 @@ export default {
   focus: { // 获取焦点
     inserted: function (el, { value }) { //value 为绑定的值v-focus="value"
       el.focus();
-      console.log(el)
+      // console.log(el)
       // if (value) {
       //   el.focus();
       // }
@@ -49,8 +49,8 @@ export default {
   },
   goto: {
     bind(el, binding) {
-      console.log("--------------------")
-      console.log(binding)
+      // console.log("--------------------")
+      // console.log(binding)
       window.open(binding.value, '_block')
     },
     update() { },
@@ -65,7 +65,7 @@ export default {
     },
     bind: function (el, { value }) { // 从内存中读取出点击数据，进行出来，渲染当是DN下载数据时不添加禁止点击事件
       let likeData = store().getters['clickLike/appMapData']
-      console.log(likeData, value)
+      // console.log(likeData, value)
       if (likeData.has(value.id)) {
 
         if (!value.belong.includes('DN') && likeData.get(value.id).includes(value.belong)) {

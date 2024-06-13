@@ -233,7 +233,7 @@ export default {
       timer = setTimeout(()=>{
         //判断屏幕宽度大于图片宽度， 大于则等于图片宽度
         //小于 则，通过计算图片高度于图片高度的比例值， 再用屏幕宽度-40的留白，  已知图片宽度，宽高比值，可计算出图片高度
-        let windowWidth = this.$common.getWindowHeightWidht().width;
+        let windowWidth = this.$common().getWindowHeightWidht().width;
         let specificImg = ((this.imgWh.width)/this.imgWh.height).toFixed(3);
         // let setWidthHeight ={width:this.imgWh.width,height: this.imgWh.height};
         if (windowWidth <= this.imgWh.width ){
@@ -254,7 +254,7 @@ export default {
       this.distance = distance //用于鼠标经过handleCartoonMove
       this.handleCartoonMove()
       //到屏幕底部的高度，判断小于滑动的高度就位当前看到的章节
-      let bottomDistance = distance + this.$common.getWindowHeightWidht().height
+      let bottomDistance = distance + this.$common().getWindowHeightWidht().height
       this.$refs.comic_contain_li.some((item,index)=>{
         if (bottomDistance < (item.offsetTop+parseInt(item.style.height))){
           this.chapters=index+1
@@ -279,7 +279,7 @@ export default {
           posY = event.clientY + document.documentElement.scrollTop + document.body.scrollTop;
         }
 
-        if ((posY - this.distance ) <= 64 ||  ((this.distance + this.$common.getWindowHeightWidht().height - posY)) <= 64){
+        if ((posY - this.distance ) <= 64 ||  ((this.distance + this.$common().getWindowHeightWidht().height - posY)) <= 64){
           this.chaptersHandle.nav = true
           this.mousemoveStatus = true
           // console.log(posY - this.distance)
@@ -336,7 +336,7 @@ export default {
       //scrollTop 为窗口的顶部位置，需要加上浏览器的高度为底部位置
       //每次重新开始需要减去滚动条高度 滚动条高度 = 容器高度/内容高度 * 容器高度
       //容器高度
-      let containerHeight = this.$common.getWindowHeightWidht().height
+      let containerHeight = this.$common().getWindowHeightWidht().height
       //通过计算图片总高度获取需要滚动的距离，50 为上下margin之和
       let scrollTopImg = (this.imgWh.height * this.cartoonData.content.length + this.cartoonData.content.length * 50).toFixed(1)
       //滚动条高度
@@ -363,7 +363,7 @@ export default {
           console.log(`scrollTop:${scrollTop},height:${scrollTopImg}`)
           //   }
         }else {
-          console.log(this.$common.getWindowHeightWidht())
+          console.log(this.$common().getWindowHeightWidht())
           this.chaptersHandle.rolling = true
           clearInterval(this.scrollClickTopTimer)
           return;
@@ -374,7 +374,7 @@ export default {
     amplifyNarrow(status=1){
       if (this.cartoonData.state == 0) {return }
 
-      let windowWidth = this.$common.getWindowHeightWidht().width;
+      let windowWidth = this.$common().getWindowHeightWidht().width;
       let specificImg = ((this.imgWh.width)/this.imgWh.height).toFixed(3);
 
       if (status === 1){ //ADD
@@ -401,7 +401,7 @@ export default {
     sliderDrag(data){
       console.log(data,1)
       //通过计算图片总高度获取需要滚动的距离，50 为上下margin之和
-      this.$common.debounce(()=>{
+      this.$common().debounce(()=>{
         let pageImgInterval =(data * 64)
         let scrollTopImg = (this.imgWh.height * data + pageImgInterval).toFixed(1)
         window.scrollTo(0,scrollTopImg,'smooth')

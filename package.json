@@ -33,6 +33,7 @@
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/proxy": "^2.1.0",
     "@nuxtjs/router": "^1.7.0",
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "less": "^3.5.0",
     "less-loader": "^7.1.0",
     "sass": "^1.32.6",

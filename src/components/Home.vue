@@ -39,6 +39,7 @@
     name: 'Index',
     components: { bulletin, gradeCoin,articles,contents,hotslider,mains },
      async asyncData({$api, $axios,store}) {
+       // if (!process.server) return
        const {gradeCoins} = await $api.gradeCoin.getGradeCoin({ per_page: 6, page: 1, order: -1 },true)
        const {blog} = await $api.blog.getBolgLists( {page:1,per_page:5,tag:'',order:-1})
        const {slide} = await $api.slide.getSlide({pre_page:5})
@@ -63,17 +64,15 @@
         msg: 'Welcome to Your Vue.js App',
         gradeCoinLists: {}, //评分宝数据
         gradeCoinSpin: true,
-        slideList: [], //轮播图数据
+        slideList: {}, //轮播图数据
         blogList: [], //新闻数据
         rankingList:[], //赛事数据
       }
     },
     mounted() {
       // this.getGradeCoin()
-      // console.log(this.$common.Encrypt('888888888888888888888888888888888888888'))
-      //   console.log(this.$common.Decrypt(this.$common.Encrypt('888888888888888888888888888888888888888')))
-      // console.log("%c%c楠格%chttps://www.nange.cn", "line-height:28px;", "line-height:28px;padding:4px;background:#2ccbe6;color:#FADFA3;font-size:14px;", "padding:4px 4px 4px 2px;background:#ff146d;color:green;line-height:28px;font-size:12px;");
-      // console.log("%c%c每天都是最好的自己。", "line-height:28px;", "line-height:28px;padding:4px;background:#2ccbe6;color:#FADFA3;font-size:14px;");
+      console.log("%c%c楠格%chttps://www.nange.cn", "line-height:18px;", "line-height:18px;padding:4px;background:#2ccbe6;color:#FADFA3;font-size:14px;", "padding:4px 4px 4px 2px;background:#ff146d;color:green;line-height:18px;font-size:12px;");
+      console.log("%c%c每天都是最好的自己。", "line-height:18px;", "line-height:18px;padding:4px;background:#2ccbe6;color:#FADFA3;font-size:14px;");
     },
     methods: {
       getGradeCoin(pageSize = 4, page = 1) {

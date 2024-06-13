@@ -1,5 +1,10 @@
 import path from 'path'
 import i18n from './src/plugins/i18n/index'
+//! 1. 去掉console
+let plugins = []
+if (process.env.NODE_ENV === 'production'){
+  plugins.push(["transform-remove-console",{"exclude":["error","warn"]}])
+}
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -108,6 +113,11 @@ export default {
         ],
       });
     },
+    babel:{
+      plugins: [
+        ...plugins
+      ]
+    }
   }
   // Build Configuration: https://go.nuxtjs.dev/config-build
   // build: {

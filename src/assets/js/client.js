@@ -40,6 +40,7 @@ require('@/assets/css/reset.scss')
 require('@/assets/css/normalize.css')
 require('@/assets/css/border.scss')
 require('@/assets/css/common.scss')
+require('@/assets/css/transition.scss')
 
 
 //! 1. 添加默认主题

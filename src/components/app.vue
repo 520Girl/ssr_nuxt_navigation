@@ -386,7 +386,7 @@
               if (!/(http|https|ftp)/.test(imageUrl)){
                 imageUrl = require('/static/images/app/' + this.hotAppData.imgUrl)
               }
-              this.$common.rgbaster(imageUrl, 0.8, 4).then(res => {
+              this.$common().rgbaster(imageUrl, 0.8, 4).then(res => {
                 this.hotAppData.back = res.color
                 this.$forceUpdate()
               })

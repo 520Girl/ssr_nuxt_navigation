@@ -1,5 +1,5 @@
 
-// @import 'iview/src/styles/index.less';
+//@import '~iview/src/styles/index.less';
 
 // Here are the variables to cover, such as:
 
@@ -9,129 +9,123 @@
 }
 
 @media screen{
-        @media (max-width: 750px){
-          .content-container{
-            .ivu-btn{
-              // @btn-padding-base:5px 10px 5px 10px;
-              // padding:@btn-padding-base;
-              padding:5px 10px 5px 10px;
-              .ivu-icon{
-                display:none;
-              }
-            }
-		      }
-          //button 组件 大buttonGroup
-          .ivu-btn-group-large > .ivu-btn{
-            padding: 0.1rem 0.38rem 0.1rem 0.38rem!important;
-            font-size: 0.2rem!important;
-            width:2rem!important;
-            line-height: 1rem;
-            min-width: unset!important;
-            min-height: unset!important;
-            &:first-child{
-              padding: 0.1rem 0.2rem!important;
-            }
-            span{
-              font-size: 0.3rem!important;
-            }
-          }
+  @media (max-width: 750px){
+    .content-container{
+      .ivu-btn{
+        // @btn-padding-base:5px 10px 5px 10px;
+        // padding:@btn-padding-base;
+        padding:5px 10px 5px 10px;
+        .ivu-icon{
+          display:none;
         }
-}
-
-.module-theme(@background,@fontColor,@border-color-base) {
-  .ivu-btn {
-		background:@backgroundWorld;
-		color:@fontColor;
-		border-color:@backgroundWorld;
-        //box-shadow: 20px 10px 53px -3px #a59898;
-		&:focus{
-			box-shadow: unset;
-			//background-color: #f1404b;
-			transition:0.25s;
-			//color:@background;
-		}
-	}
-	body{
-      color: @fontColor;
-	}
-	//卡片
-	.ivu-card-bordered{
-		border-color:@ivuCardBordered;
-		border-right-color: none;
-		a{
-			&:hover{
-				color:@hover;
-			}
-		}
-    .ivu-collapse>.ivu-collapse-item.ivu-collapse-item-active>.ivu-collapse-header{
-      border-bottom:unset;
+      }
     }
-		.ivu-card-head{
-			background-color: @IvuCardHead;
-			border-bottom: none;
-			p{
-				color:@fontColor;
-			}
-			.card-change{
-				color:@fontColor;
-			}
-		}
-		.ivu-card-body{
-			background-color: @background;
-			.main-circle{
-				color:@fontColor;
-			}
-			.item-img a:last-child{
-				background-color: @orderBackground;
-			}
-		}
-	}
-  .ivu-card{
-    &:hover{
-      border-color:@ivuCardBordered;
+    //button 组件 大buttonGroup
+    .ivu-btn-group-large > .ivu-btn{
+      padding: 0.1rem 0.38rem 0.1rem 0.38rem!important;
+      font-size: 0.2rem!important;
+      width:2rem!important;
+      line-height: 1rem;
+      min-width: unset!important;
+      min-height: unset!important;
+      &:first-child{
+        padding: 0.1rem 0.2rem!important;
+      }
+      span{
+        font-size: 0.3rem!important;
+      }
     }
   }
-	//折叠面板
-	.ivu-collapse{
-		background-color: @IvuCardHead;
-		border-color:@ivuCardBordered ;
-		.ivu-collapse-item{
-			border-top: 1px solid @ivuCardBordered;
-			&:first-child{
-				border-top: unset;
-			}
-			.ivu-collapse-header{
-				border-bottom: unset!important;
-				color:@fontColor;
-			}
-			.ivu-collapse-content{
-				color:@fontColor;
-				background-color: @background;
-			}
-		}
+}
 
-	}
-	// 文字提示
-	.ivu-tooltip-content{
-		.ivu-tooltip-inner {
-			background: @background-tooltip;
-			color: @fontColor;
+//这是less 变色的配置
+.module-theme(@background,@fontColor,@border-color-base) {
+  .ivu-btn {
+    background:@backgroundWorld;
+    color:@fontColor;
+    border-color:@backgroundWorld;
+    //box-shadow: 20px 10px 53px -3px #a59898;
+    &:focus{
+      box-shadow: unset;
+      //background-color: #f1404b;
+      transition:0.25s;
+      //color:@background;
+    }
+  }
+  body{
+    color: @fontColor;
+    background: @background;
+  }
+  //卡片
+  .ivu-card-bordered{
+    border-color:@ivuCardBordered;
+    border-right-color: unset;
+    a{
+      &:hover{
+        color:@hover;
+      }
+    }
+    .ivu-card-head{
+      background-color: @IvuCardHead;
+      border-bottom: none;
+      p{
+        color:@fontColor;
+      }
+      .card-change{
+        color:@fontColor;
+      }
+    }
+    .ivu-card-body{
+      background-color: @background;
+      .main-circle{
+        color:@fontColor;
+      }
+      .item-img a:last-child{
+        background-color: @orderBackground;
+      }
+    }
+  }
+  //折叠面板
+  .ivu-collapse{
+    background-color: @IvuCardHead;
+    border-color:@ivuCardBordered ;
+    .ivu-collapse-item{
+      border-top: 1px solid @ivuCardBordered;
+      &:first-child{
+        border-top: unset;
+      }
+      .ivu-collapse-header{
+        border-bottom: unset!important;
+        color:@fontColor;
+      }
+      .ivu-collapse-content{
+        color:@fontColor;
+        background-color: @background;
+      }
+    }
+
+  }
+  // 文字提示
+  .ivu-tooltip-content{
+    .ivu-tooltip-inner {
+      background: @background-tooltip;
+      color: @fontColor;
       white-space: pre-wrap;
-		}
+    }
 
-	}
-	.ivu-tooltip-popper[x-placement^="bottom"] .ivu-tooltip-arrow{
-		border-bottom-color:@background-tooltip;
-	}
-	.ivu-tooltip-popper[x-placement^="top"] .ivu-tooltip-arrow{
-		border-top-color:@background-tooltip;
-	}
-	.ivu-tooltip-popper[x-placement^="left"] .ivu-tooltip-arrow{
-		border-left-color:@background-tooltip;
-	}
-	.ivu-tooltip-popper[x-placement^="right"] .ivu-tooltip-arrow{
-		border-right-color:@background-tooltip;
-	}
+  }
+  .ivu-tooltip-popper[x-placement^="bottom"] .ivu-tooltip-arrow{
+    border-bottom-color:@background-tooltip;
+  }
+  .ivu-tooltip-popper[x-placement^="top"] .ivu-tooltip-arrow{
+    border-top-color:@background-tooltip;
+  }
+  .ivu-tooltip-popper[x-placement^="left"] .ivu-tooltip-arrow{
+    border-left-color:@background-tooltip;
+  }
+  .ivu-tooltip-popper[x-placement^="right"] .ivu-tooltip-arrow{
+    border-right-color:@background-tooltip;
+  }
   //ListItemMeta
   .ivu-list-item-meta-content{
     .ivu-list-item-meta-title,.ivu-list-item-meta-description{
@@ -144,6 +138,7 @@
     //background-color: @backgroundTag!important;
     //background-color: @backgroundTag;
     padding: 0 4px;
+    background-color: rgba(0, 0, 0, 0) !important;
     ///deep/
     span{
       font-size: 12px;
@@ -161,7 +156,7 @@
   }
   //浅色黑白
   .shallowColor{
-      color:@shallowColor;
+    color:@shallowColor;
     font-size: 12px;
   }
 
@@ -172,7 +167,7 @@
 
   //slider 滑块
   .ivu-slider-button{
-    border: 2px solid @background-tooltip;
+    border: 1px solid @background-tooltip;
   }
   //输入框 获得焦点的时候
   .ivu-input{
@@ -205,8 +200,12 @@
     border: 1px solid @background-tooltip;
   }
 
+  //设置搜索框的颜色
+  .search-b{
+    background-color: @IvuCardHead;
+  }
 
-      }
+}
 
 .dark {
   @background: #202223;

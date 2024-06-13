@@ -86,7 +86,6 @@ const store = () => new Vuex.Store({
       delete data.header
       state.webBase = { ...data }
     },
-
   },
   actions:{ //异步处理mutations的方法
     asyncLoadingData({commit,state},data){
@@ -96,6 +95,7 @@ const store = () => new Vuex.Store({
       commit('setNewAsyncData',data)
     },
     async addBaseConfig({ commit,state }, data) {
+
       if (!('cartoonRouter' in state.webBase)){
         const {common} = await this.$api.mutulal.getBaseList()
         commit('ADD_GET_BASE_CONFIG', common.content)
