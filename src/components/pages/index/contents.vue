@@ -4,23 +4,23 @@
       <div class="no-margin"></div>
       <Row type='flex' justify="space-between" class-name="menu-button"  >
         <Col   class-name="newly-item">
-          <Button shape="circle"  icon="md-reorder"  title="我的导航" @click="myNavigationWay" :class="buttonSelect == 0 ? 'button-select':''" >我的导航</Button>
-          <Button shape="circle"  icon="md-clipboard" title="最近点击" @click="newlyClickWay" :class="buttonSelect == 1 ? 'button-select':''" >最近点击</Button>
+          <Button shape="circle"  icon="md-reorder"  :title=" $t('index.me_nav')" @click="myNavigationWay" :class="buttonSelect === 0 ? 'button-select':''" >{{$t('index.me_nav')}}</Button>
+          <Button shape="circle"  icon="md-clipboard" :title=" $t('index.recent_click')" @click="newlyClickWay" :class="buttonSelect === 1 ? 'button-select':''" >{{$t('index.recent_click')}}</Button>
         </Col>
         <Col class-name="newly-edit newly-item">
-          <Button shape="circle"  icon="md-build" title="编辑网址" @click="editWebWay" :class="buttonSelect == 2 ? 'button-select':''" >编辑网址</Button>
+          <Button shape="circle"  icon="md-build" :title="$t('index.edit_url')" @click="editWebWay" :class="buttonSelect === 2 ? 'button-select':''" >{{$t('index.edit_url')}}</Button>
         </Col>
       </Row>
       <!--            我的导航 three-->
       <Row type='flex' justify="space-between" align="middle" class-name="menu-text newly-layout mx-15-2" v-show="MyNavAdd">
         <Col :lg="{span:24,}" :xs="{ span: 24 }" class-name="menu-item newly-item ">
-          没有数据！点右上角编辑添加网址
+          {{ $t('index.no_data')}}
         </Col>
       </Row>
       <!--            我的点击 five-->
       <Row type='flex' justify="space-between" align="middle" class-name="menu-text newly-layout mx-15-2" v-show="newlyClickText">
         <Col :lg="{span:24,}" :xs="{ span: 24 }" class-name="menu-item newly-item ">
-          没有数据！等待你的参与哦 ^_^
+         {{ $t('index.no_data_join')}}
         </Col>
       </Row>
 
@@ -68,20 +68,20 @@
         <Row  class-name="menu-text add-layout" slot="popupMain" style="width: 359px;">
             <Form  v-model="formData" class="fontSize-text-colornoH" :label-width="0">
             <FormItem  prop="name" >
-              <input v-focus placeholder="网站名称" v-model="formData.name" class="search-b fontSize-text-color"/>
+              <input v-focus :placeholder="$t('index.site_name')" v-model="formData.name" class="search-b fontSize-text-color"/>
             </FormItem>
             <FormItem  prop="url">
-              <input placeholder="网站地址" v-model="formData.url" class="search-b fontSize-text-color"/>
+              <input :placeholder="$t('index.site_url')" v-model="formData.url" class="search-b fontSize-text-color"/>
             </FormItem>
             <FormItem  prop="explain">
-              <input placeholder="简介内容" v-model="formData.explain" class="search-b fontSize-text-color"/>
+              <input :placeholder="$t('index.info')" v-model="formData.explain" class="search-b fontSize-text-color"/>
             </FormItem>
             <FormItem  prop="state">
               <CheckboxGroup  v-model="formData.state" style="width:100%;">
-                <Checkbox label="工具"></Checkbox>
-                <Checkbox label="新闻"></Checkbox>
-                <Checkbox label="游戏"></Checkbox>
-                <Checkbox label="资源"></Checkbox>
+                <Checkbox :label="$t('index.tool')"></Checkbox>
+                <Checkbox :label="$t('index.news')"></Checkbox>
+                <Checkbox :label="$t('index.game')"></Checkbox>
+                <Checkbox :label="$t('index.assets')"></Checkbox>
               </CheckboxGroup>
             </FormItem>
             <!--                  <FormItem label="时间">-->
@@ -92,7 +92,7 @@
             <!--                  </FormItem>-->
             <FormItem style="text-align: center;">
               <Button type="primary" :loading="addWebLoading" icon="ios-power" @click="formDataSubmit">
-                <span v-if="!addWebLoading"> 添加 </span>
+                <span v-if="!addWebLoading"> {{$t('index.add')}} </span>
                 <span v-else>Loading...</span>
               </Button>
             </FormItem>

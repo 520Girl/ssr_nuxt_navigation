@@ -3,7 +3,7 @@
   <div class="guestbook-left-wraper oneself-main-hot">
         <div  class="guestbook-left-item applyBck">
             <div class="guestbook-left-header fontSize-icon auto-line-start">
-              <Icon :type="blogOC.icon" class="fontSize-icon" :color="blogOC.color"/>{{blogOC.title}}
+              <Icon :type="blogOC.icon" class="fontSize-icon" :color="blogOC.color"/>{{title}}
             </div>
             <div class="guestbook-left-content" >
                 <article   class="oneself-main-item  auto-line-start" v-for="(item,index) in blogOC.content " :key="index" @click="handleClick(item)">
@@ -52,6 +52,7 @@
                 mainBelong:"官方微博"}
             ]
           }},
+        title:{type:String,default:""}
       },
       data(){
         return{

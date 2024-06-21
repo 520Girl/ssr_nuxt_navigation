@@ -107,13 +107,13 @@
                             :to="{path:'/cartoon/'+item.belongLogo1,query:{title:item.title}}"
                             v-click-data="{name:item.title,hrefUrl:`/cartoon/${item.belongLogo1}?title=${item.title}`,imgUrl:'/static/images/cartoon/'+item.belongLogo1+'/'+item.imgUrl,belong:'cartoon',id:item.belongLogo1}" >
                             <Icon type="logo-codepen anim" style="vertical-align: text-top;" />
-                            <span>嗅探观赏</span>
+                            <span>{{$t('index.sniffing_and_viewing')}}</span>
                           </router-link>
                           <router-link
                             :to="{path:'/cartoon/'+item.belongLogo1+'/'+item.LChapters.chapterId,query:{title:item.title}}"
                             class="new-chapters"
                             v-click-data="{name:item.title,hrefUrl:`'/cartoon/${item.belongLogo1}/${item.LChapters.chapterId}?title=${item.title}`,imgUrl:'/static/images/cartoon/'+item.belongLogo1+'/'+item.imgUrl,belong:'cartoon',id:item.belongLogo1+'/'+item.LChapters.chapterId}" >
-                          >最新章节：{{item.LChapters.name}}</router-link>
+                          >{{$t('index.latest_chapter')}}：{{item.LChapters.name}}</router-link>
                         </div>
                       </div>
                     </div>

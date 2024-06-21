@@ -6,7 +6,7 @@
           <website-one :websiteData="websiteData" :spinShow="spinShow" :spanGrid="spanGrid" :Page="params" :type="'favorites'" ></website-one>
         </Col>
         <Col :xl="{ span: 6 }" :lg="{span:8}" :md="{span: 8}" :sm="{ span: 10 }" :xs="{span:0}" class-name="blog-content-right">
-          <blog-oneself-right  :values="values"></blog-oneself-right>
+          <blog-oneself-right  :userInfoB="userInfoB"  :blogHotComment="blogHotComment" :blogHotEye="blogHotEye" :hotTags="hotTags"></blog-oneself-right>
         </Col>
       </Row>
     </div>
@@ -19,6 +19,20 @@ import blogOneselfRight from "@/components/pages/blog/blogOneselfRight"; //blogå
 export default {
   name: "favorites",
   components:{websiteOne,blogOneselfRight},
+  async asyncData({ $api, params }) {
+    const {website} = await $api.webSite.getWebsite({belong:params.belong,per_page:100,page:1,type:2})
+    const { user } = await $api.user.getUserInfoB()
+    const blogHotComment = await $api.blog.getBlogHot({per_page:4,belong:'comment',order:-1})
+    const blogHotEye = await $api.blog.getBlogHot({per_page:4,belong:'eye',order:-1})
+    const hotTags = await $api.mutulal.getHotTag({belong:'eye',order:-1,per_page:15})
+    return {
+      userInfoB: user,
+      blogHotComment: blogHotComment,
+      blogHotEye: blogHotEye,
+      hotTags: hotTags.common.content,
+      websiteData:website.content,
+    }
+  },
   data(){
     return{
       spinShow:false,
@@ -40,9 +54,11 @@ export default {
     }
   },
   created() {
-    this.getWebsite(this.$route.params.belong)
+    // this.getWebsite(this.$route.params.belong)
   },
-  mounted() {},
+  mounted() {
+    this.params.allCount = this.websiteData[0].allNum
+  },
   methods:{
     getWebsite(belong){
       this.$api.webSite.getWebsite({belong:belong,per_page:this.params.per_page,page:this.params.page,type:2}).then(res=>{

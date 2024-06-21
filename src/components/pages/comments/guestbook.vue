@@ -66,7 +66,7 @@
                                 <li class="comments-record mx-15-2" v-for="(item,index) in commentsList.content" :key="index">
                                   <div class="auto-line-start">
                                     <div class="profile">
-                                      <img :src="require('@/assets/images/guestbook/' + item.title)" alt="">
+                                      <img :src="!/(http|https|ftp)/.test(item.title) ? `~/assets/images/guestbook/${item.title}` : item.title" :alt="item.content">
                                     </div>
                                     <section class="record" >
                                       <h5>{{item.name}}</h5>

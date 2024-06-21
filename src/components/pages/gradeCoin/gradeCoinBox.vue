@@ -14,22 +14,22 @@
             <div class="top-content">
               <h5 class="fontSize-text-color">{{item.title}}</h5>
               <p class="grade">
-                <span class="fontSize-text-color"><Icon type="md-star"/>{{item.commentsScoreAverage == 0 ? '未评' : item.commentsScoreAverage}}</span>
-                <span class="fontSize-text-color">{{item.commentsLength}} 已评</span>
+                <span class="fontSize-text-color"><Icon type="md-star"/>{{item.commentsScoreAverage == 0 ? $t('index.not_rated') : item.commentsScoreAverage}}</span>
+                <span class="fontSize-text-color">{{item.commentsLength}} {{ $t('index.rated') }}</span>
               </p>
 
             </div>
           </router-link>
           <div class="function ">
             <p class="entry fontSize-text-color">
-              <span @click="$common().goto(item.registerUrl)" class="overflow-eclipse"><Icon type="ios-contact "/>注册</span>
-              <router-link tag="span" :to="{path:`/gradeCoin/${item._id}`,query:{title: item.title,p:'gradecoin'}}" class="overflow-eclipse"><Icon type="ios-create" />评分</router-link>
-              <router-link :to="{path:`/gradeCoin/${item._id}`,query:{title: item.title}}" tag="span" class="overflow-eclipse"><Icon type="md-copy" />简介</router-link>
+              <span @click="$common().goto(item.registerUrl)" class="overflow-eclipse"><Icon type="ios-contact "/>{{$t('index.register')}}</span>
+              <router-link tag="span" :to="{path:`/gradeCoin/${item._id}`,query:{title: item.title,p:'gradecoin'}}" class="overflow-eclipse"><Icon type="ios-create" />{{$t('index.score')}}</router-link>
+              <router-link :to="{path:`/gradeCoin/${item._id}`,query:{title: item.title}}" tag="span" class="overflow-eclipse"><Icon type="md-copy" />{{$t('index.intro')}}</router-link>
             </p>
           </div>
           <div class="content-bottom auto-line-between">
             <a href="" title="" class="defend">
-              <count-to-number :value="Number(item.guaranteeMoney)" :time="1" :suffix="'万'" :key="Math.random()"></count-to-number>
+              <count-to-number :value="Number(item.guaranteeMoney)" :time="1" :suffix="suffix($t('gradeCoins.W'))" :key="$t('gradeCoins.W')" ></count-to-number>
               <img src="@/assets/images/gradeCoin/bao.png" width="102" height="30" title="" alt="">
             </a>
             <div class="like overflow-eclipse">
@@ -93,6 +93,13 @@ export default {
       }
     }
   },
+  computed:{
+  suffix(){
+    return (item)=>{
+      return item
+    }
+  },
+},
   destroyed() {
     this.$destroy('CountToNumber')
   },

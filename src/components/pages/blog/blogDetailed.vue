@@ -51,34 +51,34 @@
         <footer class="left2-layout-footer ">
           <div class="footer-address applyBck">
             <address class="auto-line-start" v-if="detailedList.belongUser">
-              <span>版权声明:</span>
-              <p>{{ detailedList.belongUser.name }} 发表于
+              <span>{{$t('blog.details.Copyright_Notice')}}:</span>
+              <p>{{ detailedList.belongUser.name }} {{$t('blog.details.Posted_in')}}
                 <Time :time="detailedList.onlineTime" type="datetime" style="padding-left: 0.05rem;">。</Time>
               </p>
             </address>
             <address class="auto-line-start">
-              <span>转载请注明:</span>
+              <span>{{$t('blog.details.please_indicate')}}:</span>
               <p>{{ detailedList.title }} <span>|</span>{{ $route.meta.title }}</p>
             </address>
           </div>
           <div class="footer-nextLast auto-line-between applyBck" >
             <!--            <div class="lastNextId" @click="allStart(1,detailedList.lastId)" v-if="detailedList.lastId && detailedList.lastId.title !== ''">-->
             <router-link tag="div" class="lastNextId" :to="{path:`/blog/${detailedList.lastId.id}`,query:{title:detailedList.lastId.title}}" v-if="detailedList.lastId && detailedList.lastId.title !== ''">
-              <h5>上一篇</h5>
+              <h5>{{$t('blog.details.Previous')}}</h5>
               <p>{{ detailedList.lastId.title }}</p>
             </router-link>
             <div class="lastNextId disabled" @click="noArticle" v-else>
-              <h5>上一篇</h5>
-              <p>没有文章了</p>
+              <h5>{{$t('blog.details.Previous')}}</h5>
+              <p>{{$t('blog.details.no_more_articles')}}</p>
             </div>
             <!--            <div class="lastNextId" @click="allStart(1,detailedList.nextId)" v-if="detailedList.nextId && detailedList.nextId.title !== ''">-->
             <router-link tag="div" class="lastNextId" :to="{path:`/blog/${detailedList.nextId.id}`,query:{title:detailedList.nextId.title}}" v-if="detailedList.nextId && detailedList.nextId.title !== ''">
-              <h5>下一篇</h5>
+              <h5>{{$t('blog.details.Next')}}</h5>
               <p>{{ detailedList.nextId.title }}</p>
             </router-link>
             <div class="lastNextId disabled" @click="noArticle" v-else>
-              <h5>下一篇</h5>
-              <p>没有文章了</p>
+              <h5>{{$t('blog.details.Next')}}</h5>
+              <p>{{$t('blog.details.no_more_articles')}}</p>
             </div>
           </div>
           <div class="footer-words">

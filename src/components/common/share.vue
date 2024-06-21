@@ -55,9 +55,9 @@ export default {
           "twitter",
         ], // 启用的站点
         // disabled: ["google", "facebook", "twitter"], // 禁用的站点
-        wechatQrcodeTitle: "微信扫一扫：分享", // 微信二维码提示文字
+        wechatQrcodeTitle: this.$t("blog.details.WeChat_scan"), // 微信二维码提示文字
         wechatQrcodeHelper:
-          "<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>",
+          `<p>${this.$t("blog.details.Click_WeChat_Discover")}</p><p>${this.$t("blog.details.QR_Share")}</p>`,
       },
     }
   },

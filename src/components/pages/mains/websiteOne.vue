@@ -10,17 +10,17 @@
         </div>
         <div class="right auto-line-between">
           <div class="number fontSize-text">
-            当前数量<span class='nums'>{{item.allNum || 0}}</span>个
+            {{$t('index.current_quantity')}}<span class='nums'>{{item.allNum || 0}}</span>{{$t('index.a')}}
           </div>
           <template v-if="type !== 'favorites'">
             <span class="line"></span>
             <div :class="form_onlyRead ? 'more fontSize-text refresh-icon form-onlyRead' :'more fontSize-text refresh-icon'" @click="refresh(item.belong,item.allNum,index)">
-              换一换
+              {{$t('index.swap_it_out')}}
               <Icon type="md-refresh refresh" :class="{refresh_quan:quan}" />
             </div>
             <span class="line"></span>
             <div class="more fontSize-text" @click="moreContent(item.belong)">
-              更多
+              {{$t('index.more')}}
               <Icon type="ios-arrow-forward" />
             </div>
           </template>

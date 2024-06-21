@@ -17,34 +17,34 @@
                 <div class="gutter auto-line-around">
                     <div class="gutter-item overflow-eclipse">
                         <count-to-number :value="oneselfDate.web" :time="2" ></count-to-number>
-                        <small class="gutter-item-news ">收录网站</small>
+                        <small class="gutter-item-news ">{{$t('blog.Inclusion_sites')}}</small>
                     </div>
                     <div class="gutter-item overflow-eclipse">
                         <count-to-number :value="oneselfDate.comments" :time="2"></count-to-number>
-                        <small class="gutter-item-news ">评论次数</small>
+                        <small class="gutter-item-news ">{{$t('blog.Number_of_comments')}}</small>
                     </div>
                     <div class="gutter-item overflow-eclipse">
                         <count-to-number :value="oneselfDate.blog" :time="2" ></count-to-number>
-                        <small class="gutter-item-news ">文章</small>
+                        <small class="gutter-item-news ">{{$t('blog.article')}}</small>
                     </div>
                     <div class="gutter-item overflow-eclipse">
                       <count-to-number :value="oneselfDate.eye" :time="2" ></count-to-number>
-                      <small class="gutter-item-news ">访客</small>
+                      <small class="gutter-item-news ">{{$t('blog.visitors')}}</small>
                     </div>
                 </div>
             </div>
         </header>
         <main class="oneself-main">
 
-          <blogOneselfHotcomment :blogOC="eyeHotDate" ></blogOneselfHotcomment>
+          <blogOneselfHotcomment :blogOC="eyeHotDate" :title="eyeHotDateTitle" ></blogOneselfHotcomment>
 
-          <blogOneselfHotcomment :blogOC="commentsHotDate" ></blogOneselfHotcomment>
+          <blogOneselfHotcomment :blogOC="commentsHotDate" :title="commentsHotDateTitle"></blogOneselfHotcomment>
         </main>
         <footer class="oneself-footer">
             <div class="guestbook-left-wraper oneself-main-hot">
                 <a href="" class="guestbook-left-item applyBck">
                     <div class="guestbook-left-header fontSize-icon auto-line-start">
-                      <Icon type="md-list-box fontSize-icon" color="#00dcff!important"/>热门标签
+                      <Icon type="md-list-box fontSize-icon" color="#00dcff!important"/>{{$t('blog.hot_tags')}}
                     </div>
                     <div class="guestbook-left-content oneself-footer-content">
                       <random-tag :tagValue="item.title" :pathName="'/favorites/'+item.belong" v-for="item in hotTag" :key="item.belong"></random-tag>
@@ -72,15 +72,15 @@
       data(){
         return{
           blogOC:{
-            title:"热门文章",
+            title:this.$t('blog.hot_article'),
             icon:"ios-clock",
             content:[
               {mainImg:"https://i1.wp.com/www.ymrkou.com/wp-content/uploads/2020/08/d3f513902a5b1471d55d3c7d9d2b508d.gif?fit=960%2C540&ssl=1",mainContent:'这是一个标题',mainTime:259200000,mainIcon:"logo-octocat",mainUrl:'www.baidu.com',mainNumber:"5"}
             ]
           },
           oneselfDate:{content:{imgUrl:''}},//个人信息数据
-          eyeHotDate:{title:'热门文章',icon:'md-flame',color:'red!important',type:'eye'}, //热门文章
-          commentsHotDate:{title:'热评文章',icon:'ios-create',color:"#ff6f00!important",type:'comment'}, //热评文章
+          eyeHotDate:{title:this.$t('blog.hot_article'),icon:'md-flame',color:'red!important',type:'eye'}, //热门文章
+          commentsHotDate:{title:this.$t('blog.hot_comment'),icon:'ios-create',color:"#ff6f00!important",type:'comment'}, //热评文章
           hotTag:[]
         }
       },
@@ -97,9 +97,18 @@
           this.eyeHotDate = {...this.eyeHotDate,...this.blogHotEye.blog}
         //? 3.获取热门标签数据
           this.hotTag = this.hotTags
+
       },
       mounted(){
         // this.allStart()
+      },
+      computed:{
+        eyeHotDateTitle(){
+          return this.$t('blog.hot_article')
+        },
+        commentsHotDateTitle(){
+          return this.$t('blog.hot_comment')
+        }
       },
       methods:{
         allStart(start=0,item){

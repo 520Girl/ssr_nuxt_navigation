@@ -8,12 +8,12 @@
               <Icon type="ios-chatbubbles fontSize-icon" />
             </div>
 
-            <h5 class="fontSize-text-mains" v-if="this.commentsList.count" >评分</h5>
-            <h5 class="fontSize-text-mains"  v-else>暂无评分</h5>
+            <h5 class="fontSize-text-mains" v-if="this.commentsList.count" >{{$t('app.comments.score')}}</h5>
+            <h5 class="fontSize-text-mains"  v-else>{{$t('app.comments.no_score_yet')}}</h5>
           </div>
           <div class="right auto-line-between">
             <div class="number fontSize-text" v-if="this.commentsList.count">
-              当前会话<span class='nums'>{{this.commentsList.count}}</span>个
+              {{$t('app.comments.current_session')}}<span class='nums'>{{this.commentsList.count}}</span>{{$t('app.comments.a')}}
             </div>
             <div class="number fontSize-text" v-else>
 
@@ -33,14 +33,14 @@
               <!--                          @click="respondText()"-->
               <div class="respond-text"  >
                 <div class="text-textarea">
-                  <Input v-model="params.textarea" show-word-limit type="textarea" :autosize="{minRows: 3,maxRows: 24}" placeholder="Enter something..." :maxlength="10000" ></Input>
+                  <Input v-model="params.textarea" show-word-limit type="textarea" :autosize="{minRows: 3,maxRows: 24}" :placeholder="$t('app.comments.enter_content')" :maxlength="10000" ></Input>
                 </div>
                 <div class="text-option auto-line-around">
                   <Col :xl="{ span: 8 }" :lg="{span:8}" :xs="{ span: 24 }" class-name="option auto-line-center">
-                    <Input v-model="params.name" placeholder="昵称" clearable  />
+                    <Input v-model="params.name" :placeholder="$t('app.comments.nickname')" clearable  />
                   </Col>
                   <Col :xl="{ span: 8 }" :lg="{span:8}" :xs="{ span: 24 }" class-name="option auto-line-center">
-                    <Input v-model="params.email.input" class="email" placeholder="邮箱" clearable>
+                    <Input v-model="params.email.input" class="email" :placeholder="$t('app.comments.email')" clearable>
                       <Icon type="md-at" slot="prepend" style="font-size: 20px;" />
                       <Select v-model="params.email.lastTailing" slot="append" style="width: 70px">
                         <Option value=".com">.com</Option>
@@ -48,12 +48,12 @@
                         <Option value=".me">.me</Option>
                         <Option value=".app">.app</Option>
                         <Option value=".run">.run</Option>
-                        <Option value=""> 手动</Option>
+                        <Option value="">{{$t('app.comments.manual')}}</Option>
                       </Select>
                     </Input>
                   </Col>
                   <Col :xl="{ span: 8 }" :lg="{span:8}" :xs="{ span: 24 }" class-name="option auto-line-center">
-                    <Input v-model="params.addressUrl.input"  placeholder="地址" clearable >
+                    <Input v-model="params.addressUrl.input"  :placeholder="$t('app.comments.address')" clearable >
                       <Select v-model="params.addressUrl.firstTailing"  slot="prepend" style="width: 70px">
                         <Option value="http://">http://</Option>
                         <Option value="https://">https://</Option>
@@ -62,11 +62,11 @@
                   </Col>
                 </div>
                 <div class="text-button">
-                  <Button type="warning" style="background-color: red;" class="fontColor "  v-show="agentWant" @click="agentWantHandle()">再想想</Button>
-                  <Button type="primary" class="fontSize-text-color" @click="setCommentsLists()">发表评论</Button>
+                  <Button type="warning" style="background-color: red;" class="fontColor "  v-show="agentWant" @click="agentWantHandle()">{{$t('app.comments.Think_again')}}</Button>
+                  <Button type="primary" class="fontSize-text-color" @click="setCommentsLists()">{{$t('app.comments.post_a_comment')}}</Button>
                 </div>
                 <div class="text-nothing backgroundNoThing" v-if="commentsList.content && commentsList.content.length == 0">
-                  <span>暂无评论</span>
+                  <span>{{$t('app.comments.no_comments')}}</span>
                 </div>
               </div>
             </div>
@@ -84,7 +84,7 @@
                       </div>
                       <div class="chatfooter auto-line-between">
                         <Time :time="(new Date(item.onlineTime)).getTime()" class="shallowColor"></Time>
-                        <span @click="replyComments(index)" >回复</span>
+                        <span @click="replyComments(index)" >{{$t('app.comments.reply')}}</span>
                       </div>
                     </section>
                   </div>
@@ -99,21 +99,21 @@
                       </div>
                       <div class="text-option auto-line-center">
                         <Col :xl="{ span: 8 }" :lg="{span:8}" :xs="{ span: 24 }" class-name="option auto-line-center">
-                          <Input v-model="params.name" placeholder="昵称" clearable  />
+                          <Input v-model="params.name" :placeholder="$t('app.comments.nickname')" clearable  />
                         </Col>
                         <Col :xl="{ span: 8 }" :lg="{span:8}" :xs="{ span: 24 }" class-name="option auto-line-center">
-                          <Input v-model="params.email.input" class="email" placeholder="邮箱" clearable>
+                          <Input v-model="params.email.input" class="email" :placeholder="$t('app.comments.email')" clearable>
                             <Icon type="md-at" slot="prepend" style="font-size: 20px;" />
                             <Select v-model="params.email.lastTailing" slot="append" style="width: 70px">
                               <Option value=".com">.com</Option>
                               <Option value=".cn">.cn</Option>
                               <Option value=".run">.run</Option>
-                              <Option value=""> 手动</Option>
+                              <Option value=""> {{$t('app.comments.manual')}}</Option>
                             </Select>
                           </Input>
                         </Col>
                         <Col :xl="{ span: 8 }" :lg="{span:8}" :xs="{ span: 24 }" class-name="option auto-line-center">
-                          <Input v-model="params.addressUrl.input"  placeholder="地址" clearable >
+                          <Input v-model="params.addressUrl.input"  :placeholder="$t('app.comments.address')" clearable >
                             <Select v-model="params.addressUrl.firstTailing"  slot="prepend" style="width: 70px">
                               <Option value="http">http://</Option>
                               <Option value="https">https://</Option>
@@ -122,8 +122,8 @@
                         </Col>
                       </div>
                       <div class="text-button">
-                        <Button type="warning" style="background-color: red;" class="fontColor" v-show="agentWant" @click="agentWantHandle()">再想想</Button>
-                        <Button type="primary" class="fontSize-text-color" @click="setCommentsLists(item._id,false,index)">发表评论</Button>
+                        <Button type="warning" style="background-color: red;" class="fontColor" v-show="agentWant" @click="agentWantHandle()">{{$t('app.comments.Think_again')}}</Button>
+                        <Button type="primary" class="fontSize-text-color" @click="setCommentsLists(item._id,false,index)">{{$t('app.comments.post_a_comment')}}</Button>
                       </div>
                     </div>
                   </div>

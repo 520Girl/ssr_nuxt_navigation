@@ -46,6 +46,17 @@ export default {
     // }
     // '@/assets/css/love.scss'
   ],
+  loading: { color: '#0984e3' },
+  router: {
+    // Run the middleware/auth.js on every page
+    // middleware: 'auth',
+    scrollBehavior(to, from) {
+      // 文章详情也的地址栏如果有hash，会跳转到hash，因此这里判断只有地址栏没有hash才滚动到顶部
+      if (!to.hash) {
+        return { x: 0, y: 0 };
+      }
+    },
+  },
   styleResources: {//配置变量全局使用 styleResources 配置的资源路径不能使用 ~ 和 @,要使用绝对或者相对路径
     scss: ['./assets/css/_bianlian.scss', './assets/css/_handle.scss'],
   },

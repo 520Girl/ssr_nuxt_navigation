@@ -134,6 +134,19 @@ const router = new Router({
       }],
 
     },
+    {
+      path: '/aboutnavai',
+      component: layout,
+      children: [{
+        path: "/",
+        name: 'advertising',
+        component: () => import('@/components/aboutnavai').then(m => m.default || m),
+        meta: {
+          title: '关于我们',
+        },
+      }],
+
+    },
     { //404
       path: '*',
       name: 'lose',

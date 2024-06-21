@@ -59,11 +59,9 @@
               等常用AI工具！在这个平台上，
             </span>
             <p class="fontColor" style="line-height: 18px;">
-              你可以阅读到最新的漫画，获取实时新闻，享受AI技术带来的美图，方便快捷地下载APP，使用智能导航找到你想要的内容，并且通过评分宝来评价和分享你的体验。我们的目标是让每个用户都能在
+              您可以阅读到最新的漫画，获取实时新闻，享受AI技术带来的美图，方便快捷地下载APP，使用智能导航找到你想要的内容，并且通过评分宝来评价和分享你的体验。我们的目标是让每个用户都能在
               <a :href="website" class="fontSize-text-orange" target="_blank" :title="title">navai.vip</a>
-              找到他们想要的，
-              无论是娱乐、信息还是服务，我们都为你一网打尽。这里是你的个性化网络空间，
-              一切尽在
+              找到他们想要的，无论是娱乐、信息还是服务，我们都为你一网打尽。这里是你的个性化网络空，一切尽在
               <a :href="website" class="fontSize-text-orange " target="_blank" :title="title">navai.vip</a>
             </p>
           </div>
@@ -117,7 +115,7 @@
               </ul>
             </li>
             <li class="menu-item" >
-              <a href="https://www.aigc.cn/aboutaigc" class="item-title">
+              <a href="/aboutnavai" class="item-title">
                 <Icon type="md-radio-button-on" />
                 <span>关于我们</span>
               </a>

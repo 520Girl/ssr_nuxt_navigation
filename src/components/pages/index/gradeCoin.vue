@@ -4,10 +4,10 @@
       <div class="gradeCoin-header  mx-2 auto-line-start applyBck">
         <div class="header-tag ">
           <Icon type="md-planet "/>
-          评分宝
+          {{$t('index.rating_treasure')}}
         </div>
         <div class="header-text fontSize-text ">
-          <p class="overflow-eclipse">截止有<strong>{{ gradeCoinLists.allCount}}</strong>家公司加入,<strong>{{gradeCoinLists.commentAll}}</strong>名用户评价</p>
+          <p class="overflow-eclipse">{{$t('index.as_of_now')}}<strong>{{ gradeCoinLists.allCount}}</strong>{{$t('index.joined')}}<strong>{{gradeCoinLists.commentAll}}</strong>{{$t('index.user_ratings')}}</p>
         </div>
       </div>
       <gradeCoin-box :GCGird="GCGird" :gradeCoinLists="gradeCoinLists"></gradeCoin-box>

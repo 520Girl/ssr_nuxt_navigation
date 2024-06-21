@@ -37,10 +37,10 @@
                 <Card bordered >
                   <p slot="title" class="card-title fontSize-text-color ">
                     <Icon type="ios-stats fontSize-icon"></Icon>
-                    排行榜
+                    {{$t('index.Top')}}
                   </p>
                   <router-link  slot="extra" tag="a"  class="card-change" :to="{path:`/rank`}" >
-                    站外新闻
+                    {{$t('index.other_news')}}
                     <Icon type="ios-arrow-forward"></Icon>
                   </router-link>
                   <ul class="card-main">
@@ -69,14 +69,14 @@
                       </div>
                       <div class="item-img" v-show="index == mainItem">
                         <a>
-                          <img v-lazy="`/static/images/${item.belong}/${item.imgUrl}`" data-article="article4" title="预约">
+                          <img v-lazy="`/static/images/${item.belong}/${item.imgUrl}`" data-article="article4" :title="$t('index.booking')">
                         </a>
                         <template v-if="item.belong != 'news'">
                           <a
                             :style="item.status === true ? 'background: #48ff47;' : ''"
                             @click="item.status = true" v-like="{url:$common().handleHrefUrl(item),belong:item.belong,title:item.title,type:'EN',id:item.belongId}">
                             <span :class="item.status ? 'refresh_quan' : ''"></span>
-                            <span class="fontSize-like">{{item.status === true ? '已预约' : '预约'}}</span>
+                            <span class="fontSize-like">{{item.status === true ? $t('index.booked') : $t('index.booking')}}</span>
                           </a>
                         </template>
                         <template v-else>
@@ -84,7 +84,7 @@
                             :style="item.status === true ? 'background: #48ff47;' : ''"
                             @click="item.status = true" v-like="{url:$common().handleHrefUrl(item),belong:item.belong,title:item.belong,type:'EN',id:item.belongId}">
                             <span :class="item.status ? 'refresh_quan' : ''"></span>
-                            <span class="fontSize-like">{{item.status === true ? '已预约' : '预约'}}</span>
+                            <span class="fontSize-like">{{item.status === true ? $t('index.booked') : $t('index.booking')}}</span>
                           </a>
                         </template>
                       </div>
@@ -117,7 +117,7 @@
                                 </router-link>
                                 <router-link tag="a" :to="{path:'/blog'}" class="top" v-if="index == 0" >
                                     <sup class="top-sign">
-                                    所有
+                                    {{$t('index.all_blog')}}
                                     </sup>
                                 </router-link>
                             </span>

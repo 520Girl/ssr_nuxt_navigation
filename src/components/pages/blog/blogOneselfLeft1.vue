@@ -6,20 +6,20 @@
                     <div class="heade-icon">
                       <Icon type="md-paper fontSize-icon" />
                     </div>
-                    <h5 class="fontSize-text-mains">博客</h5>
+                    <h5 class="fontSize-text-mains">{{$t('blog.title')}}</h5>
                 </div>
                 <div class="right auto-line-between">
                     <div class="number fontSize-text">
-                        当前数量<span class='nums'>{{blogLists.allCount}}</span>个
+                      {{$t('blog.current_quantity')}}<span class='nums'>{{blogLists.allCount}}</span>{{$t('blog.a')}}
                     </div>
                     <span class="line"></span>
-                    <div class="more fontSize-text">更多
+                    <div class="more fontSize-text">{{$t('blog.more')}}
                         <Icon type="ios-arrow-forward" />
                     </div>
                 </div>
             </div>
             <div class="tool-info">
-              博客就像是一本魔法书，每篇文章都是一道道魔法咒语，让读者穿越时空，探索知识的宝藏。在这个充满奇幻色彩的世界里，文字是魔杖，想象是翅膀，每一个博客都是一次奇妙的冒险
+              {{$t('blog.intro')}}
             </div>
         </header>
         <Scroll :on-reach-bottom="getBlogLists" :distance-to-edge="-24" :loading-text="loadingText" color="yellow" class="left-item" height="740" v-if="blogLists.content.length >0">
