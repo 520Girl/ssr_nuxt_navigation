@@ -233,7 +233,26 @@
 import headerNav from "@/components/common/headerNav"; //头部导航
 import cartoonRelated from "@/components/pages/cartoon/cartoonRelated";
 import cartoonGuestbook from "@/components/pages/comments/cartoonGuestbook";
+import setting from "@/setting";
 export default {
+  head(){
+    const {fullPath,meta} = this.$route;
+    const {title:asyncData_title,explain:websiteInfo,belongLogo1,imgUrl:asyncData_imgUrl} = this.cartoonData
+    const title = `${meta.title.slice(0,meta.title.indexOf(',')+1)}-${asyncData_title}的${meta.title.slice(meta.title.indexOf(',')+1)}`
+    const description = `${meta.description.slice(0,meta.description.indexOf(',')+1)}${websiteInfo},${meta.description.slice(meta.description.indexOf(',')+1)}`
+    const imgUrl = `${setting.website}/static/images/cartoon/${belongLogo1}/${asyncData_imgUrl}`
+    return {
+      title: title,
+      meta: [
+        {hid: 'description', name: 'description', content:description},
+        {hid: 'keywords', name: 'keywords', content: title},
+        {name:'twitter:url', property: 'og:url', content:`${setting.website}${fullPath}`},
+        {name:'twitter:title', property: 'og:title', content:title},
+        {name:'twitter:description', property: 'og:description', content:description},
+        {name:'twitter:image', property: 'og:image', content: imgUrl},
+      ]
+    }
+  },
   name: "Cartoon",
   components:{headerNav,cartoonRelated,cartoonGuestbook},
   middleware:'cartoon',
@@ -245,6 +264,7 @@ export default {
     const cartoonRelated  = res.cartoon
     const {comment} =  await $api.user.getCommentsLists({per_page:5,order:-1, page:1, version:'O', order_type:0,id:route.params.belong})
     const compositeData = await $api.cartoon.getCartoonRanking({state:1})
+    console.log('=======================ssss----s',cartoon)
     return {
       cartoonData:cartoon,
       cartoonRelated,

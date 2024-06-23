@@ -11,6 +11,8 @@ const getters = {
   hotsliderDefault: state =>  state.webBase.hotsliderDefault,
   cartoonRouter: state =>  state.webBase.cartoonRouter,
   imageRouter: state =>  state.webBase.imageRouter,
-  pageLayout: state =>  state.webBase.pageLayout
+  pageLayout: state =>  state.webBase.pageLayout,
+  blogAuthor: state =>  state.webBase.blogAuthor,
+
 }
 export default getters

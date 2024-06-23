@@ -22,7 +22,7 @@
             <li><span class="order-3 fontSize-text-colornoH">3</span><strong>{{$t('embody.s_1_3_t')}}</strong>：{{$t('embody.s_1_3_c')}}
             </li>
             <li><span class="order-4 fontSize-text-colornoH">4</span><strong>{{$t('embody.s_1_4_t')}}</strong>：{{$t('embody.s_1_4_c')}}<a
-              :href="`${setting.website}go/?url=aHR0cHM6Ly93d3cuZ2VuYWluYXYuY29tLw%3D%3D`" target="_blank"
+              :href="`${setting.website}/go/?url=aHR0cHM6Ly93d3cuZ2VuYWluYXYuY29tLw%3D%3D`" target="_blank"
               rel="nofollow noopener" class="external">{{setting.website}}</a></li>
           </ul>
           <h2>{{$t('embody.submit_2')}}</h2>
@@ -37,9 +37,9 @@
             </li>
             <li>
               <span class="order-3 fontSize-text-colornoH">3</span>
-              <strong>{{$t('embody.s_2_3_t')}}</strong>：<a class="external" :href="`${setting.website}favorites/ai-writing-tools`" :title="$t('embody.s_2_3_c_5')"
+              <strong>{{$t('embody.s_2_3_t')}}</strong>：<a class="external" :href="`${setting.website}/favorites/ai-writing-tools`" :title="$t('embody.s_2_3_c_5')"
                       target="_blank">{{$t('embody.s_2_3_c_1')}}</a>{{$t('embody.s_2_3_c_2')}}<a class="external"
-                                                      :href="`${setting.website}favorites/ai-writing-tools`"
+                                                      :href="`${setting.website}/favorites/ai-writing-tools`"
                                                       :title="$t('embody.s_2_3_c_5')" target="_blank">{{$t('embody.s_2_3_c_3')}}</a>{{$t('embody.s_2_3_c_4')}}
             </li>
             <li><span class="order-4 fontSize-text-colornoH">4</span><strong>{{$t('embody.s_2_4_t')}}</strong>：{{$t('embody.s_2_4_c')}}</li>
@@ -54,7 +54,7 @@
           </ul>
           <h2>{{$t('embody.submit_3')}}</h2>
           <p>{{$t('embody.s_3_1_1')}}</p>
-          <p>{{$t('embody.s_3_1_2')}}：<span class="i-f-a fontSize-text-app">{{setting.email}}</span>{{$t('embody.s_3_2_3')}}
+          <p>{{$t('embody.s_3_1_2')}}：<a :href="'mailto:'+setting.email" class="external i-f-a fontSize-text-app" >（{{ setting.email }}）</a>{{$t('embody.s_3_2_3')}}
           </p>
           <p>{{$t('embody.s_3_2_4')}}！</p>
         </div>
@@ -101,7 +101,6 @@ export default {
       font-size: 20px;
       border-left: 3px solid #f1404b;
       margin-left: -23px;
-      border-color: #2475d3;
       padding-left: 20px;
       margin-bottom: 20px;
       line-height: 40px;

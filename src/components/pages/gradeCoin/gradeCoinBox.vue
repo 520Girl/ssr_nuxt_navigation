@@ -9,7 +9,7 @@
                        class="content-top auto-line-start"
                        v-click-data="{name:item.title,hrefUrl:`/gradeCoin/${item._id}?title=${item.title}`,imgUrl:'./static/images/gradeCoin/'+ item.imgUrl,belong:'gradeCoin',id:item._id}">
             <div class="top-img" >
-              <img v-lazy="'/static/images/gradeCoin/'+ item.imgUrl" data-grade="gradeCoin1" width="74" height="74">
+              <img v-lazy="'/static/images/gradeCoin/'+ item.imgUrl" data-grade="gradeCoin1" width="74" height="74" :alt="item.title" />
             </div>
             <div class="top-content">
               <h5 class="fontSize-text-color">{{item.title}}</h5>

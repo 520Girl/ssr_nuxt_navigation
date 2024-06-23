@@ -1,18 +1,35 @@
 <template>
   <blog-oneself>
     <div slot="blogOneselfLeft" class="blogOneselfLeft2" v-if="detailedList">
+      <header class="Breadcrumb fontSize-text-color">
+        <Breadcrumb separator="<b class='demo-breadcrumb-separator'>=></b>">
+          <BreadcrumbItem to="/" >
+            <span class="fontSize-text-color">
+              <Icon type="ios-home" style="vertical-align: unset;" ></Icon>Home
+            </span>
+          </BreadcrumbItem>
+          <BreadcrumbItem :to="`/blog/tag/${detailedList.author_id}/1`" >
+            <span class="fontSize-text-color" >
+              {{detailedList.author}}
+            </span>
+          </BreadcrumbItem>
+          <BreadcrumbItem class="fontSize-text-color">
+            {{detailedList.title}}
+          </BreadcrumbItem>
+        </Breadcrumb>
+      </header>
       <div class="blogOneselfLeft2-layout">
         <header class="left2-layout-header applyBck">
           <h1 class="left2-header-title fontSize-text-color">{{ detailedList.title }}</h1>
           <div class="left2-header-main auto-line-between">
             <div class="headerLeft">
-              <a href="javascript:void (0)" class=" fontSize-text-orange ">
+              <a :href="`/blog/tag/${detailedList.author_id}/1`" class=" fontSize-text-orange ">
                 <Icon type="md-list-box"/>
                 <span >{{ detailedList.author }}</span>
               </a>
               <a href="javascript:void (0)" class="fontColor-t-d" v-if="detailedList.onlineTime">
                 <Icon type="md-clock"/>
-                <span ><Time :time="new Date(detailedList.onlineTime)"/></span>
+                <span ><Time :time="detailedList.onlineTime"/></span>
               </a>
             </div>
             <div class="headerRight">
@@ -41,11 +58,16 @@
           <section class="mainUnit">
             <div class="mainUnit-tag fontSize-icon" >
               <Icon type="md-pricetags"/>
-              <random-tag :tagValue="item" :pathName="'/blog'" v-for="(item,index) in detailedList.blogTag"
-                          :key="index"></random-tag>
+              <template v-if="detailedList.blogTag && detailedList.blogTag.length">
+                <random-tag :tagValue="item" :pathName="'/blog'" v-for="(item,index) in detailedList.blogTag"
+                            :key="index"  ></random-tag>
+              </template>
+              <template v-else>
+                <random-tag :tagValue="'暂无标签'" :pathName="'#'"></random-tag>
+              </template>
               <!--                            <Tag color="default" type="border" v-for="(item,index) in detailedList.blogTag" :key="index" >{{item}}</Tag>-->
             </div>
-            <share ></share>
+            <share :config="shareConfig"></share>
           </section>
         </main>
         <footer class="left2-layout-footer ">
@@ -87,7 +109,7 @@
         </footer>
       </div>
     </div>
-<!--    <blog-oneself-right slot="blogOneselfRight" :value="value" @allStart="allStart" ></blog-oneself-right>-->
+    <blog-oneself-right slot="blogOneselfRight" :value="value"  :userInfoB="userInfoB"  :blogHotComment="blogHotComment" :blogHotEye="blogHotEye" :hotTags="hotTags"  ></blog-oneself-right>
   </blog-oneself>
 </template>
 <script>
@@ -98,8 +120,30 @@ import blogOneselfRight from "@/components/pages/blog/blogOneselfRight"; //blog�
 import randomTag from "@/components/common/randomTag"//分享
 import countToNumber from "@/components/common/countToNumber"//分享
 import appGuestbook from "@/components/pages/comments/appGuestbook";
+import setting from "@/setting";
 // import {Notice} from "iview";
 export default {
+  head(){
+    const {fullPath,meta} = this.$route;
+    const {title:asyncData_title,explain,imgUrl:asyncData_imgUrl,_id} = this.detailedList
+    const title = `${meta.title.slice(0,meta.title.indexOf(',')+1)}-${asyncData_title}的${meta.title.slice(meta.title.indexOf(',')+1)}`
+    const description = `${meta.description.slice(0,meta.description.indexOf(',')+1)}${explain},${meta.description.slice(meta.description.indexOf(',')+1)}`
+    const imgUrl = `${setting.website}/static/images/blog/${asyncData_imgUrl}`
+    return {
+      title: title,
+      meta: [
+        {hid: 'description', name: 'description', content:description},
+        {hid: 'keywords', name: 'keywords', content: title},
+        {name:'twitter:url', property: 'og:url', content:`${setting.website}${fullPath}`},
+        {name:'twitter:title', property: 'og:title', content:title},
+        {name:'twitter:description', property: 'og:description', content:description},
+        {name:'twitter:image', property: 'og:image', content: imgUrl},
+      ],
+      link: [
+        { rel: 'stylesheet', href: 'https://cdn.bootcss.com/social-share.js/1.0.16/css/share.min.css' }
+      ]
+    }
+  },
   name: 'BlogDetailed',
   components: {blogOneself, blogOneselfRight, randomTag, appGuestbook,countToNumber},
   // components:{Row,Col,blogOneself,blogOneselfRight,Time,Icon,Tag,ButtonGroup,Button,Slider,Input,share,randomTag,appGuestbook},
@@ -111,8 +155,16 @@ export default {
     detailedList.lastId = blog.lastId
     detailedList.nextId = blog.nextId
     comment.version = 'B'
+    const { user } = await $api.user.getUserInfoB()
+    const blogHotComment = await $api.blog.getBlogHot({per_page:4,belong:'comment',order:-1})
+    const blogHotEye = await $api.blog.getBlogHot({per_page:4,belong:'eye',order:-1})
+    const hotTags = await $api.mutulal.getHotTag({belong:'eye',order:-1,per_page:15})
         return {
           detailedList,
+          userInfoB: user,
+          blogHotComment: blogHotComment,
+          blogHotEye: blogHotEye,
+          hotTags: hotTags.common.content,
           commentsList:comment
         }
   },
@@ -122,7 +174,30 @@ export default {
       detailedList: {},
       commentsList: {},
       commentsVersion:'B', //app聊天版本
-      value: 0
+      value: 0,
+      blogHotComment:{},
+      blogHotEye:{},
+      hotTags:[],
+      userInfoB:{},
+      shareConfig: {
+        url:`${setting.website}${this.$route.path}` , // 网址，默认使用 window.location.href
+        sites: [
+          "qzone",
+          "qq",
+          "weibo",
+          "wechat",
+          "douban",
+          "tencent",
+          "linkedin",
+          "google",
+          "facebook",
+          "twitter",
+        ], // 启用的站点
+        // disabled: ["google", "facebook", "twitter"], // 禁用的站点
+        wechatQrcodeTitle: this.$t("blog.details.WeChat_scan"), // 微信二维码提示文字
+        wechatQrcodeHelper:
+          `<p>${this.$t("blog.details.Click_WeChat_Discover")}</p><p>${this.$t("blog.details.QR_Share")}</p>`,
+      },
     }
   },
   created() {

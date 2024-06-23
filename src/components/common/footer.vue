@@ -59,7 +59,6 @@
               等常用AI工具！在这个平台上，
             </span>
             <p class="fontColor" style="line-height: 18px;">
-              您可以阅读到最新的漫画，获取实时新闻，享受AI技术带来的美图，方便快捷地下载APP，使用智能导航找到你想要的内容，并且通过评分宝来评价和分享你的体验。我们的目标是让每个用户都能在
               <a :href="website" class="fontSize-text-orange" target="_blank" :title="title">navai.vip</a>
               找到他们想要的，无论是娱乐、信息还是服务，我们都为你一网打尽。这里是你的个性化网络空，一切尽在
               <a :href="website" class="fontSize-text-orange " target="_blank" :title="title">navai.vip</a>
@@ -67,48 +66,48 @@
           </div>
         </Col>
         <Col :sm="{span:10}" :xs="{ span: 24 }" class="footer-li">
-          <p class="footer-links fontSize-text-app">按下Ctrl+D或⌘+D 感谢收藏AIGC.CN</p>
+          <p class="footer-links fontSize-text-app">按下Ctrl+D或⌘+D 感谢收藏navai.vip！</p>
           <div class="footer-nav-links">
             <li class="menu-item">
-              <a href="https://www.aigc.cn/industry-standard" class="item-title">
+              <a href="/blog/tag/AI/1" class="item-title">
                 <span>政策法规</span>
               </a>
               <ul class="sub-menu">
                 <li  class="">
-                  <a href="https://www.aigc.cn/12753.html"><span>
+                  <a href="/blog/623c33963c00c53a9cbb999a?title=生成式人工智能服务管理暂行办法" title="生成式人工智能服务管理暂行办法"><span>
                     管理办法
                   </span></a>
                 </li>
                 <li  class="">
-                  <a href="https://www.aigc.cn/sites/43534.html">
+                  <a href="/app/61ffb521b67c0000ba000525?title=互联网信息服务算法备案系统" title="互联网信息服务算法备案系统">
                     <span>算法备案</span>
                   </a>
                 </li>
                 <li  class="">
-                  <a href="https://www.aigc.cn/fanzhazhongxin">
+                  <a href="/fanzhazhongxin">
                     <span>反诈中心</span>
                   </a>
                 </li>
               </ul>
             </li>
             <li class="menu-item" >
-              <a href="https://www.aigc.cn/submit" class="item-title">
+              <a href="/embody" class="item-title">
                 <Icon type="md-radio-button-on" />
-                <span>资源申请</span>
+                <span>应用提交</span>
               </a>
               <ul class="sub-menu">
                 <li  >
-                  <a href="https://www.aigc.cn/pobingjihua">
-                    <span>破冰计划</span>
+                  <a href="/free-ai-industry-reports">
+                    <span>行业报告</span>
                   </a>
                 </li>
                 <li class="">
-                  <a href="https://www.aigc.cn/advertising-support-program">
+                  <a href="/advertising">
                     <span>广告扶持</span>
                   </a>
                 </li>
                 <li  >
-                  <a href="https://www.aigc.cn/reciprocal-project">
+                  <a href="/reciprocal-project">
                     <span>互推计划</span>
                   </a>
                 </li>
@@ -121,17 +120,17 @@
               </a>
               <ul class="sub-menu">
                 <li >
-                  <a href="https://www.aigc.cn/business">
+                  <a href="/business">
                     <span>联系我们</span>
                   </a>
                 </li>
                 <li >
-                  <a href="https://www.aigc.cn/disclaimer">
+                  <a href="/disclaimer">
                     <span>免责声明</span>
                   </a>
                 </li>
                 <li >
-                  <a href="https://www.aigc.cn/deleteinformation">
+                  <a href="/deleteinformation">
                     <span>联系删除</span>
                   </a>
                 </li>
@@ -155,7 +154,8 @@
           </div>
         </Col>
         <div class="footer-copyright">
-          <p style="text-align: left;">
+          <p style="text-align: center;">您可以阅读到最新的漫画，获取实时新闻，享受AI技术带来的美图，方便快捷地下载APP，使用智能导航找到你想要的内容，并且通过评分宝来评价和分享你的体验。我们的目标是让每个用户都能在</p>
+          <p style="text-align: center;">
             <span style="font-size: 10px;">
               <a>Copyright</a>©2023-2024 <a href="https://www.aigc.cn/">AI工具导航</a>
               <a href="https://www.aigc.cc/">尊享AI导航</a> <a :href="website" target="_blank" rel="nofollow noopener">蜀ICP备2024070055号-1</a>

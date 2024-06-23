@@ -107,7 +107,7 @@
                     <li class="comments-childer-item" v-for="(item3,index3) in  item.childersChat" :key="index3">
                       <div class="auto-line-start">
                         <div class="profile">
-                          <canvas :ref="'randomTitle' + index3 + index"  :data="updataRandomTitle('randomTitle' + index3 + index,name=item3.name)" :data-ref="'randomTitle' + index3 + index" width="36" height="36" ></canvas>
+                          <canvas :ref="'randomTitle' + index3 + index"  :data="updataRandomTitle('randomTitle' + index3 + index,name=item3.name)" :data-ref="'randomTitle' + index3 + index" width="36" height="36" v-once></canvas>
                         </div>
                         <section class="record">
                           <h5>{{item3.name}}<Time :time="time(item3.onlineTime)" :key="Math.random()"></Time></h5>
@@ -312,12 +312,12 @@ export default {
     },
     //头像只更新一次, 点击热门，最新评论 聊天记录需要清空
     updataRandomTitle(ele,name){
-      if (this.flag.indexOf(ele) == -1){
-        this.flag.push(ele)
+      // if (this.flag.indexOf(ele) == -1){
+      //   this.flag.push(ele)
         this.randomTitle(ele,name)
-      }else {
-        return
-      }
+      // }else {
+      //   return
+      // }
     },
     //去掉 标签符号
     deleteTag(data,status=2){

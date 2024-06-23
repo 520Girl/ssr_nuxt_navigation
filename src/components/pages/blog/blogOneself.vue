@@ -23,7 +23,7 @@
       components:{ gradeBackground,headerNav},
       data(){
         return{
-          value:'我是卡超数据'
+
         }
       },
       mounted() {

@@ -2,7 +2,7 @@
   <div :class="{'page-container auto-line-start':true,'hideSidebar':!hideSidebar}">
     <div :class="sidebarOnOff ? 'page-sidebar width-six sidebar-bck widthOnOff' : 'page-sidebar width-six sidebar-bck '">
       <div class="sidebar-logo">
-        <a href="" class="logo-expanded auto-line-center boxSizing"
+        <a href="/" class="logo-expanded auto-line-center boxSizing"
            :style="sidebarOnOff ? 'display:block;' : 'display:none;'">
           <img :src="logoUrl" alt="logo" :alt="title">
         </a>
@@ -16,8 +16,8 @@
       <div class="menu-top">
         <div class="menu-app"  v-for="(item,index) in oneLevelWebsite" v-if="item.status === 1" :key="index" >
           <Tooltip placement="right" :disabled="!sidebarOnOff" >
-            <a href="javascript:void(0)" class="app-icon-left "
-               @click="appSidebarOnoffClick(index)">
+            <div class="app-icon-left "
+               @click="appSidebarOnoffClick(index)" :title="item.title">
               <svg-icon :name="item.belong" height="28" width="28"></svg-icon>
               <transition name="menuText" mode="in-out">
                 <div class="app auto-line-center" v-show="!sidebarOnOff">
@@ -27,7 +27,7 @@
                   </i>
                 </div>
               </transition>
-            </a>
+            </div>
             <!--          当是左导航是关闭的时候  start-->
             <ul class="app-sidebar"slot="content" >
               <li style="white-space: nowrap;padding-top: 5px;" v-for="(item1,index1) in item.content" :key="index1">
@@ -82,7 +82,7 @@
     <div :class="sidebarOnOff ? 'page-content contents-bck' : 'page-content contents-bck widthOnOffcon'" >
       <header :class="{'auto-line-between headersScroll boxSizing header-bck':true,'is-scroll':isscroll,'hideHeader': !hideHeader }"  ref="header" >
         <div class="header-left">
-          <a href="javascript:void(0)" :class=" sidebarOnOff ? 'sidebarOn left-nav-icon':'left-nav-icon' ">
+          <div :class=" sidebarOnOff ? 'sidebarOn left-nav-icon':'left-nav-icon' ">
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
                  @click="handleHideSidebar([sidebarOnOff,sidebarOnOff,'header'])"
                  class="modileSVG">
@@ -91,32 +91,32 @@
               <path class="line--3" d="M0 60h62c18 0 18 20-17-5L31 45"></path>
             </svg>
             <img :src="mobileLogo" :alt="title" class="modileIMG" width="222" height="66" @click="handleHideSidebar([sidebarOnOff,sidebarOnOff])">
-          </a>
+          </div>
           <div v-if="!$store.state.isMobile" class="left-nav auto-line-center" >
-            <a href="">
+            <div class="left-nav-item">
               <router-link tag="span"  :to="{path:'/embody'}"class=" iconfont icon-link fontSize-icon"></router-link>
               <router-link tag="span"  :to="{path:'/embody'}" class="fontSize-text">{{$t('SubmitUrl')}}</router-link>
-            </a>
+            </div>
             <router-link tag="span" :to="{path:'/advertising'}" >
               <i class=" iconfont icon-lishiyouxi fontSize-icon"></i>
               <span class="fontSize-text">{{$t('advert')}}</span>
             </router-link>
-            <a href="javascript:void(0)" @click="changeLcale('zh-CN')" v-if="this.$store.state.locale == 'zh-CN'">
+            <div class="left-nav-item" @click="changeLcale('zh-CN')" v-if="this.$store.state.locale == 'zh-CN'">
               <svg-icon name="china"></svg-icon>
               <span class="fontSize-text">{{$t('china')}}</span>
-            </a>
-            <a href="javascript:void(0)" @click="changeLcale('en')" v-if="this.$store.state.locale == 'zh-CN'">
+            </div>
+            <div class="left-nav-item" @click="changeLcale('en')" v-if="this.$store.state.locale == 'zh-CN'">
               <svg-icon name="usa"></svg-icon>
               <span class="fontSize-text">{{$t('english')}}</span>
-            </a>
-            <a href="javascript:void(0)" @click="changeLcale('en')" v-if="this.$store.state.locale == 'en'">
+            </div>
+            <div class="left-nav-item" @click="changeLcale('en')" v-if="this.$store.state.locale == 'en'">
               <svg-icon name="usa"></svg-icon>
               <span class="fontSize-text">{{$t('english')}}</span>
-            </a>
-            <a href="javascript:void(0)" @click="changeLcale('zh-CN')" v-if="this.$store.state.locale == 'en'">
+            </div>
+            <div class="left-nav-item" @click="changeLcale('zh-CN')" v-if="this.$store.state.locale == 'en'">
               <svg-icon name="china"></svg-icon>
               <span class="fontSize-text">{{$t('china')}}</span>
-            </a>
+            </div>
             <!--                        <a href="javascript:void(0)" class="cloud">-->
             <!--                            <div id="he-plugin-simple"></div>-->
             <!--                        </a>-->
@@ -124,41 +124,41 @@
         </div>
         <!--        <img src="@/assets/images/24710.gif" style="width: 16%;padding-top: 0.5rem;">-->
         <div class="header-right auto-line-center">
-          <a href="javascript:void(0)" class="auto-line-center" @click="handleSidebar($event,2)">
+          <div  class="auto-line-center search-icon" @click="handleSidebar($event,2)">
             <i class=" iconfont icon-sousuo fontSize-icon"></i>
-          </a>
-          <a href="javascript:void(0)" class="auto-line-center mobileSidebar" @click="handleSidebar">
+          </div>
+          <div  class="auto-line-center mobileSidebar search-icon" @click="handleSidebar">
             <i class=" iconfont icon-category fontSize-icon"></i>
-          </a>
+          </div>
         </div>
       </header>
       <!--          语言导航栏-->
       <popup :popup="languageSideOnOff" :type="'slider'" @close="handleSidebar">
         <div class="left-nav auto-line-center" slot="popupMain" >
-          <a href="">
+          <div class="left-nav-item">
             <router-link tag="i"  :to="{path:'/embody'}" class=" iconfont icon-link fontSize-icon"></router-link>
             <router-link tag="span"  :to="{path:'/embody'}" class="fontSize-text">{{$t('SubmitUrl')}}</router-link>
-          </a>
+          </div>
           <router-link tag="a" :to="{path:'/advertising'}" >
             <i class=" iconfont icon-lishiyouxi fontSize-icon"></i>
             <span class="fontSize-text">{{$t('advert')}}</span>
           </router-link>
-          <a href="javascript:void(0)" @click="changeLcale('zh-CN')" v-if="this.$store.state.locale == 'zh-CN'">
+          <div class="left-nav-item" @click="changeLcale('zh-CN')" v-if="this.$store.state.locale == 'zh-CN'">
             <svg-icon name="china"></svg-icon>
             <span class="fontSize-text">{{$t('china')}}</span>
-          </a>
-          <a href="javascript:void(0)" @click="changeLcale('en')" v-if="this.$store.state.locale == 'zh-CN'">
+          </div>
+          <div class="left-nav-item" @click="changeLcale('en')" v-if="this.$store.state.locale == 'zh-CN'">
             <svg-icon name="usa"></svg-icon>
             <span class="fontSize-text">{{$t('english')}}</span>
-          </a>
-          <a href="javascript:void(0)" @click="changeLcale('en')" v-if="this.$store.state.locale == 'en'">
+          </div>
+          <div class="left-nav-item" @click="changeLcale('en')" v-if="this.$store.state.locale == 'en'">
             <svg-icon name="usa"></svg-icon>
             <span class="fontSize-text">{{$t('english')}}</span>
-          </a>
-          <a href="javascript:void(0)" @click="changeLcale('zh-CN')" v-if="this.$store.state.locale == 'en'">
+          </div>
+          <div class="left-nav-item" @click="changeLcale('zh-CN')" v-if="this.$store.state.locale == 'en'">
             <svg-icon name="china"></svg-icon>
             <span class="fontSize-text">{{$t('china')}}</span>
-          </a>
+          </div>
           <!--                        <a href="javascript:void(0)" class="cloud">-->
           <!--                            <div id="he-plugin-simple"></div>-->
           <!--                        </a>-->

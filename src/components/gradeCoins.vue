@@ -175,11 +175,31 @@ import guestbook from "@/components/pages/comments/guestbook"; //留言板
 import gradeBackground from "@/components/common/gradeBackground"; //背景
 import randomTag from "@/components/common/randomTag"; //背景
 import gradeCoinBox from "@/components/pages/gradeCoin/gradeCoinBox";
+import setting from '@/setting'
 export default {
+  head(){
+    const {fullPath,meta} = this.$route;
+    const {title:asyncData_title,websiteInfo,imgUrl:asyncData_imgUrl,_id} = this.gradeCoinContent.content
+    const title = `${meta.title.slice(0,meta.title.indexOf(',')+1)}-${asyncData_title}的${meta.title.slice(meta.title.indexOf(',')+1)}`
+    const description = `${meta.description.slice(0,meta.description.indexOf(',')+1)}${websiteInfo},${meta.description.slice(meta.description.indexOf(',')+1)}`
+    const imgUrl = `${setting.website}/static/images/gradeCoin/${asyncData_imgUrl}`
+    return {
+      title: title,
+      meta: [
+        {hid: 'description', name: 'description', content:description},
+        {hid: 'keywords', name: 'keywords', content: title},
+        {name:'twitter:url', property: 'og:url', content:`${setting.website}${fullPath}`},
+        {name:'twitter:title', property: 'og:title', content:title},
+        {name:'twitter:description', property: 'og:description', content:description},
+        {name:'twitter:image', property: 'og:image', content:imgUrl},
+      ]
+    }
+  },
   name: 'GradeCoinDetailed',
   components: {urlVelocity,countToNumber,guestbook,gradeBackground,gradeCoinBox,randomTag,qrcode},
   async asyncData({ $api,route }) {
     const {gradeCoins} = await $api.gradeCoin.getGradeCoinDetail(route.params.id)
+    console.log(gradeCoins)
     const gradeCoinLists = await $api.gradeCoin.getGradeCoin({per_page: 4, page: 1, order: -1})
     const {comment} = await $api.user.getCommentsLists({per_page:1,order:-1,page:1,version:'G',order_type:1,id:route.params.id})
     comment.version = 'G'

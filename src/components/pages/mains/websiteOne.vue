@@ -35,12 +35,19 @@
              v-for="(item1,index1) in item.content" :key="index1"  v-if="item1.state"
              v-click-data="{name:item1.title,hrefUrl:item1.hrefUrl,imgUrl:'/static/images/website/'+item.belongOne +'/'+ item1.favicon,belong:'website',id:`${item.belongOne}/${item.belong}/${item1.favicon}`}"
         >
-          <Tooltip :content="item1.explain">
+          <Tooltip :content="item1.explain" :disabled="item1.explain.length<=0">
             <a :href="item1.hrefUrl" target="_blank" class="item-content auto-line-start applyBck" >
-              <img v-lazy="`/static/images/website/${item.belongOne}/${item1.favicon}`" :alt="item1.title" height="40" width="40" data-hotweb="hotWeb1">
+              <span class="item-badge" title="推荐" v-if="item1.eyeNum>=15">推荐</span>
+              <div class="item-muted ">
+                <p><Icon type="ios-bookmarks" />{{item1.eyeNum}}</p>
+                <p><Icon type="ios-thumbs-up" />{{item1.heartNum}}</p>
+              </div>
+              <div class="item-content-img">
+                <img v-lazy="`/static/images/website/${item.belongOne}/${item1.favicon}`" :alt="item1.title" height="38" width="38" data-hotweb="hotWeb1">
+              </div>
               <div class="text">
                 <h5 class="fontSize-text overflow-eclipse">{{item1.title}}</h5>
-                <small class="fontColor-t-d overflow-eclipse">{{item1.hrefUrl}}</small>
+                <small class="fontColor-t-d overflow-eclipse">{{item1.explain}}</small>
               </div>
             </a>
           </Tooltip>
@@ -366,7 +373,37 @@ export default {
               padding-left: $padding05;
               padding-right: $padding15;
               box-sizing: content-box;
+              transition: all 0.3s;
+              position: relative;
+              .item-badge{
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                z-index: 1;
+                font-weight: normal;
+                font-size: 10px;
+                padding: 2px 5px;
+                background: rgb(255 0 20 / 0.7);
+                border-radius: 100px;
+                transform: rotate(-15deg);
+              }
+              .item-muted{
+                position: absolute;
+                right: 5px;
+                top: 5px;
+                z-index: 1;
+                display: flex;
+                vertical-align: center;
+                p{
+                  padding-right: 5px;
+                  font-size: 12px;
+                  opacity: 0;
+                  transition: opacity .3s;
+                  i{vertical-align: top;transition: color 2s;}
+                }
+              }
               &:hover{
+                transform: translateY(-5px);
                 .item-characteristic{
                   i{
                     &:first-child{
@@ -383,16 +420,41 @@ export default {
                     }
                   }
                 }
+                .item-muted {
+                  p{
+                    opacity: 1;
+                    &:first-child{
+                      color: #ff5b56;
+                    }
+                    &:nth-child(2){
+                      color: #52ff24;
+                    }
+                  }
+                }
                 .cloud-download{
                   i{
                     color: #c000ff;
                   }
                 }
-
+                .badge{
+                  color: #ffffff;
+                }
               }
-              img{
+              .item-content-img{
                 height: 40px;
                 width: 40px;
+                border-radius: 50%;
+                img{
+                  animation: changeColorBG 25s cubic-bezier(0.97, -0.1, 0, 1.57) infinite;
+                  height: 38px;
+                  border-radius: 50%;
+                  width: 38px;
+                  transition: all 0.8s;
+
+                  &:hover{
+                    transform: rotate(720deg);
+                  }
+                }
               }
               .text{
                 padding-left: $padding10;

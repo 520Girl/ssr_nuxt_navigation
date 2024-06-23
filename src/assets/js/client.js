@@ -1,7 +1,6 @@
 // 需要在客户端的
 import Vue from 'vue';
 import directive from "./directive";
-import common from "@/assets/js/common";
 import store from "@/store/index.js";
 // import '@/components/pages/svg'
 // import '@/components/common/qrcode'
@@ -41,6 +40,7 @@ require('@/assets/css/normalize.css')
 require('@/assets/css/border.scss')
 require('@/assets/css/common.scss')
 require('@/assets/css/transition.scss')
+require('@/assets/css/slider.scss')
 
 
 //! 1. 添加默认主题

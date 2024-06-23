@@ -1,6 +1,6 @@
 <template>
   <router-link :to="{path:pathName,query:this.$route.name == 'image' ? '' : {tag:encodeURI(tagValue)}}" tag="div" class="tag" :style="'color:'+currentColor[0]+';'+'background-color:'+currentColor[1]">
-    <span >{{tagValue}}</span>
+    <span >#{{tagValue}}</span>
   </router-link>
 </template>
 

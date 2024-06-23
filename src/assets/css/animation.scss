@@ -77,3 +77,72 @@
 }
 
 
+
+@keyframes changeColor {
+  10% {
+    color: #ff0000;
+  }
+  20% {
+    color: #ff7700;
+  }
+  30% {
+    color: #ffaa00;
+  }
+  40% {
+    color: #eeff00;
+  }
+  50% {
+    color: #80ff00;
+  }
+  60% {
+    color: #00ff55;
+  }
+  70% {
+    color: #00f7ff;
+  }
+  80% {
+    color: #00a6ff;
+  }
+  90% {
+    color: #9d00ff;
+  }
+  100% {
+    color: #ff0000;
+  }
+}
+
+@keyframes changeColorBG {
+
+  10% {
+    box-shadow: 0 0 4px #ff0000;
+  }
+  20% {
+    box-shadow: 0 0 8px #ff7700;
+  }
+  30% {
+    box-shadow: 0 0 4px #ffaa00;
+  }
+  40% {
+    box-shadow: 0 0 8px #eeff00;
+  }
+  50% {
+    box-shadow: 0 0 4px #80ff00;
+  }
+  60% {
+    box-shadow: 0 0 8px #00ff55;
+  }
+  70% {
+    box-shadow: 0 0 4px #00f7ff;
+  }
+  80% {
+    box-shadow: 0 0 8px #00a6ff;
+  }
+  90% {
+    box-shadow: 0 0 4px #9d00ff;
+  }
+  100% {
+    box-shadow: 0 0 8px #ff0000;
+  }
+}
+
+

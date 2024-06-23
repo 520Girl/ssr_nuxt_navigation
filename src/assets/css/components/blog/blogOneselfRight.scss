@@ -34,6 +34,11 @@
           box-sizing: border-box;
           padding: 0.1rem;
           border-radius: 50%;
+          animation: changeColorBG 25s cubic-bezier(0.97, -0.1, 0, 1.57) infinite;
+          transition: all 0.5s ease-in-out;
+          &:hover{
+            transform: scale(1.15)  rotate(720deg);
+          }
 
         }
       }

@@ -117,7 +117,7 @@
                                     <li class="comments-childer-item" v-for="(item3,index3) in  item.childersChat" :key="index3">
                                       <div class="auto-line-start">
                                         <div class="profile">
-                                          <canvas :ref="'randomTitle' + index3 + index" :id="'randomTitle' + index3 + index"  v-once>{{updataRandomTitle('randomTitle' + index3 + index,item3.name)}}</canvas>
+                                          <canvas :ref="'randomTitle' + index3 + index" :id="'randomTitle' + index3 + index" width="36" height="36"  v-once>{{updataRandomTitle('randomTitle' + index3 + index,item3.name)}}</canvas>
                                         </div>
                                         <section class="record">
                                           <h5>{{item3.name}}  --- <Time :time="(new Date(item3.onlineTime)).getTime()"></Time></h5>
@@ -312,12 +312,12 @@ import {Slider, Row, Col, Icon, Input, Button, Time, Page, Select, Option, Notic
         },
         //头像只更新一次
         updataRandomTitle(ele,name){
-            if (this.flag.indexOf(ele) == -1){
-              this.flag.push(ele)
+            // if (this.flag.indexOf(ele) == -1){
+            //   this.flag.push(ele)
               this.randomTitle(ele,name)
-            }else {
-              return
-            }
+            // }else {
+            //   return
+            // }
         },
         //处理textarea的数据
         textareaTo(ele){

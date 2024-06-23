@@ -15,15 +15,15 @@
                     <div class="main-item-content ">
                         <h5 class="overflow-eclipse-2 fontSize-text-color">{{item.title}}</h5>
                         <div class="main-item-footer auto-line-between">
-                            <Time :time="item.onlineTime" class="shallowColor"  />
+                          <Time :time="item.onlineTime" class="shallowColor" type="date"  />
                           <a class="fontSize-text-colornoH" :href="item.mainUrl" >
                             <template v-if="blogOC.type === 'eye'">
                               <svg-icon name="eye"></svg-icon>
-                              <span>{{item.eyeNum}}</span>
+                              <count-to-number :value="item.eyeNum" :time="2" ></count-to-number>
                             </template>
                             <template v-else>
                               <svg-icon name="comment" width="20" height="20"></svg-icon>
-                              <span>{{item.commentsLen}} </span>
+                              <count-to-number :value="item.commentsLen" :time="2" ></count-to-number>
                             </template>
                           </a>
                         </div>
@@ -35,9 +35,11 @@
 </template>
 <script>
   // import {Icon,Tag,Time} from 'iview'; //iview
+  import countToNumber from "@/components/common/countToNumber.vue";
     export default {
       name:'blogOneselfHotcomment',
       // components:{Time,Icon,Tag},
+      components:{countToNumber},
       props:{
         blogOC:{type:Object,default:{
             title:"热门文章",
@@ -94,6 +96,11 @@
           border-radius: 0.05rem;
           position: relative;
           flex: 0 0 33.3%;
+          transition: all 0.8s ease-in-out;
+
+          &:hover {
+            transform: scale(1.05);
+          }
         }
         .main-item-content{
           flex: 1 1 auto;
@@ -102,7 +109,7 @@
           min-height: 0.66rem;
           line-clamp: 2;
           -webkit-box-orient: vertical;
-          white-space: pre-wrap;
+          //white-space: pre-wrap;
           margin-left: 0.1rem;
           h5{
             flex: 1 1 auto;
@@ -110,6 +117,7 @@
           .main-item-footer{
             margin-top: 0.15rem;
             a{
+              display: flex;
               svg{
                 margin-right: 0.02rem;
                 vertical-align: top;

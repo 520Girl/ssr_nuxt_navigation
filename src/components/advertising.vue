@@ -1,4 +1,4 @@
-<script src="../plugins/i18n/language/en.js"></script>
+
 <template>
   <div class="advertising-container">
     <div class="advertising-layout  mx-15-2 ">
@@ -7,7 +7,7 @@
           <img src="@/assets/images/clutter/advertising.png" data-grade="gradeCoin2" :alt="$t('title')" />
         </Col>
         <Col class="advertising-info" :lg="{span:12}" :xs="{ span: 24 }" >
-        <div class="vol">{{$t('advertising.vol')}}</div>
+        <div class="vol">{{$t('advertise.vol')}}</div>
         <div class="share">
           <h1>{{$t('title')}}</h1>
           <div class="share-button">
@@ -16,13 +16,13 @@
         </div>
         <div class="content">
           <div style="line-height: 20px;">
-            <span style="padding-left: 20px;"> {{$t('advertising.content_t')}}：</span>
+            <span style="padding-left: 20px;"> {{$t('advertise.content_t')}}：</span>
             <p>
               <span style="padding-left: 20px;"></span>
-              " {{$t('advertising.content')}} "
+              " {{$t('advertise.content')}} "
             </p>
-            <span class="fontSize-text-colornoH">{{$t('advertising.content_info')}}：{{setting.email}} </span>
-            <span style="color: red;font-size: 14px;font-weight: bold;padding-top: 10px;">{{$t('advertising.content_s')}} </span>
+            <span class="fontSize-text-colornoH">{{$t('advertise.content_info')}}：{{setting.email}} </span>
+            <span style="color: red;font-size: 14px;font-weight: bold;padding-top: 10px;">{{$t('advertise.content_s')}} </span>
           </div>
         </div>
       </Col>

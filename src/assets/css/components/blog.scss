@@ -1,18 +1,14 @@
 @import "~/assets/css/commonmMixin.scss"; //公共样式tool-header
+@import "~/assets/css/animation.scss";
 .blog-container{
   .blog-layout{
     display: inline-block;
     width: 100%;
     .blog{
       //margin: 0.48rem auto;
-      .ivu-scroll-wrapper{
-        margin: unset;
-        padding: 0.1rem;
-        & ::-webkit-scrollbar{
-          display: none;
-        }
-      }
       .blog-content-left{
+        position: sticky;
+        top:76px;
         .blogOneselfLeft1-container{
           .tool{
             @include tool-header;
@@ -21,7 +17,8 @@
           }
           .left-item{
             width: 100%;
-            min-height: 775px;
+            margin: unset;
+            padding: 0.1rem;
             .item-layout{
               padding: 0.2rem  0.2rem 0.2rem 0.2rem;
               margin-bottom: 0.2rem;
@@ -76,7 +73,7 @@
                   flex-direction: column;
                   a{
                     &:nth-child(1){
-                      font-size: 0.18rem;
+                      font-size: 15px;
                       -webkit-line-clamp: 2;
                       line-clamp: 2;
                       -webkit-box-orient: vertical;
@@ -106,7 +103,12 @@
                       vertical-align: inherit;
                     }
                   }
+                  .changeColor {
+                    animation: changeColor 20s linear forwards infinite;
+                  }
                 }
+
+
               }
             }
           }

@@ -263,7 +263,27 @@
   import appGuestbook from "@/components/pages/comments/appGuestbook"; //留言板
   import appRelated from "@/components/pages/app/appRelated"; //相关推荐
   import appSide from "@/components/pages/app/side"
+  import setting from "@/setting"
   export default{
+    head(){
+      const {fullPath,meta} = this.$route;
+      const {title:asyncData_title,websiteInfo,imgUrl:asyncData_imgUrl} = this.hotAppData
+      const title = `${meta.title.slice(0,meta.title.indexOf(',')+1)}-${asyncData_title}的${meta.title.slice(meta.title.indexOf(',')+1)}`
+      const description = `${meta.description.slice(0,meta.description.indexOf(',')+1)}${websiteInfo},${meta.description.slice(meta.description.indexOf(',')+1)}`
+      const imgUrl = `${setting.website}/static/images/app/${asyncData_imgUrl}`
+      return {
+        title: title,
+        meta: [
+          {hid: 'description', name: 'description', content:description},
+          {hid: 'keywords', name: 'keywords', content: title},
+          {name:'twitter:url', property: 'og:url', content:`${setting.website}${fullPath}`},
+          {name:'twitter:title', property: 'og:title', content:title},
+          {name:'twitter:description', property: 'og:description', content:description},
+          {name:'twitter:image', property: 'og:image', content: imgUrl},
+          {hid: 'author', name: 'author', content: 'navai'},
+        ]
+      }
+    },
       name:'App',
       components:{gradeBackground,appGuestbook,qrcode,appRelated,appSide,randomTag},
     async asyncData({$api,route}){

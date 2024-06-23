@@ -5,15 +5,16 @@
               <Col :xl="{ span: 7 }" :lg="{span: 11}" :xs="{ span: 24 }" class-name="carousel-content">
                   <Carousel v-model="carousel.pitchOnImg" :autoplay="false"  radius-dot :arrow="carousel.content.slide.length === 1 ? 'never' :'hover'" style="height: 100%">
                       <CarouselItem  v-for="(item,index) in carousel.content.slide" style="height: 100%" :key="item._id" >
-                          <div
-                            @click="jumpUrl(item)"
+                          <a
+                            :href="hrefUrl(item).url"
+                            :target="hrefUrl(item).target"
                             class="carousel"
                             v-click-data="{name:item.title,hrefUrl:$common().handleHrefUrl({belong:'slide',hrefUrl:item.hrefUrl,title:item.title}),imgUrl:`/static/images/${item.belong}/${item.imgUrl}`,belong:item.belong,id:item.belongId}" >
                               <img v-lazy="`/static/images/${item.belong}` + item.imgUrl" data-article="article1" :alt="item.title" width="518" height="300">
                               <div class="text  applyBck" :data-index="index" >
                                   <h5 class="imgInIcon fontSize-text-colornoH">{{item.title}}</h5>
                               </div>
-                          </div>
+                          </a>
                       </CarouselItem>
                   </Carousel>
               </Col>
@@ -21,14 +22,15 @@
                   <div class="sliders-layout">
                     <Carousel   :autoplay="false" :autoplay-speed="1500" radius-dot :arrow="value.length === 1 ? 'never' : 'hover'"  v-for="(value,key,index1) in carousel.content" :key="key" v-if="value.length != 0 && key != 'slide'">
                       <CarouselItem  class="layout-li" v-for="(item,index) in value"  :key="item.imgUrl" >
-                        <div
-                          @click="jumpUrl(item)"
+                        <a
+                          :href="hrefUrl(item).url"
+                          :target="hrefUrl(item).target"
                           class="carousel"
                           v-click-data="{name:item.title,hrefUrl:$common().handleHrefUrl(item),imgUrl:`/static/images/${item.belong}/${item.imgUrl}`,belong:item.belong,id:item.belongId}" >
                           <h5 class="overflow-eclipse applyBck fontSize-text-colornoH">{{item.title}}</h5>
                           <img :src="item.imgUrl" data-article="article2" :alt="item.title" width="134"  height="76">
 <!--                          <img v-lazy="'/static/images/article'+ item.imgUrl" data-article="article2" :alt="item.imgAlt" width="134"  height="76">-->
-                        </div>
+                        </a>
                       </CarouselItem>
                     </Carousel>
                   </div>
@@ -50,7 +52,9 @@
                       <i class="main-line main-line-color"></i>
                       <div class="item-text">
                         <a
-                          @click="hrefUrl(item)"
+                          :href="hrefUrl(item).url"
+                          :target="hrefUrl(item).target"
+                          class="item-title"
                           v-click-data="{name:item.title,hrefUrl:$common().handleHrefUrl(item),imgUrl:`/static/images/${item.belong}/${item.imgUrl}`,belong:item.belong,id:item.belongId}">
                           {{ item.title }}
                           <img v-lazy="`/static/images/${item.belong}/${item.imgUrl}`"  data-article="article3" alt="" v-if="item.imgUrl" :alt="item.title">
@@ -68,16 +72,18 @@
                         </span>
                       </div>
                       <div class="item-img" v-show="index == mainItem">
-                        <a>
+                        <a :href="hrefUrl(item).url"
+                           :target="hrefUrl(item).target"
+                        >
                           <img v-lazy="`/static/images/${item.belong}/${item.imgUrl}`" data-article="article4" :title="$t('index.booking')">
                         </a>
                         <template v-if="item.belong != 'news'">
-                          <a
+                          <div class="item-order"
                             :style="item.status === true ? 'background: #48ff47;' : ''"
                             @click="item.status = true" v-like="{url:$common().handleHrefUrl(item),belong:item.belong,title:item.title,type:'EN',id:item.belongId}">
                             <span :class="item.status ? 'refresh_quan' : ''"></span>
                             <span class="fontSize-like">{{item.status === true ? $t('index.booked') : $t('index.booking')}}</span>
-                          </a>
+                          </div>
                         </template>
                         <template v-else>
                           <a
@@ -251,32 +257,7 @@
           }
         })
       },
-      // 跳转页面
-      jumpUrl(item){
-        if (item.belong == "slide"){
-          window.open(item.hrefUrl, '_blank')
-          return
-        }else {
-
-          this.$router.push({path:`${item.belong}/${item.belongId}`,query:{title:item.title}})
-          return
-        }
-      },
-      hrefUrl(item){
-          if (item.belong == 'news' || item.belong == 'website'){
-            window.open(item.belongId, '_blank');
-          }else{
-            this.$router.push({
-              path:`/${item.belong}/${item.belongId}`,
-              query:{title:item.title}
-            })
-          }
-
-      }
     },
-    computed:{
-
-    }
   }
 </script>
 <style lang="scss" scoped>

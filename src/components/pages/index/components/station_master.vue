@@ -103,7 +103,7 @@ export default {
                 </div>
                 <div class="app-like">
                   <div class="app overflow-eclipse">
-                    <a :href="item1.hrefUrl" v-for="(item1,index1) in item.belongTag" :key="index1" item-characteristic>{{item.title}}</a>
+                    <a :href="`/app/tag/${item}/1`" v-for="(item1,index1) in item.belongTag" :key="index1" target="_blank" item-characteristic>{{item.title}}</a>
                   </div>
                 </div>
               </div>

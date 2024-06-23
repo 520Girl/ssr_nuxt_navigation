@@ -97,7 +97,7 @@
   .tool-info{
     margin-top: 0.05rem;
     margin-left: 0.1rem;
-    max-width: 75%;
+    //max-width: 75%;
     display: block;
     font-size: 14px;
     color: #888;
@@ -849,6 +849,90 @@
             }
           }
         }
+      }
+    }
+  }
+}
+
+//收藏按钮下的页面
+@mixin collect-page-layout{
+  .container{
+    margin:auto;
+    display: flex;
+    justify-content: center;
+    .layout{
+      display: inline-block;
+      margin: 0.5rem 0.5rem  0.5rem 0.5rem ;
+      .card-body {
+        padding: 0.2rem 0.2rem;
+        border-radius: 10px;
+        font-size: 15px;
+        line-height: 2;
+        .panel-header {
+          margin-bottom: 35px;
+          text-align: center;
+          h1 {
+            font-size: 0.28rem;
+          }
+        }
+        .panel-body {
+          .url-logo{
+            margin: 0.1rem 1rem;
+            text-align: center;
+          }
+          .overflowClip_1{
+            margin-top: 0.2rem;
+          }
+          .aligncenter{
+            text-align: center;
+            width: 100%;
+            img{
+              width: 100%;
+              height: 100%;
+            }
+          }
+          .unfancybox{
+            text-align: center;
+            padding-bottom: 10px;
+          }
+        }
+        .external{
+          padding-right: 5px;
+          padding-left: 5px;
+          color: #1e73be;
+          font-size:inherit;
+          transition: all 0.3s ease-in-out;
+          display: inline;
+          &:after{
+            content: "☍";
+            clear: both;
+            font-size: 21px;
+            position: relative;
+            width: 20px;
+            height: 20px;
+            left: 0px;
+          }
+          &:hover{
+            text-decoration: underline;
+            color: #ef0544;
+            font-weight: bold;
+          }
+        }
+        p {
+          margin-bottom: 20px;
+          line-height: 30px;
+          font-size: 16px;
+        }
+
+        h2 {
+          font-size: 20px;
+          border-left: 3px solid #f1404b;
+          margin-left: -23px;
+          padding-left: 20px;
+          margin-bottom: 20px;
+          line-height: 40px;
+        }
+
       }
     }
   }

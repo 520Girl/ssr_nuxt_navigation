@@ -2,13 +2,21 @@
 .blogOneselfLeft2{
   padding: 0.2rem;
   box-sizing: border-box;
+  .Breadcrumb{
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-top: 5px;
+    ::v-deep .demo-breadcrumb-separator{
+      margin:0 2px;
+    }
+  }
   .blogOneselfLeft2-layout{
     .left2-layout-header{
       display: flex;
       flex-wrap: wrap;
       flex-direction: column;
       margin-bottom: 0.2rem;
-      padding: 0.1rem 0.05rem 0rem 0.05rem;
+      padding: 0.1rem 0.1rem 0 0.1rem;
       border-top-left-radius: 5px;
       border-top-right-radius: 5px;
       .left2-header-title{}
@@ -42,13 +50,41 @@
       }
     }
     .left2-layout-main{
-      padding: 0.15rem;
+      padding: 0.2rem;
       box-sizing: border-box;
       margin-bottom: 0.2rem;
       .mainContents{
-        //line-height: 18px;
+        line-height: 25px;
         text-indent: 0.15rem;
         overflow: hidden;
+        ::v-deep .external{
+          padding-right: 5px;
+          padding-left: 5px;
+          color: #1e73be;
+          font-size:inherit;
+          transition: all 0.3s ease-in-out;
+          display: inline;
+          &:after{
+              content: "☍";
+              clear: both;
+              font-size: 21px;
+              position: relative;
+              width: 20px;
+              height: 20px;
+              left: 0px;
+            }
+          &:hover{
+            text-decoration: underline;
+            color: #ef0544;
+            font-weight: bold;
+          }
+        }
+        ::v-deep p{
+          margin-bottom: 0.2rem;
+          font-size: 15px;
+          line-height: 2;
+          word-wrap: break-word;
+        }
 
       }
       .mainUnit{

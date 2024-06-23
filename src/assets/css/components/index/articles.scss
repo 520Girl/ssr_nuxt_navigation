@@ -25,6 +25,7 @@
           }
         }
         .carousel{
+          display: block;
           height: 100%;
           position: relative;
           border-radius: 10px;
@@ -145,7 +146,7 @@
               ::v-deep .ivu-rate-text{
                 width:30px;
               }
-              a{
+              .item-title{
                 font-size:13px;
                 &:hover{
                   img{
@@ -177,7 +178,7 @@
                   width:100%;
                 }
               }
-              a:last-child{
+              .item-order{
                 width:20%;
                 display:inline-block;
                 height:100%;

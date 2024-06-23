@@ -33,10 +33,25 @@
   import contents from '@/components/pages/index/contents'; //导航编辑
   import hotslider from '@/components/pages/index/hotslider'; //热门app
   import mains from '@/components/pages/index/mains';
+  import setting from '@/setting'; //底部，以及主题控制
   // import {appList} from "../assets/js/api/reqModule"; //广告，站长工具等
   // import footers from '@/components/common/footer'; //底部，以及主题控制
   export default {
     name: 'Index',
+    head(){
+      const {fullPath,meta} = this.$route;
+      return {
+        title: meta.title,
+        meta: [
+          {hid: 'description', name: 'description', content:meta.description},
+          {hid: 'keywords', name: 'keywords', content: meta.title},
+          {name:'twitter:url', property: 'og:url', content:`${setting.website}${fullPath}`},
+          {name:'twitter:title', property: 'og:title', content:meta.title},
+          {name:'twitter:description', property: 'og:description', content:meta.description},
+          // {name:'twitter:image', property: 'og:image', content:''},
+        ]
+      }
+    },
     components: { bulletin, gradeCoin,articles,contents,hotslider,mains },
      async asyncData({$api, $axios,store}) {
        // if (!process.server) return
@@ -61,7 +76,6 @@
     },
     data() {
       return {
-        msg: 'Welcome to Your Vue.js App',
         gradeCoinLists: {}, //评分宝数据
         gradeCoinSpin: true,
         slideList: {}, //轮播图数据
@@ -69,9 +83,12 @@
         rankingList:[], //赛事数据
       }
     },
+    created() {
+
+    },
     mounted() {
       // this.getGradeCoin()
-      console.log("%c%c楠格%chttps://www.nange.cn", "line-height:18px;", "line-height:18px;padding:4px;background:#2ccbe6;color:#FADFA3;font-size:14px;", "padding:4px 4px 4px 2px;background:#ff146d;color:green;line-height:18px;font-size:12px;");
+      console.log("%c%cnavai.vip%chttps://www.navai.vin", "line-height:18px;", "line-height:18px;padding:4px;background:#2ccbe6;color:#FADFA3;font-size:14px;", "padding:4px 4px 4px 2px;background:#ff146d;color:green;line-height:18px;font-size:12px;");
       console.log("%c%c每天都是最好的自己。", "line-height:18px;", "line-height:18px;padding:4px;background:#2ccbe6;color:#FADFA3;font-size:14px;");
     },
     methods: {

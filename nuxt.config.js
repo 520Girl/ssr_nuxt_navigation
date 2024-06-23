@@ -1,5 +1,6 @@
 import path from 'path'
 import i18n from './src/plugins/i18n/index'
+import setting from './src/setting'
 //! 1. 去掉console
 let plugins = []
 if (process.env.NODE_ENV === 'production'){
@@ -8,18 +9,18 @@ if (process.env.NODE_ENV === 'production'){
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'ssr_nuxt_navigation',
-    htmlAttrs: {lang: 'en'},
-
+    title: setting.title + '-' + '生成式AI工具导航',
+    htmlAttrs: {lang: 'zh','data-theme': 'dark'},
     meta: [
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
-      {hid: 'description', name: 'description', content: ''},
-      {name: 'format-detection', content: 'telephone=no'}
+      {name: 'keywords', content: 'AI免费工具集合尊享导航,AI导航,AI工具导航,AI应用商店,生成式AI,AI动漫,AI音乐,AI视频,AI图片,AI导航,AI工具,AI写作,AI绘画,AI设计,AI办公,AI客服,AI营销,AI语音,AI视频生成'},
+      {name: 'description', content: setting.description},
+      {name: 'format-detection', content: 'telephone=no'},
+      {hid: 'author', name: 'author', content: 'navai'},
     ],
     link: [
       {rel: 'icon', type: 'image/x-icon', href:'/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://cdn.bootcss.com/social-share.js/1.0.16/css/share.min.css' }
     ]
   },
   srcDir: 'src/',
@@ -46,7 +47,12 @@ export default {
     // }
     // '@/assets/css/love.scss'
   ],
-  loading: { color: '#0984e3' },
+  // loading: './components/common/loadingHome.vue',
+  loadingIndicator: {
+    name: 'circle',
+    color: 'rgba(255,10,10,0.59)',
+    background: 'red'
+  },
   router: {
     // Run the middleware/auth.js on every page
     // middleware: 'auth',

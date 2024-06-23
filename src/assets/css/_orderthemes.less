@@ -197,14 +197,18 @@
   }
   //分页
   .ivu-page-prev,.ivu-page-next,.ivu-page-item{
-    border: 1px solid @background-tooltip;
+    border: 1px solid red;
   }
 
   //设置搜索框的颜色
   .search-b{
     background-color: @IvuCardHead;
   }
-
+  //导航栏 Breadcrumb
+  .ivu-breadcrumb-item-separator{
+    color: @primary-color;
+    margin:0 2px!important;
+  }
 }
 
 .dark {
@@ -223,7 +227,7 @@
   @hover:#ffffff;
   @orderBackground:#3e3f40;
   @ivu-spin-fixBackground:rgba(173, 173, 173, 58%);
-  @primary-color:red;
+  @primary-color:#2D8CF0;
   // @btnBackground:#f1404b;
   .module-theme(@background,@fontColor,@border-color-base);
 }
@@ -243,6 +247,7 @@
   @orderBackground:#58b7f9;
   @ivu-spin-fixBackground:rgba(173, 173, 173 , 58%);
   // @btnBackground:#f1404b;
+  @primary-color:#2D8CF0;
   .module-theme(@background,@fontColor,@border-color-base);
 }
 

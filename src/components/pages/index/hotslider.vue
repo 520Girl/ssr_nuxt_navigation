@@ -17,8 +17,8 @@
                 <Col :xxl="{span:3}" :xl="{ span: 4 }" :md="{span:6}"  :sm="{ span:8}" :xs="{ span: 12 }" class-name="hotWeb-item " v-for="(item,index) in hotWebData" :key="index" >
                   <Tooltip :content="item.explain">
                     <a
-                      @click="$common().goto(item.hrefUrl)"
-                      href="javascript:void(0)"
+                      :href="hrefUrl(item.hrefUrl).url"
+                      :target="hrefUrl(item.hrefUrl).target"
                       class="item-content auto-line-start applyBck "
                       v-click-data="{name:item.title,hrefUrl:item.hrefUrl,imgUrl:'/static/images/website/' +item.belongOne +'/'+ item.favicon,belong:'website',id:`${item.belongOne}/${item.belongTwo}/${item.favicon}`}" >
                       <img v-lazy="'/static/images/website/' +item.belongOne +'/'+ item.favicon" data-hotWeb="hotWeb1" :alt="item.title" width="40" height="40">
@@ -32,7 +32,7 @@
               </Row>
               <Row type='flex' justify="start" align="middle" class-name="hotWeb hotApp mx-2" v-show="titleButton.hotApp" >
                 <Col :xl="{ span: 4 }" :lg="{span:12}" :md="{span:12}"  :sm="{span:12}" :xs="{ span: 24 }" class-name="hotWeb-item hotApp-item" v-for="(item,index) in hotAppData.content" :key="index">
-                  <Tooltip :content="item.websiteInfo">
+                  <Tooltip :content="item.websiteInfo" :disabled="!item.websiteInfo">
                     <div class="item-content auto-line-between applyBck" >
                       <router-link tag="a"
                                    :to="{path:`/app/${item._id}`,query:{title:item.title}}"
@@ -53,7 +53,7 @@
                         </router-link>
                         <div class="app-like">
                           <div class="app overflow-eclipse">
-                            <a :href="item1.hrefUrl" v-for="(item1,index1) in item.belongTag" :key="index1" target="_blank">{{item1}}</a>
+                            <a :href="`/app/tag/${item}/1`" v-for="(item1,index1) in item.belongTag" :key="index1" target="_blank">{{item1}}</a>
                           </div>
                         </div>
                       </div>
@@ -161,7 +161,10 @@
               <Row  type='flex' justify="start" align="middle" class-name="newWeb  mx-2" v-show="titleButton.newAddress">
                 <Col :xxl="{span:3}" :xl="{ span: 4 }" :md="{span:6}"  :sm="{ span:8}" :xs="{ span: 12 }"  class-name="newWeb-item hotApp-item"  v-for="(item,index) in newWebData" :key="index">
                   <Tooltip >
-                    <a @click="$common().goto(item.hrefUrl)" href="javascript:void(0)" class="item-master auto-line-between applyBck"
+                    <a
+                      :href="hrefUrl(item.hrefUrl).url"
+                      :target="hrefUrl(item.hrefUrl).target"
+                    class="item-master auto-line-between applyBck"
                        v-click-data="{name:item.title,hrefUrl:item.hrefUrl,imgUrl:'/static/images/website/'+item.belongOne +'/'+ item.favicon,belong:'website',id:`${item.belongOne}/${item.belongTwo}/${item.favicon}`}" >
                       <div class="auto-line-between " style="flex: 1 1 auto;overflow: hidden;">
                         <img v-lazy="'/static/images/website/' +item.belongOne +'/'+ item.favicon" data-hotWeb="hotWeb1" :alt="item.title" width="30" height="30">

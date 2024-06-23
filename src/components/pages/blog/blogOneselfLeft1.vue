@@ -6,64 +6,69 @@
                     <div class="heade-icon">
                       <Icon type="md-paper fontSize-icon" />
                     </div>
-                    <h5 class="fontSize-text-mains">{{$t('blog.title')}}</h5>
+<!--                    <h5 class="fontSize-text-mains">{{$t('blog.title')}}</h5>-->
+                    <h5 class="fontSize-text-mains">{{blogTitle}}</h5>
                 </div>
                 <div class="right auto-line-between">
                     <div class="number fontSize-text">
-                      {{$t('blog.current_quantity')}}<span class='nums'>{{blogLists.allCount}}</span>{{$t('blog.a')}}
+                      {{$t('blog.current_quantity')}}<count-to-number class='nums' :value="blogLists.allCount || 0" :time="3" ></count-to-number>{{$t('blog.a')}}
                     </div>
-                    <span class="line"></span>
-                    <div class="more fontSize-text">{{$t('blog.more')}}
-                        <Icon type="ios-arrow-forward" />
-                    </div>
+<!--                    <span class="line"></span>-->
+<!--                    <div class="more fontSize-text">{{$t('blog.more')}}-->
+<!--                        <Icon type="ios-arrow-forward" />-->
+<!--                    </div>-->
                 </div>
             </div>
             <div class="tool-info">
-              {{$t('blog.intro')}}
+              {{blogExplain}}
+<!--              {{$t('blog.intro')}}-->
             </div>
         </header>
-        <Scroll :on-reach-bottom="getBlogLists" :distance-to-edge="-24" :loading-text="loadingText" color="yellow" class="left-item" height="740" v-if="blogLists.content.length >0">
-            <article class="item-layout applyBck auto-line-start" v-for="(item,index) in blogLists.content" :key="index">
-                <div :class="'order order-'+(index + 1)">
-                    <span class="">{{index + 1}}</span>
-                </div>
-                <Col :xl="{ span: 8 }" :lg="{span:6}" :sm="{ span: 12 }" :xs="{span:24}" class-name="blog-item-img">
-<!--                    <router-link :to="{path:'/blog/detailed',query:{id:item._id}}" class="background-cover" :style="'background-image: url('+require('../../../assets/images/blog/'+item.imgUrl+'') +');'" alt=""></router-link>-->
-                  <router-link :to="{path:`/blog/${item._id}`,query:{title:item.title}}" class="background-cover" v-lazy:background-image="`./static/images/blog/${item.imgUrl}`" data-blog="blog1" ></router-link>
-                </Col>
-                <Col :xl="{ span: 16 }" :lg="{span:16}" :sm="{ span: 12 }" :xs="{span:24}" class-name="blog-item-info">
-                    <div class="info-body">
-                        <router-link :to="{path:`/blog/${item._id}`,query:{title:item.title}}"  class="fontSize-text-color overflow-eclipse">{{item.title}}</router-link>
-                        <a href="javascript:void (0)" class="overflow-eclipse fontColor-t-d">{{item.explain}}</a>
-                    </div>
-                    <div class="info-footer auto-line-between">
-                      <div>
-                        <a class="" href="javascript:void(0)" >
-                          <Icon type="md-list-box" />
-                          {{item.author}}
-                        </a>
-                        <a class="" href="javascript:void(0)">
-                          <Icon type="ios-contact" />
-                          admin
-                        </a>
-                      </div>
-                      <Time :time="(new Date(item.onlineTime).getTime())" class="fontColor-t-d"  />
-                    </div>
-                </Col>
-            </article>
-        </Scroll>
-    </div>
+      <div class="left-item ">
+        <article class="item-layout applyBck auto-line-start " v-for="(item,index) in blogLists.content" :key="index">
+          <div :class="'order order-'+(index + 1)">
+            <span class="">{{index + 1}}</span>
+          </div>
+          <Col :xl="{ span: 8 }" :lg="{span:6}" :sm="{ span: 12 }" :xs="{span:24}" class-name="blog-item-img">
+            <!--                    <router-link :to="{path:'/blog/detailed',query:{id:item._id}}" class="background-cover" :style="'background-image: url('+require('../../../assets/images/blog/'+item.imgUrl+'') +');'" alt=""></router-link>-->
+            <router-link :to="{path:`/blog/${item._id}`,query:{title:item.title}}" class="background-cover" v-lazy:background-image="`./static/images/blog/${item.imgUrl}`" data-blog="blog1" ></router-link>
+          </Col>
+          <Col :xl="{ span: 16 }" :lg="{span:16}" :sm="{ span: 12 }" :xs="{span:24}" class-name="blog-item-info">
+            <div class="info-body">
+              <router-link :to="{path:`/blog/${item._id}`,query:{title:item.title}}"  class="fontSize-text-color overflow-eclipse">{{item.title}}</router-link>
+              <a href="javascript:void (0)" class="overflow-eclipse fontColor-t-d">{{item.explain}}</a>
+            </div>
+            <div class="info-footer auto-line-between">
+              <div>
+                <router-link tag="a" :to="{path:`/blog/tag/${item.author_id}/1`}"  class="changeColor" href="javascript:void(0)" >
+                  <Icon type="md-list-box" />
+                  {{item.author}}
+                </router-link>
+                <a class="" href="javascript:void(0)">
+                  <Icon type="ios-contact" />
+                  admin
+                </a>
+              </div>
+              <Time :time="(new Date(item.onlineTime).getTime())" class="fontColor-t-d" type="date"   />
+            </div>
+          </Col>
+        </article>
+        <Page :total="blogLists.allCount" class-name="comments-list-page"  :current.sync="params.page"  :page-size="params.per_page" @on-change="getPage"	 />
+      </div>    </div>
 </template>
 <script>
   // import {Row, Col, Icon, Button, Tooltip,Tag,Scroll,Time,} from 'iview';//iview 导入
+  import countToNumber from "@/components/common/countToNumber.vue";
+  import {mapGetters}  from "vuex";
   export default{
     name:"blogOneselfLeft1",
     // components:{Row, Col, Icon, Button, Tooltip,Tag,Scroll,Time,},
+    components:{countToNumber},
     props:['blogOneself'],
     data(){
       return{
         time2:(new Date()).getTime() - 86400 * 3 * 1000,
-        params:{page:1,per_page:5,tag:'',order:-1},
+        params:{page:1,per_page:5,tag:'',author:'',order:-1},
         blogLists:{allCount:6,content:[]},
         loadingText:'加载中',
       }
@@ -79,7 +84,26 @@
       }
     },
     mounted() {
+      this.params.page = this.$route.params.page  ? Number(this.$route.params.page) : 1
+      this.params.author = this.$route.params.author_id  ? this.$route.params.author_id  : ''
       this.getBlogLists()
+    },
+    computed:{
+      ...mapGetters(['blogAuthor']),
+      blogTitle(){
+        const author_id = this.$route.params.author_id  ? this.$route.params.author_id  : 'news'
+        if (this.blogAuthor.filter(item=>item.author_id === author_id).length > 0){
+          return this.blogAuthor.filter(item=>item.author_id === author_id)[0].title
+        }
+        return this.blogAuthor[0].title
+      },
+      blogExplain(){
+        const author_id = this.$route.params.author_id  ? this.$route.params.author_id  : 'news'
+        if (this.blogAuthor.filter(item=>item.author_id === author_id).length > 0){
+          return this.blogAuthor.filter(item=>item.author_id === author_id)[0].explain
+        }
+        return this.blogAuthor[0].title
+      },
     },
     methods:{
       getBlogLists(){
@@ -98,6 +122,15 @@
           }else {
             this.loadingText ='请求你别托我了'
           }
+      },
+      getPage(page){
+        if (this.$route.params.author_id ){
+          this.$router.push('/blog/tag/'+this.$route.params.author_id+`/${Number(page)}`)
+        }else{
+          console.log('page',page)
+          this.$router.push('/blog/page/'+Number(page))
+        }
+
       }
     }
   }

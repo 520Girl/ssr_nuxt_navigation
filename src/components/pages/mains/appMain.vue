@@ -14,7 +14,6 @@
 <script>
 export default {
   name: 'AppMain',
-  transition:'test',
   computed: {
     key() {
       return this.$route.path
@@ -26,7 +25,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 .fade-transform-leave-active,
 .fade-transform-enter-active {
   transition: all .5s;

@@ -11,9 +11,12 @@
               <span class="hot">热门推荐：</span>
             </div>
             <div class="search-menu ">
-              <p class="search-b">
-                免费游戏
-              </p>
+              <router-link class="search-b" tag="p" :to="{path:'/favorites/6090'}">
+                AI 大模型
+              </router-link>
+              <router-link class="search-b" tag="p" :to="{path:'/favorites/1508'}">
+                AI 训练模型
+              </router-link>
             </div>
           </div>
       </Row>
@@ -54,9 +57,42 @@
 <script>
 import loadingBlock from '@/components/common/loadingBlock'
 import search from '@/components/common/search'; //底部，以及主题控制
+import setting from '@/setting'
 export default {
+  head(){
+    const {fullPath,meta} = this.$route;
+    // const {title:asyncData_title,websiteInfo} = this.gradeCoinContent.content
+    // const title = `${meta.title.slice(0,meta.title.indexOf(',')+1)}-${asyncData_title}的${meta.title.slice(meta.title.indexOf(',')+1)}`
+    // const description = `${meta.description.slice(0,meta.description.indexOf(',')+1)}${websiteInfo},${meta.description.slice(meta.description.indexOf(',')+1)}`
+    // const imgUrl = `${setting.website}static/images/gradeCoin/${asyncData_imgUrl}`
+    const title = meta.title
+    const description = meta.description
+    const imgUrl = ''
+    return {
+      title: title,
+      meta: [
+        {hid: 'description', name: 'description', content:description},
+        {hid: 'keywords', name: 'keywords', content: title},
+        {name:'twitter:url', property: 'og:url', content:`${setting.website}${fullPath}`},
+        {name:'twitter:title', property: 'og:title', content:title},
+        {name:'twitter:description', property: 'og:description', content:description},
+        // {name:'twitter:image', property: 'og:image', content: imgUrl},
+      ]
+    }
+  },
   name: "rank",
   components:{loadingBlock,search},
+  async asyncData({ $api, route }){
+    const {news} = await $api.news.getNews()
+    let newsData = news.content
+    newsData = newsData.map(item=>{
+      item.status = false
+      return item
+    })
+    return{
+      newsData
+    }
+  },
   data(){
     return{
       select:{placeholder:'请输入需要查找的内容',inputValue:''},
@@ -72,7 +108,7 @@ export default {
     }
   },
   created() {
-    this.getNews()
+    // this.getNews()
   },
   methods:{
     search(){
