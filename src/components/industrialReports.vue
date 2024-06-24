@@ -69,7 +69,7 @@ import setting from "@/setting"
 import {mapGetters} from "vuex";
 
 export default {
-  name: "industrialReports",
+  name: "IndustrialReports",
   data() {
     return {
       setting: setting

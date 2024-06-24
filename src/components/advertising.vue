@@ -34,7 +34,7 @@
 <script>
 import setting from "@/setting"
 export default {
-  name: "advertising",
+  name: "Advertising",
   data(){
     return{
       setting:setting

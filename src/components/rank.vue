@@ -80,7 +80,7 @@ export default {
       ]
     }
   },
-  name: "rank",
+  name: "Rank",
   components:{loadingBlock,search},
   async asyncData({ $api, route }){
     const {news} = await $api.news.getNews()

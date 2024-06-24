@@ -33,7 +33,7 @@
 import setting from "@/setting"
 
 export default {
-  name: "reciprocalProject",
+  name: "ReciprocalProject",
   data() {
     return {
       setting: setting

@@ -80,7 +80,9 @@
   </div>
 </template>
 <script>
-
+export default {
+  name: 'Fanzhazhongxin',
+}
 </script>
 
 <style scoped lang="scss">

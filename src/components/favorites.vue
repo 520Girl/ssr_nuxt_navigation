@@ -39,7 +39,7 @@ export default {
       ]
     }
   },
-  name: "favorites",
+  name: "Favorites",
   components:{websiteOne,blogOneselfRight},
   async asyncData({ $api, params }) {
     const {website} = await $api.webSite.getWebsite({belong:params.belong,per_page:100,page:1,type:2})

@@ -39,7 +39,7 @@ import setting from "@/setting"
 import {mapGetters} from "vuex";
 
 export default {
-  name: "disclaimer",
+  name: "Disclaimer",
   data() {
     return {
       setting: setting

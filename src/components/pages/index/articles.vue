@@ -86,12 +86,12 @@
                           </div>
                         </template>
                         <template v-else>
-                          <a
+                          <div class="item-order"
                             :style="item.status === true ? 'background: #48ff47;' : ''"
                             @click="item.status = true" v-like="{url:$common().handleHrefUrl(item),belong:item.belong,title:item.belong,type:'EN',id:item.belongId}">
                             <span :class="item.status ? 'refresh_quan' : ''"></span>
                             <span class="fontSize-like">{{item.status === true ? $t('index.booked') : $t('index.booking')}}</span>
-                          </a>
+                          </div>
                         </template>
                       </div>
                     </li>

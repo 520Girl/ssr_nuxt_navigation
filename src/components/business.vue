@@ -38,7 +38,7 @@ import setting from "@/setting"
 import {mapGetters} from "vuex";
 
 export default {
-  name: "business",
+  name: "Business",
   data() {
     return {
       setting: setting

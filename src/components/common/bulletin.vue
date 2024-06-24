@@ -184,7 +184,7 @@
           color: red;
           padding: 0px $padding10;
           font-size: 18px;
-          transition: all .3s;
+          transition: transform .3s;
 
           &:hover {
             transform: rotate(180deg)

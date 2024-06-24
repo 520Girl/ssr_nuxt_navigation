@@ -74,7 +74,7 @@ export default {
       ]
     }
   },
-  name: "aboutnavai",
+  name: "Aboutnavai",
   data(){
     return{
       setting:setting

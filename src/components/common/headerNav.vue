@@ -69,7 +69,7 @@
               <i class="iconfont icon-lishiyouxi footSize-icon-slidebar mx-1 pdt-1-4"></i>
               <div class="app" :style="sidebarOnOff ? 'opacity: 0;' : 'opacity: 1;'">
                 <transition name="menuText" mode="in-out">
-                  <span class="footSize-text-slidebar" v-show="!sidebarOnOff">{{$t('advert')}}</span>
+                  <router-link tag="span"  :to="{path:'/advertising'}" class="footSize-text-slidebar" v-show="!sidebarOnOff">{{$t('SubmitUrl')}}</router-link>
                 </transition>
               </div>
             </router-link>

@@ -86,7 +86,7 @@
 import setting from "@/setting"
 
 export default {
-  name: "freeAiTools",
+  name: "FreeAiTools",
   data() {
     return {
       setting: setting

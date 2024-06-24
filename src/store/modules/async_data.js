@@ -1,6 +1,6 @@
 
 
-const state = {
+const state = ()=>({
   bulletinData: [],
   hotAppData:{content:[]},// 热门APP数据
   hotComicData:[],// 热门漫画数据
@@ -9,7 +9,7 @@ const state = {
   newWebData:[],// 最新网站数据
   oneLevelWebsite:[],
   websiteData:[]
-}
+})
 
 const mutations= {
   ASYNC_BULLETIN_DATA: (state, data) => { //异步获取公告数据

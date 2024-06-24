@@ -48,7 +48,7 @@ const router = new Router({
         },
       },{
         path: "tag/:author_id([A-Za-z]+)/:page(\\d+)",
-        name: 'Blog',
+        name: 'BlogTag',
         component: () => import('@/components/blog').then(m => m.default || m),
         meta: {
           title: 'AI导航新闻分类,博客,AI新闻,尊享',
@@ -56,7 +56,7 @@ const router = new Router({
         },
       },{
         path: "page/:page(\\d+)",
-        name: 'Blog',
+        name: 'BlogPage',
         component: () => import('@/components/blog').then(m => m.default || m),
         meta: {
           title: 'AI导航新闻,博客,AI新闻,尊享',
@@ -115,7 +115,7 @@ const router = new Router({
       component: layout,
       children: [{
         path: "/",
-        name: 'embody',
+        name: 'Embody',
         component: () => import('@/components/embody').then(m => m.default || m),
         meta: {
           title: 'AI导航免费工具集合尊享导航收录,AI收录,尊享',
@@ -130,7 +130,7 @@ const router = new Router({
       component: layout,
       children: [{
         path: "/",
-        name: 'rank',
+        name: 'Rank',
         component: () => import('@/components/rank').then(m => m.default || m),
         meta: {
           title: 'AI导航资讯,AI资讯,AI排行榜,尊享',
@@ -144,7 +144,7 @@ const router = new Router({
       component: layout,
       children: [{
         path: "/",
-        name: 'favorites',
+        name: 'Favorites',
         component: () => import('@/components/favorites').then(m => m.default || m),
         meta: {
           title: 'AI导航网站合集,AI网站,AI网站合集,尊享',
@@ -158,7 +158,7 @@ const router = new Router({
       component: layout,
       children: [{
         path: "/",
-        name: 'advertising',
+        name: 'Advertising',
         component: () => import('@/components/advertising').then(m => m.default || m),
         meta: {
           title: 'AI免费工具集合尊享导航广告联系,AI广告,尊享',
@@ -172,7 +172,7 @@ const router = new Router({
       component: layout,
       children: [{
         path: "/",
-        name: 'advertising',
+        name: 'Aboutnavai',
         component: () => import('@/components/aboutnavai').then(m => m.default || m),
         meta: {
           title: 'AI免费工具集合尊享导航关于我们,尊享',
@@ -183,11 +183,10 @@ const router = new Router({
     },
     { //反诈中心
       path: '/fanzhazhongxin',
-      name: 'fanzhazhongxin',
       component: layout,
       children: [{
         path: "/",
-        name: 'fanzhazhongxin',
+        name: 'Fanzhazhongxin',
         component: () => import('@/components/fanzhazhongxin').then(m => m.default || m),
         meta: {
           title: 'AI免费工具集合尊享导航国家反诈中心，ai反诈中心,尊享',
@@ -197,11 +196,10 @@ const router = new Router({
     },
     { //AICG行业报告
       path: '/free-ai-industry-reports',
-      name: 'industrialReports',
       component: layout,
       children: [{
         path: "/",
-        name: 'industrialReports',
+        name: 'IndustrialReports',
         component: () => import('@/components/industrialReports').then(m => m.default || m),
         meta: {
           title: 'AI免费工具集合尊享导航AIGC行业报告，ai行业报告,尊享,免费',
@@ -211,11 +209,10 @@ const router = new Router({
     },
     { //免费ai工具
       path: '/free-ai-tools',
-      name: 'freeAiTools',
       component: layout,
       children: [{
         path: "/",
-        name: 'freeAiTools',
+        name: 'FreeAiTools',
         component: () => import('@/components/freeAiTools').then(m => m.default || m),
         meta: {
           title: 'AI免费工具集合尊享导航ai免费工具，ai免费工具,chatgpt免费,尊享,免费',
@@ -225,11 +222,10 @@ const router = new Router({
     },
     { //互推计划
       path: '/reciprocal-project',
-      name: 'reciprocalProject',
       component: layout,
       children: [{
         path: "/",
-        name: 'reciprocalProject',
+        name: 'ReciprocalProject',
         component: () => import('@/components/reciprocalProject').then(m => m.default || m),
         meta: {
           title: 'AI免费工具集合尊享导航AI互推计划，AI互推计划,chatgpt免费,尊享,免费',
@@ -239,11 +235,10 @@ const router = new Router({
     },
     { //联系我们
       path: '/business',
-      name: 'business',
       component: layout,
       children: [{
         path: "/",
-        name: 'business',
+        name: 'Business',
         component: () => import('@/components/business').then(m => m.default || m),
         meta: {
           title: 'AI免费工具集合尊享导航联系我们，AI联系我们,chatgpt免费,尊享,免费',
@@ -253,11 +248,10 @@ const router = new Router({
     },
     { //免责声明
       path: '/disclaimer',
-      name: 'disclaimer',
       component: layout,
       children: [{
         path: "/",
-        name: 'business',
+        name: 'Disclaimer',
         component: () => import('@/components/disclaimer').then(m => m.default || m),
         meta: {
           title: 'AI免费工具集合尊享导航免责声明，AI免责声明,chatgpt免费,尊享,免费',
@@ -267,11 +261,10 @@ const router = new Router({
     },
     { //联系删除
       path: '/deleteinformation',
-      name: 'deleteinformation',
       component: layout,
       children: [{
         path: "/",
-        name: 'business',
+        name: 'Deleteinformation',
         component: () => import('@/components/deleteinformation').then(m => m.default || m),
         meta: {
           title: 'AI免费工具集合尊享导航联系删除，AI联系删除,chatgpt免费,尊享,免费',
@@ -282,11 +275,10 @@ const router = new Router({
 
     { //404
       path: '*',
-      name: 'lose',
       component: layout,
       children: [{
         path: "/",
-        name: 'advertising',
+        name: 'Lose',
         component: () => import('@/404/404').then(m => m.default || m),
         meta: {
           title: '404,页面找不到,AI导航,尊享',

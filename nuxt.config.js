@@ -1,4 +1,5 @@
 import path from 'path'
+import sitemap from "./src/static/sitemap";
 import i18n from './src/plugins/i18n/index'
 import setting from './src/setting'
 //! 1. 去掉console
@@ -24,28 +25,12 @@ export default {
     ]
   },
   srcDir: 'src/',
-  // Global CSS: https://go.nuxtjs.dev/config-css
-  // css:{
-  //   loaderOptions:{
-  //     sass:{prependData:`@import "~/assets/css/_bianlian.scss";`},
-  //     // sass:{prependData:`@import "@/assets/css/_handle.scss";`},
-
-  //   }
-  // },
   css: [
     // 'iview/dist/styles/iview.css'
     {src: '@/assets/css/_bianlian.scss', lang: 'scss'},
     {src: '@/assets/css/main.scss', lang: 'scss'},
     {src: '@/assets/css/_orderthemes.less', lang: 'less'},
 
-    // {
-    //   loaderOptions: {
-    //     sass: {
-    //       prependData: `@import "@/assets/css/_handle.scss";`
-    //     }
-    //   }
-    // }
-    // '@/assets/css/love.scss'
   ],
   // loading: './components/common/loadingHome.vue',
   loadingIndicator: {
@@ -56,9 +41,15 @@ export default {
   router: {
     // Run the middleware/auth.js on every page
     // middleware: 'auth',
-    scrollBehavior(to, from) {
-      // 文章详情也的地址栏如果有hash，会跳转到hash，因此这里判断只有地址栏没有hash才滚动到顶部
-      if (!to.hash) {
+    scrollBehavior(to, from, savedPosition) {
+      // 文章详情也的地址栏如果有hash，会跳转到hash，因此这里判断只有地址栏没有hash才滚动到顶部,或自动注入vue-router 中
+      if (to.hash) {
+        return {
+          selector: to.hash,
+        };
+      } else if (savedPosition) {
+        return savedPosition;
+      } else {
         return { x: 0, y: 0 };
       }
     },
@@ -66,19 +57,20 @@ export default {
   styleResources: {//配置变量全局使用 styleResources 配置的资源路径不能使用 ~ 和 @,要使用绝对或者相对路径
     scss: ['./assets/css/_bianlian.scss', './assets/css/_handle.scss'],
   },
-
+  analyze: true,
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/assets/js/api/axiosPackaging',
-    '~/assets/js/common',
-    {src: '~/assets/js/server', ssr: true},
-    {src: '~/assets/js/client', ssr: false},
-    {src: '~/store/persistedState.client', ssr: false},
+    '@/assets/js/api/axiosPackaging',
+    '@/assets/js/common',
+    {src: '@/plugins/iview', ssr: true},
+    {src: '@/assets/js/server', ssr: true},
+    {src: '@/assets/js/client', ssr: false},
+    {src: '@/store/persistedState.client', ssr: false},
     {src: '@/plugins/share', ssr: false},
     {src: '@/plugins/qrcode', mode: 'client'},
-   '~/plugins/svg-icon'
-    // 'iview/dist/iview.js'
+   '@/plugins/svg-icon'
   ],
+  //在 Nuxt.js 中， components 配置项用于自动注册你的组件。通过指定组件目录，Nuxt.js 会扫描所有在该目录下的组件，并自动注册它们，使你不需要在每个文件中手动导入这些组件。
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
@@ -96,7 +88,10 @@ export default {
     "@nuxtjs/router",
     '@nuxtjs/style-resources',
     ['@nuxtjs/i18n', i18n],
+    'nuxt-precompress',
+    "@nuxtjs/sitemap" // 生成网站地图 xml 发布seo的
   ],
+  sitemap:sitemap,
   axios: {
     proxy: true,
   },
@@ -111,7 +106,7 @@ export default {
   },
   server: { //配置服务端渲染
     port: process.env.PORT || 3000,
-    host: process.env.DOMAIN.replace("https://", "") || "0.0.0.0",
+    host: process.env.DOMAIN,
   },
   build:{
     extend(config, context) {
@@ -129,30 +124,69 @@ export default {
           { loader: "svg-sprite-loader", options: { symbolId: "icon-[name]" } },
         ],
       });
+      // 别名配置 用于router组件中
+      config.resolve.alias['@'] = path.join(__dirname, 'src');
     },
     babel:{
       plugins: [
         ...plugins
-      ]
+      ],
+      //打包大小优化
     }
-  }
-  // Build Configuration: https://go.nuxtjs.dev/config-build
-  // build: {
-  //   extend(config, ctx) {
-  //     if (ctx.isDev) {
-  //       // 查看别名配置信息
-  //       console.log(config.resolve.alias);
-  //       // 添加 alias 配置
-  //       // !这儿添加的别名不能在nuxt.config.js文件中使用
-  //       Object.assign(config.resolve.alias, {
-  //         'sass': path.resolve(__dirname, 'assets/sass'),
-  //       });
-  //     }
-  //   },
-  // loaders: {
-  //   sass: {
-  //     prependData: `@import "@/assets/css/_handle.scss";`
-  //   }
-  // }
-  // }
+  },
+  optimization: {
+    minimize: true,
+    splitChunks: {
+      chunks: 'all',
+      automaticNameDelimiter: '.',
+      name: true,
+      minSize: 10000,
+      maxSize: 244000,
+      cacheGroups: {
+        vendor: {
+          name: 'node_vendors',
+          test: /[\\/]node_modules[\\/]/,
+          chunks: 'all',
+          maxSize: 244000
+        },
+        styles: {
+          name: 'styles',
+          test: /\.(css|vue)$/,
+          chunks: 'all',
+          enforce: true
+        },
+        commons: {
+          test: /node_modules[\\/](vue|vue-loader|vue-router|vuex|vue-meta|core-js|@babel\/runtime|axios|webpack|setimmediate|timers-browserify|process|regenerator-runtime|cookie|js-cookie|is-buffer|dotprop|nuxt\.js)[\\/]/,
+          chunks: 'all',
+          priority: 10,
+          name: true
+        }
+      }
+    }
+  },
+  nuxtPrecompress: {
+    gzip: {
+      enabled: true,
+      filename: '[path].gz[query]',
+      threshold: 10240,
+      minRatio: 0.8,
+      compressionOptions: { level: 9 },
+    },
+    brotli: {
+      enabled: true,
+      filename: '[path].br[query]',
+      compressionOptions: { level: 11 },
+      threshold: 10240,
+      minRatio: 0.8,
+    },
+    enabled: true,
+    report: false,
+    test: /\.(js|css|html|txt|xml|svg)$/,
+    // Serving options
+    middleware: {
+      enabled: true,
+      enabledStatic: true,
+      encodingsPriority: ['br', 'gzip'],
+    },
+  },
 }

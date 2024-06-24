@@ -45,7 +45,7 @@
 import setting from "@/setting"
 
 export default {
-  name: "deleteinformation",
+  name: "Deleteinformation",
   data() {
     return {
       setting: setting

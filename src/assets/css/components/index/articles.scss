@@ -159,7 +159,7 @@
                 img{
                   width: 12px;
                   margin-left: 5px;
-                  transition: all 1s;
+                  transition: transform 1s;
                 }
               }
             }
@@ -244,13 +244,13 @@
                   position: absolute;
                   right: 5px;
                   .left-sign{
-                    .ivu-time{font-size: 0.12rem;}
+                    .ivu-time{font-size: 12px;}
                     vertical-align: text-bottom;
 
                   }
                   .right-sign{
                     vertical-align: text-bottom;
-                    font-size: 0.12rem;
+                    font-size: 12px;
                   }
                 }
               }

@@ -68,9 +68,15 @@ const weightFilters = (url,belong)=>{
     return url
   } else if (/\.(jpg|png|gif|jpeg)$/.test(newUrl)) {
     url = url.replace(/^\.\//, '/')
+    if (process.env.NODE_ENV === 'production'){
+      return url
+    }
     return '_nuxt'+url
   }
   url = url.replace(/^\.\//, '/')
+  if (process.env.NODE_ENV === 'production'){
+    return url
+  }
   return '_nuxt'+url
 }
 

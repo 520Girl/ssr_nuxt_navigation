@@ -66,7 +66,7 @@
 <script>
 import setting from "@/setting.js";
 export default {
-  name: "embody",
+  name: "Embody",
   data(){
     return {
       setting
