@@ -16,6 +16,7 @@
 <script>
 import websiteOne from "@/components/pages/mains/websiteOne";
 import blogOneselfRight from "@/components/pages/blog/blogOneselfRight"; //blog右侧
+import setting from '@/setting'
 export default {
   head(){
     const {fullPath,meta} = this.$route;

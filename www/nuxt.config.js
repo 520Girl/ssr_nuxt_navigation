@@ -21,7 +21,7 @@ export default {
       {hid: 'author', name: 'author', content: 'navai'},
     ],
     link: [
-      {rel: 'icon', type: 'image/x-icon', href:'./assets/images/favicon.ico' },
+      {rel: 'icon', type: 'image/x-icon', href:'/favicon.ico' },
     ]
   },
   srcDir: 'src/',

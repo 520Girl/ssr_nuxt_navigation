@@ -30,7 +30,8 @@ import {
   Message,
   Notice,
   Spin,
-  Card
+  Card,
+  Tag
 } from 'iview';
 const components = {
   Page,
@@ -59,7 +60,8 @@ const components = {
   Message,
   Notice,
   Spin,
-  Card
+  Card,
+  Tag
 }
 
 // 循环注册全局组件
