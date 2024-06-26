@@ -4,7 +4,7 @@
       <div class="sidebar-logo">
         <a href="/" class="logo-expanded auto-line-center boxSizing"
            :style="sidebarOnOff ? 'display:block;' : 'display:none;'">
-          <img :src="logoUrl" alt="logo" :alt="title">
+          <img :src="logoUrl" height="62" width="50" alt="logo" :alt="title">
         </a>
         <a href="" class="logo-collapsed auto-line-center boxSizing"
            :style="sidebarOnOff ? 'display:none;' : 'display:block;'">

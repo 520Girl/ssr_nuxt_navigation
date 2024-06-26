@@ -59,7 +59,7 @@
   //卡片
   .ivu-card-bordered{
     border-color:@ivuCardBordered!important;
-    border-right-color: unset;
+    //border-right-color: unset;
     a{
       &:hover{
         color:@hover;
@@ -89,13 +89,18 @@
   .ivu-collapse{
     background-color: @IvuCardHead;
     border-color:@ivuCardBordered ;
+    width: 100%;
     .ivu-collapse-item{
       border-top: 1px solid @ivuCardBordered;
+      width: 100%;
+      box-sizing: border-box;
       &:first-child{
         border-top: unset;
       }
       .ivu-collapse-header{
         border-bottom: unset!important;
+        width: 100%;
+        box-sizing: border-box;
         color:@fontColor;
       }
       .ivu-collapse-content{

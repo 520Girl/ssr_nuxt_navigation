@@ -34,13 +34,14 @@ Vue.directive('like', directive.clickLike)
 // Vue.prototype.$api = {appList,user,blog,gradeCoin,webSite,cartoon,image,slide,bulletin,news,mutulal}
 
 //引入公共样式
-require('@/assets/css/_orderthemes.less')
+// require('@/assets/css/_orderthemes.less')
 require('@/assets/css/reset.scss')
 require('@/assets/css/normalize.css')
 require('@/assets/css/border.scss')
 require('@/assets/css/common.scss')
 require('@/assets/css/transition.scss')
 require('@/assets/css/slider.scss')
+require('@/assets/css/commonmMixin.scss')
 
 
 //! 1. 添加默认主题

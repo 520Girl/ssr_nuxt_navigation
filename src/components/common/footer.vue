@@ -3,26 +3,26 @@
     <div class="footer-tools">
 <!--      到顶部-->
       <div href="javascript:void(0)" class="btn auto-line-center" @click="$common().scrollClickTop()">
-        <Tooltip content="回到顶部" placement="left">
+        <Tooltip :content="$t('footer.top')"  placement="left">
           <i class="iconfont icon-daohang fontSize-icon"></i>
         </Tooltip>
       </div>
 <!--      到顶部-->
 <!--     打开导航-->
       <div href="javascript:void(0)" class="btn auto-line-center" @click="handleSidebar" v-if="$route.name == 'detailed'" >
-        <Tooltip content="导航" placement="left">
+        <Tooltip :content="$t('footer.nav')"  placement="left">
           <Icon type="ios-keypad-outline fontSize-icon"></Icon>
         </Tooltip>
       </div>
 <!--     打开导航-->
 <!--      黑白主题 -->
       <div v-if="$store.state.themes == 'dark'" href="javascript:void(0)" class="btn auto-line-center" @click="theme('light')">
-        <Tooltip content="切换主题 " placement="left">
+        <Tooltip :content="$t('footer.switchThemes')" placement="left">
           <i class="iconfont icon-rijianmoshi fontSize-icon"></i>
         </Tooltip>
       </div>
       <div v-else href="javascript:void(0)" class="btn auto-line-center"  @click="theme('dark')">
-        <Tooltip content="切换主题 " placement="left">
+        <Tooltip :content="$t('footer.switchThemes')" placement="left">
           <i class="iconfont icon-dark fontSize-icon"></i>
         </Tooltip>
       </div>
@@ -32,107 +32,107 @@
     <div class="footer-body mx-15-2">
       <Row type='flex' justify="center" align="top" class-name="footer applyBck">
         <Col :sm="{span:7}" :xs="{ span: 24 }" class="footer-li">
-          <a class="footer-logo" :href="website" :title="title">
+          <router-link class="footer-logo" :to="website" :title="title">
             <img :src="mobileLogo" class="logo-light" :alt="title" height="71.5" width="254">
             <img :src="mobileLogo" class="logo-dark" :alt="title" height="71.5" width="280">
-          </a>
+          </router-link>
           <div class="text-sm">
             <span class="fontSize-text i-f-a">
-              AI免费工具集合尊享，是一个全方位的平台，一个聚合全球优质AI智能导航,包括
+              {{$t('footer.content_1')}}
             </span>
-            <router-link :to="{path:'/favorites/253'}" title="AI绘画">AI绘画</router-link>、
-            <router-link :to="{path:'/app'}" title="AI应用">AI应用</router-link>、
-            <router-link :to="{path:'/cartoon'}" title="AI漫画">AI漫画</router-link>、
-            <router-link :to="{path:'/blog'}" title="AI新闻">AI新闻</router-link>、
-            <router-link :to="{path:'/image'}" title="AI图片">AI图片</router-link>、
-            <router-link :to="{path:'/favorites/403'}" title="AI语音">AI语音</router-link>、
-            <router-link :to="{path:'/favorites/252'}" title="AI音乐">AI音乐</router-link>、
-            <router-link :to="{path:'/favorites/2336'}" title="AI论文">AI论文</router-link>、
-            <router-link :to="{path:'/favorites/3611'}" title="AI简历">AI简历</router-link>、
-            <router-link :to="{path:'/favorites/635'}" title="AI数字人">AI数字人</router-link>、
-            <router-link :to="{path:'/favorites/937'}" title="文本转语音">文本转语音</router-link>
-            等，还包括
-            <router-link :to="{path:'/favorites/2481'}" title="AIPPT">AIPPT</router-link>
-            <router-link :to="{path:'/favorites/gradeCoin'}" title="AI评分宝">AI评分宝</router-link>
-            <router-link :to="{path:'/favorites/2481'}" title="ChatPPT">ChatPPT</router-link>
+            <router-link :to="{path:'/favorites/253'}" :title="$t('footer.c_class_1')">{{$t('footer.c_class_1')}}</router-link>、
+            <router-link :to="{path:'/app'}" :title="$t('footer.c_class_2')">{{$t('footer.c_class_2')}}</router-link>、
+            <router-link :to="{path:'/cartoon'}" :title="$t('footer.c_class_3')">{{$t('footer.c_class_3')}}</router-link>、
+            <router-link :to="{path:'/blog'}" :title="$t('footer.c_class_4')">{{$t('footer.c_class_4')}}</router-link>、
+            <router-link :to="{path:'/image'}" :title="$t('footer.c_class_5')">{{$t('footer.c_class_5')}}</router-link>、
+            <router-link :to="{path:'/favorites/403'}" :title="$t('footer.c_class_6')">{{$t('footer.c_class_6')}}</router-link>、
+            <router-link :to="{path:'/favorites/252'}" :title="$t('footer.c_class_7')">{{$t('footer.c_class_7')}}</router-link>、
+            <router-link :to="{path:'/favorites/2336'}" :title="$t('footer.c_class_8')">{{$t('footer.c_class_8')}}</router-link>、
+            <router-link :to="{path:'/favorites/3611'}" :title="$t('footer.c_class_9')">{{$t('footer.c_class_9')}}</router-link>、
+            <router-link :to="{path:'/favorites/635'}" :title="$t('footer.c_class_10')">{{$t('footer.c_class_10')}}</router-link>、
+            <router-link :to="{path:'/favorites/937'}" :title="$t('footer.c_class_11')">{{$t('footer.c_class_11')}}</router-link>
+            {{$t('footer.c_2')}}
+            <router-link :to="{path:'/favorites/2481'}" :title="$t('footer.c_class_12')">{{$t('footer.c_class_12')}}</router-link>
+            <router-link :to="{path:'/favorites/gradeCoin'}" :title="$t('footer.c_class_13')">{{$t('footer.c_class_13')}}</router-link>
+            <router-link :to="{path:'/favorites/2481'}" :title="$t('footer.c_class_14')">{{$t('footer.c_class_14')}}</router-link>
             <span class="i-f-c">
-              等常用AI工具！在这个平台上，
+              {{$t('footer.c_3')}}
             </span>
             <p class="fontColor" style="line-height: 18px;">
-              <a :href="website" class="fontSize-text-orange" target="_blank" :title="title">navai.vip</a>
-              找到他们想要的，无论是娱乐、信息还是服务，我们都为你一网打尽。这里是你的个性化网络空，一切尽在
-              <a :href="website" class="fontSize-text-orange " target="_blank" :title="title">navai.vip</a>
+              <router-link :to="website" class="fontSize-text-orange" target="_blank" :title="title">navai.vip</router-link>
+              {{$t('footer.c_5')}}
+              <router-link :to="website" class="fontSize-text-orange " target="_blank" :title="title">navai.vip</router-link>
             </p>
           </div>
         </Col>
         <Col :sm="{span:10}" :xs="{ span: 24 }" class="footer-li">
-          <p class="footer-links fontSize-text-app">按下Ctrl+D或⌘+D 感谢收藏navai.vip！</p>
+          <p class="footer-links fontSize-text-app">{{$t('footer.c_6')}}</p>
           <div class="footer-nav-links">
             <li class="menu-item">
-              <a href="/blog/tag/AI/1" class="item-title">
-                <span>政策法规</span>
-              </a>
+              <router-link to="/blog/tag/AI/1" class="item-title">
+                <span>{{$t('footer.li_1')}}</span>
+              </router-link>
               <ul class="sub-menu">
                 <li  class="">
-                  <a href="/blog/623c33963c00c53a9cbb999a?title=生成式人工智能服务管理暂行办法" title="生成式人工智能服务管理暂行办法"><span>
-                    管理办法
-                  </span></a>
+                  <router-link to="/blog/623c33963c00c53a9cbb999a?title=生成式人工智能服务管理暂行办法" :title="$t('footer.li_2')"><span>
+                    {{$t('footer.li_2')}}
+                  </span></router-link>
                 </li>
                 <li  class="">
-                  <a href="/app/61ffb521b67c0000ba000525?title=互联网信息服务算法备案系统" title="互联网信息服务算法备案系统">
-                    <span>算法备案</span>
-                  </a>
+                  <router-link to="/app/61ffb521b67c0000ba000525?title=互联网信息服务算法备案系统" :title="$t('footer.li_3')">
+                    <span>{{$t('footer.li_3')}}</span>
+                  </router-link>
                 </li>
                 <li  class="">
-                  <a href="/fanzhazhongxin">
-                    <span>反诈中心</span>
-                  </a>
+                  <router-link to="/fanzhazhongxin">
+                    <span>{{$t('footer.li_4')}}</span>
+                  </router-link>
                 </li>
               </ul>
             </li>
             <li class="menu-item" >
-              <a href="/embody" class="item-title">
+              <router-link to="/embody" class="item-title">
                 <Icon type="md-radio-button-on" />
-                <span>应用提交</span>
-              </a>
+                <span>{{$t('footer.li_5')}}</span>
+              </router-link>
               <ul class="sub-menu">
                 <li  >
-                  <a href="/free-ai-industry-reports">
-                    <span>行业报告</span>
-                  </a>
+                  <router-link  to="/free-ai-industry-reports" :title="$t('footer.li_6')">
+                    <span>{{$t('footer.li_6')}}</span>
+                  </router-link>
                 </li>
                 <li class="">
-                  <a href="/advertising">
-                    <span>广告扶持</span>
-                  </a>
+                  <router-link to="/advertising" :title="$t('footer.li_7')">
+                    <span>{{$t('footer.li_7')}}</span>
+                  </router-link>
                 </li>
                 <li  >
-                  <a href="/reciprocal-project">
-                    <span>互推计划</span>
-                  </a>
+                  <router-link to="/reciprocal-project" :title="$t('footer.li_8')">
+                    <span>{{$t('footer.li_8')}}</span>
+                  </router-link>
                 </li>
               </ul>
             </li>
             <li class="menu-item" >
-              <a href="/aboutnavai" class="item-title">
+              <router-link to="/about" class="item-title" :title="$t('footer.li_9')">
                 <Icon type="md-radio-button-on" />
-                <span>关于我们</span>
-              </a>
+                <span>{{$t('footer.li_9')}}</span>
+              </router-link>
               <ul class="sub-menu">
                 <li >
-                  <a href="/business">
-                    <span>联系我们</span>
-                  </a>
+                  <router-link to="/business" :title="$t('footer.li_10')">>
+                    <span>{{$t('footer.li_10')}}</span>
+                  </router-link>
                 </li>
                 <li >
-                  <a href="/disclaimer">
-                    <span>免责声明</span>
-                  </a>
+                  <router-link to="/disclaimer" :title="$t('footer.li_11')">
+                    <span>{{$t('footer.li_11')}}</span>
+                  </router-link>
                 </li>
                 <li >
-                  <a href="/deleteinformation">
-                    <span>联系删除</span>
-                  </a>
+                  <router-link to="/deleteinformation" tag="a" :title="$t('footer.li_12')">
+                    <span>{{$t('footer.li_12')}}</span>
+                  </router-link>
                 </li>
               </ul>
             </li>
@@ -140,30 +140,30 @@
           <div class="footer-social"> </div>
         </Col>
         <Col :sm="{span:6}" :xs="{ span: 24 }" class="footer-li">
-          <div class="footer-mini-img" data-toggle="tooltip" title="" data-original-title="国家反诈中心APP">
+          <div class="footer-mini-img" data-toggle="tooltip" title="" :data-original-title="$t('footer.f_1')">
             <p class="">
-              <img class=" " src="https://www.aigc.cn/wp-content/uploads/2024/01/国家反诈中心APP-1.jpg" alt="国家反诈中心APPAIGC工具导航">
+              <img class=" " src="@/assets/images/guojiafanzhaapp.jpg"  :alt="$t('footer.f_1')">
             </p>
-            <span class="text-muted ">国家反诈中心APP</span>
+            <span class="text-muted ">{{$t('footer.f_1')}}</span>
           </div>
-          <div class="footer-mini-img"  title="" data-original-title="国家反诈中心APP二维码">
+          <div class="footer-mini-img"  title="" :data-original-title="$t('footer.f_2')">
             <p class="">
-              <img class=" " src="https://www.aigc.cn/wp-content/uploads/2024/01/国家反诈中心APP二维码-1.jpg" alt="国家反诈中心APP二维码AIGC工具导航">
+              <img class=" " src="@/assets/images/guojiafanzhaapp2.jpg" :alt="$t('footer.f_2')">
             </p>
-            <span class="text-muted ">国家反诈中心APP二维码</span>
+            <span class="text-muted ">{{$t('footer.f_2')}}</span>
           </div>
         </Col>
         <div class="footer-copyright">
-          <p style="text-align: center;">您可以阅读到最新的漫画，获取实时新闻，享受AI技术带来的美图，方便快捷地下载APP，使用智能导航找到你想要的内容，并且通过评分宝来评价和分享你的体验。我们的目标是让每个用户都能在</p>
+          <p style="text-align: center;">{{$t('footer.c_4')}}</p>
           <p style="text-align: center;">
             <span style="font-size: 10px;">
-              <a>Copyright</a>©2023-2024 <a href="https://www.aigc.cn/">AI工具导航</a>
-              <a href="https://www.aigc.cc/">尊享AI导航</a> <a :href="website" target="_blank" rel="nofollow noopener">蜀ICP备2024070055号-1</a>
+              <span>Copyright</span>©2023-2024 <router-link :to="website">{{$t('footer.b_1')}}</router-link>
+              <router-link :to="website">{{$t('footer.b_2')}}</router-link> <router-link :to="website" target="_blank" rel="nofollow noopener">{{$t('footer.b_3')}}</router-link>
               <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=navai.vip" target="_blank" rel="nofollow noopener">
-                <img src="@/assets/images/favicon1.png" :alt="title">蜀ICP备2024070055号
+                <img src="@/assets/images/guohui.png" width="20" height="22" :alt="title">{{$t('footer.b_4')}}
 </a>
             </span>
-            <span style="font-size: 8pt;"> <a href="https://www.12377.cn/" target="_blank" rel="nofollow noopener">12377违法和不良信息举报中心</a></span>
+            <span style="font-size: 8pt;"> <a href="https://www.12377.cn/" target="_blank" rel="nofollow noopener">{{$t('footer.b_5')}}</a></span>
           </p>&nbsp;&nbsp;
         </div>
       </Row>
@@ -215,7 +215,7 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-@import "~@/assets/css/animation.scss";
+//@import "~@/assets/css/animation.scss";
 @import "~@/assets/css/components/footer.scss";
 .footer-tools{
   bottom: 20px;

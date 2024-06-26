@@ -103,7 +103,7 @@
       .card{
         height: 100%;
         height:3rem ;
-        overflow: auto;
+        //overflow: auto;
         .ivu-card-head{
           padding:5px 10px;
           p{
@@ -198,7 +198,7 @@
 
                 }
                 .refresh_quan{
-                  @import url("~@/assets/css/animation.scss");
+                  //@import url("~@/assets/css/animation.scss");
                   animation: quan 0.8s linear infinite ;
                 }
                 span:last-child {

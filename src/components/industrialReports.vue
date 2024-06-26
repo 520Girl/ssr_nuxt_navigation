@@ -82,7 +82,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~@/assets/css/commonmMixin.scss";
+//@import "~@/assets/css/commonmMixin.scss";
 @include collect-page-layout;
 
 

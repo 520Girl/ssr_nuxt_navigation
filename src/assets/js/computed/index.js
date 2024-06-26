@@ -18,6 +18,22 @@ export default {
           return {url:`/${item.belong}/${item.belongId}?title=${item.title}`}
         }
       }
+    },
+    // 图片地址
+    imgUrl(){
+      return(url,type='article')=>{
+        if (/\.(jpg|png|gif|jpeg|svg)$/.test(url) && /^(http|https|ftp)/.test(url)){
+          return url;
+        }else {
+          // if (process.env.NODE_ENV === 'development'){
+          //   return `_nuxt/static/images/${type}/` + url;
+          // }else{
+          //   return `/static/images/${type}/` + url;
+          // }
+          return `${type}/` + url
+        //   return `${setting.website}/static/images/${type}/` + url;
+        }
+      }
     }
   }
 }

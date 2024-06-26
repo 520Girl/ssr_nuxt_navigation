@@ -60,7 +60,7 @@ const weightFilters = (url,belong)=>{
 
   // let newUrl = url.split(belong)[1]
 
-  if (/\.(jpg|png|gif|jpeg|svg)$/.test(url) && /(http|https)/.test(url)) {
+  if (/\.(jpg|png|gif|jpeg|svg)$/.test(url) && /^(http|https)/.test(url)) {
     //去掉可能存在的belong数字 src="/static/images/website/1909/55323.100.png"
     if (url.indexOf('http') > -1){
       url = url.slice(url.lastIndexOf('http'))

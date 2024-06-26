@@ -21,17 +21,29 @@ export default {
       {hid: 'author', name: 'author', content: 'navai'},
     ],
     link: [
-      {rel: 'icon', type: 'image/x-icon', href:'./assets/images/favicon.ico' },
+      {rel: 'icon', type: 'image/x-icon', href:setting.favicon },
     ]
   },
   srcDir: 'src/',
-  css: [
+  css: [ //公共样式 重置样式
     // 'iview/dist/styles/iview.css'
-    {src: '@/assets/css/_bianlian.scss', lang: 'scss'},
+    // {src: '@/assets/css/_bianlian.scss', lang: 'scss'},
     {src: '@/assets/css/main.scss', lang: 'scss'},
-    {src: '@/assets/css/_orderthemes.less', lang: 'less'},
-
+    // {src: '@/assets/css/commonmMixin.scss', lang: 'scss'},
+    // {src: '@/assets/css/normalize.css', lang: 'css'},
+    // {src: '@/assets/css/reset.scss', lang: 'scss'},
+    // {src: '@/assets/css/border.scss', lang: 'scss'},
+    {src: '@/assets/css/_orderthemes.less', lang: 'less'}
   ],
+  // 函数 变量
+  styleResources: {//配置变量全局使用 styleResources 配置的资源路径不能使用 ~ 和 @,要使用绝对或者相对路径
+    scss: [
+      './assets/css/_bianlian.scss',
+      './assets/css/_handle.scss',
+      './assets/css/commonmMixin.scss',
+      './assets/css/animation.scss'
+    ],
+  },
   // loading: './components/common/loadingHome.vue',
   loadingIndicator: {
     name: 'circle',
@@ -54,9 +66,6 @@ export default {
       }
     },
   },
-  styleResources: {//配置变量全局使用 styleResources 配置的资源路径不能使用 ~ 和 @,要使用绝对或者相对路径
-    scss: ['./assets/css/_bianlian.scss', './assets/css/_handle.scss'],
-  },
   analyze: true,
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -73,22 +82,29 @@ export default {
   //在 Nuxt.js 中， components 配置项用于自动注册你的组件。通过指定组件目录，Nuxt.js 会扫描所有在该目录下的组件，并自动注册它们，使你不需要在每个文件中手动导入这些组件。
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
-
+  image:{
+    provider: 'static',
+    // static: {
+    //   baseURL: 'https://www.navai.vip' // 会在图片前面加上这个前缀
+    // },
+    domains: ['www.runoob.com'],// 允许的域名
+    dir: process.env.NODE_ENV === 'development' ? '_nuxt/static/images/' : 'static/images/'
+  },
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [],
+  //开发会用到的模块
+  buildModules: [ '@nuxt/image','nuxt-precompress', '@nuxtjs/style-resources',],
   //https://v2.nuxt.com/docs/configuration-glossary/configuration-alias/
   alias: {
     '@static': path.resolve(__dirname, 'static/'),
     '@': path.resolve(__dirname, 'src/'),
   },
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
+  modules: [ //所有在 modules 中引入的模块会在应用启动前加载。无论是开发阶段还是生产环境，这些模块都会被应用。
     "@nuxtjs/axios",
     "@nuxtjs/proxy",
     "@nuxtjs/router",
-    '@nuxtjs/style-resources',
+
     ['@nuxtjs/i18n', i18n],
-    'nuxt-precompress',
     "@nuxtjs/sitemap" // 生成网站地图 xml 发布seo的
   ],
   sitemap:sitemap,

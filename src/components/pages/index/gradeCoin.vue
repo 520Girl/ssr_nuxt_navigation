@@ -51,8 +51,8 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '~@/assets/css/commonmMixin.scss'; //引入gradeCoin-menu;
-@import "~@/assets/css/animation.scss";
+//@import '~@/assets/css/commonmMixin.scss'; //引入gradeCoin-menu;
+//@import "~@/assets/css/animation.scss";
 .gradeCoin-container {
   display: inline-block;
   width: 100%;

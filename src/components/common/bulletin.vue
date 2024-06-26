@@ -1,9 +1,9 @@
 <template>
   <div class="bulletin-container contents-bck" id="bulletin">
     <transition name="bulletinShow" mode="in-out">
-      <section class="bulletin-content mx-15-2  applyBck" v-if="bulletinShow">
+      <section class="bulletin-content mx-15-2  applyBck">
         <!--              //上下滚动-->
-        <div class="bulletin-toBottom auto-line-between">
+        <div class="bulletin-toBottom auto-line-between"  v-if="bulletinShow">
           <div class="content ">
             <div class="suona">
               <Icon type="md-megaphone" />

@@ -21,7 +21,8 @@
               <ul class="comic-contain">
                 <li :data-index="index" v-for="(item,index) in cartoonData.content" :key="index" ref="comic_contain_li">
                   <div class="reader" >
-                    <img v-lazy="'/static/images/cartoon/'+$route.params.belong+'/'+$route.params.class+'/'+item" data-cartoon="cartoon5" :alt="index">
+<!--                    <img v-lazy="'/static/images/cartoon/'+$route.params.belong+'/'+$route.params.class+'/'+item" data-cartoon="cartoon5" :alt="index">-->
+                    <nuxt-img preload  fit="cover" loading="lazy" placeholder="/static/lazy/errorC2.jpg" width="318" height="426"  :src="imgUrl(item,'cartoon/'+$route.params.belong+'/'+$route.params.class+'/')" data-cartoon="cartoon5" :alt="$route.query.title+' '+(index+1)"/>
                   </div>
                   <span class="comic-ft fontSize-text-colornoH">{{(index+1)+'/'+cartoonData.content.length}}</span>
                 </li>

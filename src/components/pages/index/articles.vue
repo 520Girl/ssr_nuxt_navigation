@@ -5,16 +5,17 @@
               <Col :xl="{ span: 7 }" :lg="{span: 11}" :xs="{ span: 24 }" class-name="carousel-content">
                   <Carousel v-model="carousel.pitchOnImg" :autoplay="false"  radius-dot :arrow="carousel.content.slide.length === 1 ? 'never' :'hover'" style="height: 100%">
                       <CarouselItem  v-for="(item,index) in carousel.content.slide" style="height: 100%" :key="item._id" >
-                          <a
-                            :href="hrefUrl(item).url"
+                          <router-link tag="a"
+                            :to="hrefUrl(item).url"
                             :target="hrefUrl(item).target"
                             class="carousel"
                             v-click-data="{name:item.title,hrefUrl:$common().handleHrefUrl({belong:'slide',hrefUrl:item.hrefUrl,title:item.title}),imgUrl:`/static/images/${item.belong}/${item.imgUrl}`,belong:item.belong,id:item.belongId}" >
-                              <img v-lazy="`/static/images/${item.belong}` + item.imgUrl" data-article="article1" :alt="item.title" width="518" height="300">
-                              <div class="text  applyBck" :data-index="index" >
+                              <nuxt-img preload  fit="cover" loading="lazy" placeholder="/static/lazy/errorG2.png" :src="imgUrl(item.imgUrl,item.belong)" data-article="article1" :alt="item.title" width="518" height="300"/>
+<!--                            <img v-lazy="`/static/images/${item.belong}` + item.imgUrl" data-article="article1" :alt="item.title" width="518" height="300">-->
+                            <div class="text  applyBck" :data-index="index" >
                                   <h5 class="imgInIcon fontSize-text-colornoH">{{item.title}}</h5>
                               </div>
-                          </a>
+                          </router-link>
                       </CarouselItem>
                   </Carousel>
               </Col>
@@ -22,15 +23,15 @@
                   <div class="sliders-layout">
                     <Carousel   :autoplay="false" :autoplay-speed="1500" radius-dot :arrow="value.length === 1 ? 'never' : 'hover'"  v-for="(value,key,index1) in carousel.content" :key="key" v-if="value.length != 0 && key != 'slide'">
                       <CarouselItem  class="layout-li" v-for="(item,index) in value"  :key="item.imgUrl" >
-                        <a
-                          :href="hrefUrl(item).url"
+                        <router-link tag="a"
+                          :to="hrefUrl(item).url"
                           :target="hrefUrl(item).target"
                           class="carousel"
                           v-click-data="{name:item.title,hrefUrl:$common().handleHrefUrl(item),imgUrl:`/static/images/${item.belong}/${item.imgUrl}`,belong:item.belong,id:item.belongId}" >
                           <h5 class="overflow-eclipse applyBck fontSize-text-colornoH">{{item.title}}</h5>
-                          <img :src="item.imgUrl" data-article="article2" :alt="item.title" width="134"  height="76">
+                          <nuxt-img preload  fit="cover" loading="lazy"  :src="imgUrl(item.imgUrl,'article')" placeholder="/static/lazy/errorH1.png" data-article="article2" :alt="item.title" width="134"  height="76"/>
 <!--                          <img v-lazy="'/static/images/article'+ item.imgUrl" data-article="article2" :alt="item.imgAlt" width="134"  height="76">-->
-                        </a>
+                        </router-link>
                       </CarouselItem>
                     </Carousel>
                   </div>
@@ -51,16 +52,18 @@
                       <Icon type="md-radio-button-on" class="main-circle" :style="index == mainItem ? 'color:#f5a623;font-size:14px;' : 'font-size:12px;left:-15px; '"  v-else/>
                       <i class="main-line main-line-color"></i>
                       <div class="item-text">
-                        <a
-                          :href="hrefUrl(item).url"
+                        <router-link tag="a"
+                          :to="hrefUrl(item).url"
                           :target="hrefUrl(item).target"
                           class="item-title"
                           v-click-data="{name:item.title,hrefUrl:$common().handleHrefUrl(item),imgUrl:`/static/images/${item.belong}/${item.imgUrl}`,belong:item.belong,id:item.belongId}">
                           {{ item.title }}
-                          <img v-lazy="`/static/images/${item.belong}/${item.imgUrl}`"  data-article="article3" alt="" v-if="item.imgUrl" :alt="item.title">
+<!--                          <nuxt-img preload  fit="fill" loading="lazy"  :src="imgUrl(item.imgUrl,item.belong)" data-article="article3" placeholder="/static/images/app/errorA4.png"  height="78" width="256" v-if="item.imgUrl" :alt="item.title"/>-->
+                          <img v-lazy="`/static/images/${item.belong}/${item.imgUrl}`" height="12" width="12"  data-article="article3" alt="" v-if="item.imgUrl" :alt="item.title"/>
+
                           <Icon type="ios-stats-outline" v-else/>
-                        </a>
-                        <span>
+                        </router-link>
+                        <span style="display: inline-block;min-height: 26px;min-width: 70px;">
                           <template v-if="item.score != 0" >
                             <Rate allow-half disabled :count="5"  v-model="item.score" >
                                 <span class="fontSize-text-color">{{item.score}}</span>
@@ -72,11 +75,12 @@
                         </span>
                       </div>
                       <div class="item-img" v-show="index == mainItem">
-                        <a :href="hrefUrl(item).url"
+                        <router-link tag="a"  :to="hrefUrl(item).url"
                            :target="hrefUrl(item).target"
                         >
-                          <img v-lazy="`/static/images/${item.belong}/${item.imgUrl}`" data-article="article4" :title="$t('index.booking')">
-                        </a>
+                          <nuxt-img preload  fit="fill" loading="lazy"  :src="imgUrl(item.imgUrl,item.belong)" height="78" width="256"  :title="item.title" placeholder="/static/lazy/errorA4.png" data-article="article4"/>
+<!--                          <img  v-lazy="`/static/images/${item.belong}/${item.imgUrl}`" data-article="article4" :title="item.title">-->
+                        </router-link>
                         <template v-if="item.belong != 'news'">
                           <div class="item-order"
                             :style="item.status === true ? 'background: #48ff47;' : ''"
@@ -102,7 +106,7 @@
                     <Collapse v-model="collapse.pitchOnTag" >
                         <Panel :name="String(index)" v-for="(item,index) in collapse.allCollapse" :key="item._id">
                             <span class="fontSize-text-color">{{item.title}}</span>
-                            <Badge :count="item.heartNum" overflow-count="99" color="magenta"  show-zero ></Badge>
+                            <Badge :count="item.heartNum" overflow-count="99" color="magenta"></Badge>
                             <router-link tag="p"
                              :to="{path:`/blog/${item._id}`,query:{title:item.title}}"
                              v-click-data="{name:item.title,hrefUrl:$common().handleHrefUrl({belong:'blog',belongId:item._id,title:item.title}),imgUrl:'/static/images/blog' + item.imgUrl,belong:'blog',id:item._id}"
@@ -153,16 +157,6 @@
         type: Array,
         default: () => ([])
       }
-    },
-    filters:{
-      imgUrlFilters(url) {
-        if (/\.(jpg|png|gif|jpeg|svg)$/.test(url) && /^(http|https)/.test(url)) {
-          return url
-        } else if (/\.(jpg|png|gif|jpeg)$/.test(url)) {
-          return 123
-        }
-        return 123
-      },
     },
     data() {
       return {
@@ -262,5 +256,5 @@
 </script>
 <style lang="scss" scoped>
     @import "~@/assets/css/components/index/articles.scss";
-    @import "~@/assets/css/animation.scss";
+    //@import "~@/assets/css/animation.scss";
 </style>

@@ -1,13 +1,4 @@
 @charset "utf-8";
-
-/*
-//这个是加在pc端
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-  -webkit-box-sizing: border-box;
-} */
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dd, dl, dt, li, ol, ul, fieldset, form, label, legend {
   margin: 0;
   padding: 0;
@@ -18,7 +9,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 html {
   background-color: #fff;
   color: #000000;
-  font-size: 12px
+  font-size: 12px;
 }
 
 body,
@@ -46,7 +37,7 @@ td,
 pre,
 xmp {
   margin: 0;
-  padding: 0
+  padding: 0;
 }
 
 body,
@@ -61,7 +52,7 @@ code,
 kbd,
 samp {
   line-height: 1.5;
-  font-family: tahoma, arial, "Hiragino Sans GB", simsun, sans-serif
+  font-family: tahoma, arial, "Hiragino Sans GB", simsun, sans-serif;
 }
 
 h1,
@@ -76,7 +67,7 @@ input,
 textarea,
 button,
 select {
-  font-size: 100%
+  font-size: 100%;
 }
 
 h1,
@@ -85,7 +76,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: tahoma, arial, "Hiragino Sans GB", "微软雅黑", simsun, sans-serif
+  font-family: tahoma, arial, "Hiragino Sans GB", "微软雅黑", simsun, sans-serif;
 }
 
 h1,
@@ -96,7 +87,7 @@ h5,
 h6,
 b,
 strong {
-  font-weight: normal
+  font-weight: normal;
 }
 
 address,
@@ -106,29 +97,29 @@ em,
 i,
 optgroup,
 var {
-  font-style: normal
+  font-style: normal;
 }
 
 table {
   border-collapse: collapse;
   border-spacing: 0;
-  text-align: left
+  text-align: left;
 }
 
 caption,
 th {
-  text-align: inherit
+  text-align: inherit;
 }
 
 ul,
 ol,
 menu {
-  list-style: none
+  list-style: none;
 }
 
 fieldset,
 img {
-  border: 0
+  border: 0;
 }
 
 img,
@@ -137,7 +128,7 @@ input,
 textarea,
 button,
 select {
-  vertical-align: middle
+  vertical-align: middle;
 }
 
 article,
@@ -151,7 +142,7 @@ figcaption,
 hgroup,
 details,
 menu {
-  display: block
+  display: block;
 }
 
 audio,
@@ -159,19 +150,19 @@ canvas,
 video {
   display: inline-block;
   *display: inline;
-  *zoom: 1
+  *zoom: 1;
 }
 
 blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: "\0020"
+  content: "\0020";
 }
 
 textarea {
   overflow: auto;
-  resize: vertical
+  resize: vertical;
 }
 
 input,
@@ -189,11 +180,11 @@ a {
 button::-moz-focus-inner,
 input::-moz-focus-inner {
   padding: 0;
-  border: 0
+  border: 0;
 }
 
 mark {
-  background-color: transparent
+  background-color: transparent;
 }
 
 a,
@@ -208,7 +199,7 @@ del {
 
 sup,
 sub {
-  vertical-align: baseline
+  vertical-align: baseline;
 }
 
 html {

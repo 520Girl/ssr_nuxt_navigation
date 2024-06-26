@@ -97,8 +97,8 @@
                       <div class="wrapBg"></div>
                       <div class="infoBlock infoBlock-fasico">
                         <div class="bg commonBg" :style="'background:linear-gradient('+item.bg[0]+'deg,'+item.bg[1]+','+item.bg[2]+');background-color:'+item.bg[1]+';'"  ></div>
-<!--                        <div class="infoIcon background-cover" v-lazy:background-image="'/static/images/cartoon/'+item.belongLogo1+'/'+item.imgUrl" data-cartoon="cartoon1" ></div>-->
-                        <div class="infoIcon background-cover" v-lazy:background-image="`./static/images/cartoon/${item.belongLogo1}/${item.imgUrl}`" data-cartoon="cartoon1" :title="item.title" ></div>
+                        <nuxt-img preload  fit="cover" loading="lazy" placeholder=/static/lazy/errorC1.jpg"  class="infoIcon background-cover" :src="imgUrl(item.imgUrl,'cartoon/'+item.belongLogo1)" data-image="cartoon1" :title="item.title" />
+<!--                        <div class="infoIcon background-cover" v-lazy:background-image="`./static/images/cartoon/${item.belongLogo1}/${item.imgUrl}`" data-cartoon="cartoon1" :title="item.title" ></div>-->
                         <div class="infoWrap">
                           <div class="info-title fontSize-text-colornoH" >{{item.title}}</div>
                           <div class="info-desc overflow-eclipse-2 fontSize-text-colornoH">{{item.explain}}</div>
@@ -131,7 +131,8 @@
                     v-click-data="{name:item.title,hrefUrl:`/image/${item.belongLogo1}?title=${item.title}`,imgUrl:'/static/image/'+item.belongLogo1+'/'+item.imgUrl[0],belong:'image',id:item.belongLogo1}"
                   >
                     <div class="allLike-img">
-                      <div class="img" v-lazy:background-image="'/static/image/'+item.belongLogo1+'/'+item.imgUrl[0]" data-image="image1"></div>
+<!--                      <div class="img" v-lazy:background-image="'/static/images/image/'+item.belongLogo1+'/'+item.imgUrl[0]" data-image="image1"></div>-->
+                      <nuxt-img preload  fit="cover" loading="lazy" placeholder="/static/lazy/errorI0.jpg"  class="img" :src="imgUrl(item.imgUrl,'image/'+item.belongLogo1 + '/' + item.imgUrl[0])" data-image="image1" :title="item.title" />
                       <div class="tagSlope">
                         <span>{{item.allNum}}</span>
                       </div>

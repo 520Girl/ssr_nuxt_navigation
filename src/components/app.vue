@@ -231,7 +231,7 @@
                     <h1>{{hotAppData.title}}</h1>
                     <p>{{hotAppData.explain}}</p>
                     <img :src="hotAppData.appContent" alt="" style="width: 100%;height: 100%;">
-                    <share></share>
+                    <share :config="shareConfig"></share>
                     <div class="appMain-button">
                         <a href="javascript:void(0)" @click="$common().goto(hotAppData.hrefUrl)"  target="_blank" >{{$t('app.go_towebsite_more')}}</a>
                     </div>
@@ -281,6 +281,9 @@
           {name:'twitter:description', property: 'og:description', content:description},
           {name:'twitter:image', property: 'og:image', content: imgUrl},
           {hid: 'author', name: 'author', content: 'navai'},
+        ],
+        link: [
+          { rel: 'stylesheet', href: 'https://cdn.bootcss.com/social-share.js/1.0.16/css/share.min.css' }
         ]
       }
     },
@@ -320,6 +323,25 @@
             commentsLength:0,
             eyeAppNum:0,
             hotAppNum:0
+          },
+          shareConfig: {
+            url:`${setting.website}${this.$route.path}` , // 网址，默认使用 window.location.href
+            sites: [
+              "qzone",
+              "qq",
+              "weibo",
+              "wechat",
+              "douban",
+              "tencent",
+              "linkedin",
+              "google",
+              "facebook",
+              "twitter",
+            ], // 启用的站点
+            // disabled: ["google", "facebook", "twitter"], // 禁用的站点
+            wechatQrcodeTitle: this.$t("blog.details.WeChat_scan"), // 微信二维码提示文字
+            wechatQrcodeHelper:
+              `<p>${this.$t("blog.details.Click_WeChat_Discover")}</p><p>${this.$t("blog.details.QR_Share")}</p>`,
           },
           userInfo:{},
           time3:new Date().getTime() - 60*60*1000*50,

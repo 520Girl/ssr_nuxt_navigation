@@ -282,7 +282,7 @@ export default {
                 padding-right: 20px;
               }
               .refresh_quan{
-                @import url("~@/assets/css/animation.scss");
+                //@import url("~@/assets/css/animation.scss");
                 animation: quan 0.8s linear infinite ;
               }
               .refresh{

@@ -1,5 +1,5 @@
 @charset "utf-8";
-@import "~@/assets/css/commonmMixin.scss"; //公共样式分享 mainUnit-share
+//@import "~@/assets/css/commonmMixin.scss"; //公共样式分享 mainUnit-share
 .app-container{
   .app-layout{
     display: inline-block;
@@ -45,7 +45,7 @@
         }
       }
       .leftIcon.current{
-        @import "~@/assets/css/animation.scss";
+        //@import "~@/assets/css/animation.scss";
         transform: rotate(180deg);
         animation: leftIconRo 2.5s infinite ;
       }

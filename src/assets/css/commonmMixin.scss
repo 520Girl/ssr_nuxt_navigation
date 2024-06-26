@@ -1,5 +1,4 @@
 
-//评分栏
 @mixin grade-width{
     .grade-width{
       margin-top: $margin05;
@@ -41,8 +40,6 @@
       }
 
     }
-
-
 }
 
 //留言 间隔提示，工具栏头部 ,相关内容栏
@@ -89,7 +86,6 @@
         transition: all 0.5s;
       }
       .refresh_quan{
-        @import url("./animation.scss");
         animation: quan 0.8s linear infinite ;
       }
     }

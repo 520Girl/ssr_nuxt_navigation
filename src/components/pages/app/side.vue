@@ -103,7 +103,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "~@/assets/css/animation.scss";
+//@import "~@/assets/css/animation.scss";
 .footer-tools{
   position: fixed;
   bottom: 200px;
