@@ -1,0 +1,10 @@
+User-agent: *
+
+Disallow: /404
+
+Sitemap: https://www.navai.vip/sitemap/blog.xml
+Sitemap: https://www.navai.vip/sitemap/app.xml
+Sitemap: https://www.navai.vip/sitemap/website.xml
+Sitemap: https://www.navai.vip/sitemap/gradeCoin.xml
+Sitemap: https://www.navai.vip/sitemap/cartoon.xml
+Sitemap: https://www.navai.vip/sitemap/index.xml

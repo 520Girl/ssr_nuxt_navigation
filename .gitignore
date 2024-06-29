@@ -38,7 +38,7 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
-static/
+/static
 
 # TypeScript v1 declaration files
 typings/
@@ -89,4 +89,4 @@ sw.*
 .DS_Store
 
 # Vim swap files
-*.swp
+

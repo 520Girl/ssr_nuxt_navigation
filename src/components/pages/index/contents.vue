@@ -54,7 +54,9 @@
       <!--          访问数据展示-->
       <Row v-show="customizeMenu.newClick" type='flex' justify="start" align="middle" class-name="menu-text my-layout mx-15-2">
         <Col :xxl="{span:3}" :xl="{ span:4 }" :md="{span:6}"  :sm="{ span:8}" :xs="{ span: 12 }" class-name="clickData-item" v-for="(item,index) in $store.state.clickData" :key="index" >
-          <a href="javascript:void(0)" @click="$common().goto(item.hrefUrl,item.name)" class="item-content auto-line-start applyBck" >
+          <a  @click="$common().goto(item.hrefUrl,item.name)"
+             :href="hrefUrl(item.hrefUrl).url"
+             :target="hrefUrl(item.hrefUrl).target" class="item-content auto-line-start applyBck" >
             <img v-lazy="item.imgUrl" data-hotWeb ="hotWeb1" :alt="item.name" class="ivu-avatar">
             <div class="text">
               <h5 class="fontSize-text overflow-eclipse">{{item.name}}</h5>

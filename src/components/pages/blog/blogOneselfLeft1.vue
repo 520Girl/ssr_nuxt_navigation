@@ -92,17 +92,25 @@
       ...mapGetters(['blogAuthor']),
       blogTitle(){
         const author_id = this.$route.params.author_id  ? this.$route.params.author_id  : 'news'
-        if (this.blogAuthor.filter(item=>item.author_id === author_id).length > 0){
-          return this.blogAuthor.filter(item=>item.author_id === author_id)[0].title
+        if (Array.isArray(this.blogAuthor)){
+          const blog_Author_arr =  this.blogAuthor.filter(item=>item.author_id === author_id)[0]
+          if (blog_Author_arr.length > 0){
+            return blog_Author_arr[0].title
+          }
         }
-        return this.blogAuthor[0].title
+        return 'AI新闻'
+
       },
       blogExplain(){
         const author_id = this.$route.params.author_id  ? this.$route.params.author_id  : 'news'
-        if (this.blogAuthor.filter(item=>item.author_id === author_id).length > 0){
-          return this.blogAuthor.filter(item=>item.author_id === author_id)[0].explain
+        if (Array.isArray(this.blogAuthor)){
+          const blog_Author_arr =  this.blogAuthor.filter(item=>item.author_id === author_id)[0]
+          if (blog_Author_arr.length > 0){
+            return blog_Author_arr[0].explain
+          }
         }
-        return this.blogAuthor[0].title
+        return 'navai.vip的AI新闻功能使用先进的人工智能技术来实时收集、整理和发布最新的新闻报道。这种全自动的新闻生产方式不仅大大提高了新闻发布的效率，而且能够确保报道的立场中立和事实准确。通过我们的AI新闻，您可以随时随地获取到最新、最热门的新闻动态。'
+
       },
     },
     methods:{

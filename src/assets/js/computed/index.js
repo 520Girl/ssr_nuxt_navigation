@@ -14,6 +14,12 @@ export default {
           return {url:item.belongId,target:'_blank'}
         }else if (item.belong === "slide"){
           return {url:item.hrefUrl,target:'_blank'}
+        }else if (item.belong === "visit"){
+          if (!/(http|https|ftp)/.test(item)){
+            return {url:`/${item}?title=${setting.website}`};
+          }else{
+            return {url:item,target:'_blank'}
+          }
         }else{
           return {url:`/${item.belong}/${item.belongId}?title=${item.title}`}
         }
@@ -21,7 +27,7 @@ export default {
     },
     // 图片地址
     imgUrl(){
-      return(url,type='article')=>{
+      return(url,type='public')=>{
         if (/\.(jpg|png|gif|jpeg|svg)$/.test(url) && /^(http|https|ftp)/.test(url)){
           return url;
         }else {
@@ -30,7 +36,11 @@ export default {
           // }else{
           //   return `/static/images/${type}/` + url;
           // }
-          return `${type}/` + url
+          if (process.env.NODE_ENV === 'development'){
+            return `/${type}/` + url;
+          }else{
+            return `/static/images/${type}/` + url;
+          }
         //   return `${setting.website}/static/images/${type}/` + url;
         }
       }

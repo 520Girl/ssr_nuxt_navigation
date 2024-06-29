@@ -32,10 +32,10 @@ export default {
       meta: [
         {hid: 'description', name: 'description', content:description},
         {hid: 'keywords', name: 'keywords', content: title},
-        {name:'twitter:url', property: 'og:url', content:`${setting.website}${fullPath}`},
-        {name:'twitter:title', property: 'og:title', content:title},
-        {name:'twitter:description', property: 'og:description', content:description},
-        // {name:'twitter:image', property: 'og:image', content: imgUrl},
+        {name:'og:url', property: 'og:url', content:`${setting.website}${fullPath}`},
+        {name:'og:title', property: 'og:title', content:title},
+        {name:'og:description', property: 'og:description', content:description},
+        // {name:'og:image', property: 'og:image', content: imgUrl},
         {hid: 'author', name: 'author', content: 'navai'},
       ]
     }

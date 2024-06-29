@@ -63,7 +63,7 @@ export default ({app, $axios, store, redirect},inject) => {
   instance.interceptors.response.use(
     (res) => {
       //这里是为了加密做处理,并且解密
-      res = decode_res_data(res)
+      res = decode_res_data(res,redirect)
       return res.status === 200 || 202 ? Promise.resolve(res.data) : Promise.reject(res)
     },
     error => {

@@ -33,8 +33,8 @@
       <Row type='flex' justify="center" align="top" class-name="footer applyBck">
         <Col :sm="{span:7}" :xs="{ span: 24 }" class="footer-li">
           <router-link class="footer-logo" :to="website" :title="title">
-            <img :src="mobileLogo" class="logo-light" :alt="title" height="71.5" width="254">
-            <img :src="mobileLogo" class="logo-dark" :alt="title" height="71.5" width="280">
+            <nuxt-img preload loading="lazy"  format="webp" placeholder="/static/lazy/errorA4.png" :src="imgUrl(mobileLogo)" class="logo-light" :alt="title" height="71.5" width="254"/>
+            <nuxt-img preload loading="lazy"  format="webp" placeholder="/static/lazy/errorA4.png" :src="imgUrl(mobileLogo)" class="logo-dark" :alt="title" height="71.5" width="280"/>
           </router-link>
           <div class="text-sm">
             <span class="fontSize-text i-f-a">
@@ -142,13 +142,13 @@
         <Col :sm="{span:6}" :xs="{ span: 24 }" class="footer-li">
           <div class="footer-mini-img" data-toggle="tooltip" title="" :data-original-title="$t('footer.f_1')">
             <p class="">
-              <img class=" " src="@/assets/images/guojiafanzhaapp.jpg"  :alt="$t('footer.f_1')">
+              <nuxt-img preload loading="lazy" format="webp" :src="imgUrl('guojiafanzhaapp.jpg')"  :alt="$t('footer.f_1')" />
             </p>
             <span class="text-muted ">{{$t('footer.f_1')}}</span>
           </div>
           <div class="footer-mini-img"  title="" :data-original-title="$t('footer.f_2')">
             <p class="">
-              <img class=" " src="@/assets/images/guojiafanzhaapp2.jpg" :alt="$t('footer.f_2')">
+              <nuxt-img preload loading="lazy" format="webp"  :src="imgUrl('guojiafanzhaapp2.jpg')"  :alt="$t('footer.f_2')"/>
             </p>
             <span class="text-muted ">{{$t('footer.f_2')}}</span>
           </div>
@@ -160,7 +160,7 @@
               <span>Copyright</span>©2023-2024 <router-link :to="website">{{$t('footer.b_1')}}</router-link>
               <router-link :to="website">{{$t('footer.b_2')}}</router-link> <router-link :to="website" target="_blank" rel="nofollow noopener">{{$t('footer.b_3')}}</router-link>
               <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=navai.vip" target="_blank" rel="nofollow noopener">
-                <img src="@/assets/images/guohui.png" width="20" height="22" :alt="title">{{$t('footer.b_4')}}
+                <nuxt-img preload loading="lazy" format="webp" :src="imgUrl('guohui.png')"   width="20" height="22" :alt="title"/>{{$t('footer.b_4')}}
 </a>
             </span>
             <span style="font-size: 8pt;"> <a href="https://www.12377.cn/" target="_blank" rel="nofollow noopener">{{$t('footer.b_5')}}</a></span>
@@ -177,6 +177,7 @@ import common from '@/assets/js/common'
 import JumpBubble from '@/assets/js/jumpBubble'
 
 import {mapGetters} from "vuex";
+import imgUrl from "../../assets/js/handleloadingImag";
 
 export default {
   name: 'footers',

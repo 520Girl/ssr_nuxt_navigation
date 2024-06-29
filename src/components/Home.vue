@@ -45,10 +45,10 @@
         meta: [
           {hid: 'description', name: 'description', content:meta.description},
           {hid: 'keywords', name: 'keywords', content: meta.title},
-          {name:'twitter:url', property: 'og:url', content:`${setting.website}${fullPath}`},
-          {name:'twitter:title', property: 'og:title', content:meta.title},
-          {name:'twitter:description', property: 'og:description', content:meta.description},
-          // {name:'twitter:image', property: 'og:image', content:''},
+          {name:'og:url', property: 'og:url', content:`${setting.website}${fullPath}`},
+          {name:'og:title', property: 'og:title', content:meta.title},
+          {name:'og:description', property: 'og:description', content:meta.description},
+          // {name:'og:image', property: 'og:image', content:''},
         ]
       }
     },
@@ -59,12 +59,27 @@
        const {blog} = await $api.blog.getBolgLists( {page:1,per_page:5,tag:'',order:-1})
        const {slide} = await $api.slide.getSlide({pre_page:5})
        const {news}= await $api.news.getCountUpDate()
+       switch (store.state.webBase.hotsliderDefault){
+         case 'allLike':
+           await store.dispatch('async_data/actions_allLike')
+           break;
+         case 'hotComic':
+           await store.dispatch('async_data/actions_hotComicData')
+           break;
+         case 'hotApp':
+           await store.dispatch('async_data/actions_hotAppData')
+           break;
+         case 'hotWeb':
+           await store.dispatch('async_data/actions_hotWebData','h')
+           break;
+         case 'newAddress':
+           await store.dispatch('async_data/actions_hotWebData','n')
+           break;
+         default:
+           await store.dispatch('async_data/actions_allLike')
+           break;
+       }
        await store.dispatch('async_data/actions_bulletinData')
-       await store.dispatch('async_data/actions_hotAppData')
-       await store.dispatch('async_data/actions_hotComicData')
-       await store.dispatch('async_data/actions_allLike')
-       await store.dispatch('async_data/actions_hotWebData','h')
-       await store.dispatch('async_data/actions_hotWebData','n')
        await store.dispatch('async_data/actions_website')
         return {
           gradeCoinLists: gradeCoins,

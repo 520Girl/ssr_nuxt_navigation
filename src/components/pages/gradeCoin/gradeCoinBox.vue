@@ -9,7 +9,7 @@
                        class="content-top auto-line-start"
                        v-click-data="{name:item.title,hrefUrl:`/gradeCoin/${item._id}?title=${item.title}`,imgUrl:'./static/images/gradeCoin/'+ item.imgUrl,belong:'gradeCoin',id:item._id}">
             <div class="top-img" >
-              <img v-lazy="'/static/images/gradeCoin/'+ item.imgUrl" data-grade="gradeCoin1" width="74" height="74" :alt="item.title" />
+              <nuxt-img preload loading="lazy"  format="webp" placeholder="/static/lazy/errorG2.png" :src="imgUrl(item.imgUrl,'gradeCoin')" data-grade="gradeCoin1" width="74" height="74" :alt="item.title" />
             </div>
             <div class="top-content">
               <h5 class="fontSize-text-color">{{item.title}}</h5>
@@ -30,7 +30,7 @@
           <div class="content-bottom auto-line-between">
             <a href="" title="" class="defend">
               <count-to-number :value="Number(item.guaranteeMoney)" :time="1" :suffix="suffix($t('gradeCoins.W'))" :key="$t('gradeCoins.W')" ></count-to-number>
-              <img src="@/assets/images/gradeCoin/bao.png" width="102" height="30" title="" alt="">
+              <nuxt-img loading="lazy" format="webp" :src="imgUrl('bao.png','public')"    width="102" height="30" title="AI认证" alt=""/>
             </a>
             <div class="like overflow-eclipse">
                 <span

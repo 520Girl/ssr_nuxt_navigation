@@ -39,7 +39,8 @@
                                    class="item-left"
                                    v-click-data="{name:item.title,hrefUrl:`/app/${item._id}?title=${item.title}`,imgUrl:'/static/images/app/' + item.imgUrl,belong:'app',id:item._id}" >
 <!--                        <img v-lazy="'/static/images/app/'+item.imgUrl" data-app="app1" :alt="item.title">-->
-                        <div class="background-cover" v-lazy:background-image="'/static/images/app/' + item.imgUrl" data-app="app1" :alt="item.title"></div>
+<!--                        <div class="background-cover" v-lazy:background-image="'/static/images/app/' + item.imgUrl" data-app="app1" :alt="item.title"></div>-->
+                        <nuxt-img preload  fit="cover" loading="lazy" placeholder="/static/lazy/errorG3.png" :src="imgUrl(item.imgUrl,'app')" data-app="app1" :alt="item.title" width="70" height="70"/>
                       </router-link>
                       <div class="item-right ">
                         <div class="title ">
@@ -97,7 +98,7 @@
                       <div class="wrapBg"></div>
                       <div class="infoBlock infoBlock-fasico">
                         <div class="bg commonBg" :style="'background:linear-gradient('+item.bg[0]+'deg,'+item.bg[1]+','+item.bg[2]+');background-color:'+item.bg[1]+';'"  ></div>
-                        <nuxt-img preload  fit="cover" loading="lazy" placeholder=/static/lazy/errorC1.jpg"  class="infoIcon background-cover" :src="imgUrl(item.imgUrl,'cartoon/'+item.belongLogo1)" data-image="cartoon1" :title="item.title" />
+                        <nuxt-img preload  fit="cover" loading="lazy" placeholder="/static/lazy/errorC1.jpg"  class="infoIcon background-cover" :src="imgUrl(item.imgUrl,'cartoon/'+item.belongLogo1)" data-image="cartoon1" :title="item.title" />
 <!--                        <div class="infoIcon background-cover" v-lazy:background-image="`./static/images/cartoon/${item.belongLogo1}/${item.imgUrl}`" data-cartoon="cartoon1" :title="item.title" ></div>-->
                         <div class="infoWrap">
                           <div class="info-title fontSize-text-colornoH" >{{item.title}}</div>
@@ -132,7 +133,7 @@
                   >
                     <div class="allLike-img">
 <!--                      <div class="img" v-lazy:background-image="'/static/images/image/'+item.belongLogo1+'/'+item.imgUrl[0]" data-image="image1"></div>-->
-                      <nuxt-img preload  fit="cover" loading="lazy" placeholder="/static/lazy/errorI0.jpg"  class="img" :src="imgUrl(item.imgUrl,'image/'+item.belongLogo1 + '/' + item.imgUrl[0])" data-image="image1" :title="item.title" />
+                      <nuxt-img preload  fit="outside" loading="lazy" placeholder="/static/lazy/errorI0.jpg"  class="img" :src="imgUrl(item.imgUrl,'image/'+item.belongLogo1)" data-image="image1" :title="item.title" style="width: 100%;margin: auto;" />
                       <div class="tagSlope">
                         <span>{{item.allNum}}</span>
                       </div>
@@ -261,24 +262,42 @@
       ...mapGetters(['hotslider','hotsliderDefault'])
     },
     created() {
+      const state = this.$store.state.async_data
       this.titleName = this.hotslider
+      if (!this.hotsliderDefault || this.hotsliderDefault === ''){
+        this.hotsliderDefault = 'allLike'
+      }
       this.titleButton[this.hotsliderDefault] = true;
       //! 服务端获取的数据
-      const state = this.$store.state.async_data
-      if (state.hotAppData.content.length > 0){
-        this.hotAppData = state.hotAppData
-      }
-      if (state.hotComicData.length > 0){
-        this.hotComicData = state.hotComicData
-        this.hotComicData.some((item,index)=>{
-            item.bg = this.cartoonBagAdd(index)
+      switch (this.hotsliderDefault){
+        case 'allLike':
+          this.allLike = state.allLike.length > 0 ? state.allLike : []
+          break;
+        case 'hotComic':
+          if (state.hotComicData.length > 0){
+            this.hotComicData = state.hotComicData
+            this.hotComicData.some((item,index)=>{
+                item.bg = this.cartoonBagAdd(index)
+              }
+            )
           }
-        )
+          break;
+        case 'hotApp':
+          if (state.hotAppData.content.length > 0){
+            this.hotAppData = state.hotAppData
+          }
+          break;
+        case 'hotWeb':
+          this.hotWebData = state.hotWebData.length > 0 ? state.hotWebData : []
+          break;
+        case 'newAddress':
+          this.newWebData = state.newWebData.length > 0 ? state.newWebData : []
+          break;
+        default:
+          this.allLike = state.allLike.length > 0 ? state.allLike : []
+          break;
       }
 
-      this.allLike = state.allLike.length > 0 ? state.allLike : []
-      this.hotWebData = state.hotWebData.length > 0 ? state.hotWebData : []
-      this.newWebData = state.newWebData.length > 0 ? state.newWebData : []
     },
     mounted() {
 

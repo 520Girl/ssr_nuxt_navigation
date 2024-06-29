@@ -9,7 +9,7 @@
                             :to="hrefUrl(item).url"
                             :target="hrefUrl(item).target"
                             class="carousel"
-                            v-click-data="{name:item.title,hrefUrl:$common().handleHrefUrl({belong:'slide',hrefUrl:item.hrefUrl,title:item.title}),imgUrl:`/static/images/${item.belong}/${item.imgUrl}`,belong:item.belong,id:item.belongId}" >
+                            v-click-data="{name:item.title,hrefUrl:$common().handleHrefUrl({belong:'slide',hrefUrl:item.hrefUrl,title:item.title}),imgUrl:`/static/images/${item.belong}/${item.belong}/${item.imgUrl}`,belong:item.belong,id:item.belongId}" >
                               <nuxt-img preload  fit="cover" loading="lazy" placeholder="/static/lazy/errorG2.png" :src="imgUrl(item.imgUrl,item.belong)" data-article="article1" :alt="item.title" width="518" height="300"/>
 <!--                            <img v-lazy="`/static/images/${item.belong}` + item.imgUrl" data-article="article1" :alt="item.title" width="518" height="300">-->
                             <div class="text  applyBck" :data-index="index" >

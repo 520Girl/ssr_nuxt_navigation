@@ -4,12 +4,12 @@
       <div class="sidebar-logo">
         <a href="/" class="logo-expanded auto-line-center boxSizing"
            :style="sidebarOnOff ? 'display:block;' : 'display:none;'">
-          <img :src="logoUrl" height="62" width="50" alt="logo" :alt="title">
+          <nuxt-img preload loading="lazy" format="webp" :src="imgUrl(logoUrl)"  height="62" width="50" :alt="title"/>
         </a>
         <a href="" class="logo-collapsed auto-line-center boxSizing"
            :style="sidebarOnOff ? 'display:none;' : 'display:block;'">
           <!--          <img :src="logoUrl" alt="logo" :alt="title">-->
-          <img :src="mobileLogo" alt="logo" :alt="title" width="220" height="71.5">
+          <nuxt-img preload loading="lazy" :src="mobileLogo" alt="logo" :alt="title" width="220" height="71.5"/>
         </a>
       </div>
 

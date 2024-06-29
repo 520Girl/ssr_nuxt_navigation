@@ -3,7 +3,7 @@
     <transition name="bulletinShow" mode="in-out">
       <section class="bulletin-content mx-15-2  applyBck">
         <!--              //上下滚动-->
-        <div class="bulletin-toBottom auto-line-between"  v-if="bulletinShow">
+        <div class="bulletin-toBottom auto-line-between" >
           <div class="content ">
             <div class="suona">
               <Icon type="md-megaphone" />
@@ -88,12 +88,15 @@
       },
       //上向下滚动公告
       trundleToBottomBulletin() {
-        setInterval(() => {
-          this.bulletin++
-          if (this.bulletin > this.bulletinData.length - 1) {
-            this.bulletin = 0
-          }
-        }, 2000)
+        setTimeout(()=>{
+          setInterval(() => {
+            this.bulletin++
+            if (this.bulletin > this.bulletinData.length - 1) {
+              this.bulletin = 0
+            }
+          }, 2000)
+        },3000)
+
       },
       // 从左向右滚动
       // trundleLeftRightBulletin() {

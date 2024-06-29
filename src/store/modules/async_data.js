@@ -68,7 +68,7 @@ const actions ={
     commit('ASYNC_ONE_LEVEL_WEBSITE_DATA',res.website.content)
   },
   async actions_website({ commit,state }, data){
-    const res = await this.$api.webSite.getWebsite({page:0,per_page:8,belong:'',order:-1,num:20})
+    const res = await this.$api.webSite.getWebsite({page:1,per_page:8,belong:'',order:-1,num:4})
     commit('ASYNC_WEBSITE_DATA',res.website.content)
   }
 }
