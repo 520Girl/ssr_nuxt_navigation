@@ -91,6 +91,8 @@ npm run build
    5. 使用 `@nuxt/i18n  + vue-i18n` 实现国际化
    6. 使用 'sass less' 实现主题切换
 
-
+#项目结果
+![img_2.png](img_2.png)
+![img_1.png](img_1.png)
 #### 文档
 1. [nuxt2.x 非官方中文文档](https://www.w3cschool.cn/nuxtjs/nuxtjs-opyl36g3.html)

@@ -44,6 +44,18 @@ export default {
         //   return `${setting.website}/static/images/${type}/` + url;
         }
       }
-    }
+    },
+    //懒加载图片的src
+    // lazyImgUrl(){
+    //   return(url,type='',id='')=>{
+    //     if (/\.(jpg|png|gif|jpeg|svg)$/.test(url) && /^(http|https|ftp)/.test(url)){
+    //       return url;
+    //     }else if (id !== '' && type !== ''){
+    //       return `/static/images/${type}/${id}/${url}`;
+    //     }else{
+    //       return `/static/images/${type}/${url}`;
+    //     }
+    //   }
+    // }
   }
 }

@@ -44,6 +44,7 @@
               </div>
               <div class="item-content-img">
                 <img v-lazy="`/static/images/website/${item.belongOne}/${item1.favicon}`" :alt="item1.title" height="38" width="38" data-hotweb="hotWeb1">
+<!--                <img v-lazy="lazyImgUrl(item1.favicon,'website',item.belongOne)" :alt="item1.title" height="38" width="38" data-hotweb="hotWeb1">-->
               </div>
               <div class="text">
                 <h5 class="fontSize-text overflow-eclipse">{{item1.title}}</h5>

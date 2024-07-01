@@ -3,6 +3,7 @@ import getRouterList from './src/static/sitemap'
 import i18n from './src/plugins/i18n/index'
 import setting from './src/setting'
 
+
 //! 1. 去掉console
 let plugins = []
 if (process.env.NODE_ENV === 'production'){
@@ -86,7 +87,7 @@ export default async function() {
       },
       // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
       //开发会用到的模块
-      buildModules: [ 'nuxt-precompress', '@nuxtjs/style-resources',],
+      buildModules: [ 'nuxt-precompress', '@nuxtjs/style-resources','nuxt-purgecss'],
       //https://v2.nuxt.com/docs/configuration-glossary/configuration-alias/
       alias: {
         '@static': path.resolve(__dirname, 'static/'),
@@ -97,6 +98,7 @@ export default async function() {
         "@nuxtjs/axios",
         "@nuxtjs/proxy",
         "@nuxtjs/router",
+        '@nuxtjs/pwa',
         "@nuxt/image",
         ['@nuxtjs/i18n', i18n],
         "@nuxtjs/sitemap" // 生成网站地图 xml 发布seo的
@@ -117,6 +119,103 @@ export default async function() {
       server: { //配置服务端渲染
         port: process.env.PORT || 3000,
         host: process.env.DOMAIN,
+      },
+      //生成 PWA 应用， 生成一个 manifest.json 文件，并自动生成一个 service worker 文件。
+      pwa: {
+        manifest: {
+          name: setting.title,
+          short_name: setting.short_title,
+          lang: 'zh',
+          display: 'standalone',
+          theme_color: '#2c8a26',
+          background_color: 'rgba(0,0,0,0.65)'
+        },
+        workbox: { //接口缓存，静态资源缓存，路由缓存
+          // 启动时直接获取最新的 service worker
+          clientsClaim: true,
+          // 新的 service worker 替换当前 service worker 时立即接管现有客户端
+          skipWaiting: true,
+          // 启用离线分析
+          offlineAnalytics: true,
+          preCaching: [
+            // 预缓存的资源
+            '/assets/images/logoside.png',
+            '/assets/images/logoXI.png',
+            '/assets/images/wldf.jpg',
+            '/favicon.ico',
+            '/navai.png',
+          ],
+          runtimeCaching: [
+            {
+              urlPattern: new RegExp('https://navai\.vip/api/common/base'),
+              handler: 'NetworkFirst',
+              method: 'GET',
+              options: {
+                cacheName: 'api-cache/base',
+                expiration: {
+                  maxAgeSeconds: 60 * 60 * 24,
+                },
+                cacheableResponse: {
+                  statuses: [0, 200],
+                }
+              }
+            },
+            {
+              urlPattern: new RegExp('https://navai\.vip/api/website/oneItem'),
+              handler: 'NetworkFirst',
+              method: 'GET',
+              options: {
+                cacheName: 'api-cache/oneItem',
+                expiration: {
+                  maxAgeSeconds: 60 * 60 * 24,
+                },
+                cacheableResponse: {
+                  statuses: [0, 200],
+                }
+              }
+            },
+            {
+              urlPattern: new RegExp('^https://navai.vip/api/gradeCoins'),
+              handler: 'NetworkFirst',
+              method: 'GET',
+              options: {
+                cacheName: 'api-cache/gradeCoins',
+                expiration: {
+                  maxAgeSeconds: 60 * 60 * 24,
+                },
+                cacheableResponse: {
+                  statuses: [0, 200],
+                }
+              }
+            }
+          ]
+        },
+        icon: {
+          source: 'src/assets/images/logoXI.png',  // 源图标文件路径
+          fileName: 'logoXI.png'  // 设置生成图标文件名称模板
+          // fileName: 'icons/[name]-[size].[ext]'  // 设置生成图标文件名称模板
+        },
+        meta: {
+          // Meta标签配置
+          theme_color: '#7de24a',
+          mobileApp: true,
+          mobileAppIOS: true,
+          appleStatusBarStyle: 'black-translucent',
+          favicon: true,
+          name: setting.short_title,
+          author: '安慕吸',
+          description: setting.description,
+          ogType: 'website',
+          ogSiteName: setting.title,
+          ogTitle: setting.title,
+          ogDescription: setting.description,
+          ogHost: setting.website,
+          ogImage: '/navai.png',
+          ogUrl: setting.website,
+          charset: 'utf-8',
+          viewport: 'width=device-width, initial-scale=1',
+          nativeUI: true
+        }
       },
       build:{
         extend(config, context) {
@@ -145,8 +244,28 @@ export default async function() {
           plugins: [
             ...plugins
           ],
-          //打包大小优化
         }
+      },
+      //处理 未使用的css
+      purgeCSS: {
+        mode: 'webpack',
+        enabled: ({ isDev, isClient }) => (!isDev && isClient), // or `false` when in dev/debug mode
+        paths: [
+          'src/components/**/*.vue',
+          'src/assets/css/**/*.css',
+          'src/assets/css/**/*.less',
+          'src/assets/css/**/*.scss',
+          'pages/**/*.vue',
+          'src/plugins/**/*.js'
+        ],
+        styleExtensions: ['.css'],
+        whitelist: ['body', 'html', 'nuxt-progress'],
+        extractors: [
+          {
+            extractor: content => content.match(/[A-z0-9-:\\/]+/g) || [],
+            extensions: ['html', 'vue', 'js']
+          }
+        ]
       },
       optimization: {
         minimize: true, // 启用代码压缩
@@ -201,7 +320,8 @@ export default async function() {
           enabledStatic: true, // 启用静态文件的压缩
           encodingsPriority: ['br', 'gzip'], // 控制优先级，按顺序优先选择采用的压缩格式
         },
-      }
+      },
+
     }
   }catch(e){
     console.error('Error during build process:', e);

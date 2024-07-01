@@ -280,7 +280,15 @@ const router = new Router({
         },
       }],
     },
-
+    { //页面报错
+      path: '/error',
+      name: 'lose',
+      component: () => import('@/404/error').then(m => m.default || m),
+      meta: {
+        title: 'error,AI导航资讯,AI排行榜,尊享',
+        description:'资源加载失败，请联系管理员，'
+      }
+    },
     { //404
       path: '*',
       component: layout,

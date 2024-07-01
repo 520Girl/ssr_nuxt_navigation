@@ -1,6 +1,7 @@
 
 module.exports={
   title: "AI免费工具集合尊享导航", //标题
+  short_title: "navai.vipAI工具", //短标题
   website: "https://navai.vip", //域名
   favicon: "/favicon.ico", //icon static 下的图片
   email:'uglygirlvip@gmail.com',
