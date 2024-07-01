@@ -48,6 +48,7 @@ const store = () => new Vuex.Store({
       state.locale = data
     },
     getIsMobile:function(state,data){ //获取平台类型
+      console.log('getIsMobile',data)
       state.isMobile = data
     },
     getThemes:function(state,data){

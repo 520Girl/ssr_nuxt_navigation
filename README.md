@@ -40,22 +40,22 @@ npm run build
 ```
 1. 渐变效果：在nuxt 这种有一个全局的渐变transition name为page，可以直接使用，不需要额外的配置
    1. 该项目配置到了 /assets/css/transition.scss 文件中，可以直接使用
-      2. 公共样式： 配置地址 可以为client.js 和 server.js 中的样式或者是nuxt.config.js 中的css属性
-         1.client.js配置：`require('@/assets/css/reset.scss') ...` 客户端使用
-         2.server.js配置：`require('~/assets/css/reset.scss') ...` 服务端使用
-         3.nuxt.config.js配置：`css: ['@/assets/css/reset.scss', '@/assets/css/common.scss']` 全局使用，这里常用于初始化样式
-         4.nuxt.config.js配置：`buildModules: ['@nuxtjs/style-resources']` 全局使用，常用变量 或者函数，动画等 
-         ```nuxt.config.js
-          styleResources: {//配置变量全局使用 styleResources 配置的资源路径不能使用 ~ 和 @,要使用绝对或者相对路径
-           scss: [
-             './assets/css/_bianlian.scss',
-             './assets/css/_handle.scss',
-             './assets/css/commonmMixin.scss',
-             './assets/css/animation.scss'
-           ],
-          },
-          ```
-
+2. 公共样式： 配置地址 可以为client.js 和 server.js 中的样式或者是nuxt.config.js 中的css属性
+   1.client.js配置：`require('@/assets/css/reset.scss') ...` 客户端使用
+   2.server.js配置：`require('~/assets/css/reset.scss') ...` 服务端使用
+   3.nuxt.config.js配置：`css: ['@/assets/css/reset.scss', '@/assets/css/common.scss']` 全局使用，这里常用于初始化样式
+   4.nuxt.config.js配置：`buildModules: ['@nuxtjs/style-resources']` 全局使用，常用变量 或者函数，动画等
+   5.**_注意_** syleResources 配置的资源会导入每一个组件，这样会导致不是公共的样式也导入到每个组件中打包过大，所以需要配置白名单，只导入需要的组件，我就犯错这样的错误
+   ```nuxt.config.js
+    styleResources: {//配置变量全局使用 styleResources 配置的资源路径不能使用 ~ 和 @,要使用绝对或者相对路径
+     scss: [
+       './assets/css/_bianlian.scss',
+[//]: # ('./assets/css/_handle.scss',)
+       './assets/css/commonmMixin.scss',
+       './assets/css/animation.scss'
+     ],
+    },
+    ```
 
 # 项目问题
 ### 当项目无法启动时，请检查以下问题：

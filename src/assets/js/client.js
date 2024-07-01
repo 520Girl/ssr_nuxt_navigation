@@ -1,11 +1,7 @@
 // 需要在客户端的
 import Vue from 'vue';
 import directive from "./directive";
-import store from "@/store/index.js";
-// import '@/components/pages/svg'
-// import '@/components/common/qrcode'
-// import '@/components/common/share'
-// import '@/components/common/urlVelocity'
+// import store from "@/store/index.js";
 import handleloadingImag from '@/assets/js/handleloadingImag'
 import VueLazyload from "vue-lazyload";
 // import {appList,user,blog,gradeCoin,webSite,cartoon,image,slide,bulletin,news,mutulal} from '@/assets/js/api/reqModule';
@@ -44,22 +40,6 @@ require('@/assets/css/slider.scss')
 require('@/assets/css/commonmMixin.scss')
 
 
-//! 1. 添加默认主题
-let themes = localStorage.getItem('themes')
-if (themes && themes.includes('light')) {
-  window.document.documentElement.setAttribute("data-theme", 'light'); //scss
-  window.document.documentElement.setAttribute("class", 'light'); //less
-  store().commit('getThemes', 'light');
-} else {
-  window.document.documentElement.setAttribute("data-theme", 'dark');
-  window.document.documentElement.setAttribute("class", 'dark');
-  store().commit('getThemes', 'dark');
-}
-function isMobile(){
-  let flag  = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
-  return flag
-}
-isMobile() ? store().commit("getIsMobile",true)  : store().commit("getIsMobile",false)
 
 
 //使用懒加载图片,实现不同图片加载不同的loading
@@ -93,7 +73,27 @@ Vue.use(VueLazyload, {
   // }
 })
 
+export default ({app,router,store},inject)=>{
+  function isMobile(){
+    let flag  = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
+    return flag
+  }
+  isMobile() ? store.commit("getIsMobile",true)  : store.commit("getIsMobile",false)
+  console.log('isMobile',isMobile() ? true : false)
+  console.log('themes',store.state.isMobile)
 
+  //! 1. 添加默认主题
+  let themes = localStorage.getItem('themes')
+  if (themes && themes.includes('light')) {
+    window.document.documentElement.setAttribute("data-theme", 'light'); //scss
+    window.document.documentElement.setAttribute("class", 'light'); //less
+    store.commit('getThemes', 'light');
+  } else {
+    window.document.documentElement.setAttribute("data-theme", 'dark');
+    window.document.documentElement.setAttribute("class", 'dark');
+    store.commit('getThemes', 'dark');
+  }
+}
 
 
 

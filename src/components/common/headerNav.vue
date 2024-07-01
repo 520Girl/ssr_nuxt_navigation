@@ -9,7 +9,7 @@
         <a href="" class="logo-collapsed auto-line-center boxSizing"
            :style="sidebarOnOff ? 'display:none;' : 'display:block;'">
           <!--          <img :src="logoUrl" alt="logo" :alt="title">-->
-          <nuxt-img preload loading="lazy" :src="mobileLogo" alt="logo" :alt="title" width="220" height="71.5"/>
+          <nuxt-img preload loading="lazy" :src="mobileLogo" alt="logo" :alt="title" width="220" height="71"/>
         </a>
       </div>
 
@@ -29,7 +29,7 @@
               </transition>
             </div>
             <!--          当是左导航是关闭的时候  start-->
-            <ul class="app-sidebar"slot="content" >
+            <ul class="app-sidebar" slot="content" >
               <li style="white-space: nowrap;padding-top: 5px;" v-for="(item1,index1) in item.content" :key="index1">
                 <router-link tag="a" :to="{path:`/favorites/${item1.belong}`}" class="fontSize-text" :title="item1.title">{{item1.title}}</router-link>
               </li>
@@ -92,7 +92,7 @@
             </svg>
             <img :src="mobileLogo" :alt="title" class="modileIMG" width="222" height="66" @click="handleHideSidebar([sidebarOnOff,sidebarOnOff])">
           </div>
-          <div v-if="!$store.state.isMobile" class="left-nav auto-line-center" >
+          <div v-if="!isMobile" class="left-nav auto-line-center" >
             <div class="left-nav-item">
               <router-link tag="span"  :to="{path:'/embody'}"class=" iconfont icon-link fontSize-icon"></router-link>
               <router-link tag="span"  :to="{path:'/embody'}" class="fontSize-text">{{$t('SubmitUrl')}}</router-link>
@@ -101,19 +101,19 @@
               <i class=" iconfont icon-lishiyouxi fontSize-icon"></i>
               <span class="fontSize-text">{{$t('advert')}}</span>
             </router-link>
-            <div class="left-nav-item" @click="changeLcale('zh-CN')" v-if="this.$store.state.locale == 'zh-CN'">
+            <div class="left-nav-item" @click="changeLcale('zh-CN')" v-if="isLocale === 'zh-CN'">
               <svg-icon name="china"></svg-icon>
               <span class="fontSize-text">{{$t('china')}}</span>
             </div>
-            <div class="left-nav-item" @click="changeLcale('en')" v-if="this.$store.state.locale == 'zh-CN'">
+            <div class="left-nav-item" @click="changeLcale('en')" v-if="isLocale === 'zh-CN'">
               <svg-icon name="usa"></svg-icon>
               <span class="fontSize-text">{{$t('english')}}</span>
             </div>
-            <div class="left-nav-item" @click="changeLcale('en')" v-if="this.$store.state.locale == 'en'">
+            <div class="left-nav-item" @click="changeLcale('en')" v-if="isLocale === 'en'">
               <svg-icon name="usa"></svg-icon>
               <span class="fontSize-text">{{$t('english')}}</span>
             </div>
-            <div class="left-nav-item" @click="changeLcale('zh-CN')" v-if="this.$store.state.locale == 'en'">
+            <div class="left-nav-item" @click="changeLcale('zh-CN')" v-if="isLocale === 'en'">
               <svg-icon name="china"></svg-icon>
               <span class="fontSize-text">{{$t('china')}}</span>
             </div>
@@ -134,7 +134,7 @@
       </header>
       <!--          语言导航栏-->
       <popup :popup="languageSideOnOff" :type="'slider'" @close="handleSidebar">
-        <div class="left-nav auto-line-center" slot="popupMain" >
+        <div class="auto-line-center left-nav " slot="popupMain" >
           <div class="left-nav-item">
             <router-link tag="i"  :to="{path:'/embody'}" class=" iconfont icon-link fontSize-icon"></router-link>
             <router-link tag="span"  :to="{path:'/embody'}" class="fontSize-text">{{$t('SubmitUrl')}}</router-link>
@@ -143,19 +143,19 @@
             <i class=" iconfont icon-lishiyouxi fontSize-icon"></i>
             <span class="fontSize-text">{{$t('advert')}}</span>
           </router-link>
-          <div class="left-nav-item" @click="changeLcale('zh-CN')" v-if="this.$store.state.locale == 'zh-CN'">
+          <div class="left-nav-item" @click="changeLcale('zh-CN')" v-if="isLocale === 'zh-CN'">
             <svg-icon name="china"></svg-icon>
             <span class="fontSize-text">{{$t('china')}}</span>
           </div>
-          <div class="left-nav-item" @click="changeLcale('en')" v-if="this.$store.state.locale == 'zh-CN'">
+          <div class="left-nav-item" @click="changeLcale('en')" v-if="isLocale === 'zh-CN'">
             <svg-icon name="usa"></svg-icon>
             <span class="fontSize-text">{{$t('english')}}</span>
           </div>
-          <div class="left-nav-item" @click="changeLcale('en')" v-if="this.$store.state.locale == 'en'">
+          <div class="left-nav-item" @click="changeLcale('en')" v-if="isLocale === 'en'">
             <svg-icon name="usa"></svg-icon>
             <span class="fontSize-text">{{$t('english')}}</span>
           </div>
-          <div class="left-nav-item" @click="changeLcale('zh-CN')" v-if="this.$store.state.locale == 'en'">
+          <div class="left-nav-item" @click="changeLcale('zh-CN')" v-if="isLocale === 'en'">
             <svg-icon name="china"></svg-icon>
             <span class="fontSize-text">{{$t('china')}}</span>
           </div>
@@ -335,7 +335,7 @@ export default {
     // if (process.browser){
     //   this.getWebsiteOne()
     // }
-
+    this.changeLcale(this.isLocale)
     //只有首页才加载
     if (this.$route.name == 'index'){
         process.browser ? document.addEventListener('scroll',this.handleScroll(this.handleScrollHeader,60,false),true) : ''
@@ -665,6 +665,12 @@ export default {
     ...mapGetters(['logoUrl','title','mobileLogo']),
     handleHeaderSider(){
       return this.$store.state.hideHeader
+    },
+    isLocale(){
+      return this.$store.state.locale
+    },
+    isMobile(){
+      return this.$store.state.isMobile
     },
     // searchOption(){
     //   return
