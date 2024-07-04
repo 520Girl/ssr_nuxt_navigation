@@ -67,7 +67,7 @@
               </template>
               <!--                            <Tag color="default" type="border" v-for="(item,index) in detailedList.blogTag" :key="index" >{{item}}</Tag>-->
             </div>
-            <share :config="shareConfig"></share>
+            <share ></share>
           </section>
         </main>
         <footer class="left2-layout-footer ">
@@ -116,10 +116,11 @@
 // import {Row,Col,Time,Icon,Tag,ButtonGroup,Button,Slider,Input,} from 'iview'; //iview
 import blogOneself from '@/components/pages/blog/blogOneself'//blo
 import blogOneselfRight from "@/components/pages/blog/blogOneselfRight"; //blog右侧
-// import share from "@/components/common/share"//分享
+import share from "@/components/common/share"//分享
 import randomTag from "@/components/common/randomTag"//分享
 import countToNumber from "@/components/common/countToNumber"//分享
 import appGuestbook from "@/components/pages/comments/appGuestbook";
+
 import setting from "@/setting";
 // import {Notice} from "iview";
 export default {
@@ -145,7 +146,7 @@ export default {
     }
   },
   name: 'BlogDetailed',
-  components: {blogOneself, blogOneselfRight, randomTag, appGuestbook,countToNumber},
+  components: {blogOneself, blogOneselfRight, randomTag, appGuestbook,countToNumber,share},
   // components:{Row,Col,blogOneself,blogOneselfRight,Time,Icon,Tag,ButtonGroup,Button,Slider,Input,share,randomTag,appGuestbook},
   async asyncData({ $api, route }) {
     let {blog} = await $api.blog.getBlogDetailedInfo(route.params.id)
@@ -179,25 +180,6 @@ export default {
       blogHotEye:{},
       hotTags:[],
       userInfoB:{},
-      shareConfig: {
-        url:`${setting.website}${this.$route.path}` , // 网址，默认使用 window.location.href
-        sites: [
-          "qzone",
-          "qq",
-          "weibo",
-          "wechat",
-          "douban",
-          "tencent",
-          "linkedin",
-          "google",
-          "facebook",
-          "twitter",
-        ], // 启用的站点
-        // disabled: ["google", "facebook", "twitter"], // 禁用的站点
-        wechatQrcodeTitle: this.$t("blog.details.WeChat_scan"), // 微信二维码提示文字
-        wechatQrcodeHelper:
-          `<p>${this.$t("blog.details.Click_WeChat_Discover")}</p><p>${this.$t("blog.details.QR_Share")}</p>`,
-      },
     }
   },
   created() {

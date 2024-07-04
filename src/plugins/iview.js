@@ -26,7 +26,6 @@ import {
   Tooltip,
   Time,
   Rate,
-  Message,
   Notice,
   Spin,
   Card,
@@ -56,7 +55,6 @@ const components = {
   Tooltip,
   Time,
   Rate,
-  Message,
   Notice,
   Spin,
   Card,
@@ -67,7 +65,7 @@ const components = {
 Object.keys(components).forEach(key => {
   Vue.component(key, components[key])
 })
-Vue.prototype.$Message = Message;
+// Vue.prototype.$Message = Message;
 Vue.prototype.$Notice = Notice;
 
 //https://www.jianshu.com/p/d0aadf5cdf57

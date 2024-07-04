@@ -133,7 +133,8 @@
         </div>
       </header>
       <!--          语言导航栏-->
-      <popup :popup="languageSideOnOff" :type="'slider'" @close="handleSidebar">
+
+      <component v-if="popup" :is="popup" :popup="languageSideOnOff" :type="'slider'" @close="handleSidebar">
         <div class="auto-line-center left-nav " slot="popupMain" >
           <div class="left-nav-item">
             <router-link tag="i"  :to="{path:'/embody'}" class=" iconfont icon-link fontSize-icon"></router-link>
@@ -163,11 +164,11 @@
           <!--                            <div id="he-plugin-simple"></div>-->
           <!--                        </a>-->
         </div>
-      </popup>
+      </component>
       <!--          语言导航栏-->
 
       <!--   搜索框使用   -->
-      <popup :popup="searchOnOff" :type="'search'" @close="handleSidebar($event,2)" :z_index="502">
+      <component  v-if="popup && search" :is="popup" :popup="searchOnOff" :type="'search'" @close="handleSidebar($event,2)" :z_index="502">
         <div class="header-bck boxSizing search search-modal" slot="popupMain">
           <div class=" search-continer">
             <div class="search-input">
@@ -187,7 +188,7 @@
                   </li>
                 </ul>
               </div>
-              <search :placeholder="searchSle.select.placeholder" :inputValue="searchSle.select.inputValue" :searchSelect="searchSle.select" class="search-components"></search>
+              <component :is="search" :placeholder="searchSle.select.placeholder" :inputValue="searchSle.select.inputValue" :searchSelect="searchSle.select" class="search-components"></component>
             </div>
 
             <div class="search-hot">
@@ -207,7 +208,7 @@
             </div>
           </div>
         </div>
-      </popup>
+      </component>
       <!--   搜索框使用   -->
 
       <main>
@@ -219,22 +220,20 @@
 
       <slot name="footer"></slot>
 
-
-
       <footers v-show="$route.name !== 'CartoonDetailed'" :hotAppData="hotAppData" @handleHideSidebar="handleHideSidebar($event)" @cartoonChapter="cartoonChapter($event)"></footers>
     </div>
   </div>
 </template>
 <script>
 import footers from '@/components/common/footer'; //底部，以及主题控制
-import popup from '@/components/common/popup'; //底部，以及主题控制
-import search from '@/components/common/search'; //底部，以及主题控制
+// import popup from '@/components/common/popup'; //底部，以及主题控制
+// import search from '@/components/common/search'; //底部，以及主题控制
 import appMain from "@/components/pages/mains/appMain";
 import setting from "@/setting"
 import {mapGetters} from "vuex";
 export default {
   name: "headerNav",
-  components: {footers,popup,appMain,search},
+  components: {footers,appMain},
   props:{
     // hotAppData:{type:Array,required:false,default:()=>[]}
     hotAppData:{type:[Object,Array],required:false,default:()=>[]}
@@ -249,6 +248,8 @@ export default {
     return {
       sidebarOnOff: this.$store.state.sidebarOnOff, //侧栏打开显示 false 为打开
       appSidebarOnoff: false,	 //应用商店
+      popup:false, //表示 弹出框组件未加载
+      search:false, //表示 搜索组件未加载
       websiteLeft:false,//侧栏打开，点击大项显示小项
       boonSidebarOnoff: false, //福利导航
       languageSideOnOff: false, // 切换语言状态栏改变
@@ -351,6 +352,22 @@ export default {
     process.browser ? document.removeEventListener("scroll",this.handleScroll(this.handleScrollHeader,60,false)) : ''
   },
   methods: {
+    // 使用异步加载组件需要要使用import()函数
+    async asyncPopupLanguage(){
+      if (!this.popup){
+        const {default: popup} = await import('@/components/common/popup')
+        this.popup = popup
+      }
+    },
+    async asyncPopupSearch(){
+      if (!this.popup){
+        const {default: popup} = await import('@/components/common/popup')
+        const {default: search} = await import('@/components/common/search')
+        console.log(popup,search,'77777777777777777777777')
+        this.popup = popup
+        this.search = search
+      }
+    },
     //改变语言
     changeLcale: function (locale) {
       // console.log(this.$i18n)
@@ -361,12 +378,30 @@ export default {
     //处理弹窗,mobile下的 黑色遮蔽罩
     handleSidebar(event,state = 1) {
       if (state === 1){
-        this.languageSideOnOff = !this.languageSideOnOff;
-        this.appSidebarOnoff = false;
-        this.searchOnOff = false
+        if (!this.popup){
+          this.asyncPopupLanguage().then(()=>{
+            this.languageSideOnOff = !this.languageSideOnOff;
+            this.appSidebarOnoff = false;
+            this.searchOnOff = false
+          })
+        }else{
+          this.languageSideOnOff = !this.languageSideOnOff;
+          this.appSidebarOnoff = false;
+          this.searchOnOff = false
+        }
+
       }else{
-        this.searchOnOff = !this.searchOnOff
-        this.languageSideOnOff = false
+        console.log(this.popup,this.search)
+        if (!this.popup || !this.search){
+          this.asyncPopupSearch().then(()=>{
+            this.searchOnOff = !this.searchOnOff
+            this.languageSideOnOff = false
+          })
+        }else{
+          this.searchOnOff = !this.searchOnOff
+          this.languageSideOnOff = false
+        }
+
       }
     },
     //导航栏隐藏显示时 节流加载
@@ -653,13 +688,13 @@ export default {
       this.searchSle.select.classState=index
       console.log(this.searchSle)
     },
-    search(){
+    searchSubmit(){
       this.$common().goto(this.searchSle.select.value + this.searchSle.select.inputValue)
     },
     // 定义事件处理程序
-  preventTouchmove(e) {
-    e.preventDefault(); // 阻止触摸滚动的默认行为
-  }
+    preventTouchmove(e) {
+      e.preventDefault(); // 阻止触摸滚动的默认行为
+    }
   },
   computed:{
     ...mapGetters(['logoUrl','title','mobileLogo']),

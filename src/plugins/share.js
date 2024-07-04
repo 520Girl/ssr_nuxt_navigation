@@ -1,3 +1,3 @@
-import Vue from 'vue'
-import Share from 'vue-social-share'
-Vue.use(Share)
+// import Vue from 'vue'
+// import Share from 'vue-social-share'
+// Vue.use(Share)

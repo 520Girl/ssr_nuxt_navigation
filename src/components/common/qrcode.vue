@@ -23,21 +23,38 @@ export default{
     }
   },
   mounted() {
-    this.qrcode()
+    this.asyncQrcode()
   },
   methods:{
     //生成二维码
-    qrcode(){
-      new this.$qrcode(this.$refs.qrcode,{
-        width: 150,
-        height: 150,
-        text:this.qrcodeUrl,
-        colorDark: '#333333', // 二维码颜色
-        colorLight: '#ffffff', // 二维码背景色
-        correctLevel: this.$qrcode.CorrectLevel.H// 容错率，L/M/Q/H,遮挡越来越多都能识别
-      })
-      // this.createPicture()
-    },
+    // qrcode(){
+    //   new this.$qrcode(this.$refs.qrcode,{
+    //     width: 150,
+    //     height: 150,
+    //     text:this.qrcodeUrl,
+    //     colorDark: '#333333', // 二维码颜色
+    //     colorLight: '#ffffff', // 二维码背景色
+    //     correctLevel: this.$qrcode.CorrectLevel.H// 容错率，L/M/Q/H,遮挡越来越多都能识别
+    //   })
+    //   // this.createPicture()
+    // },
+
+    // 通过异步得方式生成图片
+    async asyncQrcode(){
+      try {
+        const {default: QRCode} = await import('qrcodejs2')// 动态加载QRCode插件
+        new QRCode(this.$refs.qrcode,{
+          width: 150,
+          height: 150,
+          text:this.qrcodeUrl,
+          colorDark: '#333333', // 二维码颜色
+          colorLight: '#ffffff', // 二维码背景色
+          correctLevel: QRCode.CorrectLevel.H// 容错率，L/M/Q/H,遮挡越来越多都能识别
+        })
+      } catch (error) {
+        console.error('Failed to generate QR code:', error);
+      }
+    }
     // //生成图片
     // createPicture(){
     //   html2canvas(this.$refs.qrcode, {

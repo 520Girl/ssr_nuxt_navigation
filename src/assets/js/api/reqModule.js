@@ -1,6 +1,6 @@
 import base from "./baseUrl"
-import Qs from 'qs'
-import common from "../common";
+// import Qs from 'qs'
+// import common from "../common";
 import fetchJsonp from 'fetch-jsonp';
 export default (($axios) => {
   const appList = {

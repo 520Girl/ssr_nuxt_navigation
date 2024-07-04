@@ -66,7 +66,7 @@
         </Col>
       </Row>
       <!--            添加网站数据 one-->
-      <popup :popup="customizeMenu.editNav" @close="editWebWay" :z_index="501">
+      <component v-if="popup" :is="popup"  :popup="customizeMenu.editNav" @close="editWebWay" :z_index="501">
         <Row  class-name="menu-text add-layout" slot="popupMain" style="width: 359px;">
             <Form  v-model="formData" class="fontSize-text-colornoH" :label-width="0">
             <FormItem  prop="name" >
@@ -100,19 +100,19 @@
             </FormItem>
           </Form>
         </Row>
-      </popup>
+      </component>
     </section>
   </div>
 </template>
 <script>
 // import {Row,Col,Button,List,Tag,Form,CheckboxGroup,Checkbox,Input,Icon,DatePicker } from 'iview'
-import popup from "@/components/common/popup";
+// import popup from "@/components/common/popup";
 import store from "@/store";
 import {v4 as uuid} from 'uuid'
 export default {
   name:'contents',
   // components:{FormItem:Form.Item,Icon,   Row,Col,Button,List,Form,  ListItem:List.Item, ListItemMeta:List.Item.Meta, Tag,CheckboxGroup,Checkbox,Input,DatePicker},
-  components:{popup},
+  // components:{popup},
   data() {
     return {
       customizeMenu:{myNav:true,newClick:false,editNav:false},
@@ -121,6 +121,7 @@ export default {
       addWebLoading:false, //提交加载动画
       buttonSelect:0,//x选中颜色
       onepopupLoading:false,
+      popup:false // 动态加载弹窗
     }
   },
   mounted() {
@@ -157,6 +158,13 @@ export default {
         store.commit('clickData',[])
       }
     },
+    // 使用异步加载组件需要要使用import()函数
+    async asyncPopupLanguage(){
+      if (!this.popup){
+        const {default: popup} = await import('@/components/common/popup')
+        this.popup = popup
+      }
+    },
     myNavigationWay(){
       this.buttonSelect = 0
       this.customizeMenu.myNav = true
@@ -170,10 +178,19 @@ export default {
     },
     editWebWay(event){
       console.log(event)
+    if (!this.popup){
+       this.asyncPopupLanguage().then(() => {
+         this.buttonSelect = 2
+         this.customizeMenu.myNav = true
+         this.customizeMenu.newClick = false
+         this.customizeMenu.editNav = !this.customizeMenu.editNav
+       })
+    }else{
       this.buttonSelect = 2
       this.customizeMenu.myNav = true
       this.customizeMenu.newClick = false
       this.customizeMenu.editNav = !this.customizeMenu.editNav
+    }
       // this.$set(this.customizeMenu,'editNav',!this.customizeMenu.editNav)
     },
     addWeb(){

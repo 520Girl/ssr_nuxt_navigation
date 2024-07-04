@@ -231,7 +231,7 @@
                     <h1>{{hotAppData.title}}</h1>
                     <p>{{hotAppData.explain}}</p>
                     <img :src="hotAppData.appContent" alt="" style="width: 100%;height: 100%;">
-                    <share :config="shareConfig"></share>
+                    <share ></share>
                     <div class="appMain-button">
                         <a href="javascript:void(0)" @click="$common().goto(hotAppData.hrefUrl)"  target="_blank" >{{$t('app.go_towebsite_more')}}</a>
                     </div>
@@ -259,6 +259,7 @@
   import randomTag from '@/components/common/randomTag'; //头部和左边导航
   import gradeBackground from '@/components/common/gradeBackground'; //头部和左边导航
   import qrcode from '@/components/common/qrcode'; //头部和左边导航
+  import share from '@/components/common/share'; //头部和左边导航
   // import {headerNav,gradeBackground,qrcode,share,randomTag} from '@/components/common'; //头部和左边导航
   import appGuestbook from "@/components/pages/comments/appGuestbook"; //留言板
   import appRelated from "@/components/pages/app/appRelated"; //相关推荐
@@ -288,7 +289,7 @@
       }
     },
       name:'App',
-      components:{gradeBackground,appGuestbook,qrcode,appRelated,appSide,randomTag},
+      components:{gradeBackground,appGuestbook,qrcode,appRelated,appSide,randomTag,share},
     async asyncData({$api,route}){
       //! 1.
       const {app} = await $api.appList.getAppDetail(route.params.id)
@@ -323,25 +324,6 @@
             commentsLength:0,
             eyeAppNum:0,
             hotAppNum:0
-          },
-          shareConfig: {
-            url:`${setting.website}${this.$route.path}` , // 网址，默认使用 window.location.href
-            sites: [
-              "qzone",
-              "qq",
-              "weibo",
-              "wechat",
-              "douban",
-              "tencent",
-              "linkedin",
-              "google",
-              "facebook",
-              "twitter",
-            ], // 启用的站点
-            // disabled: ["google", "facebook", "twitter"], // 禁用的站点
-            wechatQrcodeTitle: this.$t("blog.details.WeChat_scan"), // 微信二维码提示文字
-            wechatQrcodeHelper:
-              `<p>${this.$t("blog.details.Click_WeChat_Discover")}</p><p>${this.$t("blog.details.QR_Share")}</p>`,
           },
           userInfo:{},
           time3:new Date().getTime() - 60*60*1000*50,

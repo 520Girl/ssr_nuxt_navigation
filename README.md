@@ -36,6 +36,7 @@ npm run build
 ```
 ├── layouts   // nuxt 最外层组件默认的是，这里可以添加loading 等组件
 ├── middleware  // 中间件 做路由拦截
+├── static  // 页面组件 在src 目录下的static 是项目需要的文件没有打包的 console.log robots.txt sitemap.xml  favicon.ico 等静态文件
 .... 
 ```
 1. 渐变效果：在nuxt 这种有一个全局的渐变transition name为page，可以直接使用，不需要额外的配置
@@ -84,15 +85,29 @@ npm run build
                1. dir 为图片地址的前缀，会在使用nuxt-img组件时自动拼接
                2. domains 为图片服务器地址，运行加载的图片的地址的网站地址域名如：https://navai.vip/static/images/ 如果需要加载这个地址的图片就需要 将 navai.vip 添加到 domains 中，在开发环境中，
 4. **项目优点**
-   1. 使用了 `@nuxtjs/sitemap` 实现sitemap 功能，可以生成网站地图，提高网站的SEO
-   2. 使用了 `nuxt-precompress` 实现gzip 和brotli 压缩功能，提高网站的访问速度
-   3. 使用了 `optimization.splitChunks` 优化打包体积，减少请求时间
-   4. 去掉` console.log` 等调试信息，提高网站的安全性
-   5. 使用 `@nuxt/i18n  + vue-i18n` 实现国际化
-   6. 使用 'sass less' 实现主题切换
+   1. [x] 使用了 `@nuxtjs/sitemap` 实现sitemap 功能，可以生成网站地图，提高网站的SEO
+   2. [x] 使用了 `nuxt-precompress` 实现gzip 和brotli 压缩功能，提高网站的访问速度
+   3. [x] 使用了 `optimization.splitChunks` 优化打包体积，减少请求时间
+   4. [x] 去掉` console.log` 等调试信息，提高网站的安全性
+   5. [x] 使用 `@nuxt/i18n  + vue-i18n` 实现国际化
+   6. [x] 使用 'sass less' 实现主题切换
+   7. [x] 优化了代码结构，提高开发效率
+        1. 将 qrcodejs2 修改为动态组件，可以根据需要引入，减少打包体积
+        2. 将 'vue-social-share 修改为 动态组件，可以根据需要引入，减少打包体积
+        3. 首屏 mains hotslider 等组件通过`new IntersectionObserver + import()`API 实现滚动导入家长在使用动态组件，可以根据需要引入，减少打包体积
+   8. [x] 使用 `@nuxt/image` 配置 `provider: 'ipx', `和 ipx 路径`必须为完整地址，不能使用相对路径，不然会导致图片加载失败`，提高图片加载速度，将图片转换为 webp 格式，减少图片体积
+   
 
-#项目结果
-![img_2.png](img_2.png)
+# 项目结果 将打包文件从1M 到 700K，压缩率 90%，加载速度提升 20%
+#### 1. 第一次优化
+![img.png](img.png)
+
+#### 1. 第二次优化
 ![img_1.png](img_1.png)
+
+#### 2. 第三次优化
+![img_2.png](img_2.png)
+
 #### 文档
 1. [nuxt2.x 非官方中文文档](https://www.w3cschool.cn/nuxtjs/nuxtjs-opyl36g3.html)
+1. [优化方案](https://juejin.cn/post/7012567366198362120#heading-3)

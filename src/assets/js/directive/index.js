@@ -1,6 +1,5 @@
 import store from '~/store'
 import { v4 as uuid } from 'uuid'
-import { Notice } from "iview";
 
 export default {
   focus: { // 获取焦点

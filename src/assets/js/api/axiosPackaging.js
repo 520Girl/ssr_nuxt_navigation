@@ -1,5 +1,5 @@
-import store from '@/store/index';
-import common from "@/assets/js/common";
+// import store from '@/store/index';
+// import common from "@/assets/js/common";
 import decode_res_data from "@/assets/js/decode_res_data";
 import reqApi from "@/assets/js/api/reqModule";
 

@@ -39,7 +39,7 @@ export default {
           if (process.env.NODE_ENV === 'development'){
             return `/${type}/` + url;
           }else{
-            return `/static/images/${type}/` + url;
+            return `${setting.website}/static/images/${type}/` + url;
           }
         //   return `${setting.website}/static/images/${type}/` + url;
         }

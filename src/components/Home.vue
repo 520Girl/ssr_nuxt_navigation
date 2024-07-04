@@ -17,11 +17,18 @@
 <!--    &lt;!&ndash;    自定义导航 end&ndash;&gt;-->
 
 <!--    &lt;!&ndash;    热门系列 start&ndash;&gt;-->
-    <hotslider ></hotslider>
+    <div ref="hotslider" >
+      <component :is="isVisible.hotsliderC" v-if="isVisible.hotslider"></component>
+    </div>
+<!--      <hotslider ></hotslider>-->
 <!--    &lt;!&ndash;    热门锡系列 end&ndash;&gt;-->
 
 <!--    &lt;!&ndash;    展示 工具，站长start&ndash;&gt;-->
-    <mains ></mains>
+<!--      <mains  ></mains>-->
+    <div ref="mains" >
+      <component :is="isVisible.mainsC" v-if="isVisible.mains"></component>
+    </div>
+
     <!-- // <footers slot="footer"></footers> -->
   </div>
 </template>
@@ -31,8 +38,9 @@
   import gradeCoin from '@/components/pages/index/gradeCoin'; //评分
   import articles from '@/components/pages/index/articles'; //轮播，展示
   import contents from '@/components/pages/index/contents'; //导航编辑
-  import hotslider from '@/components/pages/index/hotslider'; //热门app
-  import mains from '@/components/pages/index/mains';
+  // import hotslider from '@/components/pages/index/hotslider'; //热门app
+  import 'intersection-observer';
+  // import mains from '@/components/pages/index/mains';
   import setting from '@/setting'; //底部，以及主题控制
   // import {appList} from "../assets/js/api/reqModule"; //广告，站长工具等
   // import footers from '@/components/common/footer'; //底部，以及主题控制
@@ -52,7 +60,7 @@
         ]
       }
     },
-    components: { bulletin, gradeCoin,articles,contents,hotslider,mains },
+    components: { bulletin, gradeCoin,articles,contents, },
      async asyncData({$api, $axios,store}) {
        // if (!process.server) return
        const {gradeCoins} = await $api.gradeCoin.getGradeCoin({ per_page: 6, page: 1, order: -1 },true)
@@ -96,6 +104,12 @@
         slideList: {}, //轮播图数据
         blogList: [], //新闻数据
         rankingList:[], //赛事数据
+        isVisible:{
+          mains:false,
+          hotslider:false,
+          mainsC:null,
+          hotsliderC:null,
+        },
       }
     },
     created() {
@@ -103,9 +117,9 @@
     },
     mounted() {
       // this.getGradeCoin()
-      console.log("%c%cnavai.vip%chttps://www.navai.vin", "line-height:18px;", "line-height:18px;padding:4px;background:#2ccbe6;color:#FADFA3;font-size:14px;", "padding:4px 4px 4px 2px;background:#ff146d;color:green;line-height:18px;font-size:12px;");
-      console.log("%c%c每天都是最好的自己。", "line-height:18px;", "line-height:18px;padding:4px;background:#2ccbe6;color:#FADFA3;font-size:14px;");
-    },
+      this.GetIntersectionObserver('mains')
+      this.GetIntersectionObserver('hotslider')
+      },
     methods: {
       getGradeCoin(pageSize = 4, page = 1) {
         this.$api.gradeCoin.getGradeCoin({ per_page: pageSize, page: page, order: -1 }).then(res => {
@@ -119,7 +133,44 @@
           }
         })
       },
+      GetIntersectionObserver(ref='lazyComponent'){
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (ref === 'mains' && entry.isIntersecting){
+                this.asyncMains().then(() => {
+                  this.isVisible[ref] = true;
+                  observer.unobserve(this.$refs[ref]);
+                })
+            }else if (ref === 'hotslider' && entry.isIntersecting){
+              this.asyncHotslider().then(() => {
+                this.isVisible[ref] = true;
+                observer.unobserve(this.$refs[ref]);
+              })
+            }
 
+          });
+        }, {
+          rootMargin: '0px',
+          threshold: 0.1
+        });
+
+        if (this.$refs[ref]) {
+          observer.observe(this.$refs[ref]);
+        } else {
+          console.error("Element to observe is not available");
+        }
+      },
+      async asyncMains(){
+        const {default:mains} = await import('@/components/pages/index/mains')
+        this.isVisible.mainsC = mains;
+        this.isVisible.mains = true;
+      },
+
+      async asyncHotslider(){
+        const {default:hotslider} = await import('@/components/pages/index/hotslider')
+        this.isVisible.hotsliderC = hotslider;
+        this.isVisible.hotslider = true;
+      }
     },
     computed: {
       // backdropChange(){

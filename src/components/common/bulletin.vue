@@ -72,7 +72,7 @@
     },
     methods: {
       change(status) {
-        this.$Message.info('开关状态：' + status);
+        this.$Notice.info('开关状态：' + status);
       },
       //从后端获取数据
       getBulletin() {

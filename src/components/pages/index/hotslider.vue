@@ -209,7 +209,7 @@
   // import{Row,Col,Button,Tooltip,Icon,Tag,Rate,Time,Spin } from 'iview';
   import loadingRound from "@/components/common/loadingRound";
   import {mapGetters}  from "vuex";
-  import {webSite} from "@/assets/js/api/reqModule"; //loading
+  // import {webSite} from "@/assets/js/api/reqModule"; //loading
   export default  {
     name:"hotslider",
     components:{loadingRound},

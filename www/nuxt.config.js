@@ -2,7 +2,7 @@ import path from 'path'
 import getRouterList from './src/static/sitemap'
 import i18n from './src/plugins/i18n/index'
 import setting from './src/setting'
-
+import TerserPlugin from 'terser-webpack-plugin';
 
 //! 1. 去掉console
 let plugins = []
@@ -27,9 +27,12 @@ export default async function() {
 
         ],
         link: [
-          {rel: 'icon', type: 'image/x-icon', href:setting.favicon }
+          {rel: 'icon', type: 'image/x-icon', href:setting.favicon },
+          { rel: 'stylesheet', href: '//unpkg.com/iview@3.5.4/dist/styles/iview.css' }
+        ],
+        script:[
+          { src: '//unpkg.com/iview@3.5.4/dist/iview.min.js' }
         ]
-        // script:[{  rel: 'preload',src: '//unpkg.com/view-design/dist/iview.min.js', as: 'script' }]
       },
       srcDir: 'src/',
       css: [ //公共样式 重置样式
@@ -61,7 +64,7 @@ export default async function() {
       router:{
         scrollBehavior:require('./src/router.scrollBehavior.js').default,
       },
-      analyze: true,
+      analyze: true,// 开启webpack分析
       // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
       plugins: [
         '@/assets/js/api/axiosPackaging',
@@ -130,7 +133,8 @@ export default async function() {
           theme_color: '#2c8a26',
           background_color: 'rgba(0,0,0,0.65)'
         },
-        workbox: { //接口缓存，静态资源缓存，路由缓存
+        workbox: {
+          //接口缓存，静态资源缓存，路由缓存
           // 启动时直接获取最新的 service worker
           clientsClaim: true,
           // 新的 service worker 替换当前 service worker 时立即接管现有客户端
@@ -191,9 +195,9 @@ export default async function() {
           ]
         },
         icon: {
-          source: 'src/assets/images/logoXI.png',  // 源图标文件路径
-          fileName: 'logoXI.png'  // 设置生成图标文件名称模板
-          // fileName: 'icons/[name]-[size].[ext]'  // 设置生成图标文件名称模板
+          source: 'static/images/logoXIB.png',  // 源图标文件路径
+          // fileName: 'logoXI.png'  // 设置生成图标文件名称模板
+          fileName: 'icons/[name]-[size].[ext]'  // 设置生成图标文件名称模板
         },
         meta: {
           // Meta标签配置
@@ -218,7 +222,7 @@ export default async function() {
         }
       },
       build:{
-        extend(config, context) {
+        extend(config, {isDev, isClient}) {
           // 排除 nuxt 原配置的影响,Nuxt 默认有vue-loader,会处理svg,img等
           // 找到匹配.svg的规则,然后将存放svg文件的目录排除
           const svgRule = config.module.rules.find((rule) =>
@@ -237,14 +241,46 @@ export default async function() {
           config.resolve.alias['@'] = path.join(__dirname, 'src');
           //忽略iview.js
           // 添加 externals 配置，忽略 iview 相关依赖
-          // config.externals = config.externals || {};
-          // config.externals['iview'] = 'iview';
+          config.externals = config.externals || {};
+          config.externals['iview'] = 'iview';
         },
         babel:{
           plugins: [
             ...plugins
           ],
+        },
+        optimization: { //进行二次压缩
+          minimize: true,
+          minimizer: [
+            new TerserPlugin({
+              test: /\.js(\?.*)?$/i,
+              parallel: true,
+              extractComments: true,
+              sourceMap: false,
+              terserOptions: {
+                output: {
+                  // 是否输出可读性较强的代码，即会保留空格和制表符，默认为输出，为了达到更好的压缩效果，可以设置为false
+                  beautify: false,
+                  // 是否保留代码中的注释，默认为保留，为了达到更好的压缩效果，可以设置为false
+                  comments: false
+                },
+                compress: {
+                  // 是否在UglifyJS删除没有用到的代码时输出警告信息，默认为输出，可以设置为false关闭这些作用不大的警告
+                  warnings: false,
+                  // 是否删除代码中所有的console语句，默认为不删除，开启后，会删除所有的console语句
+                  drop_console: true,
+                  drop_debugger: true,
+                  // 是否内嵌虽然已经定义了，但是只用到一次的变量，比如将 var x = 1; y = x, 转换成 y = 5, 默认为不转换，为了达到更好的压缩效果，可以设置为false
+                  collapse_vars: true,
+                  // 是否提取出现了多次但是没有定义成变量去引用的静态值，比如将 x = 'xxx'; y = 'xxx'  转换成var a = 'xxxx'; x = a; y = a; 默认为不转换，为了达到更好的压缩效果，可以设置为false
+                  reduce_vars: true,
+                  pure_funcs: ['console.log'] // 移除console
+                }
+              }
+            }),
+          ]
         }
+
       },
       //处理 未使用的css
       purgeCSS: {
@@ -258,7 +294,7 @@ export default async function() {
           'pages/**/*.vue',
           'src/plugins/**/*.js'
         ],
-        styleExtensions: ['.css'],
+        styleExtensions: ['.css','.scss', '.less'],
         whitelist: ['body', 'html', 'nuxt-progress'],
         extractors: [
           {
@@ -284,12 +320,12 @@ export default async function() {
             },
             styles: {
               name: 'styles', // 分割出的样式文件名
-              test: /\.(css|vue)$/, // 匹配 CSS 和 Vue 文件中的样式部分
+              test: /\.(css|vue|less|scss|sass)$/, // 匹配 CSS 和 Vue 文件中的样式部分
               chunks: 'all', // 针对所有文件分割样式
               enforce: true, // 强制执行该策略
             },
             commons: {
-              test: /node_modules[\\/](vue|vue-loader|vue-router|vuex|vue-meta|core-js|@babel\/runtime|axios|webpack|setimmediate|timers-browserify|process|regenerator-runtime|cookie|js-cookie|is-buffer|dotprop|nuxt\.js)[\\/]/, // 匹配常用依赖库
+              test: /node_modules[\\/](vue|vue-loader|iview|vue-router|vuex|vue-meta|core-js|@babel\/runtime|axios|webpack|setimmediate|timers-browserify|process|regenerator-runtime|cookie|js-cookie|is-buffer|dotprop|nuxt\.js)[\\/]/, // 匹配常用依赖库
               chunks: 'all', // 针对所有文件
               priority: 10, // 优先级
               name: true // 文件名生成策略

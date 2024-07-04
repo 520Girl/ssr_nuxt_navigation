@@ -11,8 +11,9 @@
       <!--                                <Sharethis share-this-embed-url=""/>-->
 <!--      //platform-api.sharethis.com/js/sharethis.js#property=60024e75d8aa7c0013bd8ac9&product=sticky-share-buttons&cms=sop-->
 <!--      <Sharethis share-this-embed-url="//platform-api.sharethis.com/js/sharethis.js#property=60024e75d8aa7c0013bd8ac9&product=sticky-share-buttons&cms=sop"/>-->
-      <share  :config="config"></share>
-<!--      <div class="sharethis-inline-share-buttons">{{$t('app.share')}}</div>-->
+<!--      <share  :config="config"></share>-->
+      <component v-if="Share" :is="Share" ref="shareContainer" :config="config"></component>
+      <!--      <div class="sharethis-inline-share-buttons">{{$t('app.share')}}</div>-->
       <!-- ShareThis END -->
     </div>
   </div>
@@ -23,6 +24,7 @@
 // import share from 'vue-social-share' //更好为新的分享组件
 // import 'vue-social-share/dist/client.css';
 import loadingBlock from "@/components/common/loadingBlock"; //loading
+import setting from "@/setting"
 export default {
   name: "Share",
   components:{loadingBlock},
@@ -35,9 +37,10 @@ export default {
   data(){
     return{
       spinShow:true,
+      Share:null,
       title:process.browser ?document.title : '',
       config: {
-        url: "https://navai.vip", // 网址，默认使用 window.location.href
+        url: `${setting.website}${this.$route.path}`, // 网址，默认使用 window.location.href
         // source: "", // 来源（QQ空间会用到）, 默认读取head标签：<meta name="site" content="http://overtrue" />
         // title: "", // 标题，默认读取 document.title 或者 <meta name="title" content="share.js" />
         // description: "", // 描述, 默认读取head标签：<meta name="description" content="PHP弱类型的实现原理分析" />
@@ -63,7 +66,20 @@ export default {
   },
   mounted() {
     //分享栏加载
-    this.spinShow = false
+    this.openShare().then(() => {
+      this.spinShow = false
+    })
+  },
+  methods:{
+    async openShare(){
+      try {
+        const { default: Share } = await import('vue-social-share'); // 动态导入 Share 组件
+        this.Share = Share;
+      }catch (e) {
+        console.error('Failed to load vue-social-share:', error);
+
+      }
+    }
   }
 }
 </script>
