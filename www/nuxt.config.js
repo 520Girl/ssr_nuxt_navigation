@@ -28,11 +28,13 @@ export default async function() {
         ],
         link: [
           {rel: 'icon', type: 'image/x-icon', href:setting.favicon },
-          { rel: 'stylesheet', href: '//unpkg.com/iview@3.5.4/dist/styles/iview.css' }
+          { rel: 'stylesheet', href: '//at.alicdn.com/t/font_2039941_lrrqf795ok.css?display=swap' }
+          // { rel: 'stylesheet', href: '//unpkg.com/iview@3.5.4/dist/styles/iview.css' }
         ],
-        script:[
-          { src: '//unpkg.com/iview@3.5.4/dist/iview.min.js' }
+        script: [
+          {src:'/consoleLog.js' ,defer: true,  type: 'text/javascript'}
         ]
+        // script:[{  rel: 'preload',src: '//unpkg.com/view-design/dist/iview.min.js', as: 'script' }]
       },
       srcDir: 'src/',
       css: [ //公共样式 重置样式
@@ -64,7 +66,6 @@ export default async function() {
       router:{
         scrollBehavior:require('./src/router.scrollBehavior.js').default,
       },
-      analyze: true,// 开启webpack分析
       // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
       plugins: [
         '@/assets/js/api/axiosPackaging',
@@ -73,20 +74,32 @@ export default async function() {
         {src: '@/assets/js/server', ssr: true},
         {src: '@/assets/js/client', ssr: false},
         {src: '@/store/persistedState.client', ssr: false},
-        {src: '@/plugins/share', ssr: false},
-        {src: '@/plugins/qrcode', mode: 'client'},
+        // {src: '@/plugins/share', ssr: false},
+        // {src: '@/plugins/qrcode', mode: 'client'},
         '@/plugins/svg-icon'
       ],
       //在 Nuxt.js 中， components 配置项用于自动注册你的组件。通过指定组件目录，Nuxt.js 会扫描所有在该目录下的组件，并自动注册它们，使你不需要在每个文件中手动导入这些组件。
       // Auto import components: https://go.nuxtjs.dev/config-components
       components: true,
       image:{
-        provider: 'static',
+        provider: 'ipx',
+        ipx: {
+          // 允许访问的路径，必须匹配文件存放路径
+          allowPaths: [setting.website+'/static'],
+          // 其他 IPX 配置...
+        },
         // static: {
         //   baseURL: 'https://www.navai.vip' // 会在图片前面加上这个前缀
         // },
         domains: ['www.runoob.com','navai.vip'],// 允许的域名
         dir: process.env.NODE_ENV === 'development' ? 'static/images' : '/', // 图片存放目录,打包有问题
+        presets: {
+          default: {
+            modifiers: {
+              format: 'webp'
+            }
+          }
+        }
       },
       // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
       //开发会用到的模块
@@ -103,10 +116,11 @@ export default async function() {
         "@nuxtjs/router",
         '@nuxtjs/pwa',
         "@nuxt/image",
+        '@nuxtjs/fontaine',
         ['@nuxtjs/i18n', i18n],
         "@nuxtjs/sitemap" // 生成网站地图 xml 发布seo的
       ],
-      // sitemap:sitemaps,
+      sitemap:sitemaps,
       axios: {
         proxy: true,
       },
@@ -143,9 +157,8 @@ export default async function() {
           offlineAnalytics: true,
           preCaching: [
             // 预缓存的资源
-            '/assets/images/logoside.png',
-            '/assets/images/logoXI.png',
-            '/assets/images/wldf.jpg',
+            'static/images/logoside.png',
+            'static/images/logoXI.png',
             '/favicon.ico',
             '/navai.png',
           ],
@@ -222,6 +235,7 @@ export default async function() {
         }
       },
       build:{
+        extractCSS: true, //提取CSS
         extend(config, {isDev, isClient}) {
           // 排除 nuxt 原配置的影响,Nuxt 默认有vue-loader,会处理svg,img等
           // 找到匹配.svg的规则,然后将存放svg文件的目录排除
@@ -241,10 +255,11 @@ export default async function() {
           config.resolve.alias['@'] = path.join(__dirname, 'src');
           //忽略iview.js
           // 添加 externals 配置，忽略 iview 相关依赖
-          config.externals = config.externals || {};
-          config.externals['iview'] = 'iview';
+          // config.externals = config.externals || {};
+          // config.externals['iview'] = 'iview';
         },
         babel:{
+          // configFile: path.resolve(__dirname, 'babel.config.js'),
           plugins: [
             ...plugins
           ],
@@ -278,9 +293,43 @@ export default async function() {
                 }
               }
             }),
-          ]
+          ],
+          splitChunks: {
+            chunks: 'all', // 针对所有类型的代码进行分割（同步和异步）
+            automaticNameDelimiter: '.', // 分割后的文件名中自动包含一个指定的分隔符
+            name: true, // 确保每个chunk都能得到一个具有唯一名称的文件
+            minSize: 10000, // 最小被分割的文件大小（字节）
+            maxSize: 244000, // 分割文件的最大大小（字节）
+            cacheGroups: {
+              vendor: {
+                name: 'node_vendors', // 分割出的文件名
+                test: /[\\/]node_modules[\\/]/, // 匹配node_modules中的文件
+                chunks: 'all', // 针对所有文件
+                priority: -10,
+                maxSize: 244000
+              },
+              commons: {
+                name: 'common',
+                test: /[\\/]src[\\/]/,
+                chunks: 'all', // 针对所有文件
+                minChunks: 2, //minChunks 选项用于指定一个模块必须被多少个块（chunk）引用，才能被放入公共块（common chunk）中
+                maxSize: 244000,
+                priority: -5,
+                reuseExistingChunk: true
+              }
+            }
+          }
         }
-
+      },
+      //服务器会根据这些头信息，在客户端请求之前主动推送这些资源。
+      //在 nuxt.config.js 中配置 render: { http2: { push: true } } 是启用 HTTP/2 服务器推送（HTTP/2 Server Push）功能。以下是这个配置的具体含义和作用：
+      // HTTP/2 Server Push 是一种 HTTP/2 协议的特性，允许服务器在客户端请求之前主动推送资源。这可以减少页面加载时间，因为服务器可以提前将资源发送给客户端，而不需要等待客户端的请求。
+      //响应头可能带有：Link: </css/main.css>; rel=preload; as=style
+      // Link: </js/main.js>; rel=preload; as=script
+      render: {
+          http2: {
+            push: true
+        }
       },
       //处理 未使用的css
       purgeCSS: {
@@ -303,36 +352,37 @@ export default async function() {
           }
         ]
       },
-      optimization: {
-        minimize: true, // 启用代码压缩
-        splitChunks: {
-          chunks: 'all', // 针对所有类型的代码进行分割（同步和异步）
-          automaticNameDelimiter: '.', // 分割后的文件名中自动包含一个指定的分隔符
-          name: true, // 确保每个chunk都能得到一个具有唯一名称的文件
-          minSize: 10000, // 最小被分割的文件大小（字节）
-          maxSize: 244000, // 分割文件的最大大小（字节）
-          cacheGroups: {
-            vendor: {
-              name: 'node_vendors', // 分割出的文件名
-              test: /[\\/]node_modules[\\/]/, // 匹配node_modules中的文件
-              chunks: 'all', // 针对所有文件
-              maxSize: 244000, // 分割文件的最大大小
-            },
-            styles: {
-              name: 'styles', // 分割出的样式文件名
-              test: /\.(css|vue|less|scss|sass)$/, // 匹配 CSS 和 Vue 文件中的样式部分
-              chunks: 'all', // 针对所有文件分割样式
-              enforce: true, // 强制执行该策略
-            },
-            commons: {
-              test: /node_modules[\\/](vue|vue-loader|iview|vue-router|vuex|vue-meta|core-js|@babel\/runtime|axios|webpack|setimmediate|timers-browserify|process|regenerator-runtime|cookie|js-cookie|is-buffer|dotprop|nuxt\.js)[\\/]/, // 匹配常用依赖库
-              chunks: 'all', // 针对所有文件
-              priority: 10, // 优先级
-              name: true // 文件名生成策略
-            }
-          }
-        }
-      },
+      //和 build 重复，压缩取消
+      // optimization: {
+      //   minimize: true, // 启用代码压缩
+      //   splitChunks: {
+      //     chunks: 'all', // 针对所有类型的代码进行分割（同步和异步）
+      //     automaticNameDelimiter: '.', // 分割后的文件名中自动包含一个指定的分隔符
+      //     name: true, // 确保每个chunk都能得到一个具有唯一名称的文件
+      //     minSize: 10000, // 最小被分割的文件大小（字节）
+      //     maxSize: 244000, // 分割文件的最大大小（字节）
+      //     cacheGroups: {
+      //       vendor: {
+      //         name: 'node_vendors', // 分割出的文件名
+      //         test: /[\\/]node_modules[\\/]/, // 匹配node_modules中的文件
+      //         chunks: 'all', // 针对所有文件
+      //         maxSize: 244000, // 分割文件的最大大小
+      //       },
+      //       styles: {
+      //         name: 'styles', // 分割出的样式文件名
+      //         test: /\.(css|vue|less|scss|sass)$/, // 匹配 CSS 和 Vue 文件中的样式部分
+      //         chunks: 'all', // 针对所有文件分割样式
+      //         enforce: true, // 强制执行该策略
+      //       },
+      //       commons: {
+      //         test: /node_modules[\\/](vue|vue-loader|vue-social-share|iview|vue-router|vuex|vue-meta|core-js|@babel\/runtime|axios|webpack|setimmediate|timers-browserify|process|regenerator-runtime|cookie|js-cookie|is-buffer|dotprop|nuxt\.js)[\\/]/, // 匹配常用依赖库
+      //         chunks: 'all', // 针对所有文件
+      //         priority: 10, // 优先级
+      //         name: true // 文件名生成策略
+      //       }
+      //     }
+      //   }
+      // },
       nuxtPrecompress: {
         gzip: {
           enabled: true, // 启用gzip压缩

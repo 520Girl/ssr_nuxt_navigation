@@ -28,6 +28,7 @@ export default async function() {
         ],
         link: [
           {rel: 'icon', type: 'image/x-icon', href:setting.favicon },
+          { rel: 'stylesheet', href: '//at.alicdn.com/t/font_2039941_lrrqf795ok.css?display=swap' }
           // { rel: 'stylesheet', href: '//unpkg.com/iview@3.5.4/dist/styles/iview.css' }
         ],
         script: [
@@ -63,9 +64,8 @@ export default async function() {
       },
       //移到了router.scrollBehavior.js 中
       router:{
-        scrollBehavior:require('./src/router.scrollBehavior.js').default,
+        scrollBehavior:'/src/router.scrollBehavior.js',
       },
-      analyze: true,// 开启webpack分析
       // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
       plugins: [
         '@/assets/js/api/axiosPackaging',
@@ -116,6 +116,7 @@ export default async function() {
         "@nuxtjs/router",
         '@nuxtjs/pwa',
         "@nuxt/image",
+        '@nuxtjs/fontaine',
         ['@nuxtjs/i18n', i18n],
         "@nuxtjs/sitemap" // 生成网站地图 xml 发布seo的
       ],
@@ -234,6 +235,7 @@ export default async function() {
         }
       },
       build:{
+        extractCSS: true, //提取CSS
         extend(config, {isDev, isClient}) {
           // 排除 nuxt 原配置的影响,Nuxt 默认有vue-loader,会处理svg,img等
           // 找到匹配.svg的规则,然后将存放svg文件的目录排除

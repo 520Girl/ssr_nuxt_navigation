@@ -33,8 +33,8 @@
       <Row type='flex' justify="center" align="top" class-name="footer applyBck">
         <Col :sm="{span:7}" :xs="{ span: 24 }" class="footer-li">
           <router-link class="footer-logo" :to="website" :title="title">
-            <nuxt-img preload loading="lazy"  format="webp" placeholder="/static/lazy/errorA4.png" :src="imgUrl(mobileLogo)" class="logo-light" :alt="title" height="71.5" width="254"/>
-            <nuxt-img preload loading="lazy"  format="webp" placeholder="/static/lazy/errorA4.png" :src="imgUrl(mobileLogo)" class="logo-dark" :alt="title" height="71.5" width="280"/>
+            <nuxt-img preload loading="lazy"  placeholder="/static/lazy/errorA4.png" :src="imgUrl(mobileLogo)" class="logo-light" :alt="title" height="71" width="220"/>
+            <nuxt-img preload loading="lazy"   placeholder="/static/lazy/errorA4.png" :src="imgUrl(mobileLogo)" class="logo-dark" :alt="title" height="71" width="220"/>
           </router-link>
           <div class="text-sm">
             <span class="fontSize-text i-f-a">

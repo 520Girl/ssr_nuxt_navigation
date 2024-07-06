@@ -35,18 +35,25 @@ export default {
     loading: true,
   }),
   mounted() {
-    this.$nextTick(() => {
-      this.loading = false
-    })
+    // this.$nextTick(() => {
+    //   setTimeout(() => {
+    //     this.loading = false
+    //   }, 2000)
+    // })
   },
   methods: {
+    finishLoading() {
+      this.loading = false
+    },
     start() {
+      console.log("开始加载");
       // this.loading = true
     },
     finish() {
       // setTimeout(()=>{
       //   this.loading = false
       // },200)
+      console.log("开始结束");
     },
     open() {
       alert("页面加载错误，请刷新");

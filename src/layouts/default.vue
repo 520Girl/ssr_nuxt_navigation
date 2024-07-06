@@ -2,7 +2,7 @@
 
 <template>
   <div>
-      <Loading />
+      <Loading ref="globalLoading" />
       <Nuxt  />
   </div>
 </template>
@@ -17,8 +17,10 @@ export default {
     return {
     }
   },
-  created() {
-
+  mounted() {
+    this.$nextTick(() => {
+      this.$refs.globalLoading.finishLoading();
+    });
   },
   methods: {
 
