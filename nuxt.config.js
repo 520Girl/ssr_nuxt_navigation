@@ -28,7 +28,7 @@ export default async function() {
         ],
         link: [
           {rel: 'icon', type: 'image/x-icon', href:setting.favicon },
-          { rel: 'stylesheet', href: '//at.alicdn.com/t/font_2039941_lrrqf795ok.css?display=swap' }
+          // { rel: 'stylesheet', href: '//at.alicdn.com/t/font_2039941_lrrqf795ok.css?display=swap' }
           // { rel: 'stylesheet', href: '//unpkg.com/iview@3.5.4/dist/styles/iview.css' }
         ],
         script: [

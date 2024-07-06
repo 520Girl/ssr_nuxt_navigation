@@ -60,9 +60,11 @@ npm run build
 
 # 项目问题
 ### 当项目无法启动时，请检查以下问题：
-1. **检测请求路径是否有访问值**
-   1. 必须有数据否则项目无法启动，如：·Cannot GET /api/common/routerList·，该接口是 `src/static/sitempa.js` 的接口生成爬虫地图
-   2. 如果getBaseList 接口没有数据，会直接跳转到 /error 页面
+1. **检测请求路径是否有访问值**  **_Request failed with status code 502_**
+      1. 必须有数据否则项目无法启动，如：·Cannot GET /api/common/routerList·，该接口是 `src/static/sitempa.js` 的接口生成爬虫地图
+      2. 如果getBaseList 接口没有数据，会直接跳转到 /error 页面
+      3. 注意打包后 就不会生成新的sitemap.xml 文件，需要手动生成。
+      4. 可以查看 `src/static/sitemap.js` 文件，就行修改接口地址
 3. **图片问题**
 > 图片本地图片地址是 src/assets/images, 数据库的图片地址为 static/images/~, lazy 图片为 static/lazy/~
    1. 图片使用 `VueLazyload` 懒加载组件 和 `@nuxtjs/image` 预加载组件
