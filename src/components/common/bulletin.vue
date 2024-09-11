@@ -43,6 +43,7 @@
 <script>
   // import {Row, Col, Icon, Time} from 'iview';
   // import DeviceInfo from '@/assets/js/UAparser'
+
   export default {
     name: "bulletin",
     // components: {Row, Col, Icon, Time},
@@ -58,16 +59,18 @@
       }
     },
     created() {
-      // this.setUserInfo()
       // this.getBulletin()
       //! 服务端获取的数据
       const state = this.$store.state.async_data
       if (state.bulletinData.length > 0){
         this.bulletinData = state.bulletinData
       }
+
     },
     mounted() {
       this.trundleToBottomBulletin()
+      this.setUserInfo(); // 在数据加载完成后调用
+
       // this.trundleLeftRightBulletin()
     },
     methods: {
@@ -121,11 +124,12 @@
       //   }, 20)
       // },
       // 统计用户信息
-      // setUserInfo(){
-      //   this.$api.user.setUserInfo(DeviceInfo()).then((res)=>{
-      //     console.log(res)
-      //   })
-      // }
+      async setUserInfo(){
+        const { default:deviceInfo } = await import('@/assets/js/UAparser.js')
+        this.$api.user.setUserInfo(deviceInfo()).then((res)=>{
+          console.log(res)
+        })
+      }
     },
   }
 </script>

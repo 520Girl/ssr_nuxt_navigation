@@ -21,7 +21,7 @@ const store = () => new Vuex.Store({
     isMobile:false,
     clickData:[],
     token:'',
-    loadingHome:true, //最大的loading首页
+    loadingHome:false, //最大的loading首页
     hideSidebar:true, //当图片详情页面调用 v-viewer组件时隐藏侧导航，全部的侧边栏关闭
     sidebarOnOff:false, //侧栏打开显示 false为打开
     hideHeader:true, // header 显示与隐藏
@@ -99,6 +99,9 @@ const store = () => new Vuex.Store({
 
       if (!('cartoonRouter' in state.webBase)){
         const {common} = await this.$api.mutulal.getBaseList()
+        if (Array.isArray(common.content) && common.content.length > 0){
+          common.content = common.content[0]
+        }
         commit('ADD_GET_BASE_CONFIG', common.content)
       }
     },

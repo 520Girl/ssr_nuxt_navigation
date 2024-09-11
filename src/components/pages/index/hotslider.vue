@@ -46,15 +46,18 @@
                         <div class="title ">
                           <router-link tag="a"  :to="{path:`/app/${item._id}`,query:{title:item.title}}"  class="fontSize-text fontSize-text-app"
                                        v-click-data="{name:item.title,hrefUrl:`/app/${item._id}?title=${item.title}`,imgUrl:'/static/images/app/' + item.imgUrl,belong:'app',id:item._id}" >
-                            <span class="new" v-if="item.new">New</span>{{item.title}} <span>-</span><span>{{item.version}}</span>
+                            <span class="new" v-show="item.new">New</span>
+                            <span class="hot" v-show="item.hot">Hot</span>
+                            {{item.title}}
+                            <span>-</span><span>{{item.version}}</span>
                           </router-link>
                         </div>
                         <router-link tag="div"  :to="{path:`/app/${item._id}`,query:{title:item.title}}" class="info overflow-eclipse fontSize-text-color">
-                          {{item.explain}}
+                          {{item.websiteInfo}}
                         </router-link>
                         <div class="app-like">
                           <div class="app overflow-eclipse">
-                            <a :href="`/app/tag/${item}/1`" v-for="(item1,index1) in item.belongTag" :key="index1" target="_blank">{{item1}}</a>
+                            <a :href="`/app/tag/${item}/1`" v-for="(item1,index1) in item.belongTag" :key="index1" target="_blank">{{item1  | filterBelogTag}}</a>
                           </div>
                         </div>
                       </div>
@@ -257,7 +260,38 @@
         spinShow:false, //加载中动画
       }
     },
-
+    filters:{
+      filterBelogTag: (item)=>{
+        switch (item) {
+          case 1:
+          case "1":
+            return "运动健身"
+          case 2:
+          case "2":
+            return "音乐播放"
+          case 3:
+          case "3":
+            return "视频播放"
+          case 4:
+          case "4":
+            return "教育学习"
+          case 5:
+          case "5":
+            return "健康医疗"
+          case 6:
+          case "6":
+            return "趣味娱乐"
+          case 7:
+          case "7":
+            return "网络购物"
+          case 8:
+          case "8":
+            return "新闻资讯"
+          default:
+            return item
+        }
+      }
+    },
     computed: {
       ...mapGetters(['hotslider','hotsliderDefault'])
     },

@@ -28,9 +28,11 @@
                   <img class="applyBck" data-app="app1" v-lazy="'/static/images/app/'+item.imgUrl" width="100" height="100">
                 </div>
                 <div class="top-content">
-                  <span class="new" v-show="item.new">New</span>
-                  <span class="hot" v-show="item.hot">Hot</span>
-                  <h5 class="fontSize-text-colornoH">{{item.title}}</h5>
+                  <div class="fontSize-text-colornoH overflow-eclipse h5">
+                    <span class="new" v-show="item.new">New</span>
+                    <span class="hot" v-show="item.hot">Hot</span>
+                    {{item.title}}
+                  </div>
                   <p class="grade overflow-eclipse-2">
                     {{item.explain}}
                   </p>

@@ -97,10 +97,12 @@
               <router-link tag="span"  :to="{path:'/embody'}"class=" iconfont icon-link fontSize-icon"></router-link>
               <router-link tag="span"  :to="{path:'/embody'}" class="fontSize-text">{{$t('SubmitUrl')}}</router-link>
             </div>
-            <router-link tag="span" :to="{path:'/advertising'}" >
-              <i class=" iconfont icon-lishiyouxi fontSize-icon"></i>
-              <span class="fontSize-text">{{$t('advert')}}</span>
-            </router-link>
+            <div class="left-nav-item">
+              <router-link tag="span" :to="{path:'/advertising'}" >
+                <i class=" iconfont icon-lishiyouxi fontSize-icon"></i>
+                <span class="fontSize-text">{{$t('advert')}}</span>
+              </router-link>
+            </div>
             <div class="left-nav-item" @click="changeLcale('zh-CN')" v-if="isLocale === 'zh-CN'">
               <svg-icon name="china"></svg-icon>
               <span class="fontSize-text">{{$t('china')}}</span>

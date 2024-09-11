@@ -157,11 +157,11 @@
           <p style="text-align: center;">{{$t('footer.c_4')}}</p>
           <p style="text-align: center;">
             <span style="font-size: 10px;">
-              <span>Copyright</span>©2023-2024 <router-link :to="website">{{$t('footer.b_1')}}</router-link>
-              <router-link :to="website">{{$t('footer.b_2')}}</router-link> <router-link :to="website" target="_blank" rel="nofollow noopener">{{$t('footer.b_3')}}</router-link>
-              <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=navai.vip" target="_blank" rel="nofollow noopener">
-                <nuxt-img preload loading="lazy" format="webp" :src="imgUrl('guohui.png')"   width="20" height="22" :alt="title"/>{{$t('footer.b_4')}}
-</a>
+<!--              <span>Copyright</span>©2023-2024 <router-link :to="website">{{$t('footer.b_1')}}</router-link>-->
+<!--              <router-link :to="website">{{$t('footer.b_2')}}</router-link> <router-link :to="website" target="_blank" rel="nofollow noopener">{{$t('footer.b_3')}}</router-link>-->
+<!--              <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=navai.vip" target="_blank" rel="nofollow noopener">-->
+<!--                <nuxt-img preload loading="lazy" format="webp" :src="imgUrl('guohui.png')"   width="20" height="20" :alt="title"/>{{$t('footer.b_4')}}-->
+<!--</a>-->
             </span>
             <span style="font-size: 8pt;"> <a href="https://www.12377.cn/" target="_blank" rel="nofollow noopener">{{$t('footer.b_5')}}</a></span>
           </p>&nbsp;&nbsp;
@@ -191,9 +191,10 @@ export default {
   created() {
   },
   computed:{
-    ...mapGetters(['title','mobileLogo','website','website'])
+    ...mapGetters(['title','mobileLogo','website',])
   },
   mounted() {
+
   },
   methods: {
     //切换主题

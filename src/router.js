@@ -315,6 +315,7 @@ const router = new Router({
 })
 router.beforeEach((to, from, next) => {
   //1. 配置loading 开启
+
   // store.commit('getLoadingHome', true)
   // if (to.path.includes('cartoon') && store().getters.cartoonRouter !== true){
   //   next('/404')
@@ -333,7 +334,7 @@ router.beforeEach((to, from, next) => {
   next()
 })
 // router.afterEach((to,from,next) => {
-//   window.scrollTo(0,0);
+//
 // });
 /**
  * 解决报错问题：报错显示是路由重复

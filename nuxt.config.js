@@ -29,14 +29,16 @@ export default async function() {
         link: [
           {rel: 'icon', type: 'image/x-icon', href:setting.favicon },
           // { rel: 'stylesheet', href: '//at.alicdn.com/t/font_2039941_lrrqf795ok.css?display=swap' }
-          // { rel: 'stylesheet', href: '//unpkg.com/iview@3.5.4/dist/styles/iview.css' }
+          // { rel: 'stylesheet', href: '//cdn.bootcdn.net/ajax/libs/iview/3.5.4/styles/iview.css' }
         ],
         script: [
-          {src:'/consoleLog.js' ,defer: true,  type: 'text/javascript'}
+          // {rel: 'preload', src: '//cdn.bootcdn.net/ajax/libs/iview/3.5.4/iview.min.js', as: 'script', body: true},
+          {rel: 'preload',src:'/consoleLog.js' ,defer: true,  type: 'text/javascript'}
         ]
-        // script:[{  rel: 'preload',src: '//unpkg.com/view-design/dist/iview.min.js', as: 'script' }]
+        // script:[{  rel: 'preload',src: '//cdn.bootcdn.net/ajax/libs/iview/3.5.4/iview.min.js', as: 'script' }]
       },
       srcDir: 'src/',
+      ssr: true,
       css: [ //公共样式 重置样式
         // 'iview/dist/styles/iview.css'
         // {src: '@/assets/css/_bianlian.scss', lang: 'scss'},
@@ -64,7 +66,8 @@ export default async function() {
       },
       //移到了router.scrollBehavior.js 中
       router:{
-        scrollBehavior:'/src/router.scrollBehavior.js',
+        scrollBehavior:'@/router.scrollBehavior.js',
+        middleware: ['route-change']
       },
       // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
       plugins: [
@@ -96,7 +99,8 @@ export default async function() {
         presets: {
           default: {
             modifiers: {
-              format: 'webp'
+              format: 'webp',
+              quality: 80, // 设置图像质量为 80%
             }
           }
         }
@@ -121,6 +125,7 @@ export default async function() {
         "@nuxtjs/sitemap" // 生成网站地图 xml 发布seo的
       ],
       sitemap:sitemaps,
+      serverMiddleware: ['@/server/updateSitemap.js'],
       axios: {
         proxy: true,
       },
@@ -155,6 +160,9 @@ export default async function() {
           skipWaiting: true,
           // 启用离线分析
           offlineAnalytics: true,
+          config: {
+            debug: false // 关闭调试模式 使生成的 service worker 体积更小
+          },
           preCaching: [
             // 预缓存的资源
             'static/images/logoside.png',
@@ -255,8 +263,10 @@ export default async function() {
           config.resolve.alias['@'] = path.join(__dirname, 'src');
           //忽略iview.js
           // 添加 externals 配置，忽略 iview 相关依赖
-          // config.externals = config.externals || {};
-          // config.externals['iview'] = 'iview';
+          //   if (isClient) {
+          //     config.externals = config.externals || {};
+          //     config.externals['iview'] = 'iview';
+          //   }
         },
         babel:{
           // configFile: path.resolve(__dirname, 'babel.config.js'),
@@ -301,6 +311,13 @@ export default async function() {
             minSize: 10000, // 最小被分割的文件大小（字节）
             maxSize: 244000, // 分割文件的最大大小（字节）
             cacheGroups: {
+              iview:{
+                name: 'iview', // 分割出的文件名
+                test: /[\\/]iview[\\/]/, // 匹配views中的文件
+                chunks: 'all', // 针对所有文件
+                priority: 1,
+                maxSize: 244000
+              },
               vendor: {
                 name: 'node_vendors', // 分割出的文件名
                 test: /[\\/]node_modules[\\/]/, // 匹配node_modules中的文件
@@ -319,7 +336,7 @@ export default async function() {
               }
             }
           }
-        }
+        },
       },
       //服务器会根据这些头信息，在客户端请求之前主动推送这些资源。
       //在 nuxt.config.js 中配置 render: { http2: { push: true } } 是启用 HTTP/2 服务器推送（HTTP/2 Server Push）功能。以下是这个配置的具体含义和作用：

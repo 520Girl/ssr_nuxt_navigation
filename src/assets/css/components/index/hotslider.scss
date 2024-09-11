@@ -143,8 +143,18 @@
             padding-left: $padding15;
             .title{
               margin-bottom: 8px;
-              .new{
+              a{
+                display: block;
+              }
+              .hot{
                 background-color: red;
+                padding: 3px;
+                color: #ffffff;
+                border-radius: 5px;
+                font-size: 12px;
+              }
+              .new{
+                background-color: #005aff;
                 padding: 3px;
                 color: #ffffff;
                 border-radius: 5px;
@@ -169,9 +179,9 @@
                 color: #888;
                 border-radius: 15px;
                 text-align: center;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: normal;
+                //overflow: hidden;
+                //text-overflow: ellipsis;
+                //white-space: normal;
               }
 
             }

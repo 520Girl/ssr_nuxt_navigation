@@ -31,14 +31,6 @@
             .top-content {
               padding: 5px 0 5px 0;
               .new{
-                background-color: red;
-                padding: 3px;
-                color: #ffffff;
-                border-radius: 5px;
-                font-size: 12px;
-                margin-right: 4px;
-              }
-              .hot{
                 background-color: #005aff;
                 padding: 3px;
                 color: #ffffff;
@@ -46,13 +38,21 @@
                 font-size: 12px;
                 margin-right: 4px;
               }
-              h5 {
+              .hot{
+                background-color: red;
+                padding: 3px;
+                color: #ffffff;
+                border-radius: 5px;
+                font-size: 12px;
+                margin-right: 4px;
+              }
+              .h5 {
                 font-size: 0.16rem;
                 color: #ffffff;
                 font-weight: bold;
                 margin-bottom: 2px;
                 margin-top: 5px;
-                display: inline-block;
+                display: block;
               }
               p{
                 white-space:normal;

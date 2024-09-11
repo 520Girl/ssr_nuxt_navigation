@@ -767,3 +767,91 @@
   background: #ba48ff !important;
 }
 
+//首页article span desc
+.ivu-collapse-header{
+  display: flex;
+  align-items: center;
+  .header-desc{
+    max-width: 60%;
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .sign{
+    display: inline-block ;
+    .top{
+      top: 0;
+    }
+    .bottom{
+      bottom: 0;
+    }
+  }
+}
+
+
+//重置输入文本 里被重置的样式
+.webInfo,.appMain-introduce{
+  div{
+    line-height: 1.5;
+  }
+  h2{
+    border-left: 3px solid #f1404b;
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+    padding: 0.1rem;
+  }
+  h3{
+    display: block;
+    font-size: 1.17em;
+    padding-left: 0.1rem;
+    border-left: 3px solid #2475d3;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+  }
+  p{
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+    text-indent: 31px;
+    line-height: 1.5;
+  }
+  ul{
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    unicode-bidi: isolate;
+  }
+  li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+    unicode-bidi: isolate;
+  }
+  a{
+    color: #409eff;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  img{
+    max-width: 100%;
+    height: auto;
+  }
+}
+

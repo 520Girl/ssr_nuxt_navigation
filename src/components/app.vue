@@ -157,7 +157,12 @@
             </Col>
             <Col :xl="{ span: 19 }" :lg="{span:24}" :sm="{ span: 24 }" :xs="{span:24}"  class-name="app-content-right">
                 <div class="appLeft-detail mx-15-2">
-                    <h3 class="app-title overflow-eclipse fontSize-text-color"><span class="new" v-if="hotAppData.new">New</span>{{hotAppData.title}} <small style="color:red">{{hotAppData.version}}</small></h3>
+                    <h3 class="app-title overflow-eclipse fontSize-text-color">
+                      <span class="new" v-if="hotAppData.new">New</span>
+                      <span class="hot" v-if="hotAppData.hot">Hot</span>
+                      {{hotAppData.title}}
+                      <small style="color:red">{{hotAppData.version}}</small>
+                    </h3>
                     <p class="app-brief overflow-eclipse fontColor-t-d">{{hotAppData.websiteInfo}}</p>
                     <div class="app-nature">
                         <span v-for="(item,index) in hotAppData.natureTag" :key="index">
@@ -596,7 +601,7 @@
           case "8" || 8:
             return "新闻资讯"
           default:
-            return '综合性软件'
+            return item
         }
       }
     },

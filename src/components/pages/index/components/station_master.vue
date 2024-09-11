@@ -96,7 +96,9 @@ export default {
               </a>
               <div class="item-right ">
                 <div class="title ">
-                  <a href="" class="fontSize-text fontSize-text-app"><span class="new" v-if="item.new">New</span>{{item.title}} <span>-</span><span>{{item.version}}</span></a>
+                  <a href="" class="fontSize-text fontSize-text-app">
+                    <span class="new" v-if="item.new">New</span>
+                    {{item.title}} <span>-</span><span>{{item.version}}</span></a>
                 </div>
                 <div class="info overflow-eclipse fontSize-text-color">
                   {{item.explain}}

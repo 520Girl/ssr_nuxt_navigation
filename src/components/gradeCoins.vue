@@ -126,8 +126,8 @@
           <div class="guestbook-right-wraper">
             <div class="guestbook-right-webInfo">
               <h1>{{gradeCoinContent.content.title}}</h1>
-              <div class="webInfo">
-                {{gradeCoinContent.content.gradeCoinContent}}
+              <div class="webInfo" v-html="gradeCoinContent.content.gradeCoinContent" >
+<!--                {{gradeCoinContent.content.gradeCoinContent}}-->
               </div>
             </div>
             <div class="guestbook-right-appGroom ">

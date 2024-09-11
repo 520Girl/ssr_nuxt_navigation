@@ -151,10 +151,10 @@
     </div>
 </template>
 <script>
-import {Slider, Row, Col, Icon, Input, Button, Time, Page, Select, Option, Notice} from 'iview';
+// import {Slider, Row, Col, Icon, Input, Button, Time, Page, Select, Option, Notice} from 'iview';
     export default {
       name:"guestbook",
-      components:{Slider,Row,Col,Icon,Input,Button,Time,Page,Select,Option,Notice },
+      // components:{Slider,Row,Col,Icon,Input,Button,Time,Page,Select,Option,Notice },
       props:{
         commentsList:{type:Object,required:false,default:{}}
       },

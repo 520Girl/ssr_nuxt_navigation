@@ -104,12 +104,14 @@ npm run build
 #### 1. 第一次优化
 ![img.png](img.png)
 
-#### 1. 第二次优化
+#### 2. 第二次优化
 ![img_1.png](img_1.png)
 
-#### 2. 第三次优化
+#### 3. 第三次优化
 ![img_2.png](img_2.png)
 
+#### 4. 第三次优化
+![img_3.png](img_3.png)
 #### 文档
-1. [nuxt2.x 非官方中文文档](https://www.w3cschool.cn/nuxtjs/nuxtjs-opyl36g3.html)
+  1. [nuxt2.x 非官方中文文档](https://www.w3cschool.cn/nuxtjs/nuxtjs-opyl36g3.html)
 1. [优化方案](https://juejin.cn/post/7012567366198362120#heading-3)

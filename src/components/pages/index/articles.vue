@@ -105,7 +105,7 @@
               <Col :xl="{ span: 7 }" :lg="{span: 10}"  :xs="{ span: 24 }" class-name="collapse pdt-1-0">
                     <Collapse v-model="collapse.pitchOnTag" >
                         <Panel :name="String(index)" v-for="(item,index) in collapse.allCollapse" :key="item._id">
-                            <span class="fontSize-text-color">{{item.title}}</span>
+                            <span class="fontSize-text-color header-desc">{{item.title}}</span>
                             <Badge :count="item.heartNum" overflow-count="99" color="magenta"></Badge>
                             <router-link tag="p"
                              :to="{path:`/blog/${item._id}`,query:{title:item.title}}"

@@ -429,7 +429,7 @@
               font-size: 18px;
               color: red;
             }
-            .new{
+            .hot{
               background-color: red;
               padding: 3px;
               color: #ffffff;
@@ -439,7 +439,16 @@
               height: 100%;
               display: inline-block;
             }
-
+            .new{
+              background-color: #005aff;
+              padding: 3px;
+              color: #ffffff;
+              border-radius: 5px;
+              font-size: 20px;
+              margin-right: 1px;
+              height: 100%;
+              display: inline-block;
+            }
           }
           .app-brief{
             font-weight: 500;
