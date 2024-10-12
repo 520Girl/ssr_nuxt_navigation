@@ -28,10 +28,16 @@
             </p>
           </div>
           <div class="content-bottom auto-line-between">
-            <a href="" title="" class="defend">
-              <count-to-number :value="Number(item.guaranteeMoney)" :time="1" :suffix="suffix($t('gradeCoins.W'))" :key="$t('gradeCoins.W')" ></count-to-number>
-              <nuxt-img loading="lazy" format="webp" :src="imgUrl('bao.png','public')"    width="102" height="30" title="AI认证" alt=""/>
-            </a>
+            <router-link tag="a"
+                         :to="{path:`/gradeCoin/${item._id}`,query:{title: item.title}}" class="defend" title="free">
+              <template v-if="item.guaranteeMoney">
+                <count-to-number :value="Number(item.guaranteeMoney)" :time="1" :suffix="suffix($t('gradeCoins.W'))" :key="$t('gradeCoins.W')" ></count-to-number>
+                <nuxt-img loading="lazy" format="webp" :src="imgUrl('bao.png','public')"    width="102" height="30" title="AI认证" alt=""/>
+              </template>
+              <template v-else>
+                <svg-icon name="free" width="110" height="28" fill="#c6c9cf"></svg-icon>
+              </template>
+            </router-link >
             <div class="like overflow-eclipse">
                 <span
                   v-like="{url:`/gradeCoin/${item._id}?title=${item.title}`,belong:'gradeCoin',title:item.title,type:'HN',id:item._id}"

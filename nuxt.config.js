@@ -424,7 +424,6 @@ export default async function() {
           encodingsPriority: ['br', 'gzip'], // 控制优先级，按顺序优先选择采用的压缩格式
         },
       },
-
     }
   }catch(e){
     console.error('Error during build process:', e);

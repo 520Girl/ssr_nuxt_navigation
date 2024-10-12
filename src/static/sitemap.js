@@ -1,8 +1,8 @@
 import axios from "axios";
 import setting from "../setting"
 import {indexOf} from "core-js/internals/array-includes";
-// let baseUrl = process.env.HOST_API+"api/common/routerList"
-let baseUrl = "http://localhost:3000/api/common/routerList"
+let baseUrl = process.env.HOST_API+"api/common/routerList"
+// let baseUrl = "http://localhost:3000/api/common/routerList"
 const router =[
   {url:'sitemap/blog.xml',type:'blog',per_page:5,status:2},
   {url:'sitemap/app.xml',type:'app',per_page:5,status:3},

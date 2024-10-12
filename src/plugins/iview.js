@@ -18,6 +18,7 @@ import {
   Carousel,
   CarouselItem,
   Breadcrumb,
+  BreadcrumbItem,
   Form,
   FormItem,
   CheckboxGroup,
@@ -58,7 +59,8 @@ const components = {
   Notice,
   Spin,
   Card,
-  Tag
+  Tag,
+  BreadcrumbItem
 }
 
 // 循环注册全局组件

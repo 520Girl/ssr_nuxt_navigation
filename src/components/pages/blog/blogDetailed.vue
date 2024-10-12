@@ -285,18 +285,18 @@ export default {
     },
   },
   computed:{
-    routerQuery(){
-      console.log(33,this.$route.params)
-      return this.$route
-    }
+    // routerQuery(){
+    //   console.log(33,this.$route.params)
+    //   return this.$route
+    // }
   },
   watch:{
-    routerQuery(newValue,oldVal){
-      if (Object.keys(newValue).length === 0) return;
-      if (newValue.id == oldVal.id) return;
-      console.log(889,newValue.params.id,oldVal.params.id)
-      this.allStart(1,{id:newValue.params.id,title:''})
-    }
+    // routerQuery(newValue,oldVal){
+    //   if (Object.keys(newValue).length === 0) return;
+    //   if (newValue.id == oldVal.id) return;
+    //   console.log(889,newValue.params.id,oldVal.params.id)
+    //   this.allStart(1,{id:newValue.params.id,title:''})
+    // }
   }
 }
 </script>

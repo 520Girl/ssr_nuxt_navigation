@@ -51,7 +51,7 @@
       <div class="menu-bottom">
         <div class="menu-app">
           <Tooltip placement="right" :disabled="!sidebarOnOff">
-            <router-link tag="a"  :to="{path:'/embody'}"  class="app-icon-left auto-line-start">
+            <router-link tag="a"  :to="{path:'/embody'}"  class="app-icon-left auto-line-start" :title="$t('SubmitUrl')">
               <i class="iconfont icon-link footSize-icon-slidebar mx-1 pdt-1-4"></i>
               <div class="app" :style="sidebarOnOff ? 'opacity: 0;' : 'opacity: 1;'">
                 <transition name="menuText" mode="in-out">
@@ -59,13 +59,13 @@
                 </transition>
               </div>
             </router-link>
-            <router-link tag="span"  :to="{path:'/embody'}" class="fontSize-text" style="white-space: nowrap;padding-top: 5px;" slot="content">{{$t('SubmitUrl')}}</router-link>
+            <router-link tag="span"  :to="{path:'/embody'}" class="fontSize-text" style="white-space: nowrap;padding-top: 5px;" slot="content" :title="$t('SubmitUrl')">{{$t('SubmitUrl')}}</router-link>
           </Tooltip>
         </div>
         <div class="menu-app">
 
           <Tooltip placement="right" :disabled="!sidebarOnOff">
-            <router-link tag="a" :to="{path:'/advertising'}"  class="app-icon-left auto-line-start">
+            <router-link tag="a" :to="{path:'/advertising'}"  class="app-icon-left auto-line-start" :title="$t('advert')">
               <i class="iconfont icon-lishiyouxi footSize-icon-slidebar mx-1 pdt-1-4"></i>
               <div class="app" :style="sidebarOnOff ? 'opacity: 0;' : 'opacity: 1;'">
                 <transition name="menuText" mode="in-out">
@@ -73,7 +73,7 @@
                 </transition>
               </div>
             </router-link>
-            <router-link tag="span" :to="{path:'/advertising'}"  class="fontSize-text" style="white-space: nowrap;padding-top: 5px;" slot="content">{{$t('advert')}}</router-link >
+            <router-link tag="span" :to="{path:'/advertising'}"  class="fontSize-text" style="white-space: nowrap;padding-top: 5px;" slot="content" :title="$t('advert')" >{{$t('advert')}}</router-link >
           </Tooltip>
         </div>
       </div>

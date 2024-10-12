@@ -126,9 +126,9 @@
       // 统计用户信息
       async setUserInfo(){
         const { default:deviceInfo } = await import('@/assets/js/UAparser.js')
-        this.$api.user.setUserInfo(deviceInfo()).then((res)=>{
-          console.log(res)
-        })
+        // this.$api.user.setUserInfo(deviceInfo()).then((res)=>{
+        //   console.log(res)
+        // })
       }
     },
   }

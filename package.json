@@ -1,6 +1,6 @@
 {
   "name": "ssr_nuxt_navigation",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "dev": "nuxt --dotenv=.env.development",

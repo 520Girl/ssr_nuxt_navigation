@@ -44,7 +44,7 @@
             </div>
             <div class="wrap-body">
               <Time :time="item.onlineTime" class="time" v-if="item.onlineTime" />
-              <Icon type="md-refresh fontSize-text " class="refresh_quan refresh" @click="getNewsRefresh(item._id,item,index)" />
+              <Icon type="md-refresh fontSize-text " :class="{refresh_quan:item.status,refresh:item.status}" @click="getNewsRefresh(item._id,item,index)" />
             </div>
             <loading-block :spinShow="item.status" ></loading-block>
           </div>

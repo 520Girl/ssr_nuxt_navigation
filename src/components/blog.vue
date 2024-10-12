@@ -34,7 +34,7 @@
       name:"Blog",
       components:{ blogOneselfRight,blogOneselfLeft1,blogOneself},
       async asyncData({ $api,route}) {
-        const { blog } = await $api.blog.getBolgLists({page:1,per_page:5,tag:route.query.tag,author:route.params.author_id,order:-1})
+        const { blog } = await $api.blog.getBolgLists({page:route.params.page,per_page:5,tag:route.query.tag,author:route.params.author_id,order:-1})
 
         const { user } = await $api.user.getUserInfoB()
         const blogHotComment = await $api.blog.getBlogHot({per_page:4,belong:'comment',order:-1})

@@ -170,12 +170,13 @@
               display:flex;
               justify-content:space-between;
               border-radius:5px;
-              a:first-child{
+              .item-img-reserve{
                 width:80%;
                 display:inline-block;
                 img{
                   height:100%;
                   width:100%;
+                  object-fit: scale-down;
                 }
               }
               .item-order{

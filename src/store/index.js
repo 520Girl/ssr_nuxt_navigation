@@ -4,6 +4,8 @@ import getters from "@/store/getters";
 import tagsView from "./modules/tagsView";
 import clickLike from "./modules/clickLike";
 import async_data from "./modules/async_data";
+import {NGINX_SERVER_IP} from "@/assets/js/constant";
+
 Vue.use(Vuex)
 
 //配置数据持久化
@@ -105,7 +107,14 @@ const store = () => new Vuex.Store({
         commit('ADD_GET_BASE_CONFIG', common.content)
       }
     },
+    nuxtServerInit({ commit, state },{ app,req, res }){
+      // 服务器端渲染时，执行该方法,需要同步到服务器端的ip地址
+      NGINX_SERVER_IP.ip = req.headers['x-forwarded-for'] || req.headers['x-real-ip'] || req.connection.remoteAddress
+      console.log('nuxtServerInit',NGINX_SERVER_IP.ip)
+      console.log('nuxtServerInit',req.headers['x-forwarded-for'])
+      console.log('nuxtServerInit',req.headers['x-real-ip'])
 
+    }
   },
   modules: {
     tagsView,

@@ -67,76 +67,76 @@
         </Col>
         <Col :sm="{span:10}" :xs="{ span: 24 }" class="footer-li">
           <p class="footer-links fontSize-text-app">{{$t('footer.c_6')}}</p>
-          <div class="footer-nav-links">
-            <li class="menu-item">
-              <router-link to="/blog/tag/AI/1" class="item-title">
-                <span>{{$t('footer.li_1')}}</span>
-              </router-link>
-              <ul class="sub-menu">
-                <li  class="">
-                  <router-link to="/blog/623c33963c00c53a9cbb999a?title=生成式人工智能服务管理暂行办法" :title="$t('footer.li_2')"><span>
+          <ul class="footer-nav-links">
+              <li class="menu-item">
+                <router-link to="/blog/tag/AI/1" class="item-title">
+                  <span>{{$t('footer.li_1')}}</span>
+                </router-link>
+                <ul class="sub-menu">
+                  <li  class="">
+                    <router-link to="/blog/623c33963c00c53a9cbb999a?title=生成式人工智能服务管理暂行办法" :title="$t('footer.li_2')"><span>
                     {{$t('footer.li_2')}}
                   </span></router-link>
-                </li>
-                <li  class="">
-                  <router-link to="/app/61ffb521b67c0000ba000525?title=互联网信息服务算法备案系统" :title="$t('footer.li_3')">
-                    <span>{{$t('footer.li_3')}}</span>
-                  </router-link>
-                </li>
-                <li  class="">
-                  <router-link to="/fanzhazhongxin">
-                    <span>{{$t('footer.li_4')}}</span>
-                  </router-link>
-                </li>
-              </ul>
-            </li>
-            <li class="menu-item" >
-              <router-link to="/embody" class="item-title">
-                <Icon type="md-radio-button-on" />
-                <span>{{$t('footer.li_5')}}</span>
-              </router-link>
-              <ul class="sub-menu">
-                <li  >
-                  <router-link  to="/free-ai-industry-reports" :title="$t('footer.li_6')">
-                    <span>{{$t('footer.li_6')}}</span>
-                  </router-link>
-                </li>
-                <li class="">
-                  <router-link to="/advertising" :title="$t('footer.li_7')">
-                    <span>{{$t('footer.li_7')}}</span>
-                  </router-link>
-                </li>
-                <li  >
-                  <router-link to="/reciprocal-project" :title="$t('footer.li_8')">
-                    <span>{{$t('footer.li_8')}}</span>
-                  </router-link>
-                </li>
-              </ul>
-            </li>
-            <li class="menu-item" >
-              <router-link to="/about" class="item-title" :title="$t('footer.li_9')">
-                <Icon type="md-radio-button-on" />
-                <span>{{$t('footer.li_9')}}</span>
-              </router-link>
-              <ul class="sub-menu">
-                <li >
-                  <router-link to="/business" :title="$t('footer.li_10')">>
-                    <span>{{$t('footer.li_10')}}</span>
-                  </router-link>
-                </li>
-                <li >
-                  <router-link to="/disclaimer" :title="$t('footer.li_11')">
-                    <span>{{$t('footer.li_11')}}</span>
-                  </router-link>
-                </li>
-                <li >
-                  <router-link to="/deleteinformation" tag="a" :title="$t('footer.li_12')">
-                    <span>{{$t('footer.li_12')}}</span>
-                  </router-link>
-                </li>
-              </ul>
-            </li>
-          </div>
+                  </li>
+                  <li  class="">
+                    <router-link to="/app/61ffb521b67c0000ba000525?title=互联网信息服务算法备案系统" :title="$t('footer.li_3')">
+                      <span>{{$t('footer.li_3')}}</span>
+                    </router-link>
+                  </li>
+                  <li  class="">
+                    <router-link to="/fanzhazhongxin">
+                      <span>{{$t('footer.li_4')}}</span>
+                    </router-link>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item" >
+                <router-link to="/embody" class="item-title">
+                  <Icon type="md-radio-button-on" />
+                  <span>{{$t('footer.li_5')}}</span>
+                </router-link>
+                <ul class="sub-menu">
+                  <li  >
+                    <router-link  to="/free-ai-industry-reports" :title="$t('footer.li_6')">
+                      <span>{{$t('footer.li_6')}}</span>
+                    </router-link>
+                  </li>
+                  <li class="">
+                    <router-link to="/advertising" :title="$t('footer.li_7')">
+                      <span>{{$t('footer.li_7')}}</span>
+                    </router-link>
+                  </li>
+                  <li  >
+                    <router-link to="/reciprocal-project" :title="$t('footer.li_8')">
+                      <span>{{$t('footer.li_8')}}</span>
+                    </router-link>
+                  </li>
+                </ul>
+              </li>
+              <li class="menu-item" >
+                <router-link to="/about" class="item-title" :title="$t('footer.li_9')">
+                  <Icon type="md-radio-button-on" />
+                  <span>{{$t('footer.li_9')}}</span>
+                </router-link>
+                <ul class="sub-menu">
+                  <li >
+                    <router-link to="/business" :title="$t('footer.li_10')">
+                      <span>{{$t('footer.li_10')}}</span>
+                    </router-link>
+                  </li>
+                  <li >
+                    <router-link to="/disclaimer" :title="$t('footer.li_11')">
+                      <span>{{$t('footer.li_11')}}</span>
+                    </router-link>
+                  </li>
+                  <li >
+                    <router-link to="/deleteinformation" tag="a" :title="$t('footer.li_12')">
+                      <span>{{$t('footer.li_12')}}</span>
+                    </router-link>
+                  </li>
+                </ul>
+              </li>
+          </ul>
           <div class="footer-social"> </div>
         </Col>
         <Col :sm="{span:6}" :xs="{ span: 24 }" class="footer-li">

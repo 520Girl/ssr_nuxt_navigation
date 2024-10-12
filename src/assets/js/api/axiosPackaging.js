@@ -2,6 +2,7 @@
 // import common from "@/assets/js/common";
 import decode_res_data from "@/assets/js/decode_res_data";
 import reqApi from "@/assets/js/api/reqModule";
+import { NGINX_SERVER_IP} from "../constant";
 
 export default ({app, $axios, store, redirect},inject) => {
 //创建一个axios 实例  ,设置默认post请求头 ，跨域请求时是否默认携带cookie
@@ -50,6 +51,7 @@ export default ({app, $axios, store, redirect},inject) => {
       /*每一次请求将token携带传给后台，由后台判断token是否过期，返回状态码*/
       const token = store.state.token;
       req.headers.Authorization = token;
+      req.headers['ip-forwarded-for'] = req.headers['x-real-ip'] = NGINX_SERVER_IP.ip;
       return req
     },
     error => {

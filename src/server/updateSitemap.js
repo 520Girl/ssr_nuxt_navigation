@@ -4,7 +4,7 @@ const generateSitemap = require('../static/sitemap');
 module.exports = async (req, res,next)=>{
     try{
 
-      if(req.method === 'GET' && req.url === '/api/update-sitemap') {
+      if(req.method === 'GET' && req.url === '/web/update-sitemap') {
 
         const sitemap = await generateSitemap;
         res.statusCode = 200;
