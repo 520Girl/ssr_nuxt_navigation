@@ -789,11 +789,14 @@
   }
 }
 
-
 //重置输入文本 里被重置的样式
-.webInfo,.appMain-introduce{
+.webInfo,.appMain-introduce,.left2-layout-main{
   div{
     line-height: 1.5;
+  }
+  h1{
+    font-size: 2em;
+    margin: 0.67em 0;
   }
   h2{
     border-left: 3px solid #f1404b;
@@ -854,4 +857,3 @@
     height: auto;
   }
 }
-

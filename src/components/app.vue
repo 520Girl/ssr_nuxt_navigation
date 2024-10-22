@@ -234,7 +234,7 @@
             <Col :xl="{ span: 20 }" :lg="{span:20}" :sm="{ span: 20 }" :xs="{span:24}" class-name="app-main-content">
                 <div class="appMain-introduce mx-15-2">
                     <h1>{{hotAppData.title}}</h1>
-                    <p>{{hotAppData.explain}}</p>
+                    <div v-html="hotAppData.explain"></div>
                     <img :src="hotAppData.appContent" alt="" style="width: 100%;height: 100%;">
                     <share ></share>
                     <div class="appMain-button">

@@ -78,7 +78,7 @@
               {mainImg:"https://i1.wp.com/www.ymrkou.com/wp-content/uploads/2020/08/d3f513902a5b1471d55d3c7d9d2b508d.gif?fit=960%2C540&ssl=1",mainContent:'这是一个标题',mainTime:259200000,mainIcon:"logo-octocat",mainUrl:'www.baidu.com',mainNumber:"5"}
             ]
           },
-          oneselfDate:{content:{imgUrl:''}},//个人信息数据
+          oneselfDate:{content:{imgUrl:''},web:0,blog:0,comments:0,eye:0},//个人信息数据
           eyeHotDate:{title:this.$t('blog.hot_article'),icon:'md-flame',color:'red!important',type:'eye'}, //热门文章
           commentsHotDate:{title:this.$t('blog.hot_comment'),icon:'ios-create',color:"#ff6f00!important",type:'comment'}, //热评文章
           hotTag:[]
@@ -87,7 +87,7 @@
       created(){
         //!nuxt 数据的处理
         //? 1.获取个人信息数据
-        this.oneselfDate = this.userInfoB
+        this.oneselfDate = {...this.oneselfDate,...this.userInfoB}
         //虚假数据
         if (this.oneselfDate.web <= 156) this.oneselfDate.web = 156
         if (this.oneselfDate.blog <= 28) this.oneselfDate.blog = 28

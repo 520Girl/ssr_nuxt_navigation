@@ -3,7 +3,7 @@
         <section class="articles-content mx-15-2">
             <Row type='flex' justify="space-between" class-name="articles-carousel" >
               <Col :xl="{ span: 7 }" :lg="{span: 11}" :xs="{ span: 24 }" class-name="carousel-content">
-                  <Carousel v-model="carousel.pitchOnImg" :autoplay="true"  radius-dot :arrow="carousel.content.slide.length === 1 ? 'never' :'hover'" style="height: 100%">
+                  <Carousel v-model="carousel.pitchOnImg" :autoplay="true"  radius-dot :arrow="carousel.content.slide && carousel.content.slide.length === 1 ? 'never' :'hover'" style="height: 100%">
                       <CarouselItem  v-for="(item,index) in carousel.content.slide" style="height: 100%" :key="item._id" >
                           <div
                             @click="jumpUrl(item)"
@@ -20,7 +20,7 @@
               </Col>
               <Col :xl="{ span: 3 }"  :lg="{span: 3}" :xs="{ span:0 }" class-name="sliders pdt-1-0" >
                   <div class="sliders-layout">
-                    <Carousel   :autoplay="true" :autoplay-speed="1500" radius-dot :arrow="value.length === 1 ? 'never' : 'hover'"  v-for="(value,key,index1) in carousel.content" :key="key" v-if="value.length != 0 && key != 'slide'">
+                    <Carousel   :autoplay="true" :autoplay-speed="1500" radius-dot :arrow="value && value.length === 1 ? 'never' : 'hover'"  v-for="(value,key,index1) in carousel.content" :key="key" v-if="value.length != 0 && key != 'slide'">
                       <CarouselItem  class="layout-li" v-for="(item,index) in value"  :key="item.imgUrl" >
                         <div
                           @click="jumpUrl(item)"
