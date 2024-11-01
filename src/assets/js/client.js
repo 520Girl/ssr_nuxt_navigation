@@ -78,12 +78,12 @@ export default ({app,router,store},inject)=>{
     let flag  = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
     return flag
   }
-  isMobile() ? store.commit("getIsMobile",true)  : store.commit("getIsMobile",false)
+  isMobile() ? store.commit("getIsMobile",true)  : store.commit("getIsMobile",false);
   console.log('isMobile',isMobile() ? true : false)
-  console.log('themes',store.state.isMobile)
 
   //! 1. 添加默认主题
   let themes = localStorage.getItem('themes')
+  console.log('themes------------------',themes)
   if (themes && themes.includes('light')) {
     window.document.documentElement.setAttribute("data-theme", 'light'); //scss
     window.document.documentElement.setAttribute("class", 'light'); //less

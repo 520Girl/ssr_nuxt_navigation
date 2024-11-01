@@ -1,55 +1,69 @@
 <template>
   <transition name="fade">
     <div class="loading-page " v-if="loading">
-    <div class="page-left skeleton_animation"></div>
-    <div class="page-main">
-      <header class="skeleton_animation"></header>
-      <div class="main-content">
-        <div class="content-left ">
-          <div class="Slideshow skeleton_animation"></div>
-          <div class="Slideshow skeleton_animation" style="height: 35px;"></div>
-          <Row type='flex' justify="start" class-name="menu-button" >
-            <Col :xl="{ span: 4 }" :lg="{span:6}" :md="{span:8}"   :sm="{ span: 12 }" :xs="{span:24}" class-name="carousel" v-for="i in 6" :key="i">
-              <div class="carousel-item skeleton_animation"></div>
-            </Col>
-
-          </Row>
+      <Col :md="{span:24}" :sm="{ span: 0 }" :xs="{span:0}" class-name="page-left">
+        <div class="rank-menu skeleton_animation"></div>
+      </Col>
+      <div class="page-main">
+        <header class="skeleton_animation"></header>
+        <div class="main-content">
+          <div class="content-left ">
+            <div class="Slideshow skeleton_animation"></div>
+            <div class="Slideshow skeleton_animation" style="height: 35px;"></div>
+            <Row type='flex' justify="start" class-name="menu-button" >
+              <Col :xl="{ span: 4 }" :lg="{span:6}" :md="{span:8}"   :sm="{ span: 12 }" :xs="{span:24}"  class-name="carousel-item pdr-1-0 " v-for="i in 6" :key="i">
+                <div class=" skeleton_animation " style="height: 100%;"></div>
+              </Col>
+            </Row>
+          </div>
+          <div class="content-right " style="margin-top: 0.52rem;">
+            <Row type='flex' justify="start" class-name="menu-button " >
+              <Col :xl="{ span: 7 }" :lg="{span: 11}" :xs="{ span: 24 }"  class-name="carousel skeleton_animation ">
+              </Col>
+              <Col :xl="{ span: 3 }"  :lg="{span: 3}" :xs="{ span:0 }"  class-name="carousel pdt-1-0 ">
+                <div class="rank-menu skeleton_animation "></div>
+              </Col>
+              <Col :xl="{ span: 7 }"  :lg="{span: 0}" :xs="{ span:0 }" class-name="rank carousel  pdt-1-0">
+                <div class="rank-menu skeleton_animation "></div>
+              </Col>
+              <Col :xl="{ span: 7 }"  :lg="{span: 10}" :xs="{ span:0 }"   class-name="collapse carousel pdt-1-0">
+                <div class="rank-menu skeleton_animation "></div>
+              </Col>
+            </Row>
+          </div>
+          <Col :lg="{span:24}"  :md="{span:0}" :sm="{ span: 0 }" :xs="{span:0}" >
+            <div class="content-nav rank-menu">
+              <p class="skeleton_animation"></p>
+              <p class="skeleton_animation"></p>
+            </div>
+            <div class="rank-menu">
+              <p class="skeleton_animation"></p>
+              <p class="skeleton_animation"></p>
+            </div>
+          </Col>
         </div>
-        <div class="content-right ">
-          <Row type='flex' justify="start" class-name="menu-button" >
-            <Col :lg="{span:8}" :md="{span:12}" :xs="{ span: 24 }" class-name="carousel skeleton_animation">
-
-            </Col>
-            <Col :lg="{span:8}" :md="{span:12}" :xs="{ span: 24 }" class-name="rank ">
-              <div class="rank-menu skeleton_animation"></div>
-            </Col>
-            <Col :lg="{span:8}" :md="{span:0}"  :xs="{ span: 0 }" class-name="collapse skeleton_animation">
-
-            </Col>
-          </Row>
-        </div>
-        <div class="content-nav">
-          <p class="skeleton_animation"></p>
-          <p class="skeleton_animation"></p>
-        </div>
-        <div class="content-button">
-          <p class="skeleton_animation"></p>
-          <p class="skeleton_animation"></p>
-        </div>
+        <Col :md="{span:24}" :sm="{ span: 0 }" :xs="{span:0}">
+          <footer class="rank-menu skeleton_animation" ></footer>
+        </Col>
       </div>
-      <footer class="skeleton_animation" ></footer>
     </div>
-  </div>
   </transition>
 
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   data: () => ({
     loading: true,
   }),
+  created() {
+    console.log("开始加载s",this.$store.state.isMobile);
+    console.log("开始加载s2",this.isMobile);
+
+  },
   mounted() {
+    console.log("开始加载s2",this.isMobile);
     // this.$nextTick(() => {
     //   setTimeout(() => {
     //     this.loading = false
@@ -57,12 +71,16 @@ export default {
     // })
 
   },
+  computed:{
+    ...mapGetters([
+      'isMobile'
+    ]),
+  },
   methods: {
     finishLoading() {
       this.loading = false
     },
     start() {
-      console.log("开始加载");
       this.loading = true
     },
     finish() {
@@ -115,31 +133,25 @@ export default {
       border-radius: 0;
     }
     .main-content{
-      margin: 20px;
+      margin: 0.2rem;
       height: calc(100% - 190px);
       overflow: hidden;
       position: relative;
 
       .content-left,.content-right{
-        height: 40%;
-        margin: 20px;
         .menu-button{
           height: 100%;
           .carousel{
-            height: 100%;
 
           }
           .rank{
             .rank-menu{
               height: 100%;
-              margin-right: 50px;
-              margin-left: 50px;
             }
           }
 
           .collapse{
-            height: 100%;
-
+            //height: 100%;
           }
         }
 
@@ -154,10 +166,7 @@ export default {
           box-sizing: border-box;
           .carousel{
             height: 50%;
-            .carousel-item{
-              margin: 0 20px 20px 20px;
-              height: 100%;
-            }
+
           }
         }
 
@@ -167,8 +176,9 @@ export default {
       }
       .content-nav{
         position: absolute;
-        right: 10px;
-        bottom: 18px;
+        right: 3px;
+        /* display: flex; */
+        top: 45px;
         p{
           height: 40px;
           width: 40px;
@@ -177,9 +187,9 @@ export default {
       }
       .content-button{
         position: absolute;
-        left: 20px;
+        left:25px;
         display: flex;
-        bottom: 50px;
+        top: 45px;
         p{
           width: 100px;
           height: 40px;
@@ -204,7 +214,7 @@ export default {
 }
 .Slideshow{
   height:30px;
-  margin: 0 0px 20px 0px;
+  margin: 0 0px 0.2rem 0px;
 }
 @keyframes el-skeleton-loading {
   0% {
@@ -215,4 +225,31 @@ export default {
     background-position: 0 50%
   }
 }
+.pdt-1-0{
+  padding-left: 0.1rem;
+}
+.pdr-1-0{
+  padding-right: 0.1rem;
+  padding-top: 0.4px;
+}
+.rank-menu{
+  height: 100%;
+}
+
+//media query
+.Slideshow{
+  height:30px;
+}
+.carousel-item{
+  height: 150px;
+}
+.carousel{
+  height: 300px;
+}
+@media (max-width: 576px){
+  .main-content{
+    height: 100% !important;
+  }
+}
+
 </style>

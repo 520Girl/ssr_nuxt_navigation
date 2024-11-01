@@ -17,7 +17,6 @@ const cookieStorage = {
 };
 export default ({app, store }) => {
   createPersistedState({
-
     key: 'nuxt_navai_vip',
     reducer(state) {
       return {

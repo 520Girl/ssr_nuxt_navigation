@@ -16,7 +16,7 @@ export default async function() {
       // Global page headers: https://go.nuxtjs.dev/config-head
       head: {
         title: setting.title + '-' + '生成式AI工具导航',
-        htmlAttrs: {lang: 'zh','data-theme': 'dark'},
+        htmlAttrs: {lang: 'zh'},
         meta: [
           {charset: 'utf-8'},
           {name: 'viewport', content: 'width=device-width, initial-scale=1'},
@@ -73,10 +73,11 @@ export default async function() {
       plugins: [
         '@/assets/js/api/axiosPackaging',
         '@/assets/js/common',
+        {src: '@/store/persistedState.client', ssr: false},
+        {src: '@/assets/js/client', ssr: false},
         {src: '@/plugins/iview', ssr: true},
         {src: '@/assets/js/server', ssr: true},
-        {src: '@/assets/js/client', ssr: false},
-        {src: '@/store/persistedState.client', ssr: false},
+
         // {src: '@/plugins/share', ssr: false},
         // {src: '@/plugins/qrcode', mode: 'client'},
         '@/plugins/svg-icon'

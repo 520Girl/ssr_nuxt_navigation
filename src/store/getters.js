@@ -3,6 +3,7 @@ import setting from '@/setting'
 const getters = {
   asyncLoadingData: state => state.asyncLoadingData,
   webBase: state => state.webBase,
+  isMobile: state => state.isMobile,
   logoUrl: state => state.webBase.logoUrl,
   mobileLogo: state =>  state.webBase.mobileLogo,
   website: state =>  state.webBase.url,

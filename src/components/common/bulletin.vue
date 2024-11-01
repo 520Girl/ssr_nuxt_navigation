@@ -144,7 +144,7 @@
       height: 0.3rem;
       min-height: 20px;
       border-radius: 5px;
-      width: 100%;
+      width: 96%;
 
       .bulletin-toBottom {
         height: 100%;
