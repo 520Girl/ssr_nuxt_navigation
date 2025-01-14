@@ -2,6 +2,9 @@
 //@import url('./_handle.scss');
 @import url('./font_2039941_lrrqf795ok.css');
 @media screen and (max-width: 750px) {
+  .header-left-nav{
+    display: none !important;
+  }
   .page-sidebar {
     position: fixed;
     top: 0;
@@ -745,10 +748,16 @@
 //点赞
 .headerTagI{
   color: red!important;
+  i{
+    color:#ffd600!important
+  }
 }
 .eyeTagI{
   animation: headerTagI 3s infinite;
-  color:#ffd600!important
+  color:#ffd600!important;
+  i{
+    color:red!important
+  }
 }
 .scoreTagI{
   color: red;

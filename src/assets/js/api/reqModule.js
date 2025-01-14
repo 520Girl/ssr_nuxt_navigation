@@ -49,22 +49,22 @@ export default (($axios) => {
   }
 
   const gradeCoin = {
-    getGradeCoin(params,ssr) {
-        return $axios.get(`${base.getGradeCoin}`, { params: params })
+    getGradeCoin(params, ssr) {
+      return $axios.get(`${base.getGradeCoin}`, { params: params })
     },
     getGradeCoinDetail(params) {
       return $axios.get(`${base.getGradeCoinDetail}/${params}`)
     }
   }
 
-  const webSite={
-    getWebsite(params){
-      return $axios.get(`${base.getWebsite}`,{params:params})
+  const webSite = {
+    getWebsite(params) {
+      return $axios.get(`${base.getWebsite}`, { params: params })
     },
-    getWebsiteHNItem(params){
-      return $axios.get(`${base.getWebsiteHNItem}`,{params:params})
+    getWebsiteHNItem(params) {
+      return $axios.get(`${base.getWebsiteHNItem}`, { params: params })
     },
-    getWebsiteOne(){
+    getWebsiteOne() {
       return $axios.get(`${base.getWebsiteOne}`)
     }
   }
@@ -109,28 +109,28 @@ export default (($axios) => {
   }
 
   const news = {
-    getNews(){
+    getNews() {
       return $axios.get(`${base.getNews}`)
     },
-    getNewsRefresh(params){
+    getNewsRefresh(params) {
       return $axios.get(`${base.getNewsRefresh}/${params}`)
     },
-    getCountUpDate(){
+    getCountUpDate() {
       return $axios.get(`${base.getCountUpDate}`)
     },
   }
 
   const mutulal = {
-    getCUpvote(params){
-      return $axios.patch(`${base.getCUpvote}`,params)
+    getCUpvote(params) {
+      return $axios.patch(`${base.getCUpvote}`, params)
     },
-    getCSearch(params){
-      return $axios.get(`${base.getCSearch}`,{params:params})
+    getCSearch(params) {
+      return $axios.get(`${base.getCSearch}`, { params: params })
     },
-    getSearch(url,params,type){
+    getSearch(url, params, type) {
       return new Promise((resolve, reject) => {
         fetchJsonp(`${url}${params}`).then(res => {
-          switch(type){
+          switch (type) {
             case 'baidu':
             case '360':
             case 'taobao':
@@ -148,14 +148,14 @@ export default (($axios) => {
         });
       });
     },
-    getBaseList(){
+    getBaseList() {
       return $axios.get(`${base.getBaseList}`)
     },
-    getHotTag(params){
-      return $axios.get(`${base.getHotTag}`,{params:params})
+    getHotTag(params) {
+      return $axios.get(`${base.getHotTag}`, { params: params })
     }
   }
-  return { appList, user, blog, gradeCoin, webSite, cartoon, image, bulletin, slide ,news, mutulal }
+  return { appList, user, blog, gradeCoin, webSite, cartoon, image, bulletin, slide, news, mutulal }
 })
 
 

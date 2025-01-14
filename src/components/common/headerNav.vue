@@ -92,7 +92,7 @@
             </svg>
             <img :src="mobileLogo" :alt="title" class="modileIMG" width="222" height="66" @click="handleHideSidebar([sidebarOnOff,sidebarOnOff])">
           </div>
-          <div v-if="!isMobile" class="left-nav auto-line-center" >
+          <div v-if="!isMobile" class="left-nav auto-line-center header-left-nav" >
             <div class="left-nav-item">
               <router-link tag="span"  :to="{path:'/embody'}"class=" iconfont icon-link fontSize-icon"></router-link>
               <router-link tag="span"  :to="{path:'/embody'}" class="fontSize-text">{{$t('SubmitUrl')}}</router-link>

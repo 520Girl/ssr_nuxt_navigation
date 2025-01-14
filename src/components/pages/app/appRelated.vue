@@ -25,7 +25,7 @@
             <div>
               <div class="content-top ">
                 <div class="top-img">
-                  <img class="applyBck" data-app="app1" v-lazy="'/static/images/app/'+item.imgUrl" width="100" height="100">
+                  <nuxt-img class="applyBck" format="avif,webp,jpeg" placeholder="/static/lazy/errorG3.png" data-app="app1" :src="imgUrl(item.imgUrl,'app')" width="100" height="100"/>
                 </div>
                 <div class="top-content">
                   <div class="fontSize-text-colornoH overflow-eclipse h5">

@@ -121,8 +121,6 @@ const store = () => new Vuex.Store({
     async_data
   },
   getters
-  // 传入配置后的插件实例
-
 })
 
 export default store;

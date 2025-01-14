@@ -59,6 +59,7 @@ export default async function() {
         ],
       },
       // loading: './components/common/loadingHome.vue',
+      loading: false,
       loadingIndicator: {
         name: 'circle',
         color: 'rgba(255,10,10,0.59)',
@@ -86,6 +87,9 @@ export default async function() {
       // Auto import components: https://go.nuxtjs.dev/config-components
       components: true,
       image:{
+        formats: ['avif', 'webp', 'jpeg'],
+        // 可以针对不同场景设置质量
+        quality: 80,
         provider: 'ipx',
         ipx: {
           // 允许访问的路径，必须匹配文件存放路径
@@ -100,7 +104,8 @@ export default async function() {
         presets: {
           default: {
             modifiers: {
-              format: 'webp',
+              fit:'contain', // 保持比例
+              format: 'avif',
               quality: 80, // 设置图像质量为 80%
             }
           }
@@ -167,19 +172,20 @@ export default async function() {
           preCaching: [
             // 预缓存的资源
             'static/images/logoside.png',
-            'static/images/logoXI.png',
+            'static/images/logoXI.png', //https://navai.vip/static/images/logoXI.png
             '/favicon.ico',
-            '/navai.png',
+            '/navai.png',//https://navai.vip/navai.png
           ],
           runtimeCaching: [
             {
-              urlPattern: new RegExp('https://navai\.vip/api/common/base'),
-              handler: 'NetworkFirst',
+              urlPattern: new RegExp('/api/common'),
+              handler: 'StaleWhileRevalidate', //适用于可以接受短暂旧数据的一般API
               method: 'GET',
               options: {
-                cacheName: 'api-cache/base',
+                cacheName: 'api-cache/base', // 缓存名称
                 expiration: {
-                  maxAgeSeconds: 60 * 60 * 24,
+                  maxEntries: 100, // 限制缓存条目数
+                  maxAgeSeconds: 60 * 60 * 24, // 缓存时间
                 },
                 cacheableResponse: {
                   statuses: [0, 200],
@@ -187,8 +193,8 @@ export default async function() {
               }
             },
             {
-              urlPattern: new RegExp('https://navai\.vip/api/website/oneItem'),
-              handler: 'NetworkFirst',
+              urlPattern: new RegExp('/api/website/oneItem'),
+              handler: 'StaleWhileRevalidate',
               method: 'GET',
               options: {
                 cacheName: 'api-cache/oneItem',
@@ -201,13 +207,35 @@ export default async function() {
               }
             },
             {
-              urlPattern: new RegExp('^https://navai.vip/api/gradeCoins'),
+              urlPattern: /\/api\/(slide|app|gradeCoins|blog|cartoon|website|image|userInfo|bulletin|news|common)(?:\/|\?|$)/,
               handler: 'NetworkFirst',
               method: 'GET',
               options: {
-                cacheName: 'api-cache/gradeCoins',
+                cacheName: 'api-cache/common',
                 expiration: {
+                  maxEntries: 20,
+                  maxAgeSeconds:60,
+                },
+                matchOptions: {
+                  ignoreSearch: false,
+                },
+                cacheableResponse: {
+                  statuses: [0, 200],
+                }
+              }
+            },
+            {
+              urlPattern: /\/api\/(slide|app|gradeCoins|blog|cartoon|website|image|userInfo|bulletin|news|common)\/detail(?:\/|\?|$)/,
+              handler: 'StaleWhileRevalidate',
+              method: 'GET',
+              options: {
+                cacheName: 'api-cache/detail',
+                expiration: {
+                  maxEntries: 20,
                   maxAgeSeconds: 60 * 60 * 24,
+                },
+                matchOptions: {
+                  ignoreSearch: false,
                 },
                 cacheableResponse: {
                   statuses: [0, 200],
@@ -223,7 +251,7 @@ export default async function() {
         },
         meta: {
           // Meta标签配置
-          theme_color: '#7de24a',
+          theme_color: '#000',
           mobileApp: true,
           mobileAppIOS: true,
           appleStatusBarStyle: 'black-translucent',

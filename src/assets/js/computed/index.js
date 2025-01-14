@@ -27,7 +27,7 @@ export default {
     },
     // 图片地址
     imgUrl(){
-      return(url,type='public')=>{
+      return(url,type='public',id='')=>{
         if (/\.(jpg|png|gif|jpeg|svg)$/.test(url) && /^(http|https|ftp)/.test(url)){
           return url;
         }else {
@@ -37,9 +37,9 @@ export default {
           //   return `/static/images/${type}/` + url;
           // }
           if (process.env.NODE_ENV === 'development'){
-            return `/${type}/` + url;
+            return id === '' ? `/${type}/` + url : `/${type}/${id}/` + url;
           }else{
-            return `${setting.website}/static/images/${type}/` + url;
+            return id === '' ? `${setting.website}/static/images/${type}/` + url : `${setting.website}/static/images/${type}/${id}/` + url;
           }
         //   return `${setting.website}/static/images/${type}/` + url;
         }

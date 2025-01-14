@@ -21,7 +21,8 @@
                       :target="hrefUrl(item.hrefUrl).target"
                       class="item-content auto-line-start applyBck "
                       v-click-data="{name:item.title,hrefUrl:item.hrefUrl,imgUrl:'/static/images/website/' +item.belongOne +'/'+ item.favicon,belong:'website',id:`${item.belongOne}/${item.belongTwo}/${item.favicon}`}" >
-                      <img v-lazy="'/static/images/website/' +item.belongOne +'/'+ item.favicon" data-hotWeb="hotWeb1" :alt="item.title" width="40" height="40">
+                      <nuxt-img preload  fit="contain" format="webp,avif,jpeg"  loading="lazy" placeholder="/static/lazy/errorG3.png" :src="imgUrl(item.favicon,'website',item.belongOne)" data-hotWeb="hotWeb1" :alt="item.title" width="40" height="40"/>
+<!--                      <img v-lazy="'/static/images/website/' +item.belongOne +'/'+ item.favicon" data-hotWeb="hotWeb1" :alt="item.title" width="40" height="40">-->
                       <div class="text overflow-eclipse">
                         <h5 class="fontSize-text overflow-eclipse">{{item.title}}</h5>
                         <small class="fontColor-t-d overflow-eclipse">{{item.explain}}</small>
@@ -31,18 +32,18 @@
                 </Col>
               </Row>
               <Row type='flex' justify="start" align="middle" class-name="hotWeb hotApp mx-2" v-show="titleButton.hotApp" >
-                <Col :xl="{ span: 4 }" :lg="{span:12}" :md="{span:12}"  :sm="{span:12}" :xs="{ span: 24 }" class-name="hotWeb-item hotApp-item" v-for="(item,index) in hotAppData.content" :key="index">
+                <Col :xxl="{span:4}" :xl="{ span: 6 }" :lg="{span:6}" :md="{span:12}"  :sm="{span:12}" :xs="{ span: 24 }" class-name="hotWeb-item hotApp-item" v-for="(item,index) in hotAppData.content" :key="index">
                   <Tooltip :content="item.websiteInfo" :disabled="!item.websiteInfo">
-                    <div class="item-content auto-line-between applyBck" >
+                    <div class="item-content auto-line-between applyBck" style="padding-left: 0.1rem;">
                       <router-link tag="a"
                                    :to="{path:`/app/${item._id}`,query:{title:item.title}}"
                                    class="item-left"
                                    v-click-data="{name:item.title,hrefUrl:`/app/${item._id}?title=${item.title}`,imgUrl:'/static/images/app/' + item.imgUrl,belong:'app',id:item._id}" >
 <!--                        <img v-lazy="'/static/images/app/'+item.imgUrl" data-app="app1" :alt="item.title">-->
 <!--                        <div class="background-cover" v-lazy:background-image="'/static/images/app/' + item.imgUrl" data-app="app1" :alt="item.title"></div>-->
-                        <nuxt-img preload  fit="cover" loading="lazy" placeholder="/static/lazy/errorG3.png" :src="imgUrl(item.imgUrl,'app')" data-app="app1" :alt="item.title" width="70" height="70"/>
+                        <nuxt-img preload  fit="contain" format="avif,webp,jpeg"  loading="lazy" placeholder="/static/lazy/errorG3.png" :src="imgUrl(item.imgUrl,'app')" data-app="app1" :alt="item.title" width="70" height="70"/>
                       </router-link>
-                      <div class="item-right ">
+                      <div class="item-right " style="padding-left:0.05rem;">
                         <div class="title ">
                           <router-link tag="a"  :to="{path:`/app/${item._id}`,query:{title:item.title}}"  class="fontSize-text fontSize-text-app"
                                        v-click-data="{name:item.title,hrefUrl:`/app/${item._id}?title=${item.title}`,imgUrl:'/static/images/app/' + item.imgUrl,belong:'app',id:item._id}" >
@@ -101,7 +102,7 @@
                       <div class="wrapBg"></div>
                       <div class="infoBlock infoBlock-fasico">
                         <div class="bg commonBg" :style="'background:linear-gradient('+item.bg[0]+'deg,'+item.bg[1]+','+item.bg[2]+');background-color:'+item.bg[1]+';'"  ></div>
-                        <nuxt-img preload  fit="cover" loading="lazy" placeholder="/static/lazy/errorC1.jpg"  class="infoIcon background-cover" :src="imgUrl(item.imgUrl,'cartoon/'+item.belongLogo1)" data-image="cartoon1" :title="item.title" />
+                        <nuxt-img preload  fit="cover" format="avif,webp,jpeg"  loading="lazy" placeholder="/static/lazy/errorC1.jpg"  class="infoIcon background-cover" :src="imgUrl(item.imgUrl,'cartoon/'+item.belongLogo1)" data-image="cartoon1" :title="item.title" />
 <!--                        <div class="infoIcon background-cover" v-lazy:background-image="`./static/images/cartoon/${item.belongLogo1}/${item.imgUrl}`" data-cartoon="cartoon1" :title="item.title" ></div>-->
                         <div class="infoWrap">
                           <div class="info-title fontSize-text-colornoH" >{{item.title}}</div>
@@ -136,7 +137,7 @@
                   >
                     <div class="allLike-img">
 <!--                      <div class="img" v-lazy:background-image="'/static/images/image/'+item.belongLogo1+'/'+item.imgUrl[0]" data-image="image1"></div>-->
-                      <nuxt-img preload  fit="outside" loading="lazy" placeholder="/static/lazy/errorI0.jpg"  class="img" :src="imgUrl(item.imgUrl,'image/'+item.belongLogo1)" data-image="image1" :title="item.title" style="width: 100%;margin: auto;" />
+                      <nuxt-img preload  fit="outside" format="avif,webp,jpeg" loading="lazy"  placeholder="/static/lazy/errorI0.jpg"  class="img" :src="imgUrl(item.imgUrl,'image/'+item.belongLogo1)" data-image="image1" :title="item.title" style="width: 100%;margin: auto;" />
                       <div class="tagSlope">
                         <span>{{item.allNum}}</span>
                       </div>

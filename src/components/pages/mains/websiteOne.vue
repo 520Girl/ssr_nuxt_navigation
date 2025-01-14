@@ -43,7 +43,8 @@
                 <p><Icon type="ios-thumbs-up" />{{item1.heartNum}}</p>
               </div>
               <div class="item-content-img">
-                <img v-lazy="`/static/images/website/${item.belongOne}/${item1.favicon}`" :alt="item1.title" height="38" width="38" data-hotweb="hotWeb1">
+                <nuxt-img format="webp" fill="outside" :src="imgUrl(item1.favicon,'website',item.belongOne)" :alt="item1.title" height="38" width="38" data-hotweb="hotWeb1"/>
+<!--                <img v-lazy="`/static/images/website/${item.belongOne}/${item1.favicon}`" :alt="item1.title" height="38" width="38" data-hotweb="hotWeb1">-->
 <!--                <img v-lazy="lazyImgUrl(item1.favicon,'website',item.belongOne)" :alt="item1.title" height="38" width="38" data-hotweb="hotWeb1">-->
               </div>
               <div class="text">
@@ -286,7 +287,7 @@ export default {
               justify-content: flex-start;
               position: relative;
               a{
-                font-size: 0.12rem;
+                font-size: 12px;
                 color: #6c757d;
                 padding: 2px;
                 background: rgba(134, 134, 134, 0.1);

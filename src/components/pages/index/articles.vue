@@ -9,7 +9,7 @@
                             @click="jumpUrl(item)"
                             class="carousel"
                             v-click-data="{name:item.title,hrefUrl:$common().handleHrefUrl({belong:'slide',hrefUrl:item.hrefUrl,title:item.title}),imgUrl:`/static/images/${item.belong}/${item.belong}/${item.imgUrl}`,belong:item.belong,id:item.belongId}" >
-                              <nuxt-img preload  fit="cover" loading="lazy" placeholder="/static/lazy/errorG2.png" :src="imgUrl(item.imgUrl,item.belong)" data-article="article1" :alt="item.title" width="518" height="300"/>
+                              <nuxt-img preload  fit="cover" format="avif,webp,jpeg" loading="lazy" placeholder="/static/lazy/errorG2.png" :src="imgUrl(item.imgUrl,item.belong)" data-article="article1" :alt="item.title" width="518" height="300"/>
 <!--                            <img v-lazy="`/static/images/${item.belong}` + item.imgUrl" data-article="article1" :alt="item.title" width="518" height="300">-->
                             <div class="text  applyBck" :data-index="index" >
                                   <h5 class="imgInIcon fontSize-text-colornoH">{{item.title}}</h5>
@@ -27,7 +27,7 @@
                           class="carousel"
                           v-click-data="{name:item.title,hrefUrl:$common().handleHrefUrl(item),imgUrl:`/static/images/${item.belong}/${item.imgUrl}`,belong:item.belong,id:item.belongId}" >
                           <h5 class="overflow-eclipse applyBck fontSize-text-colornoH">{{item.title}}</h5>
-                          <nuxt-img preload  fit="cover" loading="lazy"  :src="imgUrl(item.imgUrl,'slide')" placeholder="/static/lazy/errorH1.png" data-article="article2" :alt="item.title" width="134"  height="76"/>
+                          <nuxt-img preload  fit="cover" loading="lazy" format="avif,webp,jpeg"  :src="imgUrl(item.imgUrl,'slide')" placeholder="/static/lazy/errorH1.png" data-article="article2" :alt="item.title" width="134"  height="76"/>
 <!--                          <img v-lazy="'/static/images/article'+ item.imgUrl" data-article="article2" :alt="item.imgAlt" width="134"  height="76">-->
                         </div>
                       </CarouselItem>
@@ -74,7 +74,7 @@
                       <div class="item-img" v-show="index == mainItem">
                         <div class="item-img-reserve"   @click="jumpUrlCarousel(item)"
                         >
-                          <nuxt-img preload  fit="fill" loading="lazy"  :src="imgUrl(item.imgUrl,item.belong)" height="78" width="256"  :title="item.title" placeholder="/static/lazy/errorA4.png" data-article="article4"/>
+                          <nuxt-img preload  fit="fill" loading="lazy"   format="avif,webp,jpeg"   :src="imgUrl(item.imgUrl,item.belong)" height="78" width="256"  :title="item.title" placeholder="/static/lazy/errorA4.png" data-article="article4"/>
 <!--                          <img  v-lazy="`/static/images/${item.belong}/${item.imgUrl}`" data-article="article4" :title="item.title">-->
                         </div>
                         <template v-if="item.belong != 'news'">

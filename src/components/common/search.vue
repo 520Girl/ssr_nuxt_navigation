@@ -1,3 +1,4 @@
+<script src="../../../nuxt.config.js"></script>
 <template>
   <div class="search-contiainer">
     <div class="search-input-text">
@@ -7,7 +8,7 @@
     <div class="search-substance search-b" v-show="searchStatus">
       <ul v-if="searchRe.length != 0">
         <li  v-for="(item,index) in searchRe.slice(0, 6)" :key="index">
-          <a  class="overflow-eclipse fontSize-text-colornoH" @click="$common().goto(item.belongId)" :title="item.belongId">
+          <a  class="overflow-eclipse fontSize-text-colornoH" @click="$common().goto('/'+item.belongId)" :title="item.belongId">
             {{item.title}}
            </a>
           <Icon type="md-flame" v-if="index == 2" />
@@ -50,7 +51,7 @@ export default {
       if (this.searchDate === '') return this.searchRe = []
       // 如果type 为2表示点击搜索键，如果是点击搜索并且是站外搜索的话直接跳转到站外
       if (type ===2 && this.searchSelect.type !== 'nei'){
-        window.open(`${this.searchSelect.value}${this.searchDate}`,'_block')
+        window.open(`/${this.searchSelect.value}${this.searchDate}`,'_block')
       }
       this.searchLoading = true
       //?站内搜索

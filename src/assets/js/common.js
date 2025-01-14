@@ -337,6 +337,11 @@ const handleHrefUrl = (item)=>{
   return `/${item.belong}/${item.belongId}?title=${item.title}`
 }
 
+//获取axios
+function askAddDataReq(){
+console.log(this.$api)
+}
+
 
 export default ({app},inject)=>{
   const common = ()=>({
@@ -355,7 +360,9 @@ export default ({app},inject)=>{
     throttle,
     debounce,
     goto,
-    handleHrefUrl
+    handleHrefUrl,
+    askAddDataReq
   })
    inject('common',common)
 }
+
