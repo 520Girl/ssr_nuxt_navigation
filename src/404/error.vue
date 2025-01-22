@@ -277,11 +277,11 @@
             <path class="st9" d="M320.3 257.8h549.9" />
             <g id="Text">
               <text transform="translate(377.037 230.025)" class="st8 st10" font-size="21">
-                error =>
+                {{ code === 200 ? 'error' : `error ${code}` }} =>
               </text>
-              <text transform="translate(455.037 226.025)" class="st8 st10 st11" @click="emailClick"  font-size="15">me</text>
-              <text transform="translate(659.5 213.994)" class="st8 st10" font-size="24.025">
-                Page not found.
+              <text transform="translate(495.037 226.025)" class="st8 st10 st11" @click="emailClick"  font-size="15">me</text>
+              <text transform="translate(550.5 213.994)" class="st8 st10" font-size="24.025">
+                {{ msg ? msg : 'Page not found.'}}
               </text>
             </g>
             <g id="ladders">
@@ -311,7 +311,14 @@ export default {
   name: 'error',
   data() {
     return {
-      msg: 'error'
+      msg: '',
+      code: 200
+    }
+  },
+  created(){
+    if(this.$route.query.msg){
+      this.msg = this.$route.query.msg
+      this.code = this.$route.query.code
     }
   },
   methods: {

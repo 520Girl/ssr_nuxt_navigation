@@ -341,7 +341,10 @@ const handleHrefUrl = (item)=>{
 function askAddDataReq(){
 console.log(this.$api)
 }
-
+export {
+  Format,
+  Decrypt,
+}
 
 export default ({app},inject)=>{
   const common = ()=>({
@@ -363,6 +366,6 @@ export default ({app},inject)=>{
     handleHrefUrl,
     askAddDataReq
   })
-   inject('common',common)
+  inject('common',common)
 }
 

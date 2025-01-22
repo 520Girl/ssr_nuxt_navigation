@@ -2,33 +2,33 @@
 // import common from "@/assets/js/common";
 import decode_res_data from "@/assets/js/decode_res_data";
 import reqApi from "@/assets/js/api/reqModule";
-import { NGINX_SERVER_IP} from "../constant";
+import { NGINX_SERVER_IP } from "../constant";
 
-export default ({app, $axios, store, redirect},inject) => {
-//创建一个axios 实例  ,设置默认post请求头 ，跨域请求时是否默认携带cookie
-  const instance = $axios.create({timeout: 5000}) //超时时间为1000ms
+export default ({ app, $axios, store, redirect }, inject) => {
+  //创建一个axios 实例  ,设置默认post请求头 ，跨域请求时是否默认携带cookie
+  const instance = $axios.create({ timeout: 5000 }) //超时时间为1000ms
   instance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
   // instance.defaults.headers['Accept-Language'] = common.i18nLanguage()
   instance.defaults.withCredentials = true
   if (process.env.NODE_ENV === 'development') {
-    if (process.server){
+    if (process.server) {
       instance.defaults.baseURL = 'http://localhost:3000/api';
-    }else{
+    } else {
       instance.defaults.baseURL = '/api/api';
     }
   } else if (process.env.NODE_ENV === 'debug') {
     instance.defaults.baseURL = ' '
   } else if (process.env.NODE_ENV === 'production') {
-    if (process.server){
+    if (process.server) {
       instance.defaults.baseURL = 'https://navai.vip/api';
-    }else{
+    } else {
       instance.defaults.baseURL = '/api'
     }
   }
   /*
   * 请求失败后统一处理状态码
   * */
-  const errorHandle = (status, other) => {
+  const errorHandle = (status, other,redirect) => {
     switch (status) {
       case 401: //未登陆请跳转到登陆页面
         console.log("未登陆！")
@@ -38,6 +38,10 @@ export default ({app, $axios, store, redirect},inject) => {
         break;
       case 404:
         console.log("您请求的资源不存在！")
+        break;
+      case 429:
+        // 这里是为了处理429错误,超过请求次数
+        redirect(`/error?msg=${other}&code=${status}`)
         break;
       default:
         console.log("对不起您在状况之外！")
@@ -65,15 +69,16 @@ export default ({app, $axios, store, redirect},inject) => {
   instance.interceptors.response.use(
     (res) => {
       //这里是为了加密做处理,并且解密
-      res = decode_res_data(res,redirect)
+      res = decode_res_data(res, redirect)
       return res.status === 200 || 202 ? Promise.resolve(res.data) : Promise.reject(res)
     },
     error => {
       if (error) {
+
         // 请求已发出，但是不在2xx的范围
-        if (Object.prototype.toString.call(error) === '[object Object]' && 'response' in error && error.response.status){
-          const {response} = error; //这个必须要输出才是一个对象
-          errorHandle(response.status, response.data.msg);
+        if ('response' in error && error.response.status) {
+          const { response } = error; //这个必须要输出才是一个对象
+          errorHandle(response.status, response.data.msg,redirect);
         }
         return Promise.reject(error);
       } else {
@@ -87,5 +92,5 @@ export default ({app, $axios, store, redirect},inject) => {
     }
   )
   const API = reqApi(instance)
-  inject('api',API)
+  inject('api', API)
 }

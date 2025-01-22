@@ -67,7 +67,7 @@ export default async function() {
       },
       //移到了router.scrollBehavior.js 中
       router:{
-        scrollBehavior:'@/router.scrollBehavior.js',
+        // scrollBehavior:'@/router.scrollBehavior.js',
         middleware: ['route-change']
       },
       // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
