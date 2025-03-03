@@ -83,6 +83,11 @@ export default async function() {
         // {src: '@/plugins/qrcode', mode: 'client'},
         '@/plugins/svg-icon'
       ],
+      // 去除i18n警告
+      vueI18n: {
+        silentTranslationWarn: true,
+        silentFallbackWarn: true
+      },
       //在 Nuxt.js 中， components 配置项用于自动注册你的组件。通过指定组件目录，Nuxt.js 会扫描所有在该目录下的组件，并自动注册它们，使你不需要在每个文件中手动导入这些组件。
       // Auto import components: https://go.nuxtjs.dev/config-components
       components: true,
@@ -95,6 +100,7 @@ export default async function() {
           // 允许访问的路径，必须匹配文件存放路径
           allowPaths: [setting.website+'/static'],
           // 其他 IPX 配置...
+          maxAge: 60 * 60 * 24 * 7, // 7天缓存
         },
         // static: {
         //   baseURL: 'https://www.navai.vip' // 会在图片前面加上这个前缀
@@ -272,6 +278,9 @@ export default async function() {
         }
       },
       build:{
+        hardSource: true, // 添加硬盘缓存
+        // cache: true,
+        parallel: true, // 启用并行构建 
         extractCSS: true, //提取CSS
         extend(config, {isDev, isClient}) {
           // 排除 nuxt 原配置的影响,Nuxt 默认有vue-loader,会处理svg,img等
@@ -304,7 +313,7 @@ export default async function() {
           ],
         },
         optimization: { //进行二次压缩
-          minimize: true,
+          minimize:process.env.NODE_ENV === 'production',
           minimizer: [
             new TerserPlugin({
               test: /\.js(\?.*)?$/i,

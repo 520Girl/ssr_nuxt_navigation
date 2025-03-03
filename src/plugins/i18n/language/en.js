@@ -1,4 +1,4 @@
-const en={
+export default {
         SubmitUrl:'Submit URL',
         advert:'Advertising Contact',
         china:'简体中文',
@@ -247,5 +247,3 @@ const en={
           b_5:'12377 Illegal and Adverse Information Reporting Center',
         }
 }
-
-module.exports = en

@@ -1,4 +1,4 @@
-const zhCN={
+export default {
         SubmitUrl:'申请收录',
         advert:'广告联系',
         china:'简体中文',
@@ -244,5 +244,3 @@ const zhCN={
           b_5:'12377违法和不良信息举报中心',
         }
 }
-
-module.exports = zhCN

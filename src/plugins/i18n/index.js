@@ -21,8 +21,8 @@ export default {
   vueI18n: {
     fallbackLocale: 'zh',
     messages: {
-      en: Object.assign(en, process.client ? `${require('iview/dist/locale/en-US')}` : ''),
-      zh: Object.assign(zh, process.client ? `${require('iview/dist/locale/zh-CN')}` : '')
+      en: Object.assign(en, process.client ? require('iview/dist/locale/en-US') : ''),
+      zh: Object.assign(zh, process.client ? require('iview/dist/locale/zh-CN') : '')
     }
   },
   // 浏览器语言检测

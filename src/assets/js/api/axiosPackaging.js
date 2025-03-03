@@ -10,6 +10,7 @@ export default ({ app, $axios, store, redirect }, inject) => {
   instance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
   // instance.defaults.headers['Accept-Language'] = common.i18nLanguage()
   instance.defaults.withCredentials = true
+
   if (process.env.NODE_ENV === 'development') {
     if (process.server) {
       instance.defaults.baseURL = 'http://localhost:3000/api';

@@ -47,11 +47,7 @@ const actions = {
   },
   //向接口请求添加数据
   async askAddData({ state }, data) {
-    const api = reqModule(window.$nuxt.$axios)
-    // await axios.patch(`/api/upvote`, data)
-    // const store = this.$store || this
-    // console.log(store.$api)
-    await api.mutulal.getCUpvote(data)
+    await this.$api.mutulal.getCUpvote(data)
   }
 
 }
